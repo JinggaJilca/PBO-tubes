@@ -18,7 +18,9 @@
     <body>
         <jsp:include page="navbar.jsp" />
         <!--[START] ISI -->
-        
+        <div class="container">
+            <h1>HALAMAN TESTING</h1>
+        </div>
         <!--[END] ISI -->
 
 
