@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 D:\PBO-Netbeans\FinTrack\src\main\java\dao\DashboardDAO.java
 D:\PBO-Netbeans\FinTrack\src\main\java\model\DashboardSummary.java
 D:\PBO-Netbeans\FinTrack\src\main\java\model\MonthlyTransactionSummary.java
@@ -11,16 +10,3 @@ D:\PBO-Netbeans\FinTrack\src\main\java\servlets\DashboardServlet.java
 D:\PBO-Netbeans\FinTrack\src\main\java\dao\RegisterDAO.java
 D:\PBO-Netbeans\FinTrack\src\main\java\model\Profile.java
 D:\PBO-Netbeans\FinTrack\src\main\java\model\User.java
-=======
-C:\Users\Julio\PBO-tubes\src\main\java\model\DashboardSummary.java
-C:\Users\Julio\PBO-tubes\src\main\java\model\RecentActivity.java
-C:\Users\Julio\PBO-tubes\src\main\java\dao\DashboardDAO.java
-C:\Users\Julio\PBO-tubes\src\main\java\model\JDBC.java
-C:\Users\Julio\PBO-tubes\src\main\java\model\MonthlyTransactionSummary.java
-C:\Users\Julio\PBO-tubes\src\main\java\model\Profile.java
-C:\Users\Julio\PBO-tubes\src\main\java\servlets\DashboardServlet.java
-C:\Users\Julio\PBO-tubes\src\main\java\model\CategorySpendingSummary.java
-C:\Users\Julio\PBO-tubes\src\main\java\servlets\AuthServlet.java
-C:\Users\Julio\PBO-tubes\src\main\java\dao\UserDAO.java
-C:\Users\Julio\PBO-tubes\src\main\java\model\User.java
->>>>>>> d4affb712597ce705ec66f25a3635c9cfe95bd2f

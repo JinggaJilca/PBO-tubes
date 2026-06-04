@@ -1,11 +1,8 @@
 model\CategorySpendingSummary.class
 servlets\DashboardServlet.class
 model\RecentActivity.class
-<<<<<<< HEAD
 dao\RegisterDAO.class
 dao\LoginDAO.class
 servlets\AuthServlet.class
 model\JDBC.class
-=======
->>>>>>> d4affb712597ce705ec66f25a3635c9cfe95bd2f
 dao\DashboardDAO.class

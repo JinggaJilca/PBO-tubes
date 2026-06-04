@@ -20,7 +20,7 @@ public class JDBC {
             + "user=" + USERNAME + ";"
             + "password=" + PASSWORD + ";"
             + "encrypt=true;"
-            + "trustServerCertificate=false;"
+            + "trustServerCertificate=true;"
             + "hostNameInCertificate=*.database.windows.net;"
             + "loginTimeout=30;";
 
