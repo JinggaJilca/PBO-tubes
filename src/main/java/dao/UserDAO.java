@@ -22,8 +22,13 @@ public class UserDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     user = new User();
-                    user.setId(rs.getInt("id")); 
+
+                    user.setUserID(rs.getInt("id")); // Sesuaikan nama kolom "id" dengan di Azure
+                    user.setUsername(rs.getString("username")); // Sesuaikan nama kolom
+
+                    user.setUserID(rs.getInt("id")); 
                     user.setUsername(rs.getString("username")); 
+
                     user.setEmail(rs.getString("email"));
                     // Menyimpan password ke object user (opsional, tapi sah-sah saja)
                     user.setPassword(rs.getString("password"));

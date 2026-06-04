@@ -1,5 +1,11 @@
+D:\PBO-Netbeans\FinTrack\src\main\java\dao\DashboardDAO.java
+D:\PBO-Netbeans\FinTrack\src\main\java\model\DashboardSummary.java
+D:\PBO-Netbeans\FinTrack\src\main\java\model\MonthlyTransactionSummary.java
 D:\PBO-Netbeans\FinTrack\src\main\java\model\JDBC.java
 D:\PBO-Netbeans\FinTrack\src\main\java\dao\UserDAO.java
+D:\PBO-Netbeans\FinTrack\src\main\java\model\CategorySpendingSummary.java
+D:\PBO-Netbeans\FinTrack\src\main\java\model\RecentActivity.java
 D:\PBO-Netbeans\FinTrack\src\main\java\servlets\AuthServlet.java
+D:\PBO-Netbeans\FinTrack\src\main\java\servlets\DashboardServlet.java
+D:\PBO-Netbeans\FinTrack\src\main\java\model\Profile.java
 D:\PBO-Netbeans\FinTrack\src\main\java\model\User.java
-D:\PBO-Netbeans\FinTrack\src\main\java\servlets\FrontendServlet.java

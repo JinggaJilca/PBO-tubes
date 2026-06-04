@@ -27,8 +27,8 @@
                         </div>
                     <% } %>
 
-                    <% if (request.getAttribute("errorMessage") != null) { %>
-                        <div class="alert alert-danger">
+                    <% if (request.getAttribute("errorMessage") != null) { %>   
+                    <div class="alert alert-danger">
                             <%= request.getAttribute("errorMessage") %>
                         </div>
                     <% } %>

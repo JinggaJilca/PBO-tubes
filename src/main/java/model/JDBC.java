@@ -2,6 +2,8 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JDBC {
     
@@ -23,17 +25,18 @@ public class JDBC {
             + "loginTimeout=30;";
 
     public static Connection getConnection() {
-        Connection connection = null;
-        try {
-            // Membuka koneksi ke database
-            System.out.println("Mencoba terhubung ke Azure SQL Database...");
-            connection = DriverManager.getConnection(CONNECTION_URL);
-            System.out.println("Koneksi Berhasil!");
-        } catch (SQLException e) {
-            System.out.println("Koneksi Gagal. Cek pesan error berikut:");
-            e.printStackTrace();
-        }
-        return connection;
+    Connection connection = null;
+    try {
+        // BARIS INI WAJIB ADA agar Tomcat mengenali Driver-nya
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        
+        connection = DriverManager.getConnection(CONNECTION_URL);
+    } catch (ClassNotFoundException e) {
+        System.out.println("Driver tidak ditemukan: " + e.getMessage());
+    } catch (SQLException e) {
+        System.out.println("Gagal konek DB: " + e.getMessage());
+    }
+    return connection;
     }
 
     // Method main untuk mengetes koneksi langsung dengan menjalankan file ini (Shift + F6)
