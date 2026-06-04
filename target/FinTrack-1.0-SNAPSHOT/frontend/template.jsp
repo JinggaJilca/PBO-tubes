@@ -20,7 +20,7 @@
             <jsp:include page="navbar.jsp" />
             <!--[START] ISI -->
             <div class="container">
-                <h1>HALAMAN TESTING</h1>
+                <h1>HALAMAN TEATING</h1>
                 <p>Lorem ipsum dolor, sit amet consectetur
             </div>
             <!--[END] ISI -->

@@ -1,1 +1,5 @@
+dao\UserDAO.class
+model\JDBC.class
 servlets\FrontendServlet.class
+model\User.class
+servlets\AuthServlet.class
