@@ -1,5 +1,11 @@
+model\CategorySpendingSummary.class
+servlets\DashboardServlet.class
+model\MonthlyTransactionSummary.class
+model\RecentActivity.class
+servlets\AuthServlet.class
 dao\UserDAO.class
 model\JDBC.class
-servlets\FrontendServlet.class
+dao\DashboardDAO.class
+model\DashboardSummary.class
+model\Profile.class
 model\User.class
-servlets\AuthServlet.class

@@ -28,7 +28,7 @@ public class UserDAO {
                 // Jika data ditemukan di database
                 if (rs.next()) {
                     user = new User();
-                    user.setId(rs.getInt("id")); // Sesuaikan nama kolom "id" dengan di Azure
+                    user.setUserID(rs.getInt("id")); // Sesuaikan nama kolom "id" dengan di Azure
                     user.setUsername(rs.getString("username")); // Sesuaikan nama kolom
                     user.setEmail(rs.getString("email"));
                     // Sengaja tidak menyimpan password ke object User demi keamanan
