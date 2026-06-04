@@ -54,4 +54,10 @@ Jangan mengedit file di luar ranah tim Anda untuk menghindari bentrok kode (*mer
 ---
 
 ## ⚠️ Aturan Wajib
-1. **Jangan Kunci Folder Deploy:** Tim Frontend **HANY
+1. **Jangan Kunci Folder Deploy:** Tim Frontend **HANYA** boleh membuka folder *source code* asli (`.../FinTrack`). Dilarang keras membuka folder `C:\xampp\tomcat\webapps\` di VS Code agar *deploy* NetBeans tidak *error*.
+2. **Pemanggilan File JSP:** Jika file saling sejajar di satu folder (misal `template.jsp` dan `navbar.jsp`), panggil langsung tanpa garis miring: `<%@ include file="navbar.jsp" %>`.
+3. **Sinkronisasi URL:** Pastikan URL pada `action` form (Frontend) sama persis dengan *routing* URL Servlet (Backend).
+
+
+
+
