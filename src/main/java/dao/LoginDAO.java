@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-public class UserDAO {
+public class LoginDAO {
 
     public User authenticateUser(String emailOrUsername, String password) {
         User user = null;
@@ -23,12 +23,8 @@ public class UserDAO {
                 if (rs.next()) {
                     user = new User();
 
-                    user.setUserID(rs.getInt("id")); // Sesuaikan nama kolom "id" dengan di Azure
+                    user.setUserID(rs.getInt("user_id")); // Sesuaikan nama kolom "id" dengan di Azure
                     user.setUsername(rs.getString("username")); // Sesuaikan nama kolom
-
-                    user.setUserID(rs.getInt("id")); 
-                    user.setUsername(rs.getString("username")); 
-
                     user.setEmail(rs.getString("email"));
                     // Menyimpan password ke object user (opsional, tapi sah-sah saja)
                     user.setPassword(rs.getString("password"));

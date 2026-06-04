@@ -28,7 +28,7 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public String getEmail() {
@@ -66,7 +66,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userID=" + userID +
+                "user_id=" + userID +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", profile=" + profile +

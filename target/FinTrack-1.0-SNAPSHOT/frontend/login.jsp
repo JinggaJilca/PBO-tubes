@@ -20,18 +20,19 @@
             <div class="col-lg-6 login-side">
                 <div class="login-container text-center">
                     <h1 class="login-title">LOGIN</h1>
-
-                    <% if (request.getAttribute("successMessage") != null) { %>
-                        <div class="alert alert-success">
-                            <%= request.getAttribute("successMessage") %>
-                        </div>
-                    <% } %>
-
-                    <% if (request.getAttribute("errorMessage") != null) { %>
-                        <div class="alert alert-danger">
-                            <%= request.getAttribute("errorMessage") %>
-                        </div>
-                    <% } %>
+                                <% if (request.getAttribute("errorMessage") !=null) { %>
+                                    <div id="errorToast" class="toast align-items-center text-bg-danger border-0 mb-3"
+                                        role="alert" aria-live="assertive" aria-atomic="true">
+                                        <div class="d-flex">
+                                            <div class="toast-body">
+                                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                                <%= request.getAttribute("errorMessage") %>
+                                            </div>
+                                            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                                data-bs-dismiss="toast" aria-label="Close"></button>
+                                        </div>
+                                    </div>
+                                    <% } %>
 
                     <form action="${pageContext.request.contextPath}/auth?action=login" method="post">
 
