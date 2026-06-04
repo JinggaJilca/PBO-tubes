@@ -403,4 +403,28 @@
 
             </body>
 
+<<<<<<< HEAD
             </html>
+=======
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="card fintrack-card activity-card p-4">
+                        <h6 class="fw-bold text-dark mb-4">Recent Activity</h6>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card fintrack-card activity-card p-4">
+                        <h6 class="fw-bold text-dark mb-4">Statistic</h6>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+
+    </html>
+>>>>>>> 63722ab7fa9a5554a13efbcea573f2bbe7ddf1a5

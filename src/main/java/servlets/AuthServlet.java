@@ -1,6 +1,10 @@
 package servlets;
 
+import dao.UserDAO;
+import model.User;
 import java.io.IOException;
+
+// Menggunakan impor javax.servlet sesuai server kamu
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,21 +12,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-// Menentukan URL endpoint sesuai dengan action di form JSP kamu
 @WebServlet("/auth")
 public class AuthServlet extends HttpServlet {
+
+    private UserDAO userDAO = new UserDAO();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        String action = request.getParameter("action");
+
+        // Jika URL adalah /auth?action=register, arahkan ke form register
+        if ("register".equals(action)) {
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        } 
+        // Jika URL adalah /auth?action=logout, proses logout
+        else if ("logout".equals(action)) {
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                session.invalidate(); // Hapus sesi
+            }
+            response.sendRedirect(request.getContextPath() + "/auth?action=login");
+        } 
+        // Default: Jika tidak ada action spesifik, selalu tampilkan halaman Login
+        else {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
-        // Mengambil parameter '?action=...' dari URL
         String action = request.getParameter("action");
 
         if ("login".equals(action)) {
             processLogin(request, response);
         } else {
-            // Jika action tidak dikenali, kembalikan ke halaman login
             response.sendRedirect("login.jsp");
         }
     }
@@ -30,33 +57,18 @@ public class AuthServlet extends HttpServlet {
     private void processLogin(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
-        // 1. Ambil data dari form input
         String emailOrUsername = request.getParameter("emailOrUsername");
         String password = request.getParameter("password");
 
-        // 2. Validasi ke Database (Disini kamu menghubungkan dengan Azure SQL-mu nanti)
-        boolean isValidUser = authenticateUser(emailOrUsername, password);
+        User loggedInUser = userDAO.authenticateUser(emailOrUsername, password);
 
-        if (isValidUser) {
-            // 3a. Jika Login BERHASIL: Buat session dan arahkan ke dashboard
+        if (loggedInUser != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("user", emailOrUsername); // Menyimpan identitas user di sesi
-            
-            // Redirect ke halaman utama setelah login (misal: dashboard.jsp)
+            session.setAttribute("user", loggedInUser); 
             response.sendRedirect("dashboard.jsp"); 
         } else {
-            // 3b. Jika Login GAGAL: Set pesan error dan kembalikan ke halaman login
             request.setAttribute("errorMessage", "Email/Username atau Password salah!");
-            
-            // Menggunakan RequestDispatcher agar atribut errorMessage bisa dibaca di login.jsp
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
-    }
-
-    // Method bantuan untuk simulasi validasi (Ganti dengan kueri Database sungguhan nantinya)
-    private boolean authenticateUser(String username, String password) {
-        // TODO: Gunakan DatabaseConnection.java yang kita buat sebelumnya untuk mengecek tabel User
-        // Contoh Hardcode sementara untuk testing:
-        return ("admin".equals(username) && "admin123".equals(password));
     }
 }
