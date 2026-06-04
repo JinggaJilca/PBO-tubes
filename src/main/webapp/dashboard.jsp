@@ -91,18 +91,6 @@
             </div>
 
         </div>
-
-        <h2>Ringkasan Finansial FinTrack</h2>
-
-        <div style="border: 1px solid #ccc; padding: 15px; width: 300px;">
-            <p><strong>Bulan:</strong> ${dataAnggaran.bulan}</p>
-            <p><strong>Pemasukan:</strong> Rp ${dataAnggaran.totalPemasukan}</p>
-            <p><strong>Pengeluaran:</strong> Rp ${dataAnggaran.totalPengeluaran}</p>
-            <hr>
-            <p><strong>Sisa Saldo:</strong> Rp ${dataAnggaran.saldo}</p>
-        </div>
-
-
         <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
