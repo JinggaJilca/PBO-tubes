@@ -1,9 +1,4 @@
 model\CategorySpendingSummary.class
 servlets\DashboardServlet.class
-model\MonthlyTransactionSummary.class
 model\RecentActivity.class
-model\JDBC.class
 dao\DashboardDAO.class
-model\DashboardSummary.class
-model\Profile.class
-model\User.class

@@ -4,6 +4,15 @@
  */
 package servlets;
 
+import dao.DashboardDAO;
+import model.DashboardSummary;
+import model.CategorySpendingSummary;
+import model.MonthlyTransactionSummary;
+import model.RecentActivity;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,7 +41,35 @@ public class DashboardServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("userId") == null) {
+        response.sendRedirect("login");
+        return;
+        }
+
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        LocalDate now = LocalDate.now();
+        int year = now.getYear();
+        int month = now.getMonthValue();
+
+        DashboardDAO dashboardDAO = new DashboardDAO();
+
+        DashboardSummary summary = dashboardDAO.getDashboardSummary(userId, year, month);
+
+        List<RecentActivity> recentActivities = dashboardDAO.getRecentActivities(userId, 5);
+
+        List<CategorySpendingSummary> spendingOverview = dashboardDAO.getSpendingOverviewByCategory(userId, year,
+                month);
+
+        List<MonthlyTransactionSummary> monthlySummary = dashboardDAO.getMonthlyTransactionSummary(userId, year);
+
+        request.setAttribute("summary", summary);
+        request.setAttribute("recentActivities", recentActivities);
+        request.setAttribute("spendingOverview", spendingOverview);
+        request.setAttribute("monthlySummary", monthlySummary);
+        request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
