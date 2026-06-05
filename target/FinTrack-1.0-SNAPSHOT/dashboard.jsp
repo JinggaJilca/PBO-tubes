@@ -141,8 +141,8 @@
 
                                     <span class="fw-semibold text-white">
                                         <c:choose>
-                                            <c:when test="${not empty sessionScope.username}">
-                                                ${sessionScope.username}
+                                            <c:when test="${not empty requestScope.username}">
+                                                ${requestScope.username}
                                             </c:when>
                                             <c:otherwise>
                                                 Julio Tanlain
@@ -153,7 +153,7 @@
 
                                 <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
                                     <li>
-                                        <a class="dropdown-item" href="profile.jsp">
+                                        <a class="dropdown-item" href="${pageContext.request.contextPath}/profile">
                                             <i class="bi bi-person me-2"></i>Profile
                                         </a>
                                     </li>
