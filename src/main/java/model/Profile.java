@@ -1,70 +1,107 @@
 package model;
 
 public class Profile {
-    private int profileID;
-   private int userID;
-   private String fullName;
-   private String phoneNumber;
-   private String address;
+    private int userId;
+    private String username;
+    private String email;
+    private String password;
+    private String fullName;
+    private String phoneNumber;
+    private String address;
 
-   public Profile() {
-   }
+    public Profile() {
+    }
 
-   public Profile(int var1, int var2, String var3, String var4, String var5) {
-      this.profileID = var1;
-      this.userID = var2;
-      this.fullName = var3;
-      this.phoneNumber = var4;
-      this.address = var5;
-   }
+    public Profile(int userId, String username, String email, String password,
+                   String fullName, String phoneNumber, String address) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
 
-   public void updateProfile(String var1, String var2, String var3) {
-      this.fullName = var1;
-      this.phoneNumber = var2;
-      this.address = var3;
-   }
+    public int getUserId() {
+        return userId;
+    }
 
-   public int getProfileID() {
-      return this.profileID;
-   }
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
-   public void setProfileID(int var1) {
-      this.profileID = var1;
-   }
+    public String getUsername() {
+        return username;
+    }
 
-   public int getUserID() {
-      return this.userID;
-   }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-   public void setUserID(int var1) {
-      this.userID = var1;
-   }
+    public String getEmail() {
+        return email;
+    }
 
-   public String getFullName() {
-      return this.fullName;
-   }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-   public void setFullName(String var1) {
-      this.fullName = var1;
-   }
+    public String getPassword() {
+        return password;
+    }
 
-   public String getPhoneNumber() {
-      return this.phoneNumber;
-   }
+    // Untuk tampilan profile, password jangan ditampilkan asli
+    public String getMaskedPassword() {
+        return "***";
+    }
 
-   public void setPhoneNumber(String var1) {
-      this.phoneNumber = var1;
-   }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-   public String getAddress() {
-      return this.address;
-   }
+    public String getFullName() {
+        return fullName;
+    }
 
-   public void setAddress(String var1) {
-      this.address = var1;
-   }
+    public String getDisplayName() {
+        if (fullName != null && !fullName.trim().isEmpty()) {
+            return fullName;
+        }
+        return username;
+    }
 
-   public String toString() {
-      return "Profile{profileID=" + this.profileID + ", userID=" + this.userID + ", fullName='" + this.fullName + "', phoneNumber='" + this.phoneNumber + "', address='" + this.address + "'}";
-   }
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getDisplayPhoneNumber() {
+        if (phoneNumber != null && !phoneNumber.trim().isEmpty()) {
+            return phoneNumber;
+        }
+        return "None";
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getDisplayAddress() {
+        if (address != null && !address.trim().isEmpty()) {
+            return address;
+        }
+        return "None";
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
