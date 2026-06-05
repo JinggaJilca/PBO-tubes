@@ -339,140 +339,136 @@ body{
 /* [END] Wallet */
 
 /* Wallet */ 
-.wallet-section {
-    background: #ececec;
-    min-height: 100vh;
-    padding: 50px 0;
+/* =====================================
+   WALLET PAGE
+===================================== */
+
+.btn-eye-wallet{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:white;
+    border:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.wallet-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
+.btn-eye-wallet:hover{
+    background:rgba(255,255,255,.25);
+    color:white;
 }
 
-.wallet-header h1 {
-    color: white;
-    font-size: 42px;
-    font-weight: 700;
-    margin-bottom: 0;
+.btn-refresh-wallet{
+    border:1px solid white;
+    color:white;
+    background:transparent;
+    border-radius:999px;
+    padding:10px 22px;
+    font-weight:500;
 }
 
-.wallet-header p {
-    color: #d5d5d5;
-    margin: 0;
+.btn-refresh-wallet:hover{
+    background:white;
+    color:#004D40;
 }
 
-.wallet-actions {
-    display: flex;
-    gap: 12px;
+.wallet-card{
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    background:white;
 }
 
-.btn-eye {
-    width: 50px;
-    height: 50px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255,255,255,.15);
-    color: white;
+.wallet-card-top{
+    background:#EFFADF;
+    padding:14px;
+    min-height:115px;
+    position:relative;
 }
 
-.btn-refresh {
-    border: 1px solid white;
-    background: transparent;
-    color: white;
-    padding: 0 22px;
-    border-radius: 30px;
-    height: 50px;
+.wallet-card-top i{
+    font-size:18px;
+    color:#1A1A1A;
 }
 
-.wallet-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-    gap: 18px;
+.wallet-info{
+    margin-top:14px;
 }
 
-.wallet-card {
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+.wallet-info h6{
+    font-size:14px;
+    margin-bottom:2px;
+    font-weight:500;
+    color:#1A1A1A;
 }
 
-.wallet-top {
-    background: #e9f1cf;
-    padding: 14px;
-    min-height: 115px;
-    position: relative;
+.wallet-info h5{
+    font-size:16px;
+    margin:0;
+    font-weight:700;
+    color:#1A1A1A;
 }
 
-.wallet-content h5 {
-    font-size: 14px;
-    margin-top: 12px;
-    margin-bottom: 4px;
+.wallet-valid{
+    position:absolute;
+    top:14px;
+    right:14px;
+    text-align:right;
+    font-size:10px;
+    line-height:1.2;
+    color:#1A1A1A;
 }
 
-.wallet-content h4 {
-    font-size: 18px;
-    font-weight: 700;
-    margin: 0;
+.wallet-card-bottom{
+    background:#3F6B58;
+    color:white;
+    padding:12px 14px;
+    font-size:16px;
+    font-weight:700;
 }
 
-.wallet-valid {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    font-size: 10px;
-    text-align: right;
+.add-wallet-card{
+    border:2px dashed #5D7D73;
+    border-radius:24px;
+    height:120px;
+    background:#F5F5F5;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+    transition:.3s;
 }
 
-.wallet-balance {
-    background: #3f6b58;
-    color: white;
-    font-size: 18px;
-    font-weight: 700;
-    padding: 14px;
+.add-wallet-card:hover{
+    background:#EEEEEE;
+    transform:translateY(-2px);
 }
 
-.add-wallet-card {
-    border: 2px dashed #5c7a68;
-    border-radius: 22px;
-    min-height: 120px;
+.add-wallet-icon{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:#004D40;
+    color:white;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    cursor: pointer;
-    transition: .3s;
-    background: #f5f5f5;
+    font-size:24px;
+    margin-bottom:12px;
 }
 
-.add-wallet-card:hover {
-    background: #f0f0f0;
+.add-wallet-card h4{
+    font-size:18px;
+    font-weight:700;
+    color:#004D40;
+    margin:0;
 }
-
-.add-icon {
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    background: #0a4f42;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 24px;
-    margin-bottom: 12px;
-}
-
-.add-wallet-card h4 {
-    color: #153f35;
-    font-weight: 700;
-    margin: 0;
-}
-
 /* ENd Wallet */ 
 
