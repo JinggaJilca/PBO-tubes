@@ -7,7 +7,7 @@
 
             <head>
                 <meta charset="UTF-8">
-                <title>FinTrack - Dashboard</title>
+                <title>Dashboard - FinTrack</title>
 
                 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/favicon.png">
 
@@ -537,7 +537,7 @@
                 </div>
 
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+                
             </body>
 
             </html>
