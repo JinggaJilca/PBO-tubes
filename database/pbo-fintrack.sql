@@ -189,6 +189,21 @@ UNIQUE (analysis_id, category_id);
 
 
 -- ===GENERATE DATA DUMMY==
+-- generate categories
+INSERT INTO categories (name, type) VALUES
+('Salary',           'income'),
+('Freelance',        'income'),
+('Investment',       'income'),
+('Bonus',           	'income'),
+('Business',         'income'),
+('Food & Drink',   	'expense'),
+('Transportation',   'expense'),
+('Shopping',         'expense'),
+('Bill',         		'expense'),
+('Entertainment',    'expense'),
+('Health',       		'expense'),
+('Education',      	'expense');
+
 -- generate 50 users
 DROP PROCEDURE IF EXISTS generate_users;
 DELIMITER $$
@@ -219,10 +234,10 @@ BEGIN
     DECLARE phone     VARCHAR(20);
     DECLARE addr      VARCHAR(200);
 
-    DECLARE first_names VARCHAR(500) DEFAULT 'Putri,Jingga,Carissa,Andi,Kevin,Aila,Salsa,Nevy,Julio,Misael,Tasya,Raka,Anisa,Fahmi,Aulia,Nayya';
-    DECLARE mid_names   VARCHAR(300) DEFAULT 'Nur,Dwi,Tri,Ayu,Rizky,Maharani,Indah,Putra,Sakti';
+    DECLARE first_names VARCHAR(500) DEFAULT 'Joni,Jingga,James,Misael,Nayya,Aila,Carmen,Nevy,Julio,Martin';
+    DECLARE mid_names   VARCHAR(300) DEFAULT 'Nur,Dwi,Tri,Ayu,Rizky,Raharjo,Sungkono,Putra,Sakti';
     DECLARE last_names  VARCHAR(300) DEFAULT 'Wijaya,Saputra,Mahendra,Permata,Pratama,Santoso,Nugraha,Ramadhan,Lestari,Aulia';
-    DECLARE streets     VARCHAR(200) DEFAULT 'Ketintang,Melati,Anggrek,Sudirman,Kenanga,Mangga';
+    DECLARE streets     VARCHAR(200) DEFAULT 'Ketintang,A.Yani,Anggrek,Sudirman,Gayungan,Serigala';
 
     DECLARE cur CURSOR FOR SELECT user_id FROM users;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
@@ -262,3 +277,178 @@ JOIN profiles p ON p.user_id = u.user_id
 SET
     u.username = CONCAT(LOWER(SUBSTRING(p.full_name, 1, LOCATE(' ', CONCAT(p.full_name, ' ')) - 1)), u.user_id),
     u.email    = CONCAT(LOWER(SUBSTRING(p.full_name, 1, LOCATE(' ', CONCAT(p.full_name, ' ')) - 1)), '.', u.user_id, '@gmail.com');
+    
+-- generate wallets
+DROP PROCEDURE IF EXISTS generate_wallets;
+DELIMITER $$
+CREATE PROCEDURE generate_wallets()
+BEGIN
+    DECLARE done        INT DEFAULT 0;
+    DECLARE uid         INT;
+    DECLARE wallet_count INT;
+    DECLARE i           INT;
+    DECLARE wtype       INT;
+    DECLARE new_acc_id  INT;
+
+    DECLARE providers   VARCHAR(200) DEFAULT 'GoPay,OVO,Dana,ShopeePay,LinkAja';
+    DECLARE provider    VARCHAR(50);
+    DECLARE acc_names   VARCHAR(300) DEFAULT 'Dompet Utama,Tabungan Harian,Kas Pribadi,Dana Darurat,Dompet Digital';
+    DECLARE acc_name    VARCHAR(100);
+
+    DECLARE cur CURSOR FOR SELECT user_id FROM users;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    OPEN cur;
+    read_loop: LOOP
+        FETCH cur INTO uid;
+        IF done THEN LEAVE read_loop; END IF;
+
+        SET wallet_count = 1 + FLOOR(RAND() * 2); -- 1 atau 2
+        SET i = 1;
+
+        WHILE i <= wallet_count DO
+            SET acc_name = TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(acc_names, ',', FLOOR(1 + RAND() * 5)), ',', -1));
+
+            INSERT INTO account_wallets (user_id, account_name, balance)
+            VALUES (uid, acc_name, ROUND(RAND() * 9000000 + 100000, 2));
+
+            SET new_acc_id = LAST_INSERT_ID();
+
+            -- 0 = physical, 1 = ewallet
+            SET wtype = FLOOR(RAND() * 2);
+
+            IF wtype = 0 THEN
+                INSERT INTO physical_wallet (account_id) VALUES (new_acc_id);
+            ELSE
+                SET provider = TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(providers, ',', FLOOR(1 + RAND() * 5)), ',', -1));
+                INSERT INTO ewallet (account_id, provider_name, account_number)
+                VALUES (new_acc_id, provider, CONCAT('08', LPAD(FLOOR(RAND() * 10000000000), 10, '0')));
+            END IF;
+
+            SET i = i + 1;
+        END WHILE;
+
+    END LOOP;
+    CLOSE cur;
+END$$
+DELIMITER ;
+CALL generate_wallets();
+
+
+-- generate budgets
+
+DROP PROCEDURE IF EXISTS generate_budgets;
+DELIMITER $$
+CREATE PROCEDURE generate_budgets()
+BEGIN
+    DECLARE done        INT DEFAULT 0;
+    DECLARE uid         INT;
+    DECLARE cat_id      INT;
+    DECLARE total_bud   DECIMAL(18,2);
+    DECLARE cat_bud     DECIMAL(18,2);
+
+    DECLARE cur CURSOR FOR SELECT user_id FROM users;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    OPEN cur;
+    read_loop: LOOP
+        FETCH cur INTO uid;
+        IF done THEN LEAVE read_loop; END IF;
+
+        -- Ambil random category bertipe expense
+        SELECT category_id INTO cat_id
+        FROM categories
+        WHERE type = 'expense'
+        ORDER BY RAND()
+        LIMIT 1;
+
+        SET total_bud = ROUND(RAND() * 4000000 + 1000000, 2);
+        SET cat_bud   = ROUND(total_bud * (0.2 + RAND() * 0.4), 2);
+
+        INSERT INTO budgets (user_id, category_id, total_budget, category_budget, threshold, start_date, end_date)
+        VALUES (
+            uid,
+            cat_id,
+            total_bud,
+            cat_bud,
+            ROUND(50 + RAND() * 40, 2),                         -- threshold 50–90%
+            DATE_FORMAT(NOW(), '%Y-%m-01'),                      -- awal bulan ini
+            LAST_DAY(NOW())                                      -- akhir bulan ini
+        );
+
+    END LOOP;
+    CLOSE cur;
+END$$
+DELIMITER ;
+CALL generate_budgets();
+fintrack_db
+
+-- generate transactions
+
+DROP PROCEDURE IF EXISTS generate_transactions;
+DELIMITER $$
+CREATE PROCEDURE generate_transactions()
+BEGIN
+    DECLARE done        INT DEFAULT 0;
+    DECLARE uid         INT;
+    DECLARE acc_id      INT;
+    DECLARE cat_id      INT;
+    DECLARE tx_count    INT;
+    DECLARE i           INT;
+    DECLARE tx_type     ENUM('income','expense');
+    DECLARE tx_amount   DECIMAL(18,2);
+    DECLARE tx_date     DATETIME;
+    DECLARE cat_type    VARCHAR(10);
+
+    DECLARE tx_names    VARCHAR(500) DEFAULT 'Belanja Bulanan,Transfer,Bayar Listrik,Makan Siang,Gaji Bulan Ini,Freelance Project,Top Up,Bayar BPJS,Beli Pulsa,Ojek Online,Nonton Bioskop,Beli Obat,Kursus Online,Dividen,Bonus Proyek';
+
+    DECLARE cur CURSOR FOR SELECT user_id FROM users;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    OPEN cur;
+    read_loop: LOOP
+        FETCH cur INTO uid;
+        IF done THEN LEAVE read_loop; END IF;
+
+        SET tx_count = 5 + FLOOR(RAND() * 6); -- 5–10
+        SET i = 1;
+
+        WHILE i <= tx_count DO
+
+            -- Ambil random account milik user ini
+            SELECT account_id INTO acc_id
+            FROM account_wallets
+            WHERE user_id = uid
+            ORDER BY RAND()
+            LIMIT 1;
+
+            -- Ambil random category
+            SELECT category_id, type INTO cat_id, cat_type
+            FROM categories
+            ORDER BY RAND()
+            LIMIT 1;
+
+            SET tx_type   = cat_type;
+            SET tx_amount = ROUND(10000 + RAND() * 990000, 2);
+            SET tx_date   = DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 90) DAY); -- 90 hari terakhir
+
+            INSERT INTO transactions (user_id, account_id, category_id, transaction_name, amount, transaction_type, transaction_date, note)
+            VALUES (
+                uid,
+                acc_id,
+                cat_id,
+                TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(tx_names, ',', FLOOR(1 + RAND() * 15)), ',', -1)),
+                tx_amount,
+                tx_type,
+                tx_date,
+                NULL
+            );
+
+            SET i = i + 1;
+        END WHILE;
+
+    END LOOP;
+    CLOSE cur;
+END$$
+DELIMITER ;
+CALL generate_transactions();
