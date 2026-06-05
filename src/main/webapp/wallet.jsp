@@ -287,10 +287,8 @@
                         <div class="mb-3">
                             <label class="form-label">Wallet Type</label>
                             <select class="form-control wallet-input" name="walletType" id="walletTypeSelect">
-                                <option value="wallet">E-Wallet / Digital</option>
-                                <option value="debit">Debit Card</option>
-                                <option value="credit">Credit Card</option>
-                                <option value="savings">Savings Account</option>
+                                <option value="ewallet">E-Wallet / Digital</option>
+                                <option value="physical">Physical Card (Debit / Credit / Cash)</option>
                             </select>
                         </div>
 
@@ -365,13 +363,13 @@
     });
 
     // Show/hide Valid Thru field
-    const walletTypeSelect = document.getElementById('walletTypeSelect');
-    const validThruGroup = document.getElementById('validThruGroup');
+        const walletTypeSelect = document.getElementById('walletTypeSelect');
+        const validThruGroup = document.getElementById('validThruGroup');
 
-    walletTypeSelect.addEventListener('change', function () {
+        walletTypeSelect.addEventListener('change', function () {
         validThruGroup.style.display =
-            (this.value === 'debit' || this.value === 'credit') ? 'block' : 'none';
-    });
+        (this.value === 'physical') ? 'block' : 'none';
+        });
 </script>
 
 </body>
