@@ -338,3 +338,324 @@ body{
 }
 /* [END] Wallet */
 
+/* =====================================
+   WALLET PAGE - wallet.css
+===================================== */
+
+/* HEADER */
+.wallet-header {
+    background-color: #0B3A30;
+    color: #ffffff;
+    padding: 2rem 0 7rem 0;
+}
+
+.wallet-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.wallet-header p {
+    color: #a0b2af;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* HEADER BUTTONS */
+.btn-eye-wallet {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.btn-eye-wallet:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
+.btn-refresh-wallet {
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    color: white;
+    background: transparent;
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.btn-refresh-wallet:hover {
+    background: white;
+    color: #0B3A30;
+}
+
+/* OVERLAP CONTAINER */
+.wallet-overlap-container {
+    margin-top: -5rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* WALLET GRID */
+.wallet-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+/* WALLET CARD */
+.wallet-card {
+    width: 280px;
+    height: 170px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.wallet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* CARD TOP */
+.wallet-card-top {
+    background-color: #EFFADF;
+    height: 115px;
+    padding: 16px 18px;
+    position: relative;
+}
+
+.wallet-card-top .card-icon {
+    font-size: 1.3rem;
+    color: #1a1a1a;
+}
+
+.wallet-card-top .card-icon-credit {
+    font-size: 1.1rem;
+    color: #1a1a1a;
+}
+
+/* CARD INFO */
+.wallet-info {
+    margin-top: 10px;
+}
+
+.wallet-info h6 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+}
+
+.wallet-info h5 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* VALID THRU BADGE */
+.wallet-valid {
+    position: absolute;
+    right: 18px;
+    top: 16px;
+    text-align: right;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #333;
+}
+
+.wallet-valid span {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* CARD BOTTOM (BALANCE) */
+.wallet-card-bottom {
+    height: 55px;
+    background-color: #3F6B58;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+/* ADD NEW WALLET CARD */
+.add-wallet-card {
+    width: 280px;
+    height: 170px;
+    border-radius: 24px;
+    background-color: #ECECEC;
+    border: 2px dashed #8aab99;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.add-wallet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    border-color: #004D40;
+}
+
+.add-wallet-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #004D40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+}
+
+.add-wallet-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #004D40;
+    margin: 0;
+}
+
+/* =====================================
+   MODAL
+===================================== */
+
+.modal-content {
+    border-radius: 20px;
+    border: none;
+}
+
+.modal-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 20px 24px;
+}
+
+.modal-title {
+    font-weight: 700;
+    color: #0B3A30;
+    font-size: 1rem;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-footer {
+    border-top: 1px solid #e5e7eb;
+    padding: 16px 24px;
+}
+
+.modal-body .form-label {
+    font-weight: 600;
+    color: #0B3A30;
+    font-size: 0.875rem;
+    margin-bottom: 6px;
+}
+
+/* MODAL INPUTS */
+.wallet-input {
+    border-radius: 12px;
+    border: 1px solid #e0e4e3;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.wallet-input:focus {
+    border-color: #98ce00;
+    box-shadow: 0 0 0 0.2rem rgba(152, 206, 0, 0.15);
+    outline: none;
+}
+
+.wallet-input-prefix {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e4e3;
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    color: #6c757d;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+}
+
+.wallet-input-number {
+    border: 1px solid #e0e4e3;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.wallet-input-number:focus {
+    border-color: #98ce00;
+    box-shadow: 0 0 0 0.2rem rgba(152, 206, 0, 0.15);
+    outline: none;
+}
+
+/* MODAL BUTTONS */
+.btn-wallet-submit {
+    background-color: #0B3A30;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 28px;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.btn-wallet-submit:hover {
+    background-color: #004D40;
+    color: white;
+}
+
+.btn-wallet-cancel {
+    background-color: #ececec;
+    color: #333;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 28px;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.btn-wallet-cancel:hover {
+    background-color: #d0d0d0;
+    color: #333;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .wallet-card,
+    .add-wallet-card {
+        width: 100%;
+    }
+}

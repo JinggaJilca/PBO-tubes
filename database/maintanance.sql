@@ -1,5 +1,4 @@
 -- === DELETE DATA ===
-DELETE FROM analysis_category_percentage;
 DELETE FROM analysis;
 
 DELETE FROM reports;
@@ -29,7 +28,6 @@ DBCC CHECKIDENT ('budgets', RESEED, 0);
 DBCC CHECKIDENT ('notifications', RESEED, 0);
 DBCC CHECKIDENT ('reports', RESEED, 0);
 DBCC CHECKIDENT ('analysis', RESEED, 0);
-DBCC CHECKIDENT ('analysis_category_percentage', RESEED, 0);
 
 -- === CHECK HUBUNGAN TABEL ===
 SELECT 
