@@ -1,5 +1,6 @@
 USE fintrack_db;
 
+-- === CREATE TABLE ===
 -- Manajemen User
 CREATE TABLE users (
 	user_id INT(16) AUTO_INCREMENT PRIMARY KEY,
@@ -115,48 +116,7 @@ CREATE TABLE analysis_category_percentage (
    FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE CASCADE
 );
 
--- Delete Data
-DELETE FROM analysis_category_percentage;
-DELETE FROM analysis;
-
-DELETE FROM reports;
-DELETE FROM notifications;
-
-DELETE FROM transactions;
-
-DELETE FROM budgets;
-
-DELETE FROM physical_wallet;
-DELETE FROM ewallet;
-
-DELETE FROM account_wallets;
-
-DELETE FROM categories;
-DELETE FROM profiles;
-
-DELETE FROM users;
-
--- Reset IDENTITY (Run After Delete Data)
-DBCC CHECKIDENT ('users', RESEED, 0);
-DBCC CHECKIDENT ('profiles', RESEED, 0);
-DBCC CHECKIDENT ('account_wallets', RESEED, 0);
-DBCC CHECKIDENT ('categories', RESEED, 0);
-DBCC CHECKIDENT ('transactions', RESEED, 0);
-DBCC CHECKIDENT ('budgets', RESEED, 0);
-DBCC CHECKIDENT ('notifications', RESEED, 0);
-DBCC CHECKIDENT ('reports', RESEED, 0);
-DBCC CHECKIDENT ('analysis', RESEED, 0);
-DBCC CHECKIDENT ('analysis_category_percentage', RESEED, 0);
-
--- Check Hubungan Tabel
-SELECT
-    fk.name AS FK_Name,
-    OBJECT_NAME(fk.parent_object_id) AS ChildTable,
-    OBJECT_NAME(fk.referenced_object_id) AS ParentTable
-FROM sys.foreign_keys fk
-ORDER BY ParentTable;
-
--- PERATURAN AGAR DATA TIDAK TERDUPLIKAT --
+-- === PERATURAN AGAR DATA TIDAK TERDUPLIKAT ===
 -- 1 users only have 1 email
 ALTER TABLE users
 ADD CONSTRAINT Unique_users_email
@@ -188,7 +148,7 @@ ADD CONSTRAINT Unique_analysis_category
 UNIQUE (analysis_id, category_id);
 
 
--- ===GENERATE DATA DUMMY==
+-- === GENERATE DATA DUMMY ===
 -- generate categories
 INSERT INTO categories (name, type) VALUES
 ('Salary',           'income'),
