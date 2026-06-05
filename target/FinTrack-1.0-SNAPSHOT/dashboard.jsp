@@ -1,543 +1,1041 @@
-<%@ page isELIgnored="false" language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page import="java.text.NumberFormat" %>
+<%@page import="java.util.Locale" %>
+<%@page import="java.util.List" %>
+<%@page import="model.DashboardSummary" %>
+<%@page import="model.RecentActivity" %>
+<%@page import="model.CategorySpendingSummary" %>
 
-            <!DOCTYPE html>
-            <html lang="id">
+<%
+    String username = (String) request.getAttribute("username");
 
-            <head>
-                <meta charset="UTF-8">
-                <title>FinTrack - Dashboard</title>
+    DashboardSummary summary = (DashboardSummary) request.getAttribute("summary");
 
-                <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/favicon.png">
+    List<RecentActivity> recentActivities =
+            (List<RecentActivity>) request.getAttribute("recentActivities");
 
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    List<CategorySpendingSummary> spendingOverview =
+            (List<CategorySpendingSummary>) request.getAttribute("spendingOverview");
 
-                <link rel="stylesheet"
-                    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    String monthlyLabelsJson = (String) request.getAttribute("monthlyLabelsJson");
+    String monthlyIncomeJson = (String) request.getAttribute("monthlyIncomeJson");
+    String monthlyExpenseJson = (String) request.getAttribute("monthlyExpenseJson");
 
-                <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap"
-                    rel="stylesheet">
+    String categoryLabelsJson = (String) request.getAttribute("categoryLabelsJson");
+    String categoryAmountJson = (String) request.getAttribute("categoryAmountJson");
 
-                <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+    if (username == null || username.trim().isEmpty()) {
+        username = "User";
+    }
 
-                <style>
-                    .summary-value {
-                        font-size: 24px;
-                        font-weight: 700;
-                        color: #0f172a;
-                    }
+    if (monthlyLabelsJson == null || monthlyLabelsJson.trim().isEmpty()) {
+        monthlyLabelsJson = "[]";
+    }
 
-                    .summary-label {
-                        color: #64748b;
-                        font-size: 14px;
-                    }
+    if (monthlyIncomeJson == null || monthlyIncomeJson.trim().isEmpty()) {
+        monthlyIncomeJson = "[]";
+    }
 
-                    .activity-item {
-                        border-bottom: 1px solid #e5e7eb;
-                        padding: 12px 0;
-                    }
+    if (monthlyExpenseJson == null || monthlyExpenseJson.trim().isEmpty()) {
+        monthlyExpenseJson = "[]";
+    }
 
-                    .activity-item:last-child {
-                        border-bottom: none;
-                    }
+    if (categoryLabelsJson == null || categoryLabelsJson.trim().isEmpty()) {
+        categoryLabelsJson = "[]";
+    }
 
-                    .activity-icon {
-                        width: 42px;
-                        height: 42px;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
+    if (categoryAmountJson == null || categoryAmountJson.trim().isEmpty()) {
+        categoryAmountJson = "[]";
+    }
 
-                    .income-icon {
-                        background-color: #dcfce7;
-                        color: #16a34a;
-                    }
+    Locale indonesia = new Locale("id", "ID");
+    NumberFormat rupiah = NumberFormat.getCurrencyInstance(indonesia);
+    rupiah.setMaximumFractionDigits(0);
+    rupiah.setMinimumFractionDigits(0);
 
-                    .expense-icon {
-                        background-color: #fee2e2;
-                        color: #dc2626;
-                    }
+    double balance = 0;
+    double totalIncome = 0;
+    double totalExpense = 0;
+    double lastMonthBalance = 0;
+    double lastMonthIncome = 0;
+    double lastMonthExpense = 0;
 
-                    .category-row {
-                        margin-bottom: 16px;
-                    }
+    if (summary != null) {
+        balance = summary.getTotalBalance();
+        totalIncome = summary.getTotalEarnings();
+        totalExpense = summary.getTotalSpending();
+        lastMonthBalance = summary.getLastMonthBalance();
+        lastMonthIncome = summary.getLastMonthEarnings();
+        lastMonthExpense = summary.getLastMonthSpending();
+    }
+%>
 
-                    .progress {
-                        height: 8px;
-                        border-radius: 999px;
-                    }
+<!DOCTYPE html>
+<html lang="id">
 
-                    .progress-bar {
-                        width: 100%;
-                    }
-                </style>
-            </head>
+<head>
+    <meta charset="UTF-8">
+    <title>FinTrack - Dashboard</title>
 
-            <body>
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/images/favicon.png">
 
-                <!-- NAVBAR LANGSUNG DIGABUNG DI SINI -->
-                <nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
-                    <div class="container">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 
-                        <a class="navbar-brand" href="${pageContext.request.contextPath}/dashboard">
-                            <img src="${pageContext.request.contextPath}/images/FLogo.png" class="navbar-logo"
-                                alt="FinTrack Logo">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS project kamu -->
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
+
+    <script>
+        window.setTransactionType = function (type) {
+            const transactionType = document.getElementById("transactionType");
+            const modalLabel = document.getElementById("addTransactionModalLabel");
+
+            if (transactionType) {
+                transactionType.value = type;
+            }
+
+            if (modalLabel) {
+                modalLabel.innerText = type === "income"
+                    ? "Tambah Pemasukan"
+                    : "Tambah Pengeluaran";
+            }
+        };
+    </script>
+
+    <style>
+        body {
+            background-color: #f5f7f6;
+            font-family: "Instrument Sans", Arial, sans-serif;
+        }
+
+        .navbar-custom {
+            background-color: #073f31;
+        }
+
+        .navbar-logo {
+            height: 42px;
+            max-width: 150px;
+            object-fit: contain;
+        }
+
+        .icon-circle,
+        .profile-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.14);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dashboard-header {
+            background-color: #073f31;
+            color: white;
+            padding: 28px 0 90px;
+        }
+
+        .text-light-teal {
+            color: #cde7dd;
+        }
+
+        .overlap-container {
+            margin-top: -60px;
+        }
+
+        .fintrack-card {
+            border: none;
+            border-radius: 22px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+        }
+
+        .summary-card {
+            min-height: 170px;
+            border-radius: 22px;
+        }
+
+        .summary-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .chart-card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0;
+            line-height: 1.2;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 280px;
+            width: 100%;
+        }
+
+        .mini-chart-wrapper {
+            position: relative;
+            height: 75px;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+
+        .legend-inline {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 12px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .legend-green {
+            background-color: #9acd32;
+        }
+
+        .legend-gray {
+            background-color: #d1d5db;
+        }
+
+        .legend-orange {
+            background-color: #d98c5f;
+        }
+
+        .legend-yellow {
+            background-color: #d9a441;
+        }
+
+        .legend-olive {
+            background-color: #a8be84;
+        }
+
+        .spending-mini-list {
+            margin-top: 6px;
+        }
+
+        .spending-mini-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            margin-bottom: 3px;
+            color: #374151;
+            gap: 8px;
+        }
+
+        .spending-mini-left {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            min-width: 0;
+        }
+
+        .spending-mini-left span:last-child {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 90px;
+        }
+
+        .activity-card {
+            border-radius: 22px;
+        }
+
+        .activity-card-compact {
+            min-height: 100%;
+        }
+
+        .activity-table th,
+        .activity-table td {
+            font-size: 11px;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .activity-table thead th {
+            background-color: #e5e7eb;
+            color: #374151;
+            border: none;
+            font-weight: 700;
+        }
+
+        .activity-table tbody td {
+            border-color: #f1f5f9;
+        }
+
+        .btn-date {
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            color: white;
+            border-radius: 999px;
+            font-size: 13px;
+            padding: 8px 16px;
+            background-color: transparent;
+        }
+
+        .btn-date:hover {
+            color: white;
+            border-color: white;
+        }
+
+        .btn-date-light {
+            border: 1px solid #0f4a3c;
+            color: #0f4a3c;
+            border-radius: 999px;
+            font-size: 12px;
+            padding: 5px 12px;
+            background-color: transparent;
+        }
+
+        .btn-date-light:hover {
+            border-color: #0f4a3c;
+            color: #0f4a3c;
+        }
+
+        .empty-data {
+            text-align: center;
+            color: #777;
+            padding: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding-bottom: 80px;
+            }
+
+            .legend-inline {
+                justify-content: flex-start;
+            }
+
+            .summary-value,
+            .chart-card-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
+    <div class="container">
+
+        <a class="navbar-brand" href="<%= request.getContextPath() %>/dashboard">
+            <img src="<%= request.getContextPath() %>/images/FLogo.png" class="navbar-logo" alt="FinTrack Logo">
+        </a>
+
+        <button class="navbar-toggler text-white border-0" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="bi bi-list fs-1"></i>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav gap-5 align-items-center">
+
+                <li class="nav-item">
+                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
+                       href="<%= request.getContextPath() %>/wallet">
+                        <i class="bi bi-wallet2 fs-4"></i>
+                        Wallet
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
+                       href="<%= request.getContextPath() %>/transaction">
+                        <i class="bi bi-cash-coin fs-4"></i>
+                        Transaction
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
+                       href="<%= request.getContextPath() %>/budget">
+                        <i class="bi bi-piggy-bank fs-4"></i>
+                        Budget
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+
+            <a href="#" class="text-decoration-none">
+                <div class="icon-circle">
+                    <i class="bi bi-bell-fill fs-5"></i>
+                </div>
+            </a>
+
+            <div class="dropdown">
+                <a class="text-white text-decoration-none dropdown-toggle d-flex align-items-center gap-2"
+                   href="#"
+                   role="button"
+                   data-bs-toggle="dropdown"
+                   aria-expanded="false">
+
+                    <div class="profile-circle">
+                        <i class="bi bi-person-fill fs-4"></i>
+                    </div>
+
+                    <span class="fw-semibold text-white"><%= username %></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
+                    <li>
+                        <a class="dropdown-item" href="<%= request.getContextPath() %>/profile">
+                            <i class="bi bi-person me-2"></i>Profile
                         </a>
+                    </li>
 
-                        <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <i class="bi bi-list fs-1"></i>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <form action="<%= request.getContextPath() %>/logout" method="POST" class="m-0">
+                            <button type="submit" class="dropdown-item text-danger">
+                                <i class="bi bi-box-arrow-right me-2"></i>Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
+<!-- DASHBOARD HEADER -->
+<div class="dashboard-header">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end flex-wrap gap-3">
+            <div>
+                <p class="mb-1 text-light-teal">Good Morning,</p>
+                <h2 class="fw-bold mb-0 fs-1"><%= username %></h2>
+            </div>
+
+            <form action="<%= request.getContextPath() %>/DashboardExportServlet" method="GET" class="m-0">
+                <button type="submit" class="btn btn-date d-flex align-items-center gap-2">
+                    <i class="bi bi-download"></i>
+                    Export Data
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- DASHBOARD CONTENT -->
+<div class="container overlap-container mb-5">
+
+    <!-- SUMMARY CARD -->
+    <div class="row g-4 mb-4">
+
+        <!-- BALANCE -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card fintrack-card summary-card p-3">
+                <div class="card-body">
+                    <h6 class="fw-bold text-dark mb-3">Balance</h6>
+
+                    <div class="summary-value">
+                        <%= rupiah.format(balance) %>
+                    </div>
+
+                    <hr>
+
+                    <small class="text-muted">
+                        Last month : <%= rupiah.format(lastMonthBalance) %>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- EARNINGS -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card fintrack-card summary-card p-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h6 class="fw-bold text-dark mb-1">Earnings</h6>
+
+                        <button type="button"
+                                class="btn p-0 border-0 bg-transparent"
+                                data-bs-toggle="modal"
+                                data-bs-target="#addTransactionModal"
+                                onclick="setTransactionType('income')">
+                            <i class="bi bi-plus-circle-fill fs-5 text-success"></i>
                         </button>
-
-                        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                            <ul class="navbar-nav gap-5 align-items-center">
-
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                                        href="wallet.jsp">
-                                        <i class="bi bi-wallet2 fs-4"></i>
-                                        Wallet
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                                        href="transaction.jsp">
-                                        <i class="bi bi-cash-coin fs-4"></i>
-                                        Transaction
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                                        href="budget.jsp">
-                                        <i class="bi bi-piggy-bank fs-4"></i>
-                                        Budget
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                        <div class="d-flex align-items-center gap-3">
-
-                            <a href="#" class="text-decoration-none">
-                                <div class="icon-circle">
-                                    <i class="bi bi-bell-fill fs-5"></i>
-                                </div>
-                            </a>
-
-                            <div class="dropdown">
-                                <a class="text-white text-decoration-none dropdown-toggle d-flex align-items-center gap-2"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-
-                                    <div class="profile-circle">
-                                        <i class="bi bi-person-fill fs-4"></i>
-                                    </div>
-
-                                    <span class="fw-semibold text-white">
-                                        <c:choose>
-                                            <c:when test="${not empty requestScope.username}">
-                                                ${requestScope.username}
-                                            </c:when>
-                                            <c:otherwise>
-                                                Julio Tanlain
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </span>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
-                                    <li>
-                                        <a class="dropdown-item" href="${pageContext.request.contextPath}/profile">
-                                            <i class="bi bi-person me-2"></i>Profile
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-
-                                    <li>
-                                        <form action="${pageContext.request.contextPath}/logout" method="POST"
-                                            class="m-0">
-                                            <button type="submit" class="dropdown-item text-danger">
-                                                <i class="bi bi-box-arrow-right me-2"></i>Logout
-                                            </button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-
                     </div>
-                </nav>
 
-                <!-- DASHBOARD HEADER -->
-                <div class="dashboard-header">
-                    <div class="container">
-                        <div class="d-flex justify-content-between align-items-end">
-                            <div>
-                                <p class="mb-1 text-light-teal">Good Morning,</p>
-
-                                <h2 class="fw-bold mb-0 fs-1">
-                                    <c:choose>
-                                        <c:when test="${not empty requestScope.username}">
-                                            ${requestScope.username}
-                                        </c:when>
-                                        <c:otherwise>
-                                            Bambang
-                                        </c:otherwise>
-                                    </c:choose>
-                                </h2>
-                            </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <button class="btn btn-date d-flex align-items-center gap-2">
-                                    <i class="bi bi-calendar"></i>
-
-                                    <c:choose>
-                                        <c:when test="${not empty selectedMonth}">
-                                            ${selectedMonth} ${selectedYear}
-                                        </c:when>
-                                        <c:otherwise>
-                                            Bulan Ini
-                                        </c:otherwise>
-                                    </c:choose>
-                                </button>
-
-                                <button class="btn btn-date d-flex align-items-center gap-2">
-                                    <i class="bi bi-download"></i>
-                                    Export Data
-                                </button>
-                            </div>
-                        </div>
+                    <div class="summary-value">
+                        <%= rupiah.format(totalIncome) %>
                     </div>
+
+                    <hr>
+
+                    <small class="text-muted">
+                        Last month : <%= rupiah.format(lastMonthIncome) %>
+                    </small>
                 </div>
+            </div>
+        </div>
 
-                <!-- DASHBOARD CONTENT -->
-                <div class="container overlap-container mb-5">
+        <!-- SPENDING -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card fintrack-card summary-card p-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h6 class="fw-bold text-dark mb-1">Spending</h6>
 
-                    <!-- SUMMARY CARD -->
-                    <div class="row g-4 mb-4">
-
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card fintrack-card summary-card p-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <div>
-                                            <h6 class="fw-bold text-dark mb-1">Total Saldo</h6>
-                                            <p class="summary-label mb-0">Total Balance</p>
-                                        </div>
-
-                                        <i class="bi bi-wallet2 fs-2"></i>
-                                    </div>
-
-                                    <div class="summary-value">
-                                        Rp
-                                        <fmt:formatNumber value="${summary.totalBalance}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card fintrack-card summary-card p-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <div>
-                                            <h6 class="fw-bold text-dark mb-1">Pemasukan</h6>
-                                            <p class="summary-label mb-0">Bulan Ini</p>
-                                        </div>
-
-                                        <i class="bi bi-arrow-up-circle fs-2"></i>
-                                    </div>
-
-                                    <div class="summary-value">
-                                        Rp
-                                        <fmt:formatNumber value="${summary.totalEarnings}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </div>
-
-                                    <small class="text-muted">
-                                        Bulan lalu:
-                                        Rp
-                                        <fmt:formatNumber value="${summary.lastMonthEarnings}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card fintrack-card summary-card p-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <div>
-                                            <h6 class="fw-bold text-dark mb-1">Pengeluaran</h6>
-                                            <p class="summary-label mb-0">Bulan Ini</p>
-                                        </div>
-
-                                        <i class="bi bi-arrow-down-circle fs-2"></i>
-                                    </div>
-
-                                    <div class="summary-value">
-                                        Rp
-                                        <fmt:formatNumber value="${summary.totalSpending}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </div>
-
-                                    <small class="text-muted">
-                                        Bulan lalu:
-                                        Rp
-                                        <fmt:formatNumber value="${summary.lastMonthSpending}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card fintrack-card summary-card p-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <div>
-                                            <h6 class="fw-bold text-dark mb-1">Sisa Bulan Ini</h6>
-                                            <p class="summary-label mb-0">Income - Expense</p>
-                                        </div>
-
-                                        <i class="bi bi-graph-up fs-2"></i>
-                                    </div>
-
-                                    <div class="summary-value">
-                                        Rp
-                                        <fmt:formatNumber value="${summary.totalEarnings - summary.totalSpending}"
-                                            type="number" groupingUsed="true" maxFractionDigits="0" />
-                                    </div>
-
-                                    <small class="text-muted">
-                                        Saldo bulan lalu:
-                                        Rp
-                                        <fmt:formatNumber value="${summary.lastMonthBalance}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-
+                        <button type="button"
+                                class="btn p-0 border-0 bg-transparent"
+                                data-bs-toggle="modal"
+                                data-bs-target="#addTransactionModal"
+                                onclick="setTransactionType('expense')">
+                            <i class="bi bi-plus-circle-fill fs-5 text-success"></i>
+                        </button>
                     </div>
 
-                    <!-- RECENT ACTIVITY & SPENDING OVERVIEW -->
-                    <div class="row g-4 mb-4">
-
-                        <!-- RECENT ACTIVITY -->
-                        <div class="col-12 col-lg-6">
-                            <div class="card fintrack-card activity-card p-4">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h6 class="fw-bold text-dark mb-0">Recent Activity</h6>
-                                    <small class="text-muted">Transaksi terbaru</small>
-                                </div>
-
-                                <c:choose>
-                                    <c:when test="${empty recentActivities}">
-                                        <div class="text-center text-muted py-4">
-                                            Belum ada transaksi terbaru.
-                                        </div>
-                                    </c:when>
-
-                                    <c:otherwise>
-                                        <c:forEach var="activity" items="${recentActivities}">
-                                            <div
-                                                class="activity-item d-flex align-items-center justify-content-between">
-                                                <div class="d-flex align-items-center gap-3">
-
-                                                    <c:choose>
-                                                        <c:when test="${activity.transactionType == 'income'}">
-                                                            <div class="activity-icon income-icon">
-                                                                <i class="bi bi-arrow-up"></i>
-                                                            </div>
-                                                        </c:when>
-
-                                                        <c:otherwise>
-                                                            <div class="activity-icon expense-icon">
-                                                                <i class="bi bi-arrow-down"></i>
-                                                            </div>
-                                                        </c:otherwise>
-                                                    </c:choose>
-
-                                                    <div>
-                                                        <h6 class="mb-1 fw-semibold">
-                                                            ${activity.transactionName}
-                                                        </h6>
-
-                                                        <small class="text-muted">
-                                                            ${activity.categoryName}
-                                                        </small>
-
-                                                        <c:if test="${not empty activity.note}">
-                                                            <br>
-                                                            <small class="text-muted">
-                                                                ${activity.note}
-                                                            </small>
-                                                        </c:if>
-                                                    </div>
-                                                </div>
-
-                                                <div class="text-end">
-                                                    <c:choose>
-                                                        <c:when test="${activity.transactionType == 'income'}">
-                                                            <span class="fw-bold text-success">
-                                                                + Rp
-                                                                <fmt:formatNumber value="${activity.amount}"
-                                                                    type="number" groupingUsed="true"
-                                                                    maxFractionDigits="0" />
-                                                            </span>
-                                                        </c:when>
-
-                                                        <c:otherwise>
-                                                            <span class="fw-bold text-danger">
-                                                                - Rp
-                                                                <fmt:formatNumber value="${activity.amount}"
-                                                                    type="number" groupingUsed="true"
-                                                                    maxFractionDigits="0" />
-                                                            </span>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </div>
-                                            </div>
-                                        </c:forEach>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-                        </div>
-
-                        <!-- SPENDING OVERVIEW -->
-                        <div class="col-12 col-lg-6">
-                            <div class="card fintrack-card activity-card p-4">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h6 class="fw-bold text-dark mb-0">Spending Overview</h6>
-                                    <small class="text-muted">Pengeluaran per kategori</small>
-                                </div>
-
-                                <c:choose>
-                                    <c:when test="${empty spendingOverview}">
-                                        <div class="text-center text-muted py-4">
-                                            Belum ada data pengeluaran bulan ini.
-                                        </div>
-                                    </c:when>
-
-                                    <c:otherwise>
-                                        <c:forEach var="category" items="${spendingOverview}">
-                                            <div class="category-row">
-                                                <div class="d-flex justify-content-between mb-2">
-                                                    <span class="fw-semibold">
-                                                        ${category.categoryName}
-                                                    </span>
-
-                                                    <span class="text-muted">
-                                                        Rp
-                                                        <fmt:formatNumber value="${category.totalAmount}" type="number"
-                                                            groupingUsed="true" maxFractionDigits="0" />
-                                                    </span>
-                                                </div>
-
-                                                <div class="progress">
-                                                    <div class="progress-bar" role="progressbar"
-                                                        aria-valuenow="${category.percentage}" aria-valuemin="0"
-                                                        aria-valuemax="100">
-                                                    </div>
-                                                </div>
-
-                                                <small class="text-muted">
-                                                    <fmt:formatNumber value="${category.percentage}" type="number"
-                                                        maxFractionDigits="1" />%
-                                                </small>
-                                            </div>
-                                        </c:forEach>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-                        </div>
-
+                    <div class="summary-value">
+                        <%= rupiah.format(totalExpense) %>
                     </div>
 
-                    <!-- STATISTIC -->
-                    <div class="row g-4">
-                        <div class="col-12">
-                            <div class="card fintrack-card activity-card p-4">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h6 class="fw-bold text-dark mb-0">Statistic</h6>
-                                    <small class="text-muted">Ringkasan pemasukan dan pengeluaran tahunan</small>
+                    <hr>
+
+                    <small class="text-muted">
+                        Last month : <%= rupiah.format(lastMonthExpense) %>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPENDING OVERVIEW MINI -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card fintrack-card summary-card p-3">
+                <div class="card-body">
+                    <h6 class="fw-bold text-dark mb-1">Spending Overview</h6>
+
+                    <div class="summary-value">
+                        <%= rupiah.format(totalExpense) %>
+                    </div>
+
+                    <small class="text-muted">
+                        From <%= rupiah.format(totalIncome) %>
+                    </small>
+
+                    <div class="mini-chart-wrapper">
+                        <canvas id="categorySpendingChart"></canvas>
+                    </div>
+
+                    <div class="spending-mini-list">
+                        <%
+                            if (spendingOverview != null && !spendingOverview.isEmpty()) {
+                                int max = Math.min(3, spendingOverview.size());
+
+                                for (int i = 0; i < max; i++) {
+                                    CategorySpendingSummary category = spendingOverview.get(i);
+
+                                    String dotClass = "legend-olive";
+                                    if (i == 0) {
+                                        dotClass = "legend-orange";
+                                    } else if (i == 1) {
+                                        dotClass = "legend-yellow";
+                                    }
+                        %>
+                                    <div class="spending-mini-item">
+                                        <div class="spending-mini-left">
+                                            <span class="legend-dot <%= dotClass %>"></span>
+                                            <span><%= category.getCategoryName() %></span>
+                                        </div>
+
+                                        <span><%= rupiah.format(category.getTotalAmount()) %></span>
+                                    </div>
+                        <%
+                                }
+                            } else {
+                        %>
+                                <div class="spending-mini-item">
+                                    <span class="text-muted">Belum ada data spending.</span>
                                 </div>
-
-                                <div class="table-responsive">
-                                    <table class="table align-middle">
-                                        <thead>
-                                            <tr>
-                                                <th>Bulan</th>
-                                                <th>Pemasukan</th>
-                                                <th>Pengeluaran</th>
-                                                <th>Sisa</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <c:choose>
-                                                <c:when test="${empty monthlySummary}">
-                                                    <tr>
-                                                        <td colspan="4" class="text-center text-muted py-4">
-                                                            Belum ada data statistik.
-                                                        </td>
-                                                    </tr>
-                                                </c:when>
-
-                                                <c:otherwise>
-                                                    <c:forEach var="monthly" items="${monthlySummary}">
-                                                        <tr>
-                                                            <td>Bulan ${monthly.month}</td>
-
-                                                            <td class="text-success fw-semibold">
-                                                                Rp
-                                                                <fmt:formatNumber value="${monthly.totalIncome}"
-                                                                    type="number" groupingUsed="true"
-                                                                    maxFractionDigits="0" />
-                                                            </td>
-
-                                                            <td class="text-danger fw-semibold">
-                                                                Rp
-                                                                <fmt:formatNumber value="${monthly.totalExpense}"
-                                                                    type="number" groupingUsed="true"
-                                                                    maxFractionDigits="0" />
-                                                            </td>
-
-                                                            <td class="fw-semibold">
-                                                                Rp
-                                                                <fmt:formatNumber
-                                                                    value="${monthly.totalIncome - monthly.totalExpense}"
-                                                                    type="number" groupingUsed="true"
-                                                                    maxFractionDigits="0" />
-                                                            </td>
-                                                        </tr>
-                                                    </c:forEach>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
+                        <%
+                            }
+                        %>
                     </div>
 
                 </div>
+            </div>
+        </div>
 
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
 
-            </body>
+    <!-- MAIN CHART + RECENT ACTIVITY -->
+    <div class="row g-4">
 
-            </html>
+        <!-- TRANSACTIONS OVERVIEW -->
+        <div class="col-12 col-lg-7">
+            <div class="card fintrack-card activity-card p-4 activity-card-compact">
+                <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+                    <div>
+                        <h6 class="fw-bold text-dark mb-1">Transactions Overview</h6>
+
+                        <h3 class="chart-card-title">
+                            <%= rupiah.format(totalExpense) %>
+                        </h3>
+                    </div>
+
+                    <a href="<%= request.getContextPath() %>/DashboardExportServlet"
+                       class="btn btn-date-light d-flex align-items-center gap-2">
+                        <i class="bi bi-download"></i>
+                        Export This Month
+                    </a>
+                </div>
+
+                <div class="legend-inline">
+                    <span><span class="legend-dot legend-green"></span>Spending</span>
+                    <span><span class="legend-dot legend-gray"></span>Earnings</span>
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="monthlyTransactionChart"></canvas>
+                </div>
+
+                <div id="monthlyChartInfo" class="text-muted small mt-2"></div>
+            </div>
+        </div>
+
+        <!-- RECENT ACTIVITY TABLE -->
+        <div class="col-12 col-lg-5">
+            <div class="card fintrack-card activity-card p-4 activity-card-compact">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6 class="fw-bold text-dark mb-0">Recent Activity</h6>
+
+                    <button type="button" class="btn btn-date-light d-flex align-items-center gap-2">
+                        <i class="bi bi-filter"></i>
+                        Sort by
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table activity-table align-middle">
+                        <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Nominal</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Details</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <%
+                            if (recentActivities != null && !recentActivities.isEmpty()) {
+                                for (RecentActivity activity : recentActivities) {
+                                    boolean isIncome = "income".equalsIgnoreCase(activity.getTransactionType());
+                        %>
+                                    <tr>
+                                        <td><%= activity.getCategoryName() %></td>
+
+                                        <td>
+                                            <% if (isIncome) { %>
+                                                <span class="text-success">
+                                                    + <%= rupiah.format(activity.getAmount()) %>
+                                                </span>
+                                            <% } else { %>
+                                                <span class="text-danger">
+                                                    - <%= rupiah.format(activity.getAmount()) %>
+                                                </span>
+                                            <% } %>
+                                        </td>
+
+                                        <td><%= activity.getDate() %></td>
+                                        <td><%= activity.getTime() %></td>
+                                        <td><%= activity.getTransactionName() %></td>
+                                    </tr>
+                        <%
+                                }
+                            } else {
+                        %>
+                                <tr>
+                                    <td colspan="5" class="empty-data">
+                                        Belum ada transaksi terbaru.
+                                    </td>
+                                </tr>
+                        <%
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SPENDING DETAIL -->
+    <div class="row g-4 mt-1">
+        <div class="col-12">
+            <div class="card fintrack-card activity-card p-4">
+                <h6 class="fw-bold text-dark mb-3">Spending Detail by Category</h6>
+
+                <div class="table-responsive">
+                    <table class="table activity-table align-middle">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Category</th>
+                            <th>Total Amount</th>
+                            <th>Percentage</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <%
+                            if (spendingOverview != null && !spendingOverview.isEmpty()) {
+                                int no = 1;
+
+                                for (CategorySpendingSummary category : spendingOverview) {
+                        %>
+                                    <tr>
+                                        <td><%= no++ %></td>
+                                        <td><%= category.getCategoryName() %></td>
+                                        <td><%= rupiah.format(category.getTotalAmount()) %></td>
+                                        <td><%= String.format("%.2f", category.getPercentage()) %>%</td>
+                                    </tr>
+                        <%
+                                }
+                            } else {
+                        %>
+                                <tr>
+                                    <td colspan="4" class="empty-data">
+                                        Belum ada data pengeluaran per kategori.
+                                    </td>
+                                </tr>
+                        <%
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- MODAL ADD TRANSACTION -->
+<div class="modal fade" id="addTransactionModal" tabindex="-1"
+     aria-labelledby="addTransactionModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="<%= request.getContextPath() %>/AddTransactionServlet"
+              method="POST"
+              class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTransactionModalLabel">
+                    Tambah Transaksi
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="hidden" name="transactionType" id="transactionType">
+
+                <div class="mb-3">
+                    <label class="form-label">Nama Transaksi</label>
+                    <input type="text" name="transactionName" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nominal</label>
+                    <input type="number" step="0.01" name="amount" class="form-control" min="1" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Wallet ID</label>
+                    <input type="number" name="accountId" class="form-control" placeholder="Contoh: 1" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Category ID</label>
+                    <input type="number" name="categoryId" class="form-control" placeholder="Contoh: 1" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Catatan</label>
+                    <textarea name="note" class="form-control" rows="3"></textarea>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Batal
+                </button>
+
+                <button type="submit" class="btn btn-success">
+                    Simpan Transaksi
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap JS: pakai cdnjs, bukan jsDelivr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<!-- Chart.js: pakai cdnjs, bukan jsDelivr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<!-- DATA JSON DARI SERVLET -->
+<script type="application/json" id="monthlyLabelsData"><%= monthlyLabelsJson %></script>
+<script type="application/json" id="monthlyIncomeData"><%= monthlyIncomeJson %></script>
+<script type="application/json" id="monthlyExpenseData"><%= monthlyExpenseJson %></script>
+<script type="application/json" id="categoryLabelsData"><%= categoryLabelsJson %></script>
+<script type="application/json" id="categoryAmountsData"><%= categoryAmountJson %></script>
+
+<script>
+    function parseJsonData(id) {
+        const element = document.getElementById(id);
+
+        if (!element) {
+            return [];
+        }
+
+        const text = element.textContent.trim();
+
+        if (!text || text === "null") {
+            return [];
+        }
+
+        try {
+            return JSON.parse(text);
+        } catch (error) {
+            console.error("Gagal parse JSON:", id, text, error);
+            return [];
+        }
+    }
+
+    function normalizeMonthlyData(labels, income, expense) {
+        if (!labels || labels.length === 0) {
+            labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        }
+
+        while (income.length < labels.length) {
+            income.push(0);
+        }
+
+        while (expense.length < labels.length) {
+            expense.push(0);
+        }
+
+        return {
+            labels: labels,
+            income: income,
+            expense: expense
+        };
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("Bootstrap:", typeof bootstrap);
+        console.log("Chart:", typeof Chart);
+
+        const monthlyLabels = parseJsonData("monthlyLabelsData");
+        const monthlyIncome = parseJsonData("monthlyIncomeData");
+        const monthlyExpense = parseJsonData("monthlyExpenseData");
+
+        let categoryLabels = parseJsonData("categoryLabelsData");
+        let categoryAmounts = parseJsonData("categoryAmountsData");
+
+        const monthlyData = normalizeMonthlyData(monthlyLabels, monthlyIncome, monthlyExpense);
+
+        const monthlyCanvas = document.getElementById("monthlyTransactionChart");
+        const categoryCanvas = document.getElementById("categorySpendingChart");
+
+        if (typeof Chart === "undefined") {
+            const info = document.getElementById("monthlyChartInfo");
+
+            if (info) {
+                info.innerText = "Chart.js tidak terbaca. Cek koneksi internet atau CDN.";
+            }
+
+            return;
+        }
+
+        if (monthlyCanvas) {
+            const currentMonthIndex = new Date().getMonth();
+
+            const expenseBarColors = monthlyData.expense.map(function (value, index) {
+                return index === currentMonthIndex ? "#9ACD32" : "#D9D9D9";
+            });
+
+            new Chart(monthlyCanvas, {
+                data: {
+                    labels: monthlyData.labels,
+                    datasets: [
+                        {
+                            type: "bar",
+                            label: "Spending",
+                            data: monthlyData.expense,
+                            backgroundColor: expenseBarColors,
+                            borderRadius: 6,
+                            borderSkipped: false,
+                            barThickness: 24
+                        },
+                        {
+                            type: "line",
+                            label: "Earnings",
+                            data: monthlyData.income,
+                            borderColor: "#B7D86A",
+                            backgroundColor: "#B7D86A",
+                            pointRadius: 0,
+                            borderDash: [4, 4],
+                            tension: 0.35,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.dataset.label + ": Rp " +
+                                        Number(context.raw).toLocaleString("id-ID");
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: "#111827"
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: "#E5E7EB"
+                            },
+                            ticks: {
+                                callback: function (value) {
+                                    if (value >= 1000000) {
+                                        return (value / 1000000) + " M";
+                                    }
+
+                                    return value;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        if (categoryCanvas) {
+            if (!categoryLabels || categoryLabels.length === 0) {
+                categoryLabels = ["Belum ada data"];
+                categoryAmounts = [1];
+            }
+
+            if (!categoryAmounts || categoryAmounts.length === 0) {
+                categoryAmounts = [1];
+            }
+
+            const categoryColors = ["#D98C5F", "#D9A441", "#A8BE84", "#88A97D", "#C8D5B9"];
+
+            const stackedDatasets = categoryAmounts.map(function (amount, index) {
+                return {
+                    label: categoryLabels[index] || "Kategori",
+                    data: [amount],
+                    backgroundColor: categoryColors[index % categoryColors.length],
+                    borderWidth: 0,
+                    borderRadius: 3,
+                    barThickness: 18
+                };
+            });
+
+            new Chart(categoryCanvas, {
+                type: "bar",
+                data: {
+                    labels: [""],
+                    datasets: stackedDatasets
+                },
+                options: {
+                    indexAxis: "y",
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.dataset.label + ": Rp " +
+                                        Number(context.raw).toLocaleString("id-ID");
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            display: false
+                        },
+                        y: {
+                            stacked: true,
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

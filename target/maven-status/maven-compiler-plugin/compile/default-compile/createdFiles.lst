@@ -1,8 +1,16 @@
 model\CategorySpendingSummary.class
 servlets\DashboardServlet.class
+model\MonthlyTransactionSummary.class
+dao\ProfileDAO.class
+servlets\AddTransactionServlet.class
 dao\RegisterDAO.class
 dao\LoginDAO.class
 model\JDBC.class
 dao\DashboardDAO.class
+servlets\ProfileServlet.class
 model\RecentActivity.class
 servlets\AuthServlet.class
+model\DashboardSummary.class
+model\Profile.class
+servlets\DashboardExportServlet.class
+model\User.class
