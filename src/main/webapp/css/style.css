@@ -1,10 +1,8 @@
-
 body{
     font-family: 'Instrument Sans', sans-serif;
 }
 
 /* [START] LOGIN PAGE = REGISTER PAGE */
-/* Sisi Kiri: Gradient Background */
 .login-side {
     background: linear-gradient(135deg, #fafff0 0%, #d4eec4 100%);
     display: flex;
@@ -12,9 +10,8 @@ body{
     justify-content: center;
 }
 
-/* Sisi Kanan: Dark Background */
 .image-side {
-    background-color: #0B3A30; /* Hijau gelap */
+    background-color: #0B3A30;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,7 +33,6 @@ body{
     margin-bottom: 2rem;
 }
 
-/* Styling Input Field */
 .input-group-text {
     background-color: #f8f9fa;
     border-right: none;
@@ -58,7 +54,6 @@ body{
     background-color: #f8f9fa;
 }
 
-/* Styling Tombol Lime Green */
 .btn-lime {
     background-color: #9EDE04;
     color: #0B3A30;
@@ -80,11 +75,10 @@ body{
     font-size: 0.85rem;
     font-weight: 600;
 }
-.register-link b{
+.register-link b {
     font-weight: 800;
 }
 
-/* Gambar di sisi kanan */
 .main-visual {
     max-width: 50%;
     height: auto;
@@ -94,10 +88,10 @@ body{
 
 
 /* [START] NAVBAR */
-.navbar{
+.navbar {
     background-color: #0B3A30 !important;
 }
-/* Lingkaran untuk ikon Notifikasi (Lonceng) */
+
 .icon-circle {
     width: 42px;
     height: 42px;
@@ -113,97 +107,40 @@ body{
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Lingkaran untuk ikon User Profil */
 .profile-circle {
     width: 42px;
     height: 42px;
-    background-color: #e0e4e3; /* Warna abu-abu terang sesuai gambar */
+    background-color: #e0e4e3;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #0B3A30; /* Warna hijau gelap untuk siluet user */
+    color: #0B3A30;
 }
 
-/* Ukuran khusus agar logo tidak kebesaran/pecah di navbar */
 .navbar-logo {
-    height: 25px; /* Kamu bisa mengatur besar/kecil logo di sini */
+    height: 25px;
     width: auto;
     object-fit: contain;
 }
 
 .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 3rem; 
+    border-radius: 3rem;
 }
 
-/* Menghilangkan garis pinggir (border) pada tombol hamburger saat diklik */
 .navbar-toggler:focus {
     box-shadow: none;
 }
 
 .navbar-custom {
-    border-bottom: 1px solid #ffffff; /* ⚠️ MENGUBAH GARIS MENJADI PUTIH SOLID */
+    border-bottom: 1px solid #ffffff;
 }
 /* [END] NAVBAR */
 
-/* [START] Dashboard */
-/* Header Hijau Gelap */
-.dashboard-header {
-    background-color: #0B3A30 !important;
-    color: #ffffff;
-    padding-top: 2rem;
-    padding-bottom: 8rem; /* Memberikan ruang ekstra di bawah agar card bisa menumpuk */
-}
 
-/* Teks abu-abu terang untuk "Good Morning" */
-.text-light-teal {
-    color: #a0b2af;
-}
-
-/* Tombol Tanggal (Bulan & Tahun) */
-.btn-date {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    border-radius: 50px;
-    padding: 8px 20px;
-    font-size: 0.95rem;
-    transition: all 0.3s;
-}
-.btn-date:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-}
-
-/* Container untuk Card agar naik ke atas (Overlapping) */
-.overlap-container {
-    margin-top: -5rem; /* Menarik konten ke atas menabrak warna hijau */
-    position: relative;
-    z-index: 10;
-}
-
-/* Standar Desain Card FinTrack */
-.fintrack-card {
-    border: none;
-    border-radius: 20px; /* Sudut sangat membulat sesuai desain */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-    background-color: #ffffff;
-}
-
-/* Ukuran tinggi card */
-.summary-card {
-    min-height: 160px;
-}
-.activity-card {
-    min-height: 400px; /* Card bawah dibuat lebih tinggi */
-}
-/* [END] Dashboard */
-
-
-/* [START] Profile == ChangeProfile */
-/* Tombol Kapsul Hijau Gelap */
-.btn-light{
+/* [START] PROFILE == CHANGEPROFILE */
+.btn-light {
     background-color: #ececec;
     color: #000000;
     font-weight: 700;
@@ -212,11 +149,12 @@ body{
     padding: 12px;
     transition: all 0.3s ease;
 }
-.btn-light:hover{
+.btn-light:hover {
     background-color: #a2a2a2;
     color: #000000;
     transform: translateY(-2px);
 }
+
 .btn-dark-teal {
     background-color: #002d26;
     color: #ffffff;
@@ -226,14 +164,12 @@ body{
     padding: 12px;
     transition: all 0.3s ease;
 }
-
 .btn-dark-teal:hover {
     background-color: #004d41;
     color: #ffffff;
     transform: translateY(-2px);
 }
 
-/* Style Input untuk Form Edit */
 .fintrack-input {
     background-color: #ffffff;
     border: 1px solid #e0e4e3;
@@ -243,29 +179,26 @@ body{
     font-size: 0.95rem;
     transition: all 0.3s ease;
 }
-
 .fintrack-input:focus {
     border-color: #98ce00;
     box-shadow: 0 0 0 0.25rem rgba(152, 206, 0, 0.1);
     outline: none;
 }
 
-/* Label khusus */
 .form-label-custom {
     font-weight: 700;
     color: #002d26;
     margin-bottom: 8px;
 }
-/* [END] Profile */
+/* [END] PROFILE */
+
 
 /* [START] DROPDOWN */
-/* Memberikan jarak (padding) di dalam kotak putih dropdown */
 .dropdown-menu {
     padding: 8px;
     border-radius: 16px;
 }
 
-/* Mengatur bentuk item di dalam dropdown */
 .dropdown-item {
     border-radius: 8px;
     transition: all 0.2s ease;
@@ -273,40 +206,34 @@ body{
     font-weight: 500;
 }
 
-/* Efek saat kursor diarahkan (Hover) & Dipilih (Active) */
 .dropdown-item:hover,
 .dropdown-item:focus,
 .dropdown-item:active {
-    background-color: #002d26 !important; /* Warna Dark Teal */
-    color: #ffffff !important; /* Teks menjadi putih */
+    background-color: #002d26 !important;
+    color: #ffffff !important;
 }
 
-/* Memastikan ikon ikut menjadi putih saat di-hover */
 .dropdown-item:hover i {
     color: #ffffff !important;
 }
 
-/* Khusus tombol Logout: saat tidak di-hover berwarna merah (text-danger), 
-   tapi saat di-hover harus berubah jadi putih agar kontras dengan hijau gelap */
 .dropdown-item.text-danger:hover {
     color: #ffffff !important;
 }
 /* [END] DROPDOWN */
 
-/* [START] Wallet */
-/* 1. Base White (Putih Default) */
+
+/* [START] WALLET THEMES */
 .theme-white {
     background-color: #ffffff;
     color: #002d26;
 }
 
-/* 2. Green-1 (Dark Teal) */
 .theme-dark {
     background-color: #002d26;
     color: #ffffff;
 }
-/* Ubah teks dan ikon di dalam card gelap menjadi putih */
-.theme-dark .text-dark-teal, 
+.theme-dark .text-dark-teal,
 .theme-dark .text-dark {
     color: #ffffff !important;
 }
@@ -316,12 +243,11 @@ body{
     border: none !important;
 }
 
-/* 3. Light Green-1 (Lime / Hijau Terang) */
 .theme-lime {
     background-color: #98ce00;
     color: #002d26;
 }
-.theme-lime .text-dark-teal, 
+.theme-lime .text-dark-teal,
 .theme-lime .text-dark {
     color: #002d26 !important;
 }
@@ -331,18 +257,17 @@ body{
     border: none !important;
 }
 
-/* 4. Light Green-2 (Pale / Krem) */
 .theme-pale {
-    background-color: #e4f0d0; /* Warna krem hijau pucat */
+    background-color: #e4f0d0;
     color: #002d26;
 }
-/* [END] Wallet */
+/* [END] WALLET THEMES */
+
 
 /* =====================================
-   WALLET PAGE - wallet.css
+   WALLET PAGE
 ===================================== */
 
-/* HEADER */
 .wallet-header {
     background-color: #0B3A30;
     color: #ffffff;
@@ -361,7 +286,6 @@ body{
     font-size: 0.95rem;
 }
 
-/* HEADER BUTTONS */
 .btn-eye-wallet {
     width: 48px;
     height: 48px;
@@ -376,7 +300,6 @@ body{
     transition: background 0.2s;
     flex-shrink: 0;
 }
-
 .btn-eye-wallet:hover {
     background: rgba(255, 255, 255, 0.25);
     color: white;
@@ -395,27 +318,23 @@ body{
     gap: 8px;
     transition: all 0.2s;
 }
-
 .btn-refresh-wallet:hover {
     background: white;
     color: #0B3A30;
 }
 
-/* OVERLAP CONTAINER */
 .wallet-overlap-container {
     margin-top: -5rem;
     position: relative;
     z-index: 10;
 }
 
-/* WALLET GRID */
 .wallet-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 22px;
 }
 
-/* WALLET CARD */
 .wallet-card {
     width: 280px;
     height: 170px;
@@ -426,42 +345,35 @@ body{
     cursor: pointer;
     flex-shrink: 0;
 }
-
 .wallet-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
 }
 
-/* CARD TOP */
 .wallet-card-top {
     background-color: #EFFADF;
     height: 115px;
     padding: 16px 18px;
     position: relative;
 }
-
 .wallet-card-top .card-icon {
     font-size: 1.3rem;
     color: #1a1a1a;
 }
-
 .wallet-card-top .card-icon-credit {
     font-size: 1.1rem;
     color: #1a1a1a;
 }
 
-/* CARD INFO */
 .wallet-info {
     margin-top: 10px;
 }
-
 .wallet-info h6 {
     font-size: 13px;
     font-weight: 600;
     color: #1a1a1a;
     margin-bottom: 2px;
 }
-
 .wallet-info h5 {
     font-size: 13px;
     font-weight: 700;
@@ -470,7 +382,6 @@ body{
     letter-spacing: 0.5px;
 }
 
-/* VALID THRU BADGE */
 .wallet-valid {
     position: absolute;
     right: 18px;
@@ -481,14 +392,12 @@ body{
     line-height: 1.3;
     color: #333;
 }
-
 .wallet-valid span {
     display: block;
     font-size: 12px;
     font-weight: 700;
 }
 
-/* CARD BOTTOM (BALANCE) */
 .wallet-card-bottom {
     height: 55px;
     background-color: #3F6B58;
@@ -501,7 +410,6 @@ body{
     letter-spacing: 0.3px;
 }
 
-/* ADD NEW WALLET CARD */
 .add-wallet-card {
     width: 280px;
     height: 170px;
@@ -516,7 +424,6 @@ body{
     transition: all 0.25s ease;
     flex-shrink: 0;
 }
-
 .add-wallet-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
@@ -543,35 +450,27 @@ body{
     margin: 0;
 }
 
-/* =====================================
-   MODAL
-===================================== */
-
+/* MODAL */
 .modal-content {
     border-radius: 20px;
     border: none;
 }
-
 .modal-header {
     border-bottom: 1px solid #e5e7eb;
     padding: 20px 24px;
 }
-
 .modal-title {
     font-weight: 700;
     color: #0B3A30;
     font-size: 1rem;
 }
-
 .modal-body {
     padding: 24px;
 }
-
 .modal-footer {
     border-top: 1px solid #e5e7eb;
     padding: 16px 24px;
 }
-
 .modal-body .form-label {
     font-weight: 600;
     color: #0B3A30;
@@ -579,7 +478,6 @@ body{
     margin-bottom: 6px;
 }
 
-/* MODAL INPUTS */
 .wallet-input {
     border-radius: 12px;
     border: 1px solid #e0e4e3;
@@ -587,7 +485,6 @@ body{
     font-size: 0.9rem;
     transition: all 0.2s;
 }
-
 .wallet-input:focus {
     border-color: #98ce00;
     box-shadow: 0 0 0 0.2rem rgba(152, 206, 0, 0.15);
@@ -612,14 +509,12 @@ body{
     font-size: 0.9rem;
     transition: all 0.2s;
 }
-
 .wallet-input-number:focus {
     border-color: #98ce00;
     box-shadow: 0 0 0 0.2rem rgba(152, 206, 0, 0.15);
     outline: none;
 }
 
-/* MODAL BUTTONS */
 .btn-wallet-submit {
     background-color: #0B3A30;
     color: white;
@@ -630,7 +525,6 @@ body{
     font-size: 0.9rem;
     transition: background 0.2s;
 }
-
 .btn-wallet-submit:hover {
     background-color: #004D40;
     color: white;
@@ -646,16 +540,290 @@ body{
     font-size: 0.9rem;
     transition: background 0.2s;
 }
-
 .btn-wallet-cancel:hover {
     background-color: #d0d0d0;
     color: #333;
 }
 
-/* RESPONSIVE */
 @media (max-width: 600px) {
     .wallet-card,
     .add-wallet-card {
         width: 100%;
     }
+}
+
+
+/* =====================================
+   DASHBOARD PAGE
+===================================== */
+
+.dashboard-header {
+    background-color: #0B3A30;
+    color: white;
+    padding: 2rem 0 8rem 0;
+}
+
+.text-light-teal {
+    color: #a0b2af;
+    font-size: 0.9rem;
+}
+
+.btn-eye-dash {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.btn-eye-dash:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.btn-date-dash {
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    color: white;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.btn-date-dash:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.btn-date-sm {
+    border-color: #e0e0e0;
+    color: #333;
+    font-size: 0.78rem;
+    padding: 5px 12px;
+}
+.btn-date-sm:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.overlap-container {
+    margin-top: -5.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* SUMMARY CARDS */
+.dash-card {
+    background: white;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    height: 100%;
+    position: relative;
+}
+
+.dash-card h6 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.dash-card .amount {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0;
+}
+
+.dash-card .last-month {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+    margin-bottom: 0;
+}
+
+.dash-card .from-label {
+    font-size: 0.78rem;
+    color: #aaa;
+    margin: 2px 0 0;
+}
+
+.btn-add-card {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #0B3A30;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-add-card:hover {
+    background: #004D40;
+}
+
+/* SPENDING OVERVIEW */
+.spending-bar-wrap {
+    height: 14px;
+    border-radius: 999px;
+    overflow: hidden;
+    display: flex;
+    margin: 10px 0 8px;
+}
+.spending-bar-wrap .seg {
+    height: 100%;
+    transition: width 0.4s;
+}
+
+.seg-food  { background: #e05c3a; }
+.seg-shop  { background: #e8c9a0; }
+.seg-trans { background: #8aab99; }
+
+.spending-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.legend-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #555;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 6px;
+    flex-shrink: 0;
+}
+
+/* CHART CARD */
+.chart-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    height: 100%;
+}
+
+.chart-card h6 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 2px;
+}
+
+.chart-card .chart-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0;
+}
+
+.chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.78rem;
+    color: #555;
+}
+
+.chart-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* RECENT ACTIVITY */
+.activity-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    height: 100%;
+}
+
+.activity-card h6 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111;
+}
+
+.btn-sortby {
+    border: 1.5px solid #e0e0e0;
+    background: white;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+.btn-sortby:hover {
+    background: #f5f5f5;
+}
+
+.activity-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.82rem;
+}
+
+.activity-table thead tr th {
+    background: #f5f5f0;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #555;
+    border: none;
+}
+
+.activity-table thead tr th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+.activity-table thead tr th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.activity-table tbody tr td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #333;
+    vertical-align: middle;
+}
+
+.activity-table tbody tr:last-child td {
+    border-bottom: none;
 }
