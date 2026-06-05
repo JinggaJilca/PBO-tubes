@@ -18,9 +18,9 @@
 
         <body>
             <!--[START] ISI -->
+            
             <div class="container-fluid p-0">
                 <div class="row g-0 min-vh-100">
-
                     <div class="col-lg-6 login-side">
                         <div class="login-container text-center">
                             <h1 class="login-title">SIGN UP</h1>
@@ -37,7 +37,6 @@
                                         </div>
                                     </div>
                                     <% } %>
-
                                             <form action="${pageContext.request.contextPath}/auth?action=register"
                                                 method="post">
 
@@ -72,6 +71,9 @@
                                                     <input type="password" name="regisConfirmPassword"
                                                         class="form-control" placeholder="Confirm Password" required>
                                                 </div>
+                                                <p id="passwordError" style="color: red; display: none; font-size: 14px;">
+                                                        ⚠️ Password dan Konfirmasi Password tidak cocok!
+                                                </p>
 
                                                 <button type="submit" class="btn btn-lime w-100 mb-4">SIGN UP</button>
 
@@ -99,11 +101,39 @@
 
             <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var errorToastEl = document.getElementById('errorToast');
+                if (errorToastEl) {
+                    // Inisialisasi dan tampilkan toast
+                    var toast = new bootstrap.Toast(errorToastEl, {
+                        delay: 4000 // Toast akan otomatis hilang dalam 4 detik
+                    });
+                    toast.show();
+                }
+            });
+        </script>
+        <script>
+        function validatePassword() {
+            // Ambil nilai dari kedua input
+            var password = document.getElementById("regisPassword").value;
+            var confirmPassword = document.getElementById("regisConfirmPassword").value;
+            var errorText = document.getElementById("passwordError");
 
-        </body>
+            // Cek apakah nilainya berbeda
+            if (password !== confirmPassword) {
+                // Tampilkan pesan error
+                errorText.style.display = "block";
 
-        </html>
-        <h1>Hello World!</h1>
+                // Kembalikan false agar form GAGAL/DIBATALKAN untuk dikirim ke Servlet
+                return false; 
+            }
+
+            // Jika sama, sembunyikan pesan error (untuk berjaga-jaga) dan izinkan form terkirim
+            errorText.style.display = "none";
+            return true; 
+        }
+    </script>
         </body>
 
         </html>
