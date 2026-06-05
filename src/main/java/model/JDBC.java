@@ -8,27 +8,21 @@ import java.util.logging.Logger;
 public class JDBC {
     
     // Konfigurasi Kredensial Database
-    private static final String SERVER_NAME = "fintrack-pbo.database.windows.net";
-    private static final String DATABASE_NAME = "fintrack_db"; // Ganti dengan nama database di Azure
-    private static final String USERNAME = "fintrackadmin";     // Ganti dengan admin/user database
-    private static final String PASSWORD = "adminFintrack26@keren";     // Ganti dengan password database
+    private static final String DATABASE_NAME = "fintrack_db";
+    private static final String USERNAME = "root";    
+    private static final String PASSWORD = "";    
 
-    // Format URL Koneksi khusus untuk Azure SQL
+// Format URL Koneksi yang benar untuk MySQL
     private static final String CONNECTION_URL = 
-            "jdbc:sqlserver://" + SERVER_NAME + ":1433;"
-            + "database=" + DATABASE_NAME + ";"
-            + "user=" + USERNAME + ";"
-            + "password=" + PASSWORD + ";"
-            + "encrypt=true;"
-            + "trustServerCertificate=true;"
-            + "hostNameInCertificate=*.database.windows.net;"
-            + "loginTimeout=30;";
+            "jdbc:mysql://localhost:3306/" + DATABASE_NAME 
+            + "?user=" + USERNAME 
+            + "&password=" + PASSWORD;
 
     public static Connection getConnection() {
     Connection connection = null;
     try {
         // BARIS INI WAJIB ADA agar Tomcat mengenali Driver-nya
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
         
         connection = DriverManager.getConnection(CONNECTION_URL);
     } catch (ClassNotFoundException e) {
