@@ -43,6 +43,8 @@ public class DashboardServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
+        Integer userId = 1;
+
         if (session == null || session.getAttribute("userId") == null) {
         response.sendRedirect("login");
         return;
