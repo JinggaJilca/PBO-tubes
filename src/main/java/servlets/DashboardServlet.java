@@ -43,15 +43,15 @@ public class DashboardServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
-        Integer userId = 1;
-        // KALAU MAU PAKE SESSION LANGSUNG UNCOMMEND DI BAWAH DAN COMMEND ATAS
-        // if (session == null || session.getAttribute("userId") == null) {
-        //     response.sendRedirect("login");
-        //     return;
-        // }
 
-        // Integer userId = (Integer) session.getAttribute("userId");
+                if (session == null || session.getAttribute("user") == null) {
+                    response.sendRedirect(request.getContextPath() + "/login.jsp");
+                    return;
+                }
 
+                model.User loggedInUser = (model.User) session.getAttribute("user");
+
+                Integer userId = loggedInUser.getUserID();
         LocalDate now = LocalDate.now();
         int year = now.getYear();
         int month = now.getMonthValue();
