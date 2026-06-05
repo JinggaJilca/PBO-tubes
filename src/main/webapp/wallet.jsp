@@ -323,30 +323,56 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Toggle balance visibility
-        const btnToggle = document.getElementById('btnToggleBalance');
-        const eyeIcon = document.getElementById('eyeIcon');
-        const balanceEls = document.querySelectorAll('.balance-value');
-        let hidden = false;
-        const originals = Array.from(balanceEls).map(el => el.textContent.trim());
+    const btnToggle = document.getElementById('btnToggleBalance');
+    const eyeIcon = document.getElementById('eyeIcon');
+    let hidden = false;
 
-        btnToggle.addEventListener('click', function () {
-            hidden = !hidden;
-            balanceEls.forEach((el, i) => {
-                el.textContent = hidden ? '••••••••' : originals[i];
-            });
-            eyeIcon.className = hidden ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill';
+    // Simpan data asli tiap card
+    const cards = document.querySelectorAll('.wallet-card');
+    const cardData = Array.from(cards).map(card => {
+        const numberEl = card.querySelector('.wallet-info h5');
+        const balanceEl = card.querySelector('.balance-value');
+        return {
+            numberEl,
+            balanceEl,
+            originalNumber: numberEl ? numberEl.textContent.trim() : '',
+            originalBalance: balanceEl ? balanceEl.textContent.trim() : ''
+        };
+    });
+
+    btnToggle.addEventListener('click', function () {
+        hidden = !hidden;
+
+        cardData.forEach(({ numberEl, balanceEl, originalNumber, originalBalance }) => {
+            if (hidden) {
+                // Sembunyikan saldo
+                if (balanceEl) balanceEl.textContent = '****';
+
+                // Sembunyikan nomor, tapi tampilkan 4 digit terakhir
+                if (numberEl) {
+                    const digits = originalNumber.replace(/\s/g, '');
+                    const last4 = digits.slice(-4);
+                    numberEl.textContent = '**** **** **** ' + last4;
+                }
+            } else {
+                // Tampilkan kembali
+                if (balanceEl) balanceEl.textContent = originalBalance;
+                if (numberEl) numberEl.textContent = originalNumber;
+            }
         });
 
-        // Show/hide Valid Thru field
-        const walletTypeSelect = document.getElementById('walletTypeSelect');
-        const validThruGroup = document.getElementById('validThruGroup');
+        eyeIcon.className = hidden ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill';
+    });
 
-        walletTypeSelect.addEventListener('change', function () {
-            validThruGroup.style.display =
-                (this.value === 'debit' || this.value === 'credit') ? 'block' : 'none';
-        });
-    </script>
+    // Show/hide Valid Thru field
+    const walletTypeSelect = document.getElementById('walletTypeSelect');
+    const validThruGroup = document.getElementById('validThruGroup');
+
+    walletTypeSelect.addEventListener('change', function () {
+        validThruGroup.style.display =
+            (this.value === 'debit' || this.value === 'credit') ? 'block' : 'none';
+    });
+</script>
 
 </body>
 </html>
