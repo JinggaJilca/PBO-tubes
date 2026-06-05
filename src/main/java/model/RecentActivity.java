@@ -56,4 +56,5 @@ public class RecentActivity {
     public String getNote() {
         return note;
     }
+
 }

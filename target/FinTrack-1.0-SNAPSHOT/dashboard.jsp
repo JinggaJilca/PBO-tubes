@@ -238,6 +238,12 @@
                             <span id="legTrans">Rp2.361.401</span>
                         </div>
                     </div>
+
+                    <hr>
+
+                    <small class="text-muted">
+                        Last month : <%= rupiah.format(lastMonthIncome) %>
+                    </small>
                 </div>
             </div>
 
