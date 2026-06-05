@@ -1,543 +1,619 @@
-<%@ page isELIgnored="false" language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-            <!DOCTYPE html>
-            <html lang="id">
-
-            <head>
-                <meta charset="UTF-8">
-                <title>FinTrack - Dashboard</title>
-
-                <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/favicon.png">
-
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-                <link rel="stylesheet"
-                    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
-                <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap"
-                    rel="stylesheet">
-
-                <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-
-                <style>
-                    .summary-value {
-                        font-size: 24px;
-                        font-weight: 700;
-                        color: #0f172a;
-                    }
-
-                    .summary-label {
-                        color: #64748b;
-                        font-size: 14px;
-                    }
-
-                    .activity-item {
-                        border-bottom: 1px solid #e5e7eb;
-                        padding: 12px 0;
-                    }
-
-                    .activity-item:last-child {
-                        border-bottom: none;
-                    }
-
-                    .activity-icon {
-                        width: 42px;
-                        height: 42px;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-
-                    .income-icon {
-                        background-color: #dcfce7;
-                        color: #16a34a;
-                    }
-
-                    .expense-icon {
-                        background-color: #fee2e2;
-                        color: #dc2626;
-                    }
-
-                    .category-row {
-                        margin-bottom: 16px;
-                    }
-
-                    .progress {
-                        height: 8px;
-                        border-radius: 999px;
-                    }
-
-                    .progress-bar {
-                        width: 100%;
-                    }
-                </style>
-            </head>
-
-            <body>
-
-                <!-- NAVBAR LANGSUNG DIGABUNG DI SINI -->
-                <nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
-                    <div class="container">
-
-                        <a class="navbar-brand" href="${pageContext.request.contextPath}/dashboard">
-                            <img src="${pageContext.request.contextPath}/images/FLogo.png" class="navbar-logo"
-                                alt="FinTrack Logo">
-                        </a>
-
-                        <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <i class="bi bi-list fs-1"></i>
-                        </button>
-
-                        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                            <ul class="navbar-nav gap-5 align-items-center">
-
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                                        href="wallet.jsp">
-                                        <i class="bi bi-wallet2 fs-4"></i>
-                                        Wallet
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                                        href="transaction.jsp">
-                                        <i class="bi bi-cash-coin fs-4"></i>
-                                        Transaction
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                                        href="budget.jsp">
-                                        <i class="bi bi-piggy-bank fs-4"></i>
-                                        Budget
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                        <div class="d-flex align-items-center gap-3">
-
-                            <a href="#" class="text-decoration-none">
-                                <div class="icon-circle">
-                                    <i class="bi bi-bell-fill fs-5"></i>
-                                </div>
-                            </a>
-
-                            <div class="dropdown">
-                                <a class="text-white text-decoration-none dropdown-toggle d-flex align-items-center gap-2"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-
-                                    <div class="profile-circle">
-                                        <i class="bi bi-person-fill fs-4"></i>
-                                    </div>
-
-                                    <span class="fw-semibold text-white">
-                                        <c:choose>
-                                            <c:when test="${not empty requestScope.username}">
-                                                ${requestScope.username}
-                                            </c:when>
-                                            <c:otherwise>
-                                                Julio Tanlain
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </span>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
-                                    <li>
-                                        <a class="dropdown-item" href="${pageContext.request.contextPath}/profile">
-                                            <i class="bi bi-person me-2"></i>Profile
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-
-                                    <li>
-                                        <form action="${pageContext.request.contextPath}/logout" method="POST"
-                                            class="m-0">
-                                            <button type="submit" class="dropdown-item text-danger">
-                                                <i class="bi bi-box-arrow-right me-2"></i>Logout
-                                            </button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </nav>
-
-                <!-- DASHBOARD HEADER -->
-                <div class="dashboard-header">
-                    <div class="container">
-                        <div class="d-flex justify-content-between align-items-end">
-                            <div>
-                                <p class="mb-1 text-light-teal">Good Morning,</p>
-
-                                <h2 class="fw-bold mb-0 fs-1">
-                                    <c:choose>
-                                        <c:when test="${not empty requestScope.username}">
-                                            ${requestScope.username}
-                                        </c:when>
-                                        <c:otherwise>
-                                            Bambang
-                                        </c:otherwise>
-                                    </c:choose>
-                                </h2>
-                            </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <button class="btn btn-date d-flex align-items-center gap-2">
-                                    <i class="bi bi-calendar"></i>
-
-                                    <c:choose>
-                                        <c:when test="${not empty selectedMonth}">
-                                            ${selectedMonth} ${selectedYear}
-                                        </c:when>
-                                        <c:otherwise>
-                                            Bulan Ini
-                                        </c:otherwise>
-                                    </c:choose>
-                                </button>
-
-                                <button class="btn btn-date d-flex align-items-center gap-2">
-                                    <i class="bi bi-download"></i>
-                                    Export Data
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DASHBOARD CONTENT -->
-                <div class="container overlap-container mb-5">
-
-                    <!-- SUMMARY CARD -->
-                    <div class="row g-4 mb-4">
-
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card fintrack-card summary-card p-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <div>
-                                            <h6 class="fw-bold text-dark mb-1">Total Saldo</h6>
-                                            <p class="summary-label mb-0">Total Balance</p>
-                                        </div>
-
-                                        <i class="bi bi-wallet2 fs-2"></i>
-                                    </div>
-
-                                    <div class="summary-value">
-                                        Rp
-                                        <fmt:formatNumber value="${summary.totalBalance}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card fintrack-card summary-card p-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <div>
-                                            <h6 class="fw-bold text-dark mb-1">Pemasukan</h6>
-                                            <p class="summary-label mb-0">Bulan Ini</p>
-                                        </div>
-
-                                        <i class="bi bi-arrow-up-circle fs-2"></i>
-                                    </div>
-
-                                    <div class="summary-value">
-                                        Rp
-                                        <fmt:formatNumber value="${summary.totalEarnings}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </div>
-
-                                    <small class="text-muted">
-                                        Bulan lalu:
-                                        Rp
-                                        <fmt:formatNumber value="${summary.lastMonthEarnings}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card fintrack-card summary-card p-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <div>
-                                            <h6 class="fw-bold text-dark mb-1">Pengeluaran</h6>
-                                            <p class="summary-label mb-0">Bulan Ini</p>
-                                        </div>
-
-                                        <i class="bi bi-arrow-down-circle fs-2"></i>
-                                    </div>
-
-                                    <div class="summary-value">
-                                        Rp
-                                        <fmt:formatNumber value="${summary.totalSpending}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </div>
-
-                                    <small class="text-muted">
-                                        Bulan lalu:
-                                        Rp
-                                        <fmt:formatNumber value="${summary.lastMonthSpending}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card fintrack-card summary-card p-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start mb-3">
-                                        <div>
-                                            <h6 class="fw-bold text-dark mb-1">Sisa Bulan Ini</h6>
-                                            <p class="summary-label mb-0">Income - Expense</p>
-                                        </div>
-
-                                        <i class="bi bi-graph-up fs-2"></i>
-                                    </div>
-
-                                    <div class="summary-value">
-                                        Rp
-                                        <fmt:formatNumber value="${summary.totalEarnings - summary.totalSpending}"
-                                            type="number" groupingUsed="true" maxFractionDigits="0" />
-                                    </div>
-
-                                    <small class="text-muted">
-                                        Saldo bulan lalu:
-                                        Rp
-                                        <fmt:formatNumber value="${summary.lastMonthBalance}" type="number"
-                                            groupingUsed="true" maxFractionDigits="0" />
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- RECENT ACTIVITY & SPENDING OVERVIEW -->
-                    <div class="row g-4 mb-4">
-
-                        <!-- RECENT ACTIVITY -->
-                        <div class="col-12 col-lg-6">
-                            <div class="card fintrack-card activity-card p-4">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h6 class="fw-bold text-dark mb-0">Recent Activity</h6>
-                                    <small class="text-muted">Transaksi terbaru</small>
-                                </div>
-
-                                <c:choose>
-                                    <c:when test="${empty recentActivities}">
-                                        <div class="text-center text-muted py-4">
-                                            Belum ada transaksi terbaru.
-                                        </div>
-                                    </c:when>
-
-                                    <c:otherwise>
-                                        <c:forEach var="activity" items="${recentActivities}">
-                                            <div
-                                                class="activity-item d-flex align-items-center justify-content-between">
-                                                <div class="d-flex align-items-center gap-3">
-
-                                                    <c:choose>
-                                                        <c:when test="${activity.transactionType == 'income'}">
-                                                            <div class="activity-icon income-icon">
-                                                                <i class="bi bi-arrow-up"></i>
-                                                            </div>
-                                                        </c:when>
-
-                                                        <c:otherwise>
-                                                            <div class="activity-icon expense-icon">
-                                                                <i class="bi bi-arrow-down"></i>
-                                                            </div>
-                                                        </c:otherwise>
-                                                    </c:choose>
-
-                                                    <div>
-                                                        <h6 class="mb-1 fw-semibold">
-                                                            ${activity.transactionName}
-                                                        </h6>
-
-                                                        <small class="text-muted">
-                                                            ${activity.categoryName}
-                                                        </small>
-
-                                                        <c:if test="${not empty activity.note}">
-                                                            <br>
-                                                            <small class="text-muted">
-                                                                ${activity.note}
-                                                            </small>
-                                                        </c:if>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+    <%@page import="java.text.NumberFormat" %>
+        <%@page import="java.util.Locale" %>
+            <%@page import="java.util.List" %>
+                <%@page import="model.DashboardSummary" %>
+                    <%@page import="model.RecentActivity" %>
+                        <%@page import="model.CategorySpendingSummary" %>
+
+                            <% String username=(String) request.getAttribute("username"); DashboardSummary
+                                summary=(DashboardSummary) request.getAttribute("summary"); List<RecentActivity>
+                                recentActivities =
+                                (List<RecentActivity>) request.getAttribute("recentActivities");
+
+                                    List<CategorySpendingSummary> spendingOverview =
+                                        (List<CategorySpendingSummary>) request.getAttribute("spendingOverview");
+
+                                            String monthlyLabelsJson = (String)
+                                            request.getAttribute("monthlyLabelsJson");
+                                            String monthlyIncomeJson = (String)
+                                            request.getAttribute("monthlyIncomeJson");
+                                            String monthlyExpenseJson = (String)
+                                            request.getAttribute("monthlyExpenseJson");
+
+                                            String categoryLabelsJson = (String)
+                                            request.getAttribute("categoryLabelsJson");
+                                            String categoryAmountJson = (String)
+                                            request.getAttribute("categoryAmountJson");
+
+                                            if (username == null) username = "User";
+
+                                            if (monthlyLabelsJson == null) monthlyLabelsJson = "[]";
+                                            if (monthlyIncomeJson == null) monthlyIncomeJson = "[]";
+                                            if (monthlyExpenseJson == null) monthlyExpenseJson = "[]";
+                                            if (categoryLabelsJson == null) categoryLabelsJson = "[]";
+                                            if (categoryAmountJson == null) categoryAmountJson = "[]";
+
+                                            Locale indonesia = new Locale("id", "ID");
+                                            NumberFormat rupiah = NumberFormat.getCurrencyInstance(indonesia);
+                                            rupiah.setMaximumFractionDigits(2);
+                                            rupiah.setMinimumFractionDigits(2);
+
+                                            double balance = 0;
+                                            double totalIncome = 0;
+                                            double totalExpense = 0;
+                                            double lastMonthBalance = 0;
+                                            double lastMonthIncome = 0;
+                                            double lastMonthExpense = 0;
+
+                                            if (summary != null) {
+                                            balance = summary.getTotalBalance();
+                                            totalIncome = summary.getTotalEarnings();
+                                            totalExpense = summary.getTotalSpending();
+                                            lastMonthBalance = summary.getLastMonthBalance();
+                                            lastMonthIncome = summary.getLastMonthEarnings();
+                                            lastMonthExpense = summary.getLastMonthSpending();
+                                            }
+                                            %>
+
+                                            <!DOCTYPE html>
+                                            <html>
+
+                                            <head>
+                                                <meta charset="UTF-8">
+                                                <title>FinTrack - Dashboard</title>
+
+                                                <link rel="icon" type="image/png"
+                                                    href="<%= request.getContextPath() %>/images/favicon.png">
+
+                                                <link
+                                                    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+                                                    rel="stylesheet">
+
+                                                <link rel="stylesheet"
+                                                    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+                                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                                                <style>
+                                                    body {
+                                                        background-color: #f5f7f6;
+                                                        font-family: Arial, sans-serif;
+                                                    }
+
+                                                    .top-section {
+                                                        background-color: #073f31;
+                                                        color: white;
+                                                        padding: 30px 40px 90px 40px;
+                                                    }
+
+                                                    .dashboard-content {
+                                                        margin-top: -60px;
+                                                        padding: 0 40px 40px 40px;
+                                                    }
+
+                                                    .card-box {
+                                                        background: white;
+                                                        border-radius: 16px;
+                                                        padding: 24px;
+                                                        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+                                                        height: 100%;
+                                                    }
+
+                                                    .card-title-small {
+                                                        font-size: 16px;
+                                                        font-weight: bold;
+                                                        color: #222;
+                                                    }
+
+                                                    .money-value {
+                                                        font-size: 24px;
+                                                        font-weight: bold;
+                                                        margin-top: 8px;
+                                                        word-break: break-word;
+                                                    }
+
+                                                    .last-month {
+                                                        font-size: 14px;
+                                                        color: #777;
+                                                        margin-top: 12px;
+                                                        border-top: 1px solid #ddd;
+                                                        padding-top: 12px;
+                                                    }
+
+                                                    .section-title {
+                                                        font-size: 20px;
+                                                        font-weight: bold;
+                                                        margin-bottom: 16px;
+                                                    }
+
+                                                    .chart-container {
+                                                        height: 320px;
+                                                    }
+
+                                                    .small-chart-container {
+                                                        height: 180px;
+                                                    }
+
+                                                    table {
+                                                        font-size: 14px;
+                                                    }
+
+                                                    thead {
+                                                        background-color: #e5e5e5;
+                                                    }
+
+                                                    .empty-data {
+                                                        text-align: center;
+                                                        color: #777;
+                                                        padding: 20px;
+                                                    }
+
+                                                    .btn-green {
+                                                        background-color: #073f31;
+                                                        color: white;
+                                                    }
+
+                                                    .btn-green:hover {
+                                                        background-color: #0b5945;
+                                                        color: white;
+                                                    }
+
+                                                    @media (max-width: 768px) {
+                                                        .top-section {
+                                                            padding: 24px 20px 80px 20px;
+                                                        }
+
+                                                        .dashboard-content {
+                                                            padding: 0 20px 30px 20px;
+                                                        }
+
+                                                        .money-value {
+                                                            font-size: 20px;
+                                                        }
+                                                    }
+                                                </style>
+                                            </head>
+
+                                            <body>
+
+                                                <div class="top-section">
+                                                    <div
+                                                        class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                                                        <div>
+                                                            <div style="font-size: 18px;">Good Morning,</div>
+                                                            <h1 class="fw-bold mt-1">
+                                                                <%= username %>
+                                                            </h1>
+                                                        </div>
+
+                                                        <div class="d-flex gap-2 flex-wrap">
+
+                                                            <a href="<%= request.getContextPath() %>/profile"
+                                                                class="btn btn-outline-light rounded-pill">
+                                                                <i class="bi bi-person-circle"></i>
+                                                                Profile
+                                                            </a>
+
+                                                            <a href="<%= request.getContextPath() %>/DashboardExportServlet"
+                                                                class="btn btn-light rounded-pill">
+                                                                <i class="bi bi-download"></i>
+                                                                Export
+                                                            </a>
+
+                                                            <a href="<%= request.getContextPath() %>/logout"
+                                                                class="btn btn-outline-light rounded-pill">
+                                                                <i class="bi bi-box-arrow-right"></i>
+                                                                Logout
+                                                            </a>
+
+                                                        </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="text-end">
-                                                    <c:choose>
-                                                        <c:when test="${activity.transactionType == 'income'}">
-                                                            <span class="fw-bold text-success">
-                                                                + Rp
-                                                                <fmt:formatNumber value="${activity.amount}"
-                                                                    type="number" groupingUsed="true"
-                                                                    maxFractionDigits="0" />
-                                                            </span>
-                                                        </c:when>
+                                                <div class="dashboard-content">
 
-                                                        <c:otherwise>
-                                                            <span class="fw-bold text-danger">
-                                                                - Rp
-                                                                <fmt:formatNumber value="${activity.amount}"
-                                                                    type="number" groupingUsed="true"
-                                                                    maxFractionDigits="0" />
-                                                            </span>
-                                                        </c:otherwise>
-                                                    </c:choose>
+                                                    <div class="row g-4 mb-4">
+
+                                                        <div class="col-lg-3 col-md-6">
+                                                            <div class="card-box">
+                                                                <div class="card-title-small">Balance</div>
+                                                                <div class="money-value">
+                                                                    <%= rupiah.format(balance) %>
+                                                                </div>
+                                                                <div class="last-month">
+                                                                    Last month: <%= rupiah.format(lastMonthBalance) %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-6">
+                                                            <div class="card-box">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center">
+                                                                    <div class="card-title-small">Earnings</div>
+                                                                    <button class="btn btn-sm btn-green rounded-circle"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#addTransactionModal">
+                                                                        <i class="bi bi-plus"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="money-value">
+                                                                    <%= rupiah.format(totalIncome) %>
+                                                                </div>
+                                                                <div class="last-month">
+                                                                    Last month: <%= rupiah.format(lastMonthIncome) %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-6">
+                                                            <div class="card-box">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center">
+                                                                    <div class="card-title-small">Spending</div>
+                                                                    <button class="btn btn-sm btn-green rounded-circle"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#addTransactionModal">
+                                                                        <i class="bi bi-plus"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="money-value">
+                                                                    <%= rupiah.format(totalExpense) %>
+                                                                </div>
+                                                                <div class="last-month">
+                                                                    Last month: <%= rupiah.format(lastMonthExpense) %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-6">
+                                                            <div class="card-box">
+                                                                <div class="card-title-small">Spending Overview</div>
+                                                                <div class="money-value" style="font-size: 22px;">
+                                                                    <%= rupiah.format(totalExpense) %>
+                                                                </div>
+
+                                                                <div class="small-chart-container mt-3">
+                                                                    <canvas id="categoryChart"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row g-4">
+
+                                                        <div class="col-lg-8">
+                                                            <div class="card-box">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+                                                                    <div>
+                                                                        <div class="section-title mb-1">Transactions
+                                                                            Overview</div>
+                                                                        <div class="money-value"
+                                                                            style="font-size: 24px;">
+                                                                            <%= rupiah.format(totalExpense) %>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <a href="<%= request.getContextPath() %>/DashboardExportServlet"
+                                                                        class="btn btn-outline-success rounded-pill">
+                                                                        <i class="bi bi-download"></i>
+                                                                        Export This Month
+                                                                    </a>
+                                                                </div>
+
+                                                                <div class="chart-container">
+                                                                    <canvas id="monthlyChart"></canvas>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <div class="card-box">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center mb-3">
+                                                                    <div class="section-title mb-0">Recent Activity
+                                                                    </div>
+
+                                                                    <button
+                                                                        class="btn btn-outline-success btn-sm rounded-pill"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#addTransactionModal">
+                                                                        <i class="bi bi-filter"></i>
+                                                                        Sort
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="table-responsive">
+                                                                    <table
+                                                                        class="table table-bordered table-hover align-middle">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Category</th>
+                                                                                <th>Nominal</th>
+                                                                                <th>Date</th>
+                                                                                <th>Time</th>
+                                                                                <th>Details</th>
+                                                                            </tr>
+                                                                        </thead>
+
+                                                                        <tbody>
+                                                                            <% if (recentActivities !=null &&
+                                                                                !recentActivities.isEmpty()) { for
+                                                                                (RecentActivity activity :
+                                                                                recentActivities) { %>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <%= activity.getCategoryName()
+                                                                                            %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= rupiah.format(activity.getAmount())
+                                                                                            %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= activity.getDate() %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= activity.getTime() %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= activity.getTransactionName()
+                                                                                            %>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <% } } else { %>
+                                                                                    <tr>
+                                                                                        <td colspan="5"
+                                                                                            class="empty-data">
+                                                                                            Belum ada aktivitas
+                                                                                            transaksi.
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <% } %>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row g-4 mt-1">
+
+                                                        <div class="col-lg-12">
+                                                            <div class="card-box">
+                                                                <div class="section-title">Spending Detail by Category
+                                                                </div>
+
+                                                                <div class="table-responsive">
+                                                                    <table
+                                                                        class="table table-bordered table-hover align-middle">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>No</th>
+                                                                                <th>Category</th>
+                                                                                <th>Total Amount</th>
+                                                                                <th>Percentage</th>
+                                                                            </tr>
+                                                                        </thead>
+
+                                                                        <tbody>
+                                                                            <% if (spendingOverview !=null &&
+                                                                                !spendingOverview.isEmpty()) { int no=1;
+                                                                                for (CategorySpendingSummary category :
+                                                                                spendingOverview) { %>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <%= no++ %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= category.getCategoryName()
+                                                                                            %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= rupiah.format(category.getTotalAmount())
+                                                                                            %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= String.format("%.2f",
+                                                                                            category.getPercentage()) %>
+                                                                                            %
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <% } } else { %>
+                                                                                    <tr>
+                                                                                        <td colspan="4"
+                                                                                            class="empty-data">
+                                                                                            Belum ada data pengeluaran
+                                                                                            per kategori.
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <% } %>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
                                                 </div>
-                                            </div>
-                                        </c:forEach>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-                        </div>
+                                                <!-- Modal Add Transaction -->
+                                                <div class="modal fade" id="addTransactionModal" tabindex="-1"
+                                                    aria-labelledby="addTransactionModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <form
+                                                            action="<%= request.getContextPath() %>/AddTransactionServlet"
+                                                            method="post" class="modal-content">
 
-                        <!-- SPENDING OVERVIEW -->
-                        <div class="col-12 col-lg-6">
-                            <div class="card fintrack-card activity-card p-4">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h6 class="fw-bold text-dark mb-0">Spending Overview</h6>
-                                    <small class="text-muted">Pengeluaran per kategori</small>
-                                </div>
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="addTransactionModalLabel">
+                                                                    Add Transaction</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
 
-                                <c:choose>
-                                    <c:when test="${empty spendingOverview}">
-                                        <div class="text-center text-muted py-4">
-                                            Belum ada data pengeluaran bulan ini.
-                                        </div>
-                                    </c:when>
+                                                            <div class="modal-body">
 
-                                    <c:otherwise>
-                                        <c:forEach var="category" items="${spendingOverview}">
-                                            <div class="category-row">
-                                                <div class="d-flex justify-content-between mb-2">
-                                                    <span class="fw-semibold">
-                                                        ${category.categoryName}
-                                                    </span>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Account ID</label>
+                                                                    <input type="number" name="accountId"
+                                                                        class="form-control" required>
+                                                                </div>
 
-                                                    <span class="text-muted">
-                                                        Rp
-                                                        <fmt:formatNumber value="${category.totalAmount}" type="number"
-                                                            groupingUsed="true" maxFractionDigits="0" />
-                                                    </span>
-                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Category ID</label>
+                                                                    <input type="number" name="categoryId"
+                                                                        class="form-control" required>
+                                                                </div>
 
-                                                <div class="progress">
-                                                    <div class="progress-bar" role="progressbar"
-                                                        aria-valuenow="${category.percentage}" aria-valuemin="0"
-                                                        aria-valuemax="100">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Transaction Name</label>
+                                                                    <input type="text" name="transactionName"
+                                                                        class="form-control" required>
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Amount</label>
+                                                                    <input type="number" step="0.01" name="amount"
+                                                                        class="form-control" required>
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Transaction Type</label>
+                                                                    <select name="transactionType" class="form-select"
+                                                                        required>
+                                                                        <option value="">-- Select Type --</option>
+                                                                        <option value="income">Income</option>
+                                                                        <option value="expense">Expense</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Note</label>
+                                                                    <textarea name="note" class="form-control"
+                                                                        rows="3"></textarea>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Cancel</button>
+                                                                <button type="submit" class="btn btn-success">Save
+                                                                    Transaction</button>
+                                                            </div>
+
+                                                        </form>
                                                     </div>
                                                 </div>
+                                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                                <small class="text-muted">
-                                                    <fmt:formatNumber value="${category.percentage}" type="number"
-                                                        maxFractionDigits="1" />%
-                                                </small>
-                                            </div>
-                                        </c:forEach>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-                        </div>
+                                                <script>
+                                                    const monthlyLabels = <%= monthlyLabelsJson %>;
+                                                    const monthlyIncome = <%= monthlyIncomeJson %>;
+                                                    const monthlyExpense = <%= monthlyExpenseJson %>;
 
-                    </div>
+                                                    const categoryLabels = <%= categoryLabelsJson %>;
+                                                    const categoryAmount = <%= categoryAmountJson %>;
 
-                    <!-- STATISTIC -->
-                    <div class="row g-4">
-                        <div class="col-12">
-                            <div class="card fintrack-card activity-card p-4">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h6 class="fw-bold text-dark mb-0">Statistic</h6>
-                                    <small class="text-muted">Ringkasan pemasukan dan pengeluaran tahunan</small>
-                                </div>
+                                                    const monthlyCanvas = document.getElementById('monthlyChart');
 
-                                <div class="table-responsive">
-                                    <table class="table align-middle">
-                                        <thead>
-                                            <tr>
-                                                <th>Bulan</th>
-                                                <th>Pemasukan</th>
-                                                <th>Pengeluaran</th>
-                                                <th>Sisa</th>
-                                            </tr>
-                                        </thead>
+                                                    new Chart(monthlyCanvas, {
+                                                        type: 'bar',
+                                                        data: {
+                                                            labels: monthlyLabels,
+                                                            datasets: [
+                                                                {
+                                                                    label: 'Earnings',
+                                                                    data: monthlyIncome,
+                                                                    backgroundColor: '#198754',
+                                                                    borderRadius: 6
+                                                                },
+                                                                {
+                                                                    label: 'Spending',
+                                                                    data: monthlyExpense,
+                                                                    backgroundColor: '#dc3545',
+                                                                    borderRadius: 6
+                                                                }
+                                                            ]
+                                                        },
+                                                        options: {
+                                                            responsive: true,
+                                                            maintainAspectRatio: false,
+                                                            plugins: {
+                                                                legend: {
+                                                                    position: 'top'
+                                                                },
+                                                                tooltip: {
+                                                                    callbacks: {
+                                                                        label: function (context) {
+                                                                            return context.dataset.label + ': Rp ' + Number(context.raw).toLocaleString('id-ID');
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            scales: {
+                                                                y: {
+                                                                    beginAtZero: true,
+                                                                    ticks: {
+                                                                        callback: function (value) {
+                                                                            if (value >= 1000000) {
+                                                                                return value / 1000000 + ' Jt';
+                                                                            }
+                                                                            return value;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    });
 
-                                        <tbody>
-                                            <c:choose>
-                                                <c:when test="${empty monthlySummary}">
-                                                    <tr>
-                                                        <td colspan="4" class="text-center text-muted py-4">
-                                                            Belum ada data statistik.
-                                                        </td>
-                                                    </tr>
-                                                </c:when>
+                                                    const categoryCanvas = document.getElementById('categoryChart');
 
-                                                <c:otherwise>
-                                                    <c:forEach var="monthly" items="${monthlySummary}">
-                                                        <tr>
-                                                            <td>Bulan ${monthly.month}</td>
+                                                    new Chart(categoryCanvas, {
+                                                        type: 'doughnut',
+                                                        data: {
+                                                            labels: categoryLabels,
+                                                            datasets: [
+                                                                {
+                                                                    label: 'Spending',
+                                                                    data: categoryAmount,
+                                                                    backgroundColor: [
+                                                                        '#198754',
+                                                                        '#0dcaf0',
+                                                                        '#ffc107',
+                                                                        '#dc3545',
+                                                                        '#6f42c1',
+                                                                        '#fd7e14',
+                                                                        '#20c997'
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        options: {
+                                                            responsive: true,
+                                                            maintainAspectRatio: false,
+                                                            plugins: {
+                                                                legend: {
+                                                                    position: 'bottom'
+                                                                },
+                                                                tooltip: {
+                                                                    callbacks: {
+                                                                        label: function (context) {
+                                                                            return context.label + ': Rp ' + Number(context.raw).toLocaleString('id-ID');
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    });
+                                                </script>
 
-                                                            <td class="text-success fw-semibold">
-                                                                Rp
-                                                                <fmt:formatNumber value="${monthly.totalIncome}"
-                                                                    type="number" groupingUsed="true"
-                                                                    maxFractionDigits="0" />
-                                                            </td>
+                                            </body>
 
-                                                            <td class="text-danger fw-semibold">
-                                                                Rp
-                                                                <fmt:formatNumber value="${monthly.totalExpense}"
-                                                                    type="number" groupingUsed="true"
-                                                                    maxFractionDigits="0" />
-                                                            </td>
-
-                                                            <td class="fw-semibold">
-                                                                Rp
-                                                                <fmt:formatNumber
-                                                                    value="${monthly.totalIncome - monthly.totalExpense}"
-                                                                    type="number" groupingUsed="true"
-                                                                    maxFractionDigits="0" />
-                                                            </td>
-                                                        </tr>
-                                                    </c:forEach>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-            </body>
-
-            </html>
+                                            </html>

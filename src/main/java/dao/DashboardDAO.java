@@ -17,6 +17,68 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardDAO {
+    public boolean addTransaction(int userId, int accountId, int categoryId,
+                              String transactionName, double amount,
+                              String transactionType, String note) {
+
+    String insertTransactionSql =
+            "INSERT INTO transactions " +
+            "(user_id, account_id, category_id, transaction_name, amount, transaction_type, transaction_date, note) " +
+            "VALUES (?, ?, ?, ?, ?, ?, NOW(), ?)";
+
+    String updateWalletSql;
+
+    if ("income".equalsIgnoreCase(transactionType)) {
+        updateWalletSql =
+                "UPDATE account_wallets SET balance = balance + ? " +
+                "WHERE account_id = ? AND user_id = ?";
+    } else {
+        updateWalletSql =
+                "UPDATE account_wallets SET balance = balance - ? " +
+                "WHERE account_id = ? AND user_id = ?";
+    }
+
+    try (Connection conn = JDBC.getConnection()) {
+
+        conn.setAutoCommit(false);
+
+        try {
+            try (PreparedStatement stmt = conn.prepareStatement(insertTransactionSql)) {
+                stmt.setInt(1, userId);
+                stmt.setInt(2, accountId);
+                stmt.setInt(3, categoryId);
+                stmt.setString(4, transactionName);
+                stmt.setDouble(5, amount);
+                stmt.setString(6, transactionType);
+                stmt.setString(7, note);
+                stmt.executeUpdate();
+            }
+
+            try (PreparedStatement stmt = conn.prepareStatement(updateWalletSql)) {
+                stmt.setDouble(1, amount);
+                stmt.setInt(2, accountId);
+                stmt.setInt(3, userId);
+                stmt.executeUpdate();
+            }
+
+            conn.commit();
+            return true;
+
+        } catch (SQLException e) {
+            conn.rollback();
+            System.out.println("Gagal tambah transaksi, rollback dilakukan.");
+            e.printStackTrace();
+            return false;
+        } finally {
+            conn.setAutoCommit(true);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Gagal koneksi saat tambah transaksi.");
+        e.printStackTrace();
+        return false;
+    }
+}
 
     public DashboardSummary getDashboardSummary(int userID, int year, int month) {
         LocalDate startMonth = LocalDate.of(year, month, 1);
@@ -277,5 +339,58 @@ public class DashboardDAO {
     }
 
     return "User";
+}
+
+public List<RecentActivity> getExportTransactions(int userID, int year, int month) {
+    List<RecentActivity> activities = new ArrayList<>();
+
+    LocalDate startMonth = LocalDate.of(year, month, 1);
+    LocalDate endMonthExclusive = startMonth.plusMonths(1);
+
+    String sql =
+            "SELECT " +
+            "t.transaction_id, " +
+            "c.name AS category_name, " +
+            "t.transaction_name, " +
+            "t.amount, " +
+            "t.transaction_type, " +
+            "DATE_FORMAT(t.transaction_date, '%Y-%m-%d') AS transaction_date_only, " +
+            "DATE_FORMAT(t.transaction_date, '%H:%i:%s') AS transaction_time_only, " +
+            "t.note " +
+            "FROM transactions t " +
+            "JOIN categories c ON t.category_id = c.category_id " +
+            "WHERE t.user_id = ? " +
+            "AND t.transaction_date >= ? " +
+            "AND t.transaction_date < ? " +
+            "ORDER BY t.transaction_date DESC";
+
+    try (Connection conn = JDBC.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setInt(1, userID);
+        stmt.setTimestamp(2, Timestamp.valueOf(startMonth.atStartOfDay()));
+        stmt.setTimestamp(3, Timestamp.valueOf(endMonthExclusive.atStartOfDay()));
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                activities.add(new RecentActivity(
+                        rs.getInt("transaction_id"),
+                        rs.getString("category_name"),
+                        rs.getString("transaction_name"),
+                        rs.getDouble("amount"),
+                        rs.getString("transaction_type"),
+                        rs.getString("transaction_date_only"),
+                        rs.getString("transaction_time_only"),
+                        rs.getString("note")
+                ));
+            }
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Gagal mengambil data export transaksi dashboard.");
+        e.printStackTrace();
+    }
+
+    return activities;
 }
 }

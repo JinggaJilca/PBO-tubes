@@ -4,6 +4,7 @@ C:\Users\Julio\PBO-tubes\src\main\java\model\Profile.java
 C:\Users\Julio\PBO-tubes\src\main\java\dao\ProfileDAO.java
 C:\Users\Julio\PBO-tubes\src\main\java\model\User.java
 C:\Users\Julio\PBO-tubes\src\main\java\dao\LoginDAO.java
+C:\Users\Julio\PBO-tubes\src\main\java\servlets\DashboardExportServlet.java
 C:\Users\Julio\PBO-tubes\src\main\java\model\DashboardSummary.java
 C:\Users\Julio\PBO-tubes\src\main\java\dao\DashboardDAO.java
 C:\Users\Julio\PBO-tubes\src\main\java\model\MonthlyTransactionSummary.java
@@ -11,4 +12,5 @@ C:\Users\Julio\PBO-tubes\src\main\java\servlets\DashboardServlet.java
 C:\Users\Julio\PBO-tubes\src\main\java\dao\RegisterDAO.java
 C:\Users\Julio\PBO-tubes\src\main\java\model\CategorySpendingSummary.java
 C:\Users\Julio\PBO-tubes\src\main\java\servlets\AuthServlet.java
+C:\Users\Julio\PBO-tubes\src\main\java\servlets\AddTransactionServlet.java
 C:\Users\Julio\PBO-tubes\src\main\java\servlets\ProfileServlet.java

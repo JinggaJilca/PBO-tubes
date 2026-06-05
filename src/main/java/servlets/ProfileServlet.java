@@ -17,6 +17,7 @@ public class ProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Integer userId = 1;
         HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("user") == null) {
@@ -43,7 +44,7 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        // Integer userId = 1;
         HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("user") == null) {
@@ -71,6 +72,11 @@ public class ProfileServlet extends HttpServlet {
 
         ProfileDAO profileDAO = new ProfileDAO();
         boolean success = profileDAO.updateProfile(profile);
+        // if (success) {
+        // response.sendRedirect(request.getContextPath() + "/profile?success=1");
+        // } else {
+        // response.sendRedirect(request.getContextPath() + "/profile?error=1");
+        // }
 
         if (success) {
             loggedInUser.setUsername(username);
