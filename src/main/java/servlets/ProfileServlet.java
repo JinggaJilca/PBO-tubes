@@ -18,30 +18,41 @@ public class ProfileServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
-        Integer userId = 1;
 
-        // Nanti kalau login sudah jalan, pakai ini:
-        // if (session == null || session.getAttribute("userId") == null) {
-        //     response.sendRedirect("login");
-        //     return;
-        // }
-        // Integer userId = (Integer) session.getAttribute("userId");
+        if (session == null || session.getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+
+        model.User loggedInUser = (model.User) session.getAttribute("user");
+        Integer userId = loggedInUser.getUserID();
 
         ProfileDAO profileDAO = new ProfileDAO();
         Profile profile = profileDAO.getProfileByUserId(userId);
 
-        System.out.println("PROFILE USER ID 1 = " + (profile != null ? profile.getUsername() : "null"));
-
         request.setAttribute("profile", profile);
-
         request.getRequestDispatcher("/profile.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Integer userId = 1;
+        HttpSession session = request.getSession(false);
+
+        if (session == null || session.getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+
+        model.User loggedInUser = (model.User) session.getAttribute("user");
+        Integer userId = loggedInUser.getUserID();
 
         String fullName = request.getParameter("fullName");
         String username = request.getParameter("username");
@@ -62,6 +73,10 @@ public class ProfileServlet extends HttpServlet {
         boolean success = profileDAO.updateProfile(profile);
 
         if (success) {
+            loggedInUser.setUsername(username);
+            loggedInUser.setEmail(email);
+            session.setAttribute("user", loggedInUser);
+
             response.sendRedirect(request.getContextPath() + "/profile?success=1");
         } else {
             response.sendRedirect(request.getContextPath() + "/profile?error=1");
