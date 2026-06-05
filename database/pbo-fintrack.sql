@@ -186,3 +186,79 @@ UNIQUE (user_id, category_id);
 ALTER TABLE analysis_category_percentage
 ADD CONSTRAINT Unique_analysis_category
 UNIQUE (analysis_id, category_id);
+
+
+-- ===GENERATE DATA DUMMY==
+-- generate 50 users
+DROP PROCEDURE IF EXISTS generate_users;
+DELIMITER $$
+CREATE PROCEDURE generate_users()
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    WHILE i <= 50 DO
+        INSERT INTO users (username, email, password)
+        VALUES (CONCAT('user', i), CONCAT('user', i, '@mail.com'), CONCAT('fintrack', 100 + i));
+        SET i = i + 1;
+    END WHILE;
+END$$
+DELIMITER ;
+CALL generate_users();
+
+-- generate profiles 
+DROP PROCEDURE IF EXISTS generate_profiles;
+DELIMITER $$
+CREATE PROCEDURE generate_profiles()
+BEGIN
+    DECLARE done      INT DEFAULT 0;
+    DECLARE uid       INT;
+    DECLARE fn        VARCHAR(50);
+    DECLARE mn        VARCHAR(50);
+    DECLARE ln        VARCHAR(50);
+    DECLARE sn        VARCHAR(50);
+    DECLARE full_nm   VARCHAR(150);
+    DECLARE phone     VARCHAR(20);
+    DECLARE addr      VARCHAR(200);
+
+    DECLARE first_names VARCHAR(500) DEFAULT 'Putri,Jingga,Carissa,Andi,Kevin,Aila,Salsa,Nevy,Julio,Misael,Tasya,Raka,Anisa,Fahmi,Aulia,Nayya';
+    DECLARE mid_names   VARCHAR(300) DEFAULT 'Nur,Dwi,Tri,Ayu,Rizky,Maharani,Indah,Putra,Sakti';
+    DECLARE last_names  VARCHAR(300) DEFAULT 'Wijaya,Saputra,Mahendra,Permata,Pratama,Santoso,Nugraha,Ramadhan,Lestari,Aulia';
+    DECLARE streets     VARCHAR(200) DEFAULT 'Ketintang,Melati,Anggrek,Sudirman,Kenanga,Mangga';
+
+    DECLARE cur CURSOR FOR SELECT user_id FROM users;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    OPEN cur;
+    read_loop: LOOP
+        FETCH cur INTO uid;
+        IF done THEN LEAVE read_loop; END IF;
+
+        -- Pick random element dari setiap list
+        SET fn = TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(first_names, ',', FLOOR(1 + RAND() * 15)), ',', -1));
+        SET mn = TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(mid_names,   ',', FLOOR(1 + RAND() * 9)),  ',', -1));
+        SET ln = TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(last_names,  ',', FLOOR(1 + RAND() * 10)), ',', -1));
+        SET sn = TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(streets,     ',', FLOOR(1 + RAND() * 6)),  ',', -1));
+
+        -- 2 atau 3 kata (random)
+        IF FLOOR(RAND() * 3) = 0
+            THEN SET full_nm = CONCAT(fn, ' ', mn, ' ', ln);
+            ELSE SET full_nm = CONCAT(fn, ' ', ln);
+        END IF;
+
+        SET phone = CONCAT('08', LPAD(FLOOR(RAND() * 10000000000), 10, '0'));
+        SET addr  = CONCAT('Jl. ', sn, ' No ', FLOOR(1 + RAND() * 300));
+
+        INSERT INTO profiles (user_id, full_name, phone_number, address)
+        VALUES (uid, full_nm, phone, addr);
+
+    END LOOP;
+    CLOSE cur;
+END$$
+DELIMITER ;
+CALL generate_profiles();
+
+-- update agar username & email mengikuti data profiles
+UPDATE users u
+JOIN profiles p ON p.user_id = u.user_id
+SET
+    u.username = CONCAT(LOWER(SUBSTRING(p.full_name, 1, LOCATE(' ', CONCAT(p.full_name, ' ')) - 1)), u.user_id),
+    u.email    = CONCAT(LOWER(SUBSTRING(p.full_name, 1, LOCATE(' ', CONCAT(p.full_name, ' ')) - 1)), '.', u.user_id, '@gmail.com');
