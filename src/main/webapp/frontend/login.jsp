@@ -19,7 +19,7 @@
 
             <div class="col-lg-6 login-side">
                 <div class="login-container text-center">
-                    <h1 class="login-title">LOGIN</h1>
+                    <h1 class="login-title">LOGIN DULU KAK</h1>
                                 <% if (request.getAttribute("errorMessage") !=null) { %>
                                     <div id="errorToast" class="toast align-items-center text-bg-danger border-0 mb-3"
                                         role="alert" aria-live="assertive" aria-atomic="true">
