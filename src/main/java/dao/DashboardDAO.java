@@ -175,7 +175,7 @@ public class DashboardDAO {
 
         try (Connection conn = JDBC.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+                
             stmt.setInt(1, userID);
             stmt.setTimestamp(2, Timestamp.valueOf(startYear.atStartOfDay()));
             stmt.setTimestamp(3, Timestamp.valueOf(endYearExclusive.atStartOfDay()));
@@ -212,24 +212,26 @@ public class DashboardDAO {
         }
 
         String sql =
-                "SELECT TOP " + limit + " " +
-                "t.transaction_id, " +
-                "c.name AS category_name, " +
-                "t.transaction_name, " +
-                "t.amount, " +
-                "t.transaction_type, " +
-                "CONVERT(VARCHAR(10), t.transaction_date, 23) AS transaction_date_only, " +
-                "CONVERT(VARCHAR(8), t.transaction_date, 108) AS transaction_time_only, " +
-                "t.note " +
-                "FROM transactions t " +
-                "JOIN categories c ON t.category_id = c.category_id " +
-                "WHERE t.user_id = ? " +
-                "ORDER BY t.transaction_date DESC";
+                "SELECT " +
+        "t.transaction_id, " +
+        "c.name AS category_name, " +
+        "t.transaction_name, " +
+        "t.amount, " +
+        "t.transaction_type, " +
+        "DATE_FORMAT(t.transaction_date, '%Y-%m-%d') AS transaction_date_only, " +
+        "DATE_FORMAT(t.transaction_date, '%H:%i:%s') AS transaction_time_only, " +
+        "t.note " +
+        "FROM transactions t " +
+        "JOIN categories c ON t.category_id = c.category_id " +
+        "WHERE t.user_id = ? " +
+        "ORDER BY t.transaction_date DESC " +
+        "LIMIT ?";
 
         try (Connection conn = JDBC.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, userID);
+            stmt.setInt(2, limit);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -252,5 +254,28 @@ public class DashboardDAO {
         }
 
         return activities;
+        
     }
+
+    public String getUsernameByUserId(int userId) {
+    String sql = "SELECT username FROM users WHERE user_id = ?";
+
+    try (Connection conn = JDBC.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setInt(1, userId);
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getString("username");
+            }
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Gagal mengambil username user.");
+        e.printStackTrace();
+    }
+
+    return "User";
+}
 }

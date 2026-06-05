@@ -44,19 +44,21 @@ public class DashboardServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Integer userId = 1;
+        // KALAU MAU PAKE SESSION LANGSUNG UNCOMMEND DI BAWAH DAN COMMEND ATAS
+        // if (session == null || session.getAttribute("userId") == null) {
+        //     response.sendRedirect("login");
+        //     return;
+        // }
 
-        if (session == null || session.getAttribute("userId") == null) {
-        response.sendRedirect("login");
-        return;
-        }
-
-        Integer userId = (Integer) session.getAttribute("userId");
+        // Integer userId = (Integer) session.getAttribute("userId");
 
         LocalDate now = LocalDate.now();
         int year = now.getYear();
         int month = now.getMonthValue();
 
         DashboardDAO dashboardDAO = new DashboardDAO();
+        String username = dashboardDAO.getUsernameByUserId(userId);
+        System.out.println("USERNAME USER ID 1 = " + username);
 
         DashboardSummary summary = dashboardDAO.getDashboardSummary(userId, year, month);
 
@@ -66,7 +68,7 @@ public class DashboardServlet extends HttpServlet {
                 month);
 
         List<MonthlyTransactionSummary> monthlySummary = dashboardDAO.getMonthlyTransactionSummary(userId, year);
-
+        request.setAttribute("username", username);
         request.setAttribute("summary", summary);
         request.setAttribute("recentActivities", recentActivities);
         request.setAttribute("spendingOverview", spendingOverview);
