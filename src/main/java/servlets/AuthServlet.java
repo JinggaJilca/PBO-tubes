@@ -69,7 +69,9 @@ public class AuthServlet extends HttpServlet {
         if (loggedInUser != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", loggedInUser); 
-            response.sendRedirect("dashboard.jsp"); 
+            
+            // INI YANG BENAR (Arahkan ke DashboardServlet):
+            response.sendRedirect(request.getContextPath() + "/dashboard");
         } else {
             request.setAttribute("errorMessage", "Email/Username atau Password salah!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -104,9 +106,8 @@ public class AuthServlet extends HttpServlet {
             boolean success = registerDAO.addUser(newUser);
 
             if (success) {
-                // 1. Ini untuk catatan/log Anda sendiri di console server
-                System.out.println("[BERHASIL] Menambahkan pengguna"); 
-                request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+                request.setAttribute("successMessage", "Registrasi Berhasil! Silakan login dengan akun Anda.");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
             } else {
                 request.setAttribute("errorMessage", "Terjadi kesalahan sistem. Registrasi gagal.");
                 request.getRequestDispatcher("register.jsp").forward(request, response);

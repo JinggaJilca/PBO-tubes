@@ -112,27 +112,25 @@
                     toast.show();
                 }
             });
-        </script>
-        <script>
-        function validatePassword() {
-            // Ambil nilai dari kedua input
-            var password = document.getElementById("regisPassword").value;
-            var confirmPassword = document.getElementById("regisConfirmPassword").value;
-            var errorText = document.getElementById("passwordError");
+                function validatePassword() {
+                    // Ambil nilai dari kedua input
+                    var password = document.getElementById("regisPassword").value;
+                    var confirmPassword = document.getElementById("regisConfirmPassword").value;
+                    var errorText = document.getElementById("passwordError");
 
-            // Cek apakah nilainya berbeda
-            if (password !== confirmPassword) {
-                // Tampilkan pesan error
-                errorText.style.display = "block";
+                    // Cek apakah nilainya berbeda
+                    if (password !== confirmPassword) {
+                        // Tampilkan pesan error
+                        errorText.style.display = "block";
 
-                // Kembalikan false agar form GAGAL/DIBATALKAN untuk dikirim ke Servlet
-                return false; 
-            }
+                        // Kembalikan false agar form GAGAL/DIBATALKAN untuk dikirim ke Servlet
+                        return false; 
+                    }
 
-            // Jika sama, sembunyikan pesan error (untuk berjaga-jaga) dan izinkan form terkirim
-            errorText.style.display = "none";
-            return true; 
-        }
+                    // Jika sama, sembunyikan pesan error (untuk berjaga-jaga) dan izinkan form terkirim
+                    errorText.style.display = "none";
+                    return true; 
+                }
     </script>
         </body>
 

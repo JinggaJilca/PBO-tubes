@@ -191,7 +191,7 @@
                                             ${requestScope.username}
                                         </c:when>
                                         <c:otherwise>
-                                            User
+                                            Bambang
                                         </c:otherwise>
                                     </c:choose>
                                 </h2>

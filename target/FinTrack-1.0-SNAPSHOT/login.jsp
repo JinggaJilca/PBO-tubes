@@ -21,12 +21,21 @@
                 <div class="col-lg-6 login-side">
                     <div class="login-container text-center">
                         <h1 class="login-title">LOGIN</h1>
-                        <!-- Toast Success Login -->
-                        <!-- <% if (request.getAttribute("successMessage") !=null) { %>
-                            <div class="alert alert-success">
-                                <%= request.getAttribute("successMessage") %>
-                            </div>
-                            <% } %> -->
+                        
+                        <% if (request.getAttribute("successMessage") !=null) { %>
+                            
+                                <div id="successToast" class="toast align-items-center text-bg-success border-0 mb-3"
+                                    role="alert" aria-live="assertive" aria-atomic="true">
+                                    <div class="d-flex">
+                                        <div class="toast-body">
+                                            <i class="bi bi-check-circle-fill me-2"></i>
+                                            <%= request.getAttribute("successMessage") %>
+                                        </div>
+                                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                            data-bs-dismiss="toast" aria-label="Close"></button>
+                                    </div>
+                               </div>
+                            <% } %>
 
                                 <% if (request.getAttribute("errorMessage") !=null) { %>
                                     <div id="errorToast" class="toast align-items-center text-bg-danger border-0 mb-3"
@@ -81,6 +90,16 @@
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 var errorToastEl = document.getElementById('errorToast');
+                if (errorToastEl) {
+                    // Inisialisasi dan tampilkan toast
+                    var toast = new bootstrap.Toast(errorToastEl, {
+                        delay: 4000 // Toast akan otomatis hilang dalam 4 detik
+                    });
+                    toast.show();
+                }
+            });
+            document.addEventListener("DOMContentLoaded", function () {
+                var errorToastEl = document.getElementById('successToast');
                 if (errorToastEl) {
                     // Inisialisasi dan tampilkan toast
                     var toast = new bootstrap.Toast(errorToastEl, {
