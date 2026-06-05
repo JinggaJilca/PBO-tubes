@@ -51,7 +51,7 @@ public class AuthServlet extends HttpServlet {
 
         if ("login".equals(action)) {
             processLogin(request, response);
-        } else if ("register".equals(action)) { // <-- TAMBAHKAN 'else' DI SINI
+        } else if ("register".equals(action)){
             processRegister(request, response);
         } else {
             response.sendRedirect("login.jsp");
@@ -82,27 +82,31 @@ public class AuthServlet extends HttpServlet {
         String username = request.getParameter("regisUsername");
         String email = request.getParameter("regisEmail");
         String password = request.getParameter("regisPassword");
-
+        String confirmPassword = request.getParameter("regisConfirmPassword");
+        
+        // 1. Cek kecocokan password di sisi server
+        if (confirmPassword != null && !password.equals(confirmPassword)) {
+            request.setAttribute("errorMessage", "Password tidak cocok!");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
+        }
+    
         if (registerDAO.isUserAda(username, email)) {
             request.setAttribute("errorMessage", "Username atau Email sudah terdaftar!");
             request.getRequestDispatcher("register.jsp").forward(request, response);
         } else {
             User newUser = new User();
+            
             newUser.setUsername(username);
             newUser.setEmail(email);
             newUser.setPassword(password); 
-
+            
             boolean success = registerDAO.addUser(newUser);
 
             if (success) {
-                System.out.println("[BERHASIL] Menambahkan pengguna");
-                
-                // --- TAMBAHKAN KODE INI ---
-                // Set pesan sukses dan arahkan kembali ke form login
-                request.setAttribute("errorMessage", "Registrasi berhasil! Silakan login."); 
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-                // --------------------------
-                
+                // 1. Ini untuk catatan/log Anda sendiri di console server
+                System.out.println("[BERHASIL] Menambahkan pengguna"); 
+                request.getRequestDispatcher("dashboard.jsp").forward(request, response);
             } else {
                 request.setAttribute("errorMessage", "Terjadi kesalahan sistem. Registrasi gagal.");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
