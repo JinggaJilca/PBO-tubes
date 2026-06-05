@@ -1,619 +1,1041 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-    <%@page import="java.text.NumberFormat" %>
-        <%@page import="java.util.Locale" %>
-            <%@page import="java.util.List" %>
-                <%@page import="model.DashboardSummary" %>
-                    <%@page import="model.RecentActivity" %>
-                        <%@page import="model.CategorySpendingSummary" %>
-
-                            <% String username=(String) request.getAttribute("username"); DashboardSummary
-                                summary=(DashboardSummary) request.getAttribute("summary"); List<RecentActivity>
-                                recentActivities =
-                                (List<RecentActivity>) request.getAttribute("recentActivities");
-
-                                    List<CategorySpendingSummary> spendingOverview =
-                                        (List<CategorySpendingSummary>) request.getAttribute("spendingOverview");
-
-                                            String monthlyLabelsJson = (String)
-                                            request.getAttribute("monthlyLabelsJson");
-                                            String monthlyIncomeJson = (String)
-                                            request.getAttribute("monthlyIncomeJson");
-                                            String monthlyExpenseJson = (String)
-                                            request.getAttribute("monthlyExpenseJson");
-
-                                            String categoryLabelsJson = (String)
-                                            request.getAttribute("categoryLabelsJson");
-                                            String categoryAmountJson = (String)
-                                            request.getAttribute("categoryAmountJson");
-
-                                            if (username == null) username = "User";
-
-                                            if (monthlyLabelsJson == null) monthlyLabelsJson = "[]";
-                                            if (monthlyIncomeJson == null) monthlyIncomeJson = "[]";
-                                            if (monthlyExpenseJson == null) monthlyExpenseJson = "[]";
-                                            if (categoryLabelsJson == null) categoryLabelsJson = "[]";
-                                            if (categoryAmountJson == null) categoryAmountJson = "[]";
-
-                                            Locale indonesia = new Locale("id", "ID");
-                                            NumberFormat rupiah = NumberFormat.getCurrencyInstance(indonesia);
-                                            rupiah.setMaximumFractionDigits(2);
-                                            rupiah.setMinimumFractionDigits(2);
-
-                                            double balance = 0;
-                                            double totalIncome = 0;
-                                            double totalExpense = 0;
-                                            double lastMonthBalance = 0;
-                                            double lastMonthIncome = 0;
-                                            double lastMonthExpense = 0;
-
-                                            if (summary != null) {
-                                            balance = summary.getTotalBalance();
-                                            totalIncome = summary.getTotalEarnings();
-                                            totalExpense = summary.getTotalSpending();
-                                            lastMonthBalance = summary.getLastMonthBalance();
-                                            lastMonthIncome = summary.getLastMonthEarnings();
-                                            lastMonthExpense = summary.getLastMonthSpending();
-                                            }
-                                            %>
-
-                                            <!DOCTYPE html>
-                                            <html>
-
-                                            <head>
-                                                <meta charset="UTF-8">
-                                                <title>FinTrack - Dashboard</title>
-
-                                                <link rel="icon" type="image/png"
-                                                    href="<%= request.getContextPath() %>/images/favicon.png">
-
-                                                <link
-                                                    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-                                                    rel="stylesheet">
-
-                                                <link rel="stylesheet"
-                                                    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
-                                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-                                                <style>
-                                                    body {
-                                                        background-color: #f5f7f6;
-                                                        font-family: Arial, sans-serif;
-                                                    }
-
-                                                    .top-section {
-                                                        background-color: #073f31;
-                                                        color: white;
-                                                        padding: 30px 40px 90px 40px;
-                                                    }
-
-                                                    .dashboard-content {
-                                                        margin-top: -60px;
-                                                        padding: 0 40px 40px 40px;
-                                                    }
-
-                                                    .card-box {
-                                                        background: white;
-                                                        border-radius: 16px;
-                                                        padding: 24px;
-                                                        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
-                                                        height: 100%;
-                                                    }
-
-                                                    .card-title-small {
-                                                        font-size: 16px;
-                                                        font-weight: bold;
-                                                        color: #222;
-                                                    }
-
-                                                    .money-value {
-                                                        font-size: 24px;
-                                                        font-weight: bold;
-                                                        margin-top: 8px;
-                                                        word-break: break-word;
-                                                    }
-
-                                                    .last-month {
-                                                        font-size: 14px;
-                                                        color: #777;
-                                                        margin-top: 12px;
-                                                        border-top: 1px solid #ddd;
-                                                        padding-top: 12px;
-                                                    }
-
-                                                    .section-title {
-                                                        font-size: 20px;
-                                                        font-weight: bold;
-                                                        margin-bottom: 16px;
-                                                    }
-
-                                                    .chart-container {
-                                                        height: 320px;
-                                                    }
-
-                                                    .small-chart-container {
-                                                        height: 180px;
-                                                    }
-
-                                                    table {
-                                                        font-size: 14px;
-                                                    }
-
-                                                    thead {
-                                                        background-color: #e5e5e5;
-                                                    }
-
-                                                    .empty-data {
-                                                        text-align: center;
-                                                        color: #777;
-                                                        padding: 20px;
-                                                    }
-
-                                                    .btn-green {
-                                                        background-color: #073f31;
-                                                        color: white;
-                                                    }
-
-                                                    .btn-green:hover {
-                                                        background-color: #0b5945;
-                                                        color: white;
-                                                    }
-
-                                                    @media (max-width: 768px) {
-                                                        .top-section {
-                                                            padding: 24px 20px 80px 20px;
-                                                        }
-
-                                                        .dashboard-content {
-                                                            padding: 0 20px 30px 20px;
-                                                        }
-
-                                                        .money-value {
-                                                            font-size: 20px;
-                                                        }
-                                                    }
-                                                </style>
-                                            </head>
-
-                                            <body>
-
-                                                <div class="top-section">
-                                                    <div
-                                                        class="d-flex justify-content-between align-items-start flex-wrap gap-3">
-                                                        <div>
-                                                            <div style="font-size: 18px;">Good Morning,</div>
-                                                            <h1 class="fw-bold mt-1">
-                                                                <%= username %>
-                                                            </h1>
-                                                        </div>
-
-                                                        <div class="d-flex gap-2 flex-wrap">
-
-                                                            <a href="<%= request.getContextPath() %>/profile"
-                                                                class="btn btn-outline-light rounded-pill">
-                                                                <i class="bi bi-person-circle"></i>
-                                                                Profile
-                                                            </a>
-
-                                                            <a href="<%= request.getContextPath() %>/DashboardExportServlet"
-                                                                class="btn btn-light rounded-pill">
-                                                                <i class="bi bi-download"></i>
-                                                                Export
-                                                            </a>
-
-                                                            <a href="<%= request.getContextPath() %>/logout"
-                                                                class="btn btn-outline-light rounded-pill">
-                                                                <i class="bi bi-box-arrow-right"></i>
-                                                                Logout
-                                                            </a>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="dashboard-content">
-
-                                                    <div class="row g-4 mb-4">
-
-                                                        <div class="col-lg-3 col-md-6">
-                                                            <div class="card-box">
-                                                                <div class="card-title-small">Balance</div>
-                                                                <div class="money-value">
-                                                                    <%= rupiah.format(balance) %>
-                                                                </div>
-                                                                <div class="last-month">
-                                                                    Last month: <%= rupiah.format(lastMonthBalance) %>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3 col-md-6">
-                                                            <div class="card-box">
-                                                                <div
-                                                                    class="d-flex justify-content-between align-items-center">
-                                                                    <div class="card-title-small">Earnings</div>
-                                                                    <button class="btn btn-sm btn-green rounded-circle"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#addTransactionModal">
-                                                                        <i class="bi bi-plus"></i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="money-value">
-                                                                    <%= rupiah.format(totalIncome) %>
-                                                                </div>
-                                                                <div class="last-month">
-                                                                    Last month: <%= rupiah.format(lastMonthIncome) %>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3 col-md-6">
-                                                            <div class="card-box">
-                                                                <div
-                                                                    class="d-flex justify-content-between align-items-center">
-                                                                    <div class="card-title-small">Spending</div>
-                                                                    <button class="btn btn-sm btn-green rounded-circle"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#addTransactionModal">
-                                                                        <i class="bi bi-plus"></i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="money-value">
-                                                                    <%= rupiah.format(totalExpense) %>
-                                                                </div>
-                                                                <div class="last-month">
-                                                                    Last month: <%= rupiah.format(lastMonthExpense) %>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-3 col-md-6">
-                                                            <div class="card-box">
-                                                                <div class="card-title-small">Spending Overview</div>
-                                                                <div class="money-value" style="font-size: 22px;">
-                                                                    <%= rupiah.format(totalExpense) %>
-                                                                </div>
-
-                                                                <div class="small-chart-container mt-3">
-                                                                    <canvas id="categoryChart"></canvas>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="row g-4">
-
-                                                        <div class="col-lg-8">
-                                                            <div class="card-box">
-                                                                <div
-                                                                    class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
-                                                                    <div>
-                                                                        <div class="section-title mb-1">Transactions
-                                                                            Overview</div>
-                                                                        <div class="money-value"
-                                                                            style="font-size: 24px;">
-                                                                            <%= rupiah.format(totalExpense) %>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <a href="<%= request.getContextPath() %>/DashboardExportServlet"
-                                                                        class="btn btn-outline-success rounded-pill">
-                                                                        <i class="bi bi-download"></i>
-                                                                        Export This Month
-                                                                    </a>
-                                                                </div>
-
-                                                                <div class="chart-container">
-                                                                    <canvas id="monthlyChart"></canvas>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-4">
-                                                            <div class="card-box">
-                                                                <div
-                                                                    class="d-flex justify-content-between align-items-center mb-3">
-                                                                    <div class="section-title mb-0">Recent Activity
-                                                                    </div>
-
-                                                                    <button
-                                                                        class="btn btn-outline-success btn-sm rounded-pill"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#addTransactionModal">
-                                                                        <i class="bi bi-filter"></i>
-                                                                        Sort
-                                                                    </button>
-                                                                </div>
-
-                                                                <div class="table-responsive">
-                                                                    <table
-                                                                        class="table table-bordered table-hover align-middle">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Category</th>
-                                                                                <th>Nominal</th>
-                                                                                <th>Date</th>
-                                                                                <th>Time</th>
-                                                                                <th>Details</th>
-                                                                            </tr>
-                                                                        </thead>
-
-                                                                        <tbody>
-                                                                            <% if (recentActivities !=null &&
-                                                                                !recentActivities.isEmpty()) { for
-                                                                                (RecentActivity activity :
-                                                                                recentActivities) { %>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <%= activity.getCategoryName()
-                                                                                            %>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <%= rupiah.format(activity.getAmount())
-                                                                                            %>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <%= activity.getDate() %>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <%= activity.getTime() %>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <%= activity.getTransactionName()
-                                                                                            %>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <% } } else { %>
-                                                                                    <tr>
-                                                                                        <td colspan="5"
-                                                                                            class="empty-data">
-                                                                                            Belum ada aktivitas
-                                                                                            transaksi.
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <% } %>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="row g-4 mt-1">
-
-                                                        <div class="col-lg-12">
-                                                            <div class="card-box">
-                                                                <div class="section-title">Spending Detail by Category
-                                                                </div>
-
-                                                                <div class="table-responsive">
-                                                                    <table
-                                                                        class="table table-bordered table-hover align-middle">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>No</th>
-                                                                                <th>Category</th>
-                                                                                <th>Total Amount</th>
-                                                                                <th>Percentage</th>
-                                                                            </tr>
-                                                                        </thead>
-
-                                                                        <tbody>
-                                                                            <% if (spendingOverview !=null &&
-                                                                                !spendingOverview.isEmpty()) { int no=1;
-                                                                                for (CategorySpendingSummary category :
-                                                                                spendingOverview) { %>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <%= no++ %>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <%= category.getCategoryName()
-                                                                                            %>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <%= rupiah.format(category.getTotalAmount())
-                                                                                            %>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <%= String.format("%.2f",
-                                                                                            category.getPercentage()) %>
-                                                                                            %
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <% } } else { %>
-                                                                                    <tr>
-                                                                                        <td colspan="4"
-                                                                                            class="empty-data">
-                                                                                            Belum ada data pengeluaran
-                                                                                            per kategori.
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    <% } %>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                                <!-- Modal Add Transaction -->
-                                                <div class="modal fade" id="addTransactionModal" tabindex="-1"
-                                                    aria-labelledby="addTransactionModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <form
-                                                            action="<%= request.getContextPath() %>/AddTransactionServlet"
-                                                            method="post" class="modal-content">
-
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="addTransactionModalLabel">
-                                                                    Add Transaction</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-
-                                                            <div class="modal-body">
-
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Account ID</label>
-                                                                    <input type="number" name="accountId"
-                                                                        class="form-control" required>
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Category ID</label>
-                                                                    <input type="number" name="categoryId"
-                                                                        class="form-control" required>
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Transaction Name</label>
-                                                                    <input type="text" name="transactionName"
-                                                                        class="form-control" required>
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Amount</label>
-                                                                    <input type="number" step="0.01" name="amount"
-                                                                        class="form-control" required>
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Transaction Type</label>
-                                                                    <select name="transactionType" class="form-select"
-                                                                        required>
-                                                                        <option value="">-- Select Type --</option>
-                                                                        <option value="income">Income</option>
-                                                                        <option value="expense">Expense</option>
-                                                                    </select>
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Note</label>
-                                                                    <textarea name="note" class="form-control"
-                                                                        rows="3"></textarea>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Cancel</button>
-                                                                <button type="submit" class="btn btn-success">Save
-                                                                    Transaction</button>
-                                                            </div>
-
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-                                                <script>
-                                                    const monthlyLabels = <%= monthlyLabelsJson %>;
-                                                    const monthlyIncome = <%= monthlyIncomeJson %>;
-                                                    const monthlyExpense = <%= monthlyExpenseJson %>;
-
-                                                    const categoryLabels = <%= categoryLabelsJson %>;
-                                                    const categoryAmount = <%= categoryAmountJson %>;
-
-                                                    const monthlyCanvas = document.getElementById('monthlyChart');
-
-                                                    new Chart(monthlyCanvas, {
-                                                        type: 'bar',
-                                                        data: {
-                                                            labels: monthlyLabels,
-                                                            datasets: [
-                                                                {
-                                                                    label: 'Earnings',
-                                                                    data: monthlyIncome,
-                                                                    backgroundColor: '#198754',
-                                                                    borderRadius: 6
-                                                                },
-                                                                {
-                                                                    label: 'Spending',
-                                                                    data: monthlyExpense,
-                                                                    backgroundColor: '#dc3545',
-                                                                    borderRadius: 6
-                                                                }
-                                                            ]
-                                                        },
-                                                        options: {
-                                                            responsive: true,
-                                                            maintainAspectRatio: false,
-                                                            plugins: {
-                                                                legend: {
-                                                                    position: 'top'
-                                                                },
-                                                                tooltip: {
-                                                                    callbacks: {
-                                                                        label: function (context) {
-                                                                            return context.dataset.label + ': Rp ' + Number(context.raw).toLocaleString('id-ID');
-                                                                        }
-                                                                    }
-                                                                }
-                                                            },
-                                                            scales: {
-                                                                y: {
-                                                                    beginAtZero: true,
-                                                                    ticks: {
-                                                                        callback: function (value) {
-                                                                            if (value >= 1000000) {
-                                                                                return value / 1000000 + ' Jt';
-                                                                            }
-                                                                            return value;
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    });
-
-                                                    const categoryCanvas = document.getElementById('categoryChart');
-
-                                                    new Chart(categoryCanvas, {
-                                                        type: 'doughnut',
-                                                        data: {
-                                                            labels: categoryLabels,
-                                                            datasets: [
-                                                                {
-                                                                    label: 'Spending',
-                                                                    data: categoryAmount,
-                                                                    backgroundColor: [
-                                                                        '#198754',
-                                                                        '#0dcaf0',
-                                                                        '#ffc107',
-                                                                        '#dc3545',
-                                                                        '#6f42c1',
-                                                                        '#fd7e14',
-                                                                        '#20c997'
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        },
-                                                        options: {
-                                                            responsive: true,
-                                                            maintainAspectRatio: false,
-                                                            plugins: {
-                                                                legend: {
-                                                                    position: 'bottom'
-                                                                },
-                                                                tooltip: {
-                                                                    callbacks: {
-                                                                        label: function (context) {
-                                                                            return context.label + ': Rp ' + Number(context.raw).toLocaleString('id-ID');
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    });
-                                                </script>
-
-                                            </body>
-
-                                            </html>
+<%@page import="java.text.NumberFormat" %>
+<%@page import="java.util.Locale" %>
+<%@page import="java.util.List" %>
+<%@page import="model.DashboardSummary" %>
+<%@page import="model.RecentActivity" %>
+<%@page import="model.CategorySpendingSummary" %>
+
+<%
+    String username = (String) request.getAttribute("username");
+
+    DashboardSummary summary = (DashboardSummary) request.getAttribute("summary");
+
+    List<RecentActivity> recentActivities =
+            (List<RecentActivity>) request.getAttribute("recentActivities");
+
+    List<CategorySpendingSummary> spendingOverview =
+            (List<CategorySpendingSummary>) request.getAttribute("spendingOverview");
+
+    String monthlyLabelsJson = (String) request.getAttribute("monthlyLabelsJson");
+    String monthlyIncomeJson = (String) request.getAttribute("monthlyIncomeJson");
+    String monthlyExpenseJson = (String) request.getAttribute("monthlyExpenseJson");
+
+    String categoryLabelsJson = (String) request.getAttribute("categoryLabelsJson");
+    String categoryAmountJson = (String) request.getAttribute("categoryAmountJson");
+
+    if (username == null || username.trim().isEmpty()) {
+        username = "User";
+    }
+
+    if (monthlyLabelsJson == null || monthlyLabelsJson.trim().isEmpty()) {
+        monthlyLabelsJson = "[]";
+    }
+
+    if (monthlyIncomeJson == null || monthlyIncomeJson.trim().isEmpty()) {
+        monthlyIncomeJson = "[]";
+    }
+
+    if (monthlyExpenseJson == null || monthlyExpenseJson.trim().isEmpty()) {
+        monthlyExpenseJson = "[]";
+    }
+
+    if (categoryLabelsJson == null || categoryLabelsJson.trim().isEmpty()) {
+        categoryLabelsJson = "[]";
+    }
+
+    if (categoryAmountJson == null || categoryAmountJson.trim().isEmpty()) {
+        categoryAmountJson = "[]";
+    }
+
+    Locale indonesia = new Locale("id", "ID");
+    NumberFormat rupiah = NumberFormat.getCurrencyInstance(indonesia);
+    rupiah.setMaximumFractionDigits(0);
+    rupiah.setMinimumFractionDigits(0);
+
+    double balance = 0;
+    double totalIncome = 0;
+    double totalExpense = 0;
+    double lastMonthBalance = 0;
+    double lastMonthIncome = 0;
+    double lastMonthExpense = 0;
+
+    if (summary != null) {
+        balance = summary.getTotalBalance();
+        totalIncome = summary.getTotalEarnings();
+        totalExpense = summary.getTotalSpending();
+        lastMonthBalance = summary.getLastMonthBalance();
+        lastMonthIncome = summary.getLastMonthEarnings();
+        lastMonthExpense = summary.getLastMonthSpending();
+    }
+%>
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FinTrack - Dashboard</title>
+
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/images/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS project kamu -->
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
+
+    <script>
+        window.setTransactionType = function (type) {
+            const transactionType = document.getElementById("transactionType");
+            const modalLabel = document.getElementById("addTransactionModalLabel");
+
+            if (transactionType) {
+                transactionType.value = type;
+            }
+
+            if (modalLabel) {
+                modalLabel.innerText = type === "income"
+                    ? "Tambah Pemasukan"
+                    : "Tambah Pengeluaran";
+            }
+        };
+    </script>
+
+    <style>
+        body {
+            background-color: #f5f7f6;
+            font-family: "Instrument Sans", Arial, sans-serif;
+        }
+
+        .navbar-custom {
+            background-color: #073f31;
+        }
+
+        .navbar-logo {
+            height: 42px;
+            max-width: 150px;
+            object-fit: contain;
+        }
+
+        .icon-circle,
+        .profile-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.14);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dashboard-header {
+            background-color: #073f31;
+            color: white;
+            padding: 28px 0 90px;
+        }
+
+        .text-light-teal {
+            color: #cde7dd;
+        }
+
+        .overlap-container {
+            margin-top: -60px;
+        }
+
+        .fintrack-card {
+            border: none;
+            border-radius: 22px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+        }
+
+        .summary-card {
+            min-height: 170px;
+            border-radius: 22px;
+        }
+
+        .summary-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .chart-card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0;
+            line-height: 1.2;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 280px;
+            width: 100%;
+        }
+
+        .mini-chart-wrapper {
+            position: relative;
+            height: 75px;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+
+        .legend-inline {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 12px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .legend-green {
+            background-color: #9acd32;
+        }
+
+        .legend-gray {
+            background-color: #d1d5db;
+        }
+
+        .legend-orange {
+            background-color: #d98c5f;
+        }
+
+        .legend-yellow {
+            background-color: #d9a441;
+        }
+
+        .legend-olive {
+            background-color: #a8be84;
+        }
+
+        .spending-mini-list {
+            margin-top: 6px;
+        }
+
+        .spending-mini-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            margin-bottom: 3px;
+            color: #374151;
+            gap: 8px;
+        }
+
+        .spending-mini-left {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            min-width: 0;
+        }
+
+        .spending-mini-left span:last-child {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 90px;
+        }
+
+        .activity-card {
+            border-radius: 22px;
+        }
+
+        .activity-card-compact {
+            min-height: 100%;
+        }
+
+        .activity-table th,
+        .activity-table td {
+            font-size: 11px;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .activity-table thead th {
+            background-color: #e5e7eb;
+            color: #374151;
+            border: none;
+            font-weight: 700;
+        }
+
+        .activity-table tbody td {
+            border-color: #f1f5f9;
+        }
+
+        .btn-date {
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            color: white;
+            border-radius: 999px;
+            font-size: 13px;
+            padding: 8px 16px;
+            background-color: transparent;
+        }
+
+        .btn-date:hover {
+            color: white;
+            border-color: white;
+        }
+
+        .btn-date-light {
+            border: 1px solid #0f4a3c;
+            color: #0f4a3c;
+            border-radius: 999px;
+            font-size: 12px;
+            padding: 5px 12px;
+            background-color: transparent;
+        }
+
+        .btn-date-light:hover {
+            border-color: #0f4a3c;
+            color: #0f4a3c;
+        }
+
+        .empty-data {
+            text-align: center;
+            color: #777;
+            padding: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding-bottom: 80px;
+            }
+
+            .legend-inline {
+                justify-content: flex-start;
+            }
+
+            .summary-value,
+            .chart-card-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
+    <div class="container">
+
+        <a class="navbar-brand" href="<%= request.getContextPath() %>/dashboard">
+            <img src="<%= request.getContextPath() %>/images/FLogo.png" class="navbar-logo" alt="FinTrack Logo">
+        </a>
+
+        <button class="navbar-toggler text-white border-0" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="bi bi-list fs-1"></i>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav gap-5 align-items-center">
+
+                <li class="nav-item">
+                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
+                       href="<%= request.getContextPath() %>/wallet">
+                        <i class="bi bi-wallet2 fs-4"></i>
+                        Wallet
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
+                       href="<%= request.getContextPath() %>/transaction">
+                        <i class="bi bi-cash-coin fs-4"></i>
+                        Transaction
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
+                       href="<%= request.getContextPath() %>/budget">
+                        <i class="bi bi-piggy-bank fs-4"></i>
+                        Budget
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+
+            <a href="#" class="text-decoration-none">
+                <div class="icon-circle">
+                    <i class="bi bi-bell-fill fs-5"></i>
+                </div>
+            </a>
+
+            <div class="dropdown">
+                <a class="text-white text-decoration-none dropdown-toggle d-flex align-items-center gap-2"
+                   href="#"
+                   role="button"
+                   data-bs-toggle="dropdown"
+                   aria-expanded="false">
+
+                    <div class="profile-circle">
+                        <i class="bi bi-person-fill fs-4"></i>
+                    </div>
+
+                    <span class="fw-semibold text-white"><%= username %></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
+                    <li>
+                        <a class="dropdown-item" href="<%= request.getContextPath() %>/profile">
+                            <i class="bi bi-person me-2"></i>Profile
+                        </a>
+                    </li>
+
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <form action="<%= request.getContextPath() %>/logout" method="POST" class="m-0">
+                            <button type="submit" class="dropdown-item text-danger">
+                                <i class="bi bi-box-arrow-right me-2"></i>Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
+<!-- DASHBOARD HEADER -->
+<div class="dashboard-header">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end flex-wrap gap-3">
+            <div>
+                <p class="mb-1 text-light-teal">Good Morning,</p>
+                <h2 class="fw-bold mb-0 fs-1"><%= username %></h2>
+            </div>
+
+            <form action="<%= request.getContextPath() %>/DashboardExportServlet" method="GET" class="m-0">
+                <button type="submit" class="btn btn-date d-flex align-items-center gap-2">
+                    <i class="bi bi-download"></i>
+                    Export Data
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- DASHBOARD CONTENT -->
+<div class="container overlap-container mb-5">
+
+    <!-- SUMMARY CARD -->
+    <div class="row g-4 mb-4">
+
+        <!-- BALANCE -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card fintrack-card summary-card p-3">
+                <div class="card-body">
+                    <h6 class="fw-bold text-dark mb-3">Balance</h6>
+
+                    <div class="summary-value">
+                        <%= rupiah.format(balance) %>
+                    </div>
+
+                    <hr>
+
+                    <small class="text-muted">
+                        Last month : <%= rupiah.format(lastMonthBalance) %>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- EARNINGS -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card fintrack-card summary-card p-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h6 class="fw-bold text-dark mb-1">Earnings</h6>
+
+                        <button type="button"
+                                class="btn p-0 border-0 bg-transparent"
+                                data-bs-toggle="modal"
+                                data-bs-target="#addTransactionModal"
+                                onclick="setTransactionType('income')">
+                            <i class="bi bi-plus-circle-fill fs-5 text-success"></i>
+                        </button>
+                    </div>
+
+                    <div class="summary-value">
+                        <%= rupiah.format(totalIncome) %>
+                    </div>
+
+                    <hr>
+
+                    <small class="text-muted">
+                        Last month : <%= rupiah.format(lastMonthIncome) %>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPENDING -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card fintrack-card summary-card p-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h6 class="fw-bold text-dark mb-1">Spending</h6>
+
+                        <button type="button"
+                                class="btn p-0 border-0 bg-transparent"
+                                data-bs-toggle="modal"
+                                data-bs-target="#addTransactionModal"
+                                onclick="setTransactionType('expense')">
+                            <i class="bi bi-plus-circle-fill fs-5 text-success"></i>
+                        </button>
+                    </div>
+
+                    <div class="summary-value">
+                        <%= rupiah.format(totalExpense) %>
+                    </div>
+
+                    <hr>
+
+                    <small class="text-muted">
+                        Last month : <%= rupiah.format(lastMonthExpense) %>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPENDING OVERVIEW MINI -->
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card fintrack-card summary-card p-3">
+                <div class="card-body">
+                    <h6 class="fw-bold text-dark mb-1">Spending Overview</h6>
+
+                    <div class="summary-value">
+                        <%= rupiah.format(totalExpense) %>
+                    </div>
+
+                    <small class="text-muted">
+                        From <%= rupiah.format(totalIncome) %>
+                    </small>
+
+                    <div class="mini-chart-wrapper">
+                        <canvas id="categorySpendingChart"></canvas>
+                    </div>
+
+                    <div class="spending-mini-list">
+                        <%
+                            if (spendingOverview != null && !spendingOverview.isEmpty()) {
+                                int max = Math.min(3, spendingOverview.size());
+
+                                for (int i = 0; i < max; i++) {
+                                    CategorySpendingSummary category = spendingOverview.get(i);
+
+                                    String dotClass = "legend-olive";
+                                    if (i == 0) {
+                                        dotClass = "legend-orange";
+                                    } else if (i == 1) {
+                                        dotClass = "legend-yellow";
+                                    }
+                        %>
+                                    <div class="spending-mini-item">
+                                        <div class="spending-mini-left">
+                                            <span class="legend-dot <%= dotClass %>"></span>
+                                            <span><%= category.getCategoryName() %></span>
+                                        </div>
+
+                                        <span><%= rupiah.format(category.getTotalAmount()) %></span>
+                                    </div>
+                        <%
+                                }
+                            } else {
+                        %>
+                                <div class="spending-mini-item">
+                                    <span class="text-muted">Belum ada data spending.</span>
+                                </div>
+                        <%
+                            }
+                        %>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MAIN CHART + RECENT ACTIVITY -->
+    <div class="row g-4">
+
+        <!-- TRANSACTIONS OVERVIEW -->
+        <div class="col-12 col-lg-7">
+            <div class="card fintrack-card activity-card p-4 activity-card-compact">
+                <div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+                    <div>
+                        <h6 class="fw-bold text-dark mb-1">Transactions Overview</h6>
+
+                        <h3 class="chart-card-title">
+                            <%= rupiah.format(totalExpense) %>
+                        </h3>
+                    </div>
+
+                    <a href="<%= request.getContextPath() %>/DashboardExportServlet"
+                       class="btn btn-date-light d-flex align-items-center gap-2">
+                        <i class="bi bi-download"></i>
+                        Export This Month
+                    </a>
+                </div>
+
+                <div class="legend-inline">
+                    <span><span class="legend-dot legend-green"></span>Spending</span>
+                    <span><span class="legend-dot legend-gray"></span>Earnings</span>
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="monthlyTransactionChart"></canvas>
+                </div>
+
+                <div id="monthlyChartInfo" class="text-muted small mt-2"></div>
+            </div>
+        </div>
+
+        <!-- RECENT ACTIVITY TABLE -->
+        <div class="col-12 col-lg-5">
+            <div class="card fintrack-card activity-card p-4 activity-card-compact">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6 class="fw-bold text-dark mb-0">Recent Activity</h6>
+
+                    <button type="button" class="btn btn-date-light d-flex align-items-center gap-2">
+                        <i class="bi bi-filter"></i>
+                        Sort by
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table activity-table align-middle">
+                        <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Nominal</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Details</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <%
+                            if (recentActivities != null && !recentActivities.isEmpty()) {
+                                for (RecentActivity activity : recentActivities) {
+                                    boolean isIncome = "income".equalsIgnoreCase(activity.getTransactionType());
+                        %>
+                                    <tr>
+                                        <td><%= activity.getCategoryName() %></td>
+
+                                        <td>
+                                            <% if (isIncome) { %>
+                                                <span class="text-success">
+                                                    + <%= rupiah.format(activity.getAmount()) %>
+                                                </span>
+                                            <% } else { %>
+                                                <span class="text-danger">
+                                                    - <%= rupiah.format(activity.getAmount()) %>
+                                                </span>
+                                            <% } %>
+                                        </td>
+
+                                        <td><%= activity.getDate() %></td>
+                                        <td><%= activity.getTime() %></td>
+                                        <td><%= activity.getTransactionName() %></td>
+                                    </tr>
+                        <%
+                                }
+                            } else {
+                        %>
+                                <tr>
+                                    <td colspan="5" class="empty-data">
+                                        Belum ada transaksi terbaru.
+                                    </td>
+                                </tr>
+                        <%
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SPENDING DETAIL -->
+    <div class="row g-4 mt-1">
+        <div class="col-12">
+            <div class="card fintrack-card activity-card p-4">
+                <h6 class="fw-bold text-dark mb-3">Spending Detail by Category</h6>
+
+                <div class="table-responsive">
+                    <table class="table activity-table align-middle">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Category</th>
+                            <th>Total Amount</th>
+                            <th>Percentage</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <%
+                            if (spendingOverview != null && !spendingOverview.isEmpty()) {
+                                int no = 1;
+
+                                for (CategorySpendingSummary category : spendingOverview) {
+                        %>
+                                    <tr>
+                                        <td><%= no++ %></td>
+                                        <td><%= category.getCategoryName() %></td>
+                                        <td><%= rupiah.format(category.getTotalAmount()) %></td>
+                                        <td><%= String.format("%.2f", category.getPercentage()) %>%</td>
+                                    </tr>
+                        <%
+                                }
+                            } else {
+                        %>
+                                <tr>
+                                    <td colspan="4" class="empty-data">
+                                        Belum ada data pengeluaran per kategori.
+                                    </td>
+                                </tr>
+                        <%
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- MODAL ADD TRANSACTION -->
+<div class="modal fade" id="addTransactionModal" tabindex="-1"
+     aria-labelledby="addTransactionModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+        <form action="<%= request.getContextPath() %>/AddTransactionServlet"
+              method="POST"
+              class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTransactionModalLabel">
+                    Tambah Transaksi
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="hidden" name="transactionType" id="transactionType">
+
+                <div class="mb-3">
+                    <label class="form-label">Nama Transaksi</label>
+                    <input type="text" name="transactionName" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nominal</label>
+                    <input type="number" step="0.01" name="amount" class="form-control" min="1" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Wallet ID</label>
+                    <input type="number" name="accountId" class="form-control" placeholder="Contoh: 1" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Category ID</label>
+                    <input type="number" name="categoryId" class="form-control" placeholder="Contoh: 1" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Catatan</label>
+                    <textarea name="note" class="form-control" rows="3"></textarea>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Batal
+                </button>
+
+                <button type="submit" class="btn btn-success">
+                    Simpan Transaksi
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap JS: pakai cdnjs, bukan jsDelivr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<!-- Chart.js: pakai cdnjs, bukan jsDelivr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<!-- DATA JSON DARI SERVLET -->
+<script type="application/json" id="monthlyLabelsData"><%= monthlyLabelsJson %></script>
+<script type="application/json" id="monthlyIncomeData"><%= monthlyIncomeJson %></script>
+<script type="application/json" id="monthlyExpenseData"><%= monthlyExpenseJson %></script>
+<script type="application/json" id="categoryLabelsData"><%= categoryLabelsJson %></script>
+<script type="application/json" id="categoryAmountsData"><%= categoryAmountJson %></script>
+
+<script>
+    function parseJsonData(id) {
+        const element = document.getElementById(id);
+
+        if (!element) {
+            return [];
+        }
+
+        const text = element.textContent.trim();
+
+        if (!text || text === "null") {
+            return [];
+        }
+
+        try {
+            return JSON.parse(text);
+        } catch (error) {
+            console.error("Gagal parse JSON:", id, text, error);
+            return [];
+        }
+    }
+
+    function normalizeMonthlyData(labels, income, expense) {
+        if (!labels || labels.length === 0) {
+            labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        }
+
+        while (income.length < labels.length) {
+            income.push(0);
+        }
+
+        while (expense.length < labels.length) {
+            expense.push(0);
+        }
+
+        return {
+            labels: labels,
+            income: income,
+            expense: expense
+        };
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("Bootstrap:", typeof bootstrap);
+        console.log("Chart:", typeof Chart);
+
+        const monthlyLabels = parseJsonData("monthlyLabelsData");
+        const monthlyIncome = parseJsonData("monthlyIncomeData");
+        const monthlyExpense = parseJsonData("monthlyExpenseData");
+
+        let categoryLabels = parseJsonData("categoryLabelsData");
+        let categoryAmounts = parseJsonData("categoryAmountsData");
+
+        const monthlyData = normalizeMonthlyData(monthlyLabels, monthlyIncome, monthlyExpense);
+
+        const monthlyCanvas = document.getElementById("monthlyTransactionChart");
+        const categoryCanvas = document.getElementById("categorySpendingChart");
+
+        if (typeof Chart === "undefined") {
+            const info = document.getElementById("monthlyChartInfo");
+
+            if (info) {
+                info.innerText = "Chart.js tidak terbaca. Cek koneksi internet atau CDN.";
+            }
+
+            return;
+        }
+
+        if (monthlyCanvas) {
+            const currentMonthIndex = new Date().getMonth();
+
+            const expenseBarColors = monthlyData.expense.map(function (value, index) {
+                return index === currentMonthIndex ? "#9ACD32" : "#D9D9D9";
+            });
+
+            new Chart(monthlyCanvas, {
+                data: {
+                    labels: monthlyData.labels,
+                    datasets: [
+                        {
+                            type: "bar",
+                            label: "Spending",
+                            data: monthlyData.expense,
+                            backgroundColor: expenseBarColors,
+                            borderRadius: 6,
+                            borderSkipped: false,
+                            barThickness: 24
+                        },
+                        {
+                            type: "line",
+                            label: "Earnings",
+                            data: monthlyData.income,
+                            borderColor: "#B7D86A",
+                            backgroundColor: "#B7D86A",
+                            pointRadius: 0,
+                            borderDash: [4, 4],
+                            tension: 0.35,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.dataset.label + ": Rp " +
+                                        Number(context.raw).toLocaleString("id-ID");
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: "#111827"
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: "#E5E7EB"
+                            },
+                            ticks: {
+                                callback: function (value) {
+                                    if (value >= 1000000) {
+                                        return (value / 1000000) + " M";
+                                    }
+
+                                    return value;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        if (categoryCanvas) {
+            if (!categoryLabels || categoryLabels.length === 0) {
+                categoryLabels = ["Belum ada data"];
+                categoryAmounts = [1];
+            }
+
+            if (!categoryAmounts || categoryAmounts.length === 0) {
+                categoryAmounts = [1];
+            }
+
+            const categoryColors = ["#D98C5F", "#D9A441", "#A8BE84", "#88A97D", "#C8D5B9"];
+
+            const stackedDatasets = categoryAmounts.map(function (amount, index) {
+                return {
+                    label: categoryLabels[index] || "Kategori",
+                    data: [amount],
+                    backgroundColor: categoryColors[index % categoryColors.length],
+                    borderWidth: 0,
+                    borderRadius: 3,
+                    barThickness: 18
+                };
+            });
+
+            new Chart(categoryCanvas, {
+                type: "bar",
+                data: {
+                    labels: [""],
+                    datasets: stackedDatasets
+                },
+                options: {
+                    indexAxis: "y",
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.dataset.label + ": Rp " +
+                                        Number(context.raw).toLocaleString("id-ID");
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            display: false
+                        },
+                        y: {
+                            stacked: true,
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
