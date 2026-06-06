@@ -85,6 +85,7 @@ body {
     height: auto;
     z-index: 2;
 }
+
 /* [END] LOGIN PAGE = REGISTER PAGE */
 
 
@@ -605,6 +606,52 @@ body {
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.3px;
+}
+
+.wallet-card-bottom>div {
+    width: 100%;
+}
+
+.balance-value {
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.wallet-action-buttons {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.wallet-action-buttons form {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.wallet-action-buttons .btn {
+    width: 18px;
+    height: 18px;
+    padding: 0 !important;
+    margin: 0;
+    border: none;
+    background: transparent;
+    color: #ffffff !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.wallet-action-buttons .btn i {
+    font-size: 13px;
+    line-height: 1;
 }
 
 .add-wallet-card {
@@ -1999,7 +2046,7 @@ body {
             }
         }
 
-        /* ==========================
+/* ==========================
            RESPONSIVE MOBILE
         ========================== */
 
@@ -2039,9 +2086,9 @@ body {
                 justify-content: center;
             }
 
-            .budget-title {
-                font-size: 26px;
-            }
+    .budget-title {
+        font-size: 26px;
+    }
 
             .budget-total {
                 font-size: 24px;
