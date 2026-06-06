@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 body {
+=======
+body{
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
     font-family: 'Instrument Sans', sans-serif;
 }
 
 /* [START] LOGIN PAGE = REGISTER PAGE */
-/* Sisi Kiri: Gradient Background */
 .login-side {
     background: linear-gradient(135deg, #fafff0 0%, #d4eec4 100%);
     display: flex;
@@ -11,10 +14,12 @@ body {
     justify-content: center;
 }
 
-/* Sisi Kanan: Dark Background */
 .image-side {
     background-color: #0B3A30;
+<<<<<<< HEAD
     /* Hijau gelap */
+=======
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,7 +41,6 @@ body {
     margin-bottom: 2rem;
 }
 
-/* Styling Input Field */
 .input-group-text {
     background-color: #f8f9fa;
     border-right: none;
@@ -58,7 +62,6 @@ body {
     background-color: #f8f9fa;
 }
 
-/* Styling Tombol Lime Green */
 .btn-lime {
     background-color: #9EDE04;
     color: #0B3A30;
@@ -80,12 +83,14 @@ body {
     font-size: 0.85rem;
     font-weight: 600;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 .register-link b {
     font-weight: 800;
 }
 
-/* Gambar di sisi kanan */
 .main-visual {
     max-width: 50%;
     height: auto;
@@ -100,7 +105,10 @@ body {
     background-color: #0B3A30 !important;
 }
 
+<<<<<<< HEAD
 /* Lingkaran untuk ikon Notifikasi (Lonceng) */
+=======
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 .icon-circle {
     width: 42px;
     height: 42px;
@@ -117,24 +125,31 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Lingkaran untuk ikon User Profil */
 .profile-circle {
     width: 42px;
     height: 42px;
     background-color: #e0e4e3;
+<<<<<<< HEAD
     /* Warna abu-abu terang sesuai gambar */
+=======
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #0B3A30;
+<<<<<<< HEAD
     /* Warna hijau gelap untuk siluet user */
+=======
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 }
 
-/* Ukuran khusus agar logo tidak kebesaran/pecah di navbar */
 .navbar-logo {
     height: 25px;
+<<<<<<< HEAD
     /* Kamu bisa mengatur besar/kecil logo di sini */
+=======
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
     width: auto;
     object-fit: contain;
 }
@@ -144,18 +159,21 @@ body {
     border-radius: 3rem;
 }
 
-/* Menghilangkan garis pinggir (border) pada tombol hamburger saat diklik */
 .navbar-toggler:focus {
     box-shadow: none;
 }
 
 .navbar-custom {
     border-bottom: 1px solid #ffffff;
+<<<<<<< HEAD
     /* ⚠️ MENGUBAH GARIS MENJADI PUTIH SOLID */
+=======
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 }
 
 /* [END] NAVBAR */
 
+<<<<<<< HEAD
 /* [START] Dashboard */
 /* Header Hijau Gelap */
 .dashboard-header {
@@ -219,6 +237,10 @@ body {
 
 /* [START] Profile == ChangeProfile */
 /* Tombol Kapsul Hijau Gelap */
+=======
+
+/* [START] PROFILE == CHANGEPROFILE */
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 .btn-light {
     background-color: #ececec;
     color: #000000;
@@ -228,7 +250,10 @@ body {
     padding: 12px;
     transition: all 0.3s ease;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 .btn-light:hover {
     background-color: #a2a2a2;
     color: #000000;
@@ -244,14 +269,12 @@ body {
     padding: 12px;
     transition: all 0.3s ease;
 }
-
 .btn-dark-teal:hover {
     background-color: #004d41;
     color: #ffffff;
     transform: translateY(-2px);
 }
 
-/* Style Input untuk Form Edit */
 .fintrack-input {
     background-color: #ffffff;
     border: 1px solid #e0e4e3;
@@ -261,30 +284,31 @@ body {
     font-size: 0.95rem;
     transition: all 0.3s ease;
 }
-
 .fintrack-input:focus {
     border-color: #98ce00;
     box-shadow: 0 0 0 0.25rem rgba(152, 206, 0, 0.1);
     outline: none;
 }
 
-/* Label khusus */
 .form-label-custom {
     font-weight: 700;
     color: #002d26;
     margin-bottom: 8px;
 }
+<<<<<<< HEAD
 
 /* [END] Profile */
+=======
+/* [END] PROFILE */
+
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 
 /* [START] DROPDOWN */
-/* Memberikan jarak (padding) di dalam kotak putih dropdown */
 .dropdown-menu {
     padding: 8px;
     border-radius: 16px;
 }
 
-/* Mengatur bentuk item di dalam dropdown */
 .dropdown-item {
     border-radius: 8px;
     transition: all 0.2s ease;
@@ -292,43 +316,45 @@ body {
     font-weight: 500;
 }
 
-/* Efek saat kursor diarahkan (Hover) & Dipilih (Active) */
 .dropdown-item:hover,
 .dropdown-item:focus,
 .dropdown-item:active {
     background-color: #002d26 !important;
+<<<<<<< HEAD
     /* Warna Dark Teal */
     color: #ffffff !important;
     /* Teks menjadi putih */
+=======
+    color: #ffffff !important;
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 }
 
-/* Memastikan ikon ikut menjadi putih saat di-hover */
 .dropdown-item:hover i {
     color: #ffffff !important;
 }
 
-/* Khusus tombol Logout: saat tidak di-hover berwarna merah (text-danger), 
-   tapi saat di-hover harus berubah jadi putih agar kontras dengan hijau gelap */
 .dropdown-item.text-danger:hover {
     color: #ffffff !important;
 }
 
 /* [END] DROPDOWN */
 
-/* [START] Wallet */
-/* 1. Base White (Putih Default) */
+
+/* [START] WALLET THEMES */
 .theme-white {
     background-color: #ffffff;
     color: #002d26;
 }
 
-/* 2. Green-1 (Dark Teal) */
 .theme-dark {
     background-color: #002d26;
     color: #ffffff;
 }
+<<<<<<< HEAD
 
 /* Ubah teks dan ikon di dalam card gelap menjadi putih */
+=======
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 .theme-dark .text-dark-teal,
 .theme-dark .text-dark {
     color: #ffffff !important;
@@ -340,12 +366,14 @@ body {
     border: none !important;
 }
 
-/* 3. Light Green-1 (Lime / Hijau Terang) */
 .theme-lime {
     background-color: #98ce00;
     color: #002d26;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 .theme-lime .text-dark-teal,
 .theme-lime .text-dark {
     color: #002d26 !important;
@@ -357,9 +385,9 @@ body {
     border: none !important;
 }
 
-/* 4. Light Green-2 (Pale / Krem) */
 .theme-pale {
     background-color: #e4f0d0;
+<<<<<<< HEAD
     /* Warna krem hijau pucat */
     color: #002d26;
 }
@@ -524,3 +552,1031 @@ body {
 
 
 /* [END] Category */
+=======
+    color: #002d26;
+}
+/* [END] WALLET THEMES */
+
+
+/* =====================================
+   WALLET PAGE
+===================================== */
+
+.wallet-header {
+    background-color: #0B3A30;
+    color: #ffffff;
+    padding: 2rem 0 7rem 0;
+}
+
+.wallet-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.wallet-header p {
+    color: #a0b2af;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.btn-eye-wallet {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+.btn-eye-wallet:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
+.btn-refresh-wallet {
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    color: white;
+    background: transparent;
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+.btn-refresh-wallet:hover {
+    background: white;
+    color: #0B3A30;
+}
+
+.wallet-overlap-container {
+    margin-top: -5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.wallet-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.wallet-card {
+    width: 280px;
+    height: 170px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.wallet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+}
+
+.wallet-card-top {
+    background-color: #fbfff6;
+    height: 115px;
+    padding: 16px 18px;
+    position: relative;
+}
+.wallet-card-top .card-icon {
+    font-size: 1.3rem;
+    color: #1a1a1a;
+}
+.wallet-card-top .card-icon-credit {
+    font-size: 1.1rem;
+    color: #1a1a1a;
+}
+
+.wallet-info {
+    margin-top: 10px;
+}
+.wallet-info h6 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+}
+.wallet-info h5 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.wallet-valid {
+    position: absolute;
+    right: 18px;
+    top: 16px;
+    text-align: right;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #333;
+}
+.wallet-valid span {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.wallet-card-bottom {
+    height: 55px;
+    background-color: #3F6B58;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.add-wallet-card {
+    width: 280px;
+    height: 170px;
+    border-radius: 24px;
+    background-color: #ECECEC;
+    border: 2px dashed #8aab99;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+.add-wallet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    border-color: #004D40;
+}
+
+.add-wallet-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #004D40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+}
+
+.add-wallet-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #004D40;
+    margin: 0;
+}
+
+/* MODAL */
+.modal-content {
+    border-radius: 20px;
+    border: none;
+}
+.modal-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 20px 24px;
+}
+.modal-title {
+    font-weight: 700;
+    color: #0B3A30;
+    font-size: 1rem;
+}
+.modal-body {
+    padding: 24px;
+}
+.modal-footer {
+    border-top: 1px solid #e5e7eb;
+    padding: 16px 24px;
+}
+.modal-body .form-label {
+    font-weight: 600;
+    color: #0B3A30;
+    font-size: 0.875rem;
+    margin-bottom: 6px;
+}
+
+.wallet-input {
+    border-radius: 12px;
+    border: 1px solid #e0e4e3;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.wallet-input:focus {
+    border-color: #98ce00;
+    box-shadow: 0 0 0 0.2rem rgba(152, 206, 0, 0.15);
+    outline: none;
+}
+
+.wallet-input-prefix {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e4e3;
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    color: #6c757d;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+}
+
+.wallet-input-number {
+    border: 1px solid #e0e4e3;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.wallet-input-number:focus {
+    border-color: #98ce00;
+    box-shadow: 0 0 0 0.2rem rgba(152, 206, 0, 0.15);
+    outline: none;
+}
+
+.btn-wallet-submit {
+    background-color: #0B3A30;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 28px;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+.btn-wallet-submit:hover {
+    background-color: #004D40;
+    color: white;
+}
+
+.btn-wallet-cancel {
+    background-color: #ececec;
+    color: #333;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 28px;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+.btn-wallet-cancel:hover {
+    background-color: #d0d0d0;
+    color: #333;
+}
+
+@media (max-width: 600px) {
+    .wallet-card,
+    .add-wallet-card {
+        width: 100%;
+    }
+}
+
+
+/* =====================================
+   DASHBOARD PAGE
+===================================== */
+
+.dashboard-header {
+    background-color: #0B3A30;
+    color: white;
+    padding: 2rem 0 8rem 0;
+}
+
+.text-light-teal {
+    color: #a0b2af;
+    font-size: 0.9rem;
+}
+
+.btn-eye-dash {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.btn-eye-dash:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.btn-date-dash {
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    color: white;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.btn-date-dash:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.btn-date-sm {
+    border-color: #e0e0e0;
+    color: #333;
+    font-size: 0.78rem;
+    padding: 5px 12px;
+}
+.btn-date-sm:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.overlap-container {
+    margin-top: -5.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* SUMMARY CARDS */
+.dash-card {
+    background: white;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    height: 100%;
+    position: relative;
+}
+
+.dash-card h6 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.dash-card .amount {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0;
+}
+
+.dash-card .last-month {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+    margin-bottom: 0;
+}
+
+.dash-card .from-label {
+    font-size: 0.78rem;
+    color: #aaa;
+    margin: 2px 0 0;
+}
+
+.btn-add-card {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #0B3A30;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-add-card:hover {
+    background: #004D40;
+}
+
+/* SPENDING OVERVIEW */
+.spending-bar-wrap {
+    height: 14px;
+    border-radius: 999px;
+    overflow: hidden;
+    display: flex;
+    margin: 10px 0 8px;
+}
+.spending-bar-wrap .seg {
+    height: 100%;
+    transition: width 0.4s;
+}
+
+.seg-food  { background: #e05c3a; }
+.seg-shop  { background: #e8c9a0; }
+.seg-trans { background: #8aab99; }
+
+.spending-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.legend-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #555;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 6px;
+    flex-shrink: 0;
+}
+
+/* CHART CARD */
+.chart-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    height: 100%;
+}
+
+.chart-card h6 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 2px;
+}
+
+.chart-card .chart-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0;
+}
+
+.chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.78rem;
+    color: #555;
+}
+
+.chart-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* RECENT ACTIVITY */
+.activity-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    height: 100%;
+}
+
+.activity-card h6 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111;
+}
+
+.btn-sortby {
+    border: 1.5px solid #e0e0e0;
+    background: white;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+.btn-sortby:hover {
+    background: #f5f5f5;
+}
+
+.activity-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.82rem;
+}
+
+.activity-table thead tr th {
+    background: #f5f5f0;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #555;
+    border: none;
+}
+
+.activity-table thead tr th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+.activity-table thead tr th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.activity-table tbody tr td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #333;
+    vertical-align: middle;
+}
+
+.activity-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* dashboard style */
+ .summary-card {
+min-height: 170px;
+border-radius: 22px;
+}
+
+.summary-value {
+font-size: 24px;
+font-weight: 700;
+color: #0f172a;
+line-height: 1.2;
+word-break: break-word;
+}
+
+.chart-card-title {
+font-size: 24px;
+font-weight: 700;
+color: #111827;
+margin-bottom: 0;
+line-height: 1.2;
+}
+
+.chart-wrapper {
+position: relative;
+height: 280px;
+width: 100%;
+}
+
+.mini-chart-wrapper {
+position: relative;
+height: 75px;
+width: 100%;
+margin-top: 10px;
+margin-bottom: 8px;
+}
+
+                                                    .legend-inline {
+                                                        display: flex;
+                                                        align-items: center;
+                                                        gap: 18px;
+                                                        font-size: 12px;
+                                                        color: #6b7280;
+                                                        margin-bottom: 12px;
+                                                        justify-content: flex-end;
+                                                        flex-wrap: wrap;
+                                                    }
+
+                                                    .legend-dot {
+                                                        width: 8px;
+                                                        height: 8px;
+                                                        border-radius: 50%;
+                                                        display: inline-block;
+                                                        margin-right: 5px;
+                                                    }
+
+                                                    .legend-green {
+                                                        background-color: #9acd32;
+                                                    }
+
+                                                    .legend-gray {
+                                                        background-color: #d1d5db;
+                                                    }
+
+                                                    .legend-orange {
+                                                        background-color: #d98c5f;
+                                                    }
+
+                                                    .legend-yellow {
+                                                        background-color: #d9a441;
+                                                    }
+
+                                                    .legend-olive {
+                                                        background-color: #a8be84;
+                                                    }
+
+                                                    .spending-mini-list {
+                                                        margin-top: 6px;
+                                                    }
+
+                                                    .spending-mini-item {
+                                                        display: flex;
+                                                        justify-content: space-between;
+                                                        align-items: center;
+                                                        font-size: 10px;
+                                                        margin-bottom: 3px;
+                                                        color: #374151;
+                                                        gap: 8px;
+                                                    }
+
+                                                    .spending-mini-left {
+                                                        display: flex;
+                                                        align-items: center;
+                                                        gap: 4px;
+                                                        min-width: 0;
+                                                    }
+
+                                                    .spending-mini-left span:last-child {
+                                                        white-space: nowrap;
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                        max-width: 90px;
+                                                    }
+
+                                                    .activity-card {
+                                                        border-radius: 22px;
+                                                    }
+
+                                                    .activity-card-compact {
+                                                        min-height: 100%;
+                                                    }
+
+                                                    .activity-table th,
+                                                    .activity-table td {
+                                                        font-size: 11px;
+                                                        vertical-align: middle;
+                                                        white-space: nowrap;
+                                                    }
+
+                                                    .activity-table thead th {
+                                                        background-color: #e5e7eb;
+                                                        color: #374151;
+                                                        border: none;
+                                                        font-weight: 700;
+                                                    }
+
+                                                    .activity-table tbody td {
+                                                        border-color: #f1f5f9;
+                                                    }
+
+                                                    .btn-date {
+                                                        border: 1px solid rgba(255, 255, 255, 0.7);
+                                                        color: white;
+                                                        border-radius: 999px;
+                                                        font-size: 13px;
+                                                        padding: 8px 16px;
+                                                        background-color: transparent;
+                                                    }
+
+                                                    .btn-date:hover {
+                                                        color: white;
+                                                        border-color: white;
+                                                    }
+
+                                                    .btn-date-light {
+                                                        border: 1px solid #0f4a3c;
+                                                        color: #0f4a3c;
+                                                        border-radius: 999px;
+                                                        font-size: 12px;
+                                                        padding: 5px 12px;
+                                                        background-color: transparent;
+                                                    }
+
+                                                    .btn-date-light:hover {
+                                                        border-color: #0f4a3c;
+                                                        color: #0f4a3c;
+                                                    }
+
+                                                    .empty-data {
+                                                        text-align: center;
+                                                        color: #777;
+                                                        padding: 18px;
+                                                    }
+
+                                                    /* @media (max-width: 768px) {
+                                                        .dashboard-header {
+                                                            padding-bottom: 80px;
+                                                        } */
+
+                                                        .legend-inline {
+                                                            justify-content: flex-start;
+                                                        }
+
+                                                        .summary-value,
+                                                        .chart-card-title {
+                                                            font-size: 20px;
+                                                        }
+                                                    
+
+/* END DASHBOARD STYLE */
+
+/* =====================================
+   TRANSACTION PAGE
+===================================== */
+
+.trx-header {
+    background-color: #0B3A30;
+    color: white;
+    padding: 2rem 0 7rem 0;
+}
+.trx-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.btn-add-trx {
+    background-color: transparent;
+    color: white;
+    font-weight: 600;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    cursor: pointer;
+    font-family: 'Instrument Sans', sans-serif;
+}
+.btn-add-trx:hover { background-color: rgba(255,255,255,0.12); }
+
+.trx-overlap-container { margin-top: -5rem; position: relative; z-index: 10; }
+
+.trx-summary-card {
+    background: white;
+    border-radius: 22px;
+    padding: 22px 24px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    height: 100%;
+    min-height: 130px;
+    position: relative;
+}
+.trx-summary-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+    position: absolute; top: 20px; right: 20px;
+}
+.income-icon-bg  { 
+    background: #9EDE04; 
+    color: #0B3A30; }
+
+.expense-icon-bg { 
+    background: #dc2626; 
+    color: #fff; }
+
+.balance-icon-bg { 
+    background: #e5e7eb; 
+    color: #333; }
+
+.trx-summary-label { 
+    font-size: 0.85rem; 
+    font-weight: 600; 
+    color: #555; 
+    margin-bottom: 6px; }
+
+.trx-summary-value { 
+    font-size: 1.35rem; 
+    font-weight: 700; 
+    color: #111; 
+    margin: 0; 
+    line-height: 1.2; 
+    word-break: break-word; }
+
+.trx-summary-sub { 
+    font-size: 0.78rem; 
+    color: #9ca3af;
+    margin-top: 12px; 
+    padding-top: 12px; 
+    border-top: 1px solid #f3f4f6; 
+    margin-bottom: 0; }
+
+.trx-table-card { 
+    background: white; 
+    border-radius: 22px; 
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06); 
+    overflow: hidden; }
+
+.trx-filter-bar {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 24px; 
+    border-bottom: 1px solid #f3f4f6;
+    flex-wrap: wrap; gap: 12px;
+}
+
+.trx-filter-bar-title { 
+    ont-weight: 700; 
+    color: #111; 
+    font-size: 1rem; }
+
+.trx-search-wrap { 
+    position: relative; 
+    display: flex; 
+    align-items: center; }
+
+.trx-search-icon { 
+    position: absolute; 
+    left: 12px; 
+    color: #aaa; 
+    font-size: 0.85rem; }
+
+.trx-search-input {
+    border: 1.5px solid #e5e7eb; 
+    border-radius: 999px;
+    padding: 8px 14px 8px 34px; 
+    font-size: 0.83rem;
+    outline: none;
+    width: 200px; 
+    transition: border 0.2s;
+    font-family: 'Instrument Sans', sans-serif; 
+    background: white; 
+    color: #111;
+}
+
+.trx-search-input:focus { 
+    border-color: #0B3A30; }
+
+.trx-filter-tabs { 
+    display: flex; 
+    gap: 6px; 
+    align-items: center; }
+
+.trx-filter-tab {
+    border: 1.5px solid #e0e0e0; 
+    background: white;
+    border-radius: 999px; 
+    padding: 6px 18px;
+    font-size: 0.82rem; 
+    font-weight: 600; 
+    color: #555;
+    cursor: pointer; 
+    transition: all 0.2s;
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+.trx-filter-tab:hover:not(.active) { 
+    background: #f5f5f0; 
+    color: #333; }
+
+.trx-filter-tab.active {
+    background: #0B3A30; 
+    color: white; 
+    border-color: #0B3A30; }
+
+.trx-select {
+    border: 1.5px solid #e0e0e0; 
+    border-radius: 999px;
+    padding: 7px 16px; 
+    font-size: 0.82rem; 
+    font-weight: 600; 
+    color: #333;
+    outline: none; 
+    cursor: pointer; 
+    font-family: 'Instrument Sans', sans-serif;
+    transition: border 0.2s; 
+    background: white;
+}
+
+.trx-select:focus { 
+    border-color: #0B3A30; 
+}
+
+.trx-table { 
+    width: 100%; 
+    border-collapse: separate; 
+    border-spacing: 0; 
+    font-size: 0.83rem; }
+
+.trx-table thead tr th {
+    background: #e5e7eb; 
+    padding: 11px 16px;
+    font-weight: 700; 
+    color: #374151; 
+    border: none; 
+    white-space: nowrap;
+}
+
+.trx-table thead tr th:first-child { 
+    border-radius: 10px 0 0 10px; 
+}
+
+.trx-table thead tr th:last-child  { 
+    border-radius: 0 10px 10px 0;
+}
+
+.trx-table tbody tr td {
+    padding: 13px 16px; 
+    border-bottom: 1px solid #f1f5f9; 
+    color: #333; 
+    vertical-align: middle; 
+}
+
+.trx-table tbody tr:last-child td { 
+    border-bottom: none; 
+}
+
+.trx-table tbody tr:hover { 
+    background: #fafff5; 
+}
+
+.trx-badge-category { background: #f0fdf4; color: #166534; border-radius: 999px; padding: 3px 10px; font-size: 0.76rem; font-weight: 600; }
+.trx-type-badge { border-radius: 999px; padding: 4px 12px; font-size: 0.76rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+.type-income  { background: #dcfce7; color: #16a34a; }
+.type-expense { background: #fee2e2; color: #dc2626; }
+.trx-amount { font-weight: 700; font-size: 0.88rem; }
+.income-amount  { color: #16a34a; }
+.expense-amount { color: #dc2626; }
+
+.btn-trx-action { width: 34px; height: 34px; border-radius: 10px; border: none; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; cursor: pointer; transition: all 0.2s; }
+.btn-edit   { background: #f0fdf4; color: #16a34a; }
+.btn-edit:hover   { background: #16a34a; color: white; }
+.btn-delete { background: #fff5f5; color: #dc2626; }
+.btn-delete:hover { background: #dc2626; color: white; }
+
+.trx-empty { flex-direction: column; align-items: center; justify-content: center; padding: 48px; color: #aaa; font-size: 0.9rem; gap: 8px; }
+.trx-empty i { font-size: 2.5rem; color: #ddd; }
+
+.trx-modal-content { border-radius: 22px; border: none; overflow: hidden; }
+.trx-modal-header { background: white; color: #0B3A30; padding: 22px 24px 18px; border-bottom: 1px solid #f3f4f6; }
+.trx-modal-header .modal-title { color: #0B3A30; font-size: 1rem; font-weight: 700; }
+.trx-modal-header .btn-close { filter: none; opacity: 0.5; }
+.trx-modal-header .btn-close:hover { opacity: 1; }
+.trx-modal-body { padding: 28px 24px 16px; }
+.trx-modal-footer { padding: 16px 24px; border-top: 1px solid #f3f4f6; display: flex; justify-content: flex-end; gap: 10px; }
+
+.trx-type-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+.trx-type-toggle input[type="radio"] { display: none; }
+.trx-toggle-label {
+    flex: 1; text-align: center; padding: 10px;
+    border-radius: 999px; font-weight: 600; font-size: 0.88rem;
+    cursor: pointer; transition: all 0.2s; color: #888;
+    border: 1.5px solid #e0e0e0;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    background: white;
+}
+#typeIncome:checked ~ label[for="typeIncome"],
+#editTypeIncome:checked ~ label[for="editTypeIncome"] { background: #dcfce7; color: #16a34a; border-color: #16a34a; font-weight: 700; }
+#typeExpense:checked ~ label[for="typeExpense"],
+#editTypeExpense:checked ~ label[for="editTypeExpense"] { background: #fee2e2; color: #dc2626; border-color: #dc2626; font-weight: 700; }
+
+.trx-label { font-weight: 600; color: #0B3A30; font-size: 0.875rem; margin-bottom: 6px; display: block; }
+.trx-input {
+    width: 100%; border: 1.5px solid #e0e4e3; border-radius: 12px;
+    padding: 11px 14px; font-size: 0.9rem;
+    font-family: 'Instrument Sans', sans-serif; outline: none;
+    transition: border 0.2s; background: #f8faf8; color: #111;
+}
+.trx-input:focus { border-color: #0B3A30; background: white; box-shadow: 0 0 0 3px rgba(11,58,48,0.08); }
+.trx-input-group { display: flex; }
+.trx-input-prefix { background: #f0f0f0; border: 1.5px solid #e0e4e3; border-right: none; border-radius: 12px 0 0 12px; padding: 11px 14px; font-size: 0.9rem; color: #6c757d; font-weight: 600; }
+.trx-input-suffix { border-left: none; border-radius: 0 12px 12px 0; }
+.trx-input-suffix:focus { border-color: #0B3A30; }
+
+.btn-trx-submit { background: #0B3A30; color: white; font-weight: 700; border: none; border-radius: 999px; padding: 10px 28px; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; font-family: 'Instrument Sans', sans-serif; display: flex; align-items: center; gap: 4px; }
+.btn-trx-submit:hover { background: #004D40; }
+.btn-trx-cancel { background: #ececec; color: #333; font-weight: 600; border: none; border-radius: 999px; padding: 10px 24px; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; font-family: 'Instrument Sans', sans-serif; }
+.btn-trx-cancel:hover { background: #d0d0d0; }
+.btn-trx-delete-confirm { background: #dc2626; color: white; font-weight: 700; border: none; border-radius: 999px; padding: 10px 24px; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; font-family: 'Instrument Sans', sans-serif; }
+.btn-trx-delete-confirm:hover { background: #b91c1c; }
+
+.active-nav { background-color: rgba(255,255,255,0.1); border-radius: 3rem; }
+
+
+ 
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a

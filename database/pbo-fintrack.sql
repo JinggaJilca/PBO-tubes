@@ -106,16 +106,6 @@ CREATE TABLE analysis (
    FOREIGN KEY (largest_category_id) REFERENCES categories(category_id) ON DELETE SET NULL
 );
 
-CREATE TABLE analysis_category_percentage (
-   id INT(16) AUTO_INCREMENT PRIMARY KEY,
-   analysis_id INT(16) NOT NULL,
-   category_id INT(16) NOT NULL,
-   percentage DECIMAL(5,2) NOT NULL DEFAULT 0.00,
-   total_amount DECIMAL(18,2) NOT NULL DEFAULT 0.00,
-   FOREIGN KEY (analysis_id) REFERENCES analysis(analysis_id) ON DELETE CASCADE,
-   FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE CASCADE
-);
-
 -- === PERATURAN AGAR DATA TIDAK TERDUPLIKAT ===
 -- 1 users only have 1 email
 ALTER TABLE users
