@@ -1,13 +1,9 @@
 model\CategorySpendingSummary.class
 servlets\DashboardServlet.class
 model\MonthlyTransactionSummary.class
-<<<<<<< HEAD
 servlets\CategoryServlet.class
 dao\ProfileDAO.class
-=======
-dao\ProfileDAO.class
 servlets\AddTransactionServlet.class
->>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 dao\RegisterDAO.class
 dao\LoginDAO.class
 model\JDBC.class
@@ -19,8 +15,5 @@ model\Category.class
 servlets\AuthServlet.class
 model\DashboardSummary.class
 model\Profile.class
-<<<<<<< HEAD
-=======
 servlets\DashboardExportServlet.class
->>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 model\User.class

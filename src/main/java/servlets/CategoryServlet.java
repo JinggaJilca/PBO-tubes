@@ -50,14 +50,61 @@ public class CategoryServlet extends HttpServlet {
                 
                 if (success) {
                     // Opsional: Kirim pesan sukses
-                    request.getSession().setAttribute("successMessage", "Kategori berhasil dihapus!");
+                    request.getSession().setAttribute("successMessage", "Category deleted successfully!");
                 } else {
                     // Opsional: Kirim pesan gagal
-                    request.getSession().setAttribute("errorMessage", "Gagal menghapus kategori.");
+                    request.getSession().setAttribute("errorMessage", "Failed to delete category. Please try again");
                 }
             }
+
+        }else if ("add".equals(action)){
+            String name = request.getParameter("name");
+            String type = request.getParameter("type");
+            
+            if (name != null && type != null && !name.isEmpty() && !type.isEmpty()){
+                Category isiCategory = new Category();
+                isiCategory.setName(name);
+                isiCategory.setType(type);
+                
+                CategoryDAO dao = new CategoryDAO();
+
+                // Panggil method delete dari DAO Anda
+                boolean success = dao.addCategory(isiCategory);
+                
+                if (success) {
+                    request.getSession().setAttribute("successMessage", "Category added successfully!");
+                    } else {
+                    request.getSession().setAttribute("errorMessage", "Failed to add category. Please try again");
+                }
+            }
+        } else if ("edit".equals(action)) {
+            String idParam = request.getParameter("id"); 
+            String name = request.getParameter("name");
+            String type = request.getParameter("type");
+
+            if (idParam != null && name != null && type != null && !name.isEmpty()) {
+                try {
+                    int id = Integer.parseInt(idParam);
+                    Category isiCategory = new Category();
+                    isiCategory.setCategoryID(id); 
+                    isiCategory.setName(name);
+                    isiCategory.setType(type);
+
+                    CategoryDAO dao = new CategoryDAO();
+                    boolean success = dao.updateCategory(isiCategory);
+
+                    if (success) {
+                        request.getSession().setAttribute("successMessage", "Category edited successfully!");
+                    } else {
+                        request.getSession().setAttribute("errorMessage", "Failed to edit category.");
+                    }
+                } catch (NumberFormatException e) {
+                    request.getSession().setAttribute("errorMessage", "Invalid ID format.");
+                }
+            } else {
+                request.getSession().setAttribute("errorMessage", "Invalid data provided.");
+            }
         }
-        
         // Setelah selesai diproses (berhasil atau gagal), kembalikan ke halaman tabel
         response.sendRedirect("category");
     }
