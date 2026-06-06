@@ -11,8 +11,9 @@
                                 recentActivities =
                                 (List<RecentActivity>) request.getAttribute("recentActivities");
 
-                                    List<CategorySpendingSummary> spendingOverview =
-                                        (List<CategorySpendingSummary>) request.getAttribute("spendingOverview");
+            <head>
+                <meta charset="UTF-8">
+                <title>Dashboard - FinTrack</title>
 
                                             String monthlyLabelsJson = (String)
                                             request.getAttribute("monthlyLabelsJson");
@@ -660,6 +661,11 @@
                                                             expense.push(0);
                                                         }
 
+<<<<<<< HEAD
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                
+            </body>
+=======
                                                         return {
                                                             labels: labels,
                                                             income: income,
@@ -670,6 +676,7 @@
                                                     document.addEventListener("DOMContentLoaded", function () {
                                                         console.log("Bootstrap:", typeof bootstrap);
                                                         console.log("Chart:", typeof Chart);
+>>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 
                                                         const monthlyLabels = parseJsonData("monthlyLabelsData");
                                                         const monthlyIncome = parseJsonData("monthlyIncomeData");
