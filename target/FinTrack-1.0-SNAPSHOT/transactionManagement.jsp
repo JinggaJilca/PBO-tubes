@@ -19,7 +19,8 @@
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
+     <jsp:include page="navbar.jsp" />
+    <!-- <nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
         <div class="container">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/dashboard">
                 <img src="${pageContext.request.contextPath}/images/FLogo.png" class="navbar-logo" alt="FinTrack Logo">
@@ -92,7 +93,7 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
     <!-- TRANSACTION HEADER -->
     <div class="trx-header">
