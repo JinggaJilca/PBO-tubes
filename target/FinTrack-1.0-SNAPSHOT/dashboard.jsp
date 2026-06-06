@@ -11,14 +11,9 @@
                                 recentActivities =
                                 (List<RecentActivity>) request.getAttribute("recentActivities");
 
-<<<<<<< HEAD
             <head>
                 <meta charset="UTF-8">
                 <title>Dashboard - FinTrack</title>
-=======
-                                    List<CategorySpendingSummary> spendingOverview =
-                                        (List<CategorySpendingSummary>) request.getAttribute("spendingOverview");
->>>>>>> 1bfce59edd93e97c54f38d793bcb3fffa795442a
 
                                             String monthlyLabelsJson = (String)
                                             request.getAttribute("monthlyLabelsJson");
