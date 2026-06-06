@@ -39,7 +39,7 @@
                                     rel="stylesheet">
 
                                 <link rel="stylesheet" type="text/css"
-                                    href="<%= request.getContextPath() %>/css/style.css?v=12">
+                                    href="<%= request.getContextPath() %>/css/style.css?v=20">
                             </head>
 
                             <body>
@@ -96,13 +96,12 @@
 
                                             <!-- WALLET CARD -->
                                             <div class="wallet-card">
-
                                                 <div class="wallet-card-top">
 
                                                     <% if ("ewallet".equalsIgnoreCase(wallet.getWalletType())) { %>
-                                                        <i class="bi bi-wallet2 card-icon"></i>
+                                                        <i class="bi bi-credit-card-2-front card-icon-credit"></i>
                                                         <% } else { %>
-                                                            <i class="bi bi-credit-card-2-front card-icon-credit"></i>
+                                                            <i class="bi bi-wallet2 card-icon"></i>
                                                             <% } %>
 
                                                                 <div class="wallet-valid">
@@ -118,7 +117,6 @@
                                                                         <%= accountNumber %>
                                                                     </h5>
                                                                 </div>
-
                                                 </div>
 
                                                 <div class="wallet-card-bottom">
@@ -129,9 +127,10 @@
                                                             <%= formattedBalance %>
                                                         </span>
 
-                                                        <div class="wallet-action-buttons">
+                                                        <div class="d-flex align-items-center gap-2">
 
-                                                            <button type="button" class="btn btn-sm p-0"
+                                                            <!-- EDIT BUTTON -->
+                                                            <button type="button" class="btn btn-sm text-white p-0"
                                                                 data-bs-toggle="modal" data-bs-target="#editWalletModal"
                                                                 title="Edit Wallet" onclick="fillEditWalletForm(
                                     '<%= wallet.getAccountId() %>',
@@ -144,6 +143,7 @@
                                                                 <i class="bi bi-pencil-square"></i>
                                                             </button>
 
+                                                            <!-- DELETE BUTTON -->
                                                             <form
                                                                 action="<%= request.getContextPath() %>/DeleteWalletServlet"
                                                                 method="POST" class="m-0"
@@ -152,7 +152,7 @@
                                                                 <input type="hidden" name="accountId"
                                                                     value="<%= wallet.getAccountId() %>">
 
-                                                                <button type="submit" class="btn btn-sm p-0"
+                                                                <button type="submit" class="btn btn-sm text-white p-0"
                                                                     title="Delete Wallet">
                                                                     <i class="bi bi-trash3-fill"></i>
                                                                 </button>
@@ -249,6 +249,12 @@
                                                         Cancel
                                                     </button>
 
+                                                    <button type="submit" class="btn-wallet-submit">
+                                                        Add Wallet
+                                                    </button>
+                                                </div>
+                                            </form>
+
                                         </div>
                                     </div>
                                 </div>
@@ -256,6 +262,7 @@
                                 <!-- EDIT WALLET MODAL -->
                                 <div class="modal fade" id="editWalletModal" tabindex="-1"
                                     aria-labelledby="editWalletModalLabel" aria-hidden="true">
+
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
 
@@ -272,35 +279,32 @@
                                                 method="POST">
 
                                                 <input type="hidden" name="accountId" id="editAccountId">
+                                                <input type="hidden" name="providerName" id="editProviderName">
 
                                                 <div class="modal-body">
 
                                                     <div class="mb-3">
                                                         <label class="form-label">Wallet Name</label>
                                                         <input type="text" class="form-control wallet-input"
-                                                            name="accountName" id="editAccountName" required>
+                                                            name="accountName" id="editAccountName"
+                                                            placeholder="e.g. Dompet Cash, GoPay" autocomplete="off"
+                                                            required>
                                                     </div>
 
                                                     <div class="mb-3">
                                                         <label class="form-label">Account Number / Phone</label>
                                                         <input type="text" class="form-control wallet-input"
-                                                            name="accountNumber" id="editAccountNumber">
+                                                            name="accountNumber" id="editAccountNumber"
+                                                            placeholder="e.g. 081234567890" autocomplete="off">
                                                     </div>
 
                                                     <div class="mb-3">
                                                         <label class="form-label">Wallet Type</label>
                                                         <select class="form-control wallet-input" name="walletType"
-                                                            id="editWalletType" onchange="toggleEditFields()">
-                                                            <option value="ewallet">E-Wallet / Digital</option>
-                                                            <option value="physical">Physical Card / Cash</option>
+                                                            id="editWalletType">
+                                                            <option value="physical">Dompet Cash</option>
+                                                            <option value="ewallet">E-Wallet</option>
                                                         </select>
-                                                    </div>
-
-                                                    <div class="mb-3" id="editProviderGroup">
-                                                        <label class="form-label">Provider Name</label>
-                                                        <input type="text" class="form-control wallet-input"
-                                                            name="providerName" id="editProviderName"
-                                                            placeholder="e.g. GoPay, OVO, DANA, BCA">
                                                     </div>
 
                                                     <div class="mb-3">
@@ -309,7 +313,8 @@
                                                             <span class="input-group-text wallet-input-prefix">Rp</span>
                                                             <input type="number"
                                                                 class="form-control wallet-input-number" name="balance"
-                                                                id="editBalance" min="0" step="0.01" required>
+                                                                id="editBalance" placeholder="0" min="0" step="0.01"
+                                                                autocomplete="off" required>
                                                         </div>
                                                     </div>
 
@@ -325,118 +330,104 @@
                                                         Save Changes
                                                     </button>
                                                 </div>
+
                                             </form>
 
                                         </div>
                                     </div>
                                 </div>
-
                                 <script
                                     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
                                 <script>
-                                    document.addEventListener("DOMContentLoaded", function () {
-                                        const btnToggle = document.getElementById("btnToggleBalance");
-                                        const eyeIcon = document.getElementById("eyeIcon");
-                                        let hidden = false;
+                                    const btnToggle = document.getElementById('btnToggleBalance');
+                                    const eyeIcon = document.getElementById('eyeIcon');
+                                    let hidden = false;
 
-                                        const cards = document.querySelectorAll(".wallet-card");
+                                    const cards = document.querySelectorAll('.wallet-card');
 
-                                        const cardData = Array.from(cards).map(function (card) {
-                                            const numberEl = card.querySelector(".wallet-info h5");
-                                            const balanceEl = card.querySelector(".balance-value");
+                                    const cardData = Array.from(cards).map(card => {
+                                        const numberEl = card.querySelector('.wallet-info h5');
+                                        const balanceEl = card.querySelector('.balance-value');
 
-                                            return {
-                                                numberEl: numberEl,
-                                                balanceEl: balanceEl,
-                                                originalNumber: numberEl ? numberEl.textContent.trim() : "",
-                                                originalBalance: balanceEl ? balanceEl.textContent.trim() : ""
-                                            };
-                                        });
+                                        return {
+                                            numberEl: numberEl,
+                                            balanceEl: balanceEl,
+                                            originalNumber: numberEl ? numberEl.textContent.trim() : '',
+                                            originalBalance: balanceEl ? balanceEl.textContent.trim() : ''
+                                        };
+                                    });
 
-                                        if (btnToggle) {
-                                            btnToggle.addEventListener("click", function () {
-                                                hidden = !hidden;
+                                    if (btnToggle) {
+                                        btnToggle.addEventListener('click', function () {
+                                            hidden = !hidden;
 
-                                                cardData.forEach(function (item) {
-                                                    if (hidden) {
-                                                        if (item.balanceEl) {
-                                                            item.balanceEl.textContent = "****";
-                                                            item.balanceEl.classList.add("hidden-value");
-                                                        }
+                                            cardData.forEach(function (item) {
+                                                const numberEl = item.numberEl;
+                                                const balanceEl = item.balanceEl;
+                                                const originalNumber = item.originalNumber;
+                                                const originalBalance = item.originalBalance;
 
-                                                        if (item.numberEl) {
-                                                            const digits = item.originalNumber.replace(/\s/g, "");
-                                                            const last4 = digits.slice(-4);
-
-                                                            item.numberEl.textContent = "**** **** **** " + last4;
-                                                            item.numberEl.classList.add("hidden-value");
-                                                        }
-                                                    } else {
-                                                        if (item.balanceEl) {
-                                                            item.balanceEl.textContent = item.originalBalance;
-                                                            item.balanceEl.classList.remove("hidden-value");
-                                                        }
-
-                                                        if (item.numberEl) {
-                                                            item.numberEl.textContent = item.originalNumber;
-                                                            item.numberEl.classList.remove("hidden-value");
-                                                        }
-                                                    }
-                                                });
-
-                                                if (eyeIcon) {
-                                                    eyeIcon.className = hidden ? "bi bi-eye-slash-fill" : "bi bi-eye-fill";
-                                                }
-                                            });
-                                        }
-
-                                        const walletTypeSelect = document.getElementById("walletTypeSelect");
-                                        const validThruGroup = document.getElementById("validThruGroup");
-                                        const providerGroup = document.getElementById("providerGroup");
-
-                                        if (walletTypeSelect) {
-                                            walletTypeSelect.addEventListener("change", function () {
-                                                if (this.value === "physical") {
-                                                    if (validThruGroup) {
-                                                        validThruGroup.style.display = "block";
+                                                if (hidden) {
+                                                    if (balanceEl) {
+                                                        balanceEl.textContent = '****';
+                                                        balanceEl.classList.add('hidden-value');
                                                     }
 
-                                                    if (providerGroup) {
-                                                        providerGroup.style.display = "none";
+                                                    if (numberEl) {
+                                                        const cleanNumber = originalNumber.replace(/\s/g, '');
+                                                        const last4 = cleanNumber.slice(-4);
+
+                                                        numberEl.textContent = '**** **** **** ' + last4;
+                                                        numberEl.classList.add('hidden-value');
                                                     }
                                                 } else {
-                                                    if (validThruGroup) {
-                                                        validThruGroup.style.display = "none";
+                                                    if (balanceEl) {
+                                                        balanceEl.textContent = originalBalance;
+                                                        balanceEl.classList.remove('hidden-value');
                                                     }
 
-                                                    if (providerGroup) {
-                                                        providerGroup.style.display = "block";
+                                                    if (numberEl) {
+                                                        numberEl.textContent = originalNumber;
+                                                        numberEl.classList.remove('hidden-value');
                                                     }
                                                 }
                                             });
-                                        }
-                                    });
+
+                                            if (hidden) {
+                                                eyeIcon.className = 'bi bi-eye-slash-fill';
+                                            } else {
+                                                eyeIcon.className = 'bi bi-eye-fill';
+                                            }
+                                        });
+                                    }
+
+                                    const walletTypeSelect = document.getElementById('walletTypeSelect');
+                                    const validThruGroup = document.getElementById('validThruGroup');
+                                    const providerGroup = document.getElementById('providerGroup');
+
+                                    if (walletTypeSelect) {
+                                        walletTypeSelect.addEventListener('change', function () {
+                                            if (this.value === 'physical') {
+                                                validThruGroup.style.display = 'block';
+                                                providerGroup.style.display = 'none';
+                                            } else {
+                                                validThruGroup.style.display = 'none';
+                                                providerGroup.style.display = 'block';
+                                            }
+                                        });
+                                    }
 
                                     function fillEditWalletForm(accountId, accountName, walletType, balance, providerName, accountNumber) {
                                         document.getElementById("editAccountId").value = accountId;
                                         document.getElementById("editAccountName").value = accountName;
                                         document.getElementById("editWalletType").value = walletType;
                                         document.getElementById("editBalance").value = balance;
-                                        document.getElementById("editProviderName").value = providerName;
                                         document.getElementById("editAccountNumber").value = accountNumber;
 
-                                        toggleEditFields();
-                                    }
-
-                                    function toggleEditFields() {
-                                        const walletType = document.getElementById("editWalletType").value;
-                                        const editProviderGroup = document.getElementById("editProviderGroup");
-
-                                        if (walletType === "physical") {
-                                            editProviderGroup.style.display = "none";
-                                        } else {
-                                            editProviderGroup.style.display = "block";
+                                        const providerInput = document.getElementById("editProviderName");
+                                        if (providerInput) {
+                                            providerInput.value = providerName;
                                         }
                                     }
                                 </script>

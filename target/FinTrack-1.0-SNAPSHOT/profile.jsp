@@ -22,7 +22,7 @@
 
     <body>
 
-    <jsp:include page="navbar.jsp" />
+        <jsp:include page="navbar.jsp" />
 
         <div class="dashboard-header">
             <div class="container">
