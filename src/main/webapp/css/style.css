@@ -453,107 +453,74 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
 }
-/* Merapikan posisi teks "Search:" dan kotak input */
-.dataTables_wrapper .dataTables_filter label {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 15px; /* Jarak antara teks dan kotak pencarian */
+
+/* [START] TABEL */
+/* [START] Custom Table Style (Desain Minimalis) */
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+/* Styling Header Tabel */
+.table-head {
+    background-color: #eef2f5; /* Abu-abu muda seperti di gambar */
+    color: #4a4a4a; /* Ubah ke #fff jika memakai background gelap */
+    border-bottom: none !important;
+}
+
+.custom-table thead th {
+    padding: 15px;
     font-weight: 600;
-    color: #4a4a4a;
-    
-}
-.dataTables_wrapper .dataTables_filter{
-    padding: 15px 5px;
-}
-/* Mempercantik kotak input pencariannya */
-.dataTables_wrapper .dataTables_filter input.form-control {
-    border-radius: 50rem !important; /* Membuat ujungnya melengkung penuh (pill) */
-    padding: 0.4rem 1rem;
-    border: 1px solid #ced4da;
-    background-color: #f8f9fa;
-    transition: all 0.2s ease-in-out;
-    width: 250px; /* Memperlebar kotak sedikit agar proporsional */
+    border-bottom: none !important;
 }
 
-/* Efek menyala saat kotak pencarian diklik (menggunakan warna hijau Anda) */
-.dataTables_wrapper .dataTables_filter input.form-control:focus {
-    background-color: #ffffff;
-    border-color: #9EDE04 !important; /* Menggunakan aksen hijau lime pilihan Anda */
-    box-shadow: 0 0 0 0.25rem rgba(158, 222, 4, 0.25) !important;
-    outline: none;
+/* Lengkungan di ujung header kiri dan kanan */
+.custom-table thead th:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+.custom-table thead th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
-/* [Opsional] Merapikan juga bagian "Show X entries" di sebelah kiri */
-.dataTables_wrapper .dataTables_length label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    color: #4a4a4a;
+/* Merapikan baris data */
+.custom-table tbody td {
+    padding: 16px 15px;
+    border-bottom: 1px solid #f0f2f5; /* Garis pemisah horizontal yang sangat halus */
+    border-top: none;
+    vertical-align: middle;
 }
 
-.dataTables_wrapper .dataTables_length select.form-select {
-    border-radius: 8px;
-    cursor: pointer;
+/* [START] Tombol Aksi Minimalis (Hanya Ikon) */
+.btn-icon-edit {
+    background-color: #f4fce3; /* Latar hijau super pucat */
+    color: #28a745; /* Ikon hijau */
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-right: 4px;
+    transition: 0.2s;
 }
-/* 1. Warna teks default untuk link (Previous, 1, 2, Next) */
-.dataTables_wrapper .pagination .page-link {
-    color: #3b5400; /* Menggunakan hijau gelap agar senada */
-    background-color: #ffffff;
-    border-color: #dee2e6;
-    transition: all 0.2s ease-in-out;
-}
-
-/* 2. Saat kursor diarahkan (hover) ke tombol pagination */
-.dataTables_wrapper .pagination .page-link:hover {
-    color: #142100;
-    background-color: #f4fce3; /* Hijau pastel lembut (seperti tombol edit) */
-    border-color: #dee2e6;
+.btn-icon-edit:hover {
+    background-color: #d4edda;
+    color: #155724;
 }
 
-/* 3. Saat tombol sedang aktif (menunjukkan halaman saat ini) */
-.dataTables_wrapper .pagination .page-item.active .page-link {
-    color: #142100 !important; /* Teks gelap agar kontras */
-    background-color: #9EDE04 !important; /* Hijau lime utama */
-    border-color: #9EDE04 !important;
-    font-weight: 600;
+.btn-icon-delete {
+    background-color: #ffebee; /* Latar merah super pucat */
+    color: #dc3545; /* Ikon merah */
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    transition: 0.2s;
 }
+.btn-icon-delete:hover {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+/* [END] Custom Table Style */
 
-/* 4. Efek fokus/menyala saat tombol diklik */
-.dataTables_wrapper .pagination .page-link:focus {
-    box-shadow: 0 0 0 0.25rem rgba(158, 222, 4, 0.25);
-    color: #142100;
-}
 
-/* 5. Tampilan tombol yang mati/disable (misal tombol 'Next' di halaman terakhir) */
-.dataTables_wrapper .pagination .page-item.disabled .page-link {
-    color: #6c757d;
-    background-color: #e9ecef;
-    border-color: #dee2e6;
-}
-/* Mempercantik kotak dropdown dasar */
-.dataTables_wrapper .dataTables_length{
-    padding-top: 15px;
-}
-.dataTables_wrapper .dataTables_length select.form-select {
-    border-radius: 8px; /* Sudut sedikit melengkung */
-    border: 1px solid #ced4da;
-    background-color: #f8f9fa;
-    color: #4a4a4a;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    padding-top: 0.5rem;
-    padding-bottom: 0.375rem;
-    
-}
-
-/* Efek menyala saat dropdown diklik (menghilangkan warna biru) */
-.dataTables_wrapper .dataTables_length select.form-select:focus {
-    background-color: #ffffff;
-    border-color: #9EDE04 !important; /* Warna hijau lime Anda */
-    box-shadow: 0 0 0 0.25rem rgba(158, 222, 4, 0.25) !important; /* Efek glowing/bayangan hijau */
-    outline: none;
-}
 /* [END] Category */

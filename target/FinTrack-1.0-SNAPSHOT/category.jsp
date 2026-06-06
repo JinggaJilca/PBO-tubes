@@ -85,7 +85,6 @@
                             <div class="d-flex align-items-center gap-2">
                                 <a href="tambah-category.jsp" class="btn btn-date d-flex align-items-center gap-2">
                                     <i class="bi bi-plus-lg"></i>
-                                    
                                     Tambah Kategori</a>
                                 </button>
                             </div>
@@ -100,7 +99,7 @@
                 
             <div class="table-responsive">
             <table id="tabelKategori" class="table table-striped table-hover table-bordered align-middle">
-                <thead class="table-success text-center">
+                <thead class="table-head text-center">
                     <tr>
                         <th width="5%" class="text-center">No</th>
                         <th class="text-center">Category Name</th>
