@@ -827,3 +827,869 @@ body{
 .activity-table tbody tr:last-child td {
     border-bottom: none;
 }
+
+/* Budget style */
+/* ==========================
+           HEADER BUDGET
+        ========================== */
+        .budget-page-header {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+}
+
+        .budget-header-content {
+            gap: 30px;
+        }
+
+        .budget-title {
+            margin: 0;
+            color: #FFFFFF;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.15;
+        }
+
+        .budget-total {
+            margin: 4px 0 0;
+            color: #FFFFFF;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.15;
+        }
+
+        .budget-header-buttons {
+            flex-shrink: 0;
+        }
+
+        /*
+         * Tidak membuat CSS .btn-date di halaman ini.
+         * Tombol menggunakan .btn-date dari style.css
+         * agar sama dengan halaman addBudget.jsp.
+         */
+
+        /* ==========================
+           PROGRESS BUDGET UTAMA
+        ========================== */
+
+        .main-progress-wrapper {
+            margin-top: 10px;
+        }
+
+        .main-progress {
+            height: 40px;
+            overflow: hidden;
+            background-color: #285C53;
+            border-radius: 22px;
+        }
+
+        .main-progress-bar {
+            display: flex;
+            width: 67%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            background-color: #92E600;
+            color: #083F36;
+            border-radius: 22px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .main-progress-information {
+            display: flex;
+            margin-top: 8px;
+            justify-content: space-between;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* ==========================
+           CONTAINER CARD
+        ========================== */
+
+        .budget-card-container {
+            position: relative;
+            z-index: 2;
+            margin-top: 25px;
+            margin-bottom: 60px;
+        }
+
+        /* ==========================
+           CARD BUDGET
+        ========================== */
+
+        .budget-card {
+            min-height: 260px;
+            padding: 0;
+            overflow: hidden;
+            background-color: transparent;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .budget-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 16px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Bagian atas */
+        .budget-card-top {
+            display: flex;
+            min-height: 10px;
+            align-items: center;
+            padding: 18px 24px;
+            background-color: #92E600;
+        }
+
+        /* Bagian tengah */
+        .budget-card-middle {
+            display: flex;
+            flex: 1;
+            min-height: 92px;
+            align-items: center;
+            padding: 18px 24px;
+            background-color: #FFFFFF;
+        }
+
+        /* Bagian bawah */
+        .budget-card-bottom {
+            min-height: 96px;
+            padding: 16px 24px 20px;
+            background-color: #EBEBEB;
+            color: #000000;
+        }
+
+        .budget-category {
+            margin: 0;
+            color: #000000;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .budget-amount {
+            margin: 0;
+            color: #000000;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .remaining-text {
+            margin-bottom: 9px;
+            color: #000000;
+            text-align: right;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* ==========================
+           PROGRESS CATEGORY
+        ========================== */
+
+        .category-progress {
+            position: relative;
+            height: 19px;
+            overflow: hidden;
+            background-color: #FFFFFF;
+            border-radius: 20px;
+        }
+
+        .category-progress-fill {
+            height: 100%;
+            border-radius: 20px;
+        }
+
+        .category-status {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 2;
+            font-size: 10px;
+            font-weight: 700;
+            transform: translate(-50%, -50%);
+        }
+
+        /* ==========================
+           TOMBOL ADD NEW BUDGET
+        ========================== */
+
+        .add-budget-button {
+            width: 100%;
+            min-height: 260px;
+            background-color: #FFFFFF;
+            color: #083F36;
+            border: 1.5px dashed #083F36;
+            border-radius: 16px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .add-budget-button:hover {
+            background-color: #F2F7F6;
+            color: #083F36;
+            border-color: #92E600;
+            transform: translateY(-3px);
+        }
+
+        .add-budget-icon {
+            display: flex;
+            width: 42px;
+            height: 42px;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid #083F36;
+            border-radius: 50%;
+            font-size: 27px;
+        }
+
+        /* ==========================
+           RESPONSIVE TABLET
+        ========================== */
+
+        @media (max-width: 991px) {
+            .budget-title {
+                font-size: 36px;
+            }
+
+            .budget-total {
+                font-size: 30px;
+            }
+        }
+
+        /* ==========================
+           RESPONSIVE MOBILE
+        ========================== */
+
+        @media (max-width: 768px) {
+            .budget-header-content {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 20px;
+            }
+
+            .budget-header-buttons {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .budget-title {
+                font-size: 30px;
+            }
+
+            .budget-total {
+                font-size: 28px;
+            }
+
+            .main-progress-information {
+                gap: 15px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .budget-header-buttons {
+                flex-direction: column;
+            }
+
+            .budget-header-buttons .btn-date {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .budget-title {
+                font-size: 26px;
+            }
+
+            .budget-total {
+                font-size: 24px;
+            }
+
+            .main-progress-information {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .main-progress-information span:last-child {
+                text-align: right;
+            }
+        }
+
+        /* end budget style */
+
+
+        /* start Add budget style */
+/* =====================================
+   ADD NEW BUDGET PAGE
+===================================== */
+
+.add-budget-page {
+    min-height: 100vh;
+    background-color: #F5F7FA;
+    color: #083F36;
+    font-family: "Instrument Sans", sans-serif;
+}
+
+/* =====================================
+   HEADER ADD NEW BUDGET
+===================================== */
+
+.add-budget-page-header {
+    position: relative;
+
+    /*
+     * Jangan menggunakan z-index angka pada header.
+     * Ini mencegah dropdown terjebak di belakang form.
+     */
+    z-index: auto;
+
+    padding-top: 1.5rem;
+    padding-bottom: 8.8rem;
+
+    overflow: visible;
+
+    background-color: #0B3A30;
+    color: #FFFFFF;
+}
+
+.add-budget-header-content {
+    position: relative;
+    z-index: 20;
+
+    gap: 30px;
+}
+
+.add-budget-title-wrapper {
+    position: relative;
+    z-index: 20;
+
+    min-width: 0;
+}
+
+.add-budget-subtitle {
+    margin: 0 0 6px;
+
+    color: #A0B2AF;
+
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.add-budget-title {
+    margin: 0;
+
+    color: #FFFFFF;
+
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.add-budget-header-buttons {
+    position: relative;
+    z-index: 30;
+
+    flex-shrink: 0;
+}
+
+/* =====================================
+   TOMBOL MONTH DAN EXPORT
+===================================== */
+
+.add-budget-page .btn-date-dash {
+    position: relative;
+    z-index: 31;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 46px;
+    padding: 8px 18px;
+
+    background-color: transparent;
+    color: #FFFFFF;
+
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.add-budget-page .btn-date-dash:hover,
+.add-budget-page .btn-date-dash:focus,
+.add-budget-page .btn-date-dash:active,
+.add-budget-page .btn-date-dash.show {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: #FFFFFF !important;
+
+    border-color: #FFFFFF !important;
+
+    box-shadow: none !important;
+}
+
+.add-budget-page .btn-date-dash::after {
+    margin-left: 3px;
+    vertical-align: middle;
+}
+
+/* =====================================
+   DROPDOWN MONTH
+===================================== */
+
+.add-budget-page .dropdown {
+    position: relative;
+    z-index: 40;
+}
+
+.add-budget-page .dropdown-menu {
+    position: absolute;
+    z-index: 9999 !important;
+
+    min-width: 180px;
+    margin-top: 8px;
+    padding: 8px;
+
+    overflow: visible;
+
+    background-color: #FFFFFF;
+
+    border: none;
+    border-radius: 14px;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.add-budget-page .dropdown-item {
+    width: 100%;
+    padding: 9px 14px;
+
+    background-color: transparent;
+    color: #174F45;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.add-budget-page .dropdown-item:hover,
+.add-budget-page .dropdown-item:focus,
+.add-budget-page .dropdown-item:active {
+    background-color: #0B3A30 !important;
+    color: #FFFFFF !important;
+}
+
+/* =====================================
+   CONTAINER FORM
+===================================== */
+
+.add-budget-page .form-wrapper {
+    position: relative;
+
+    /*
+     * Form berada di depan background hijau,
+     * tetapi tetap di bawah tombol dan dropdown.
+     */
+    z-index: 2;
+
+    /*
+     * Semakin negatif, form semakin naik.
+     * Bisa diubah menjadi -120px jika ingin lebih naik.
+     */
+    margin-top: -100px;
+
+    padding-bottom: 70px;
+}
+
+/* =====================================
+   CARD FORM
+===================================== */
+
+.add-budget-page .budget-form-card {
+    position: relative;
+    z-index: 2;
+
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 34px;
+
+    overflow: visible;
+
+    background-color: #FFFFFF;
+
+    border: none;
+    border-radius: 18px;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.add-budget-page .form-title {
+    margin-bottom: 28px;
+
+    color: #174F45;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.add-budget-page .form-group {
+    margin-bottom: 24px;
+}
+
+/* =====================================
+   LABEL DAN INPUT
+===================================== */
+
+.add-budget-page .form-label {
+    display: inline-block;
+
+    margin-bottom: 9px;
+
+    color: #174F45;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.add-budget-page .form-control {
+    min-height: 50px;
+    padding: 12px 14px;
+
+    background-color: #FFFFFF;
+    color: #083F36;
+
+    border: 1px solid #D9E2E0;
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.add-budget-page .form-control::placeholder {
+    color: #9AA8A5;
+}
+
+.add-budget-page .form-control:hover {
+    border-color: #B8C7C4;
+}
+
+.add-budget-page .form-control:focus {
+    background-color: #FFFFFF;
+    color: #083F36;
+
+    border-color: #92E600;
+
+    box-shadow: 0 0 0 0.2rem rgba(146, 230, 0, 0.18);
+    outline: none;
+}
+
+/* =====================================
+   INPUT RP
+===================================== */
+
+.add-budget-page .input-group-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 55px;
+    padding: 12px 14px;
+
+    background-color: #F2F6F5;
+    color: #174F45;
+
+    border: 1px solid #D9E2E0;
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+
+    font-weight: 700;
+
+    transition: border-color 0.2s ease;
+}
+
+.add-budget-page .input-group .form-control {
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+}
+
+.add-budget-page .input-group:focus-within .input-group-text {
+    border-color: #92E600;
+}
+
+.add-budget-page .input-group:focus-within .form-control {
+    border-color: #92E600;
+}
+
+/* =====================================
+   TEKS BANTUAN
+===================================== */
+
+.add-budget-page .helper-text {
+    margin: 7px 0 0;
+
+    color: #758581;
+
+    font-size: 12px;
+}
+
+/* =====================================
+   WARNING THRESHOLD
+===================================== */
+
+.add-budget-page .threshold-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-bottom: 12px;
+}
+
+.add-budget-page .threshold-value {
+    padding: 7px 12px;
+
+    background-color: #F2F6F5;
+    color: #174F45;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.add-budget-page .threshold-slider {
+    width: 100%;
+
+    cursor: pointer;
+    accent-color: #92E600;
+}
+
+.add-budget-page .threshold-slider:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.add-budget-page .threshold-limits {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    color: #758581;
+
+    font-size: 12px;
+}
+
+/* =====================================
+   TOMBOL FORM
+===================================== */
+
+.add-budget-page .form-action {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    margin-top: 32px;
+}
+
+.add-budget-page .btn-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 125px;
+    min-height: 46px;
+    padding: 11px 22px;
+
+    background-color: #FFFFFF;
+    color: #174F45;
+
+    border: 1px solid #174F45;
+    border-radius: 10px;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.add-budget-page .btn-cancel:hover,
+.add-budget-page .btn-cancel:focus,
+.add-budget-page .btn-cancel:active {
+    background-color: #F2F7F6;
+    color: #174F45;
+
+    border-color: #174F45;
+
+    box-shadow: none;
+}
+
+.add-budget-page .btn-save {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 155px;
+    min-height: 46px;
+    padding: 11px 22px;
+
+    background-color: #92E600;
+    color: #083F36;
+
+    border: none;
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.add-budget-page .btn-save:hover,
+.add-budget-page .btn-save:focus,
+.add-budget-page .btn-save:active {
+    background-color: #7FCC00;
+    color: #083F36;
+
+    box-shadow: none;
+}
+
+.add-budget-page .btn-save:hover {
+    transform: translateY(-1px);
+}
+
+/* =====================================
+   RESPONSIVE TABLET
+===================================== */
+
+@media (max-width: 991px) {
+    .add-budget-page-header {
+        padding-top: 2.4rem;
+        padding-bottom: 8rem;
+    }
+
+    .add-budget-title {
+        font-size: 36px;
+    }
+
+    .add-budget-page .form-wrapper {
+        margin-top: -90px;
+    }
+}
+
+/* =====================================
+   RESPONSIVE MOBILE
+===================================== */
+
+@media (max-width: 768px) {
+    .add-budget-page-header {
+        padding-top: 2rem;
+        padding-bottom: 7rem;
+    }
+
+    .add-budget-header-content {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 20px;
+    }
+
+    .add-budget-header-buttons {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .add-budget-title {
+        font-size: 30px;
+    }
+
+    .add-budget-page .form-wrapper {
+        margin-top: -65px;
+        padding-bottom: 50px;
+    }
+
+    .add-budget-page .budget-form-card {
+        padding: 24px;
+        border-radius: 14px;
+    }
+
+    .add-budget-page .form-action {
+        flex-direction: column-reverse;
+    }
+
+    .add-budget-page .btn-cancel,
+    .add-budget-page .btn-save {
+        width: 100%;
+    }
+}
+
+/* =====================================
+   RESPONSIVE MOBILE KECIL
+===================================== */
+
+@media (max-width: 480px) {
+    .add-budget-page-header {
+        padding-bottom: 6rem;
+    }
+
+    .add-budget-header-buttons {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    .add-budget-header-buttons .dropdown {
+        width: 100%;
+    }
+
+    .add-budget-page .btn-date-dash {
+        width: 100%;
+    }
+
+    .add-budget-title {
+        font-size: 27px;
+    }
+
+    .add-budget-page .form-wrapper {
+        margin-top: -50px;
+
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .add-budget-page .budget-form-card {
+        padding: 20px;
+    }
+
+    .add-budget-page .threshold-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+/* end add budget style */
+
