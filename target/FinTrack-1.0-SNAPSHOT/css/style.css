@@ -1,4 +1,4 @@
-body{
+body {
     font-family: 'Instrument Sans', sans-serif;
 }
 
@@ -11,7 +11,7 @@ body{
 }
 
 .image-side {
-    background-color: #0B3A30;
+    background-color: #0B3A30; /* Hijau gelap */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,6 +75,7 @@ body{
     font-size: 0.85rem;
     font-weight: 600;
 }
+
 .register-link b {
     font-weight: 800;
 }
@@ -92,6 +93,7 @@ body{
     background-color: #0B3A30 !important;
 }
 
+/* Lingkaran untuk ikon Notifikasi (Lonceng) */
 .icon-circle {
     width: 42px;
     height: 42px;
@@ -103,6 +105,7 @@ body{
     color: white;
     transition: background-color 0.3s;
 }
+
 .icon-circle:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
@@ -110,16 +113,16 @@ body{
 .profile-circle {
     width: 42px;
     height: 42px;
-    background-color: #e0e4e3;
+    background-color: #e0e4e3; /* Warna abu-abu terang sesuai gambar */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #0B3A30;
+    color: #0B3A30; /* Warna hijau gelap untuk siluet user */
 }
 
 .navbar-logo {
-    height: 25px;
+    height: 25px; /* Kamu bisa mengatur besar/kecil logo di sini */
     width: auto;
     object-fit: contain;
 }
@@ -134,12 +137,69 @@ body{
 }
 
 .navbar-custom {
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff; /* ⚠️ MENGUBAH GARIS MENJADI PUTIH SOLID */
 }
 /* [END] NAVBAR */
 
 
+/* [START] Dashboard */
+/* Header Hijau Gelap */
+.dashboard-header {
+    background-color: #0B3A30 !important;
+    color: #ffffff;
+    padding-top: 2rem;
+    padding-bottom: 8rem; /* Memberikan ruang ekstra di bawah agar card bisa menumpuk */
+}
+
+/* Teks abu-abu terang untuk "Good Morning" */
+.text-light-teal {
+    color: #a0b2af;
+}
+
+/* Tombol Tanggal (Bulan & Tahun) */
+.btn-date {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.btn-date:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Container untuk Card agar naik ke atas (Overlapping) */
+.overlap-container {
+    margin-top: -5rem; /* Menarik konten ke atas menabrak warna hijau */
+    position: relative;
+    z-index: 10;
+}
+
+/* Standar Desain Card FinTrack */
+.fintrack-card {
+    border: none;
+    border-radius: 20px; /* Sudut sangat membulat sesuai desain */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    background-color: #ffffff;
+}
+
+/* Ukuran tinggi card */
+.summary-card {
+    min-height: 160px;
+}
+
+.activity-card {
+    min-height: 400px; /* Card bawah dibuat lebih tinggi */
+}
+/* [END] Dashboard */
+
+
 /* [START] PROFILE == CHANGEPROFILE */
+/* Tombol Kapsul Hijau Gelap */
 .btn-light {
     background-color: #ececec;
     color: #000000;
@@ -149,6 +209,7 @@ body{
     padding: 12px;
     transition: all 0.3s ease;
 }
+
 .btn-light:hover {
     background-color: #a2a2a2;
     color: #000000;
@@ -164,6 +225,7 @@ body{
     padding: 12px;
     transition: all 0.3s ease;
 }
+
 .btn-dark-teal:hover {
     background-color: #004d41;
     color: #ffffff;
@@ -179,6 +241,7 @@ body{
     font-size: 0.95rem;
     transition: all 0.3s ease;
 }
+
 .fintrack-input:focus {
     border-color: #98ce00;
     box-shadow: 0 0 0 0.25rem rgba(152, 206, 0, 0.1);
@@ -209,8 +272,8 @@ body{
 .dropdown-item:hover,
 .dropdown-item:focus,
 .dropdown-item:active {
-    background-color: #002d26 !important;
-    color: #ffffff !important;
+    background-color: #002d26 !important; /* Warna Dark Teal */
+    color: #ffffff !important; /* Teks menjadi putih */
 }
 
 .dropdown-item:hover i {
@@ -233,10 +296,13 @@ body{
     background-color: #002d26;
     color: #ffffff;
 }
+
+/* Ubah teks dan ikon di dalam card gelap menjadi putih */
 .theme-dark .text-dark-teal,
 .theme-dark .text-dark {
     color: #ffffff !important;
 }
+
 .theme-dark .badge.bg-light {
     background-color: rgba(255, 255, 255, 0.2) !important;
     color: #ffffff !important;
@@ -247,10 +313,12 @@ body{
     background-color: #98ce00;
     color: #002d26;
 }
+
 .theme-lime .text-dark-teal,
 .theme-lime .text-dark {
     color: #002d26 !important;
 }
+
 .theme-lime .badge.bg-light {
     background-color: rgba(0, 45, 38, 0.1) !important;
     color: #002d26 !important;
@@ -258,16 +326,137 @@ body{
 }
 
 .theme-pale {
-    background-color: #e4f0d0;
+    background-color: #e4f0d0; /* Warna krem hijau pucat */
     color: #002d26;
 }
 /* [END] WALLET THEMES */
 
 
+/* [START] Category */
+.badge-income {
+    background-color: #9EDE04 !important; /* Warna utama sesuai pilihan Anda */
+    color: #142100 !important; /* Teks dibuat sangat gelap untuk kontras maksimal */
+    border-color: #87bf03; /* Border sedikit lebih gelap untuk penegasan */
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.4em 0.9em;
+    border-radius: 50rem !important; /* Membuat bentuk oval/pill */
+    display: inline-block;
+    min-width: 85px; /* Menyamakan lebar badge agar rapi saat berbaris di tabel */
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+.badge-expense {
+    background-color: #dc3545 !important; /* Menjadi merah solid */
+    color: #ffffff !important;
+    border-color: #bd2130;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.4em 0.9em;
+    border-radius: 50rem !important;
+    display: inline-block;
+    min-width: 85px;
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+.btn-delete {
+    background-color: #ffe8e8 !important; /* Merah pastel */
+    color: #c80000 !important; /* Teks merah gelap */
+    border: 1px solid #dc3545;
+    border-radius: 6px;
+    padding: 0.35rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Interaksi saat kursor diarahkan ke tombol Hapus */
+.btn-delete:hover {
+    background-color: #dc3545 !important; /* Menjadi merah solid */
+    color: #ffffff !important;
+    border-color: #bd2130;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* [START] TABEL */
+/* Custom Table Style (Desain Minimalis) */
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+/* Styling Header Tabel */
+.table-head {
+    background-color: #eef2f5; /* Abu-abu muda seperti di gambar */
+    color: #4a4a4a; /* Ubah ke #fff jika memakai background gelap */
+    border-bottom: none !important;
+}
+
+.custom-table thead th {
+    padding: 15px;
+    font-weight: 600;
+    border-bottom: none !important;
+}
+
+/* Lengkungan di ujung header kiri dan kanan */
+.custom-table thead th:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.custom-table thead th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Merapikan baris data */
+.custom-table tbody td {
+    padding: 16px 15px;
+    border-bottom: 1px solid #f0f2f5; /* Garis pemisah horizontal yang sangat halus */
+    border-top: none;
+    vertical-align: middle;
+}
+
+/* Tombol Aksi Minimalis (Hanya Ikon) */
+.btn-icon-edit {
+    background-color: #f4fce3; /* Latar hijau super pucat */
+    color: #28a745; /* Ikon hijau */
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-right: 4px;
+    transition: 0.2s;
+}
+
+.btn-icon-edit:hover {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.btn-icon-delete {
+    background-color: #ffebee; /* Latar merah super pucat */
+    color: #dc3545; /* Ikon merah */
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    transition: 0.2s;
+}
+
+.btn-icon-delete:hover {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+/* [END] Custom Table Style */
+/* [END] Category */
+
+
 /* =====================================
    WALLET PAGE
 ===================================== */
-
 .wallet-header {
     background-color: #0B3A30;
     color: #ffffff;
@@ -300,6 +489,7 @@ body{
     transition: background 0.2s;
     flex-shrink: 0;
 }
+
 .btn-eye-wallet:hover {
     background: rgba(255, 255, 255, 0.25);
     color: white;
@@ -318,6 +508,7 @@ body{
     gap: 8px;
     transition: all 0.2s;
 }
+
 .btn-refresh-wallet:hover {
     background: white;
     color: #0B3A30;
@@ -345,21 +536,24 @@ body{
     cursor: pointer;
     flex-shrink: 0;
 }
+
 .wallet-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
 }
 
 .wallet-card-top {
-    background-color: #EFFADF;
+    background-color: #fbfff6;
     height: 115px;
     padding: 16px 18px;
     position: relative;
 }
+
 .wallet-card-top .card-icon {
     font-size: 1.3rem;
     color: #1a1a1a;
 }
+
 .wallet-card-top .card-icon-credit {
     font-size: 1.1rem;
     color: #1a1a1a;
@@ -368,12 +562,14 @@ body{
 .wallet-info {
     margin-top: 10px;
 }
+
 .wallet-info h6 {
     font-size: 13px;
     font-weight: 600;
     color: #1a1a1a;
     margin-bottom: 2px;
 }
+
 .wallet-info h5 {
     font-size: 13px;
     font-weight: 700;
@@ -392,6 +588,7 @@ body{
     line-height: 1.3;
     color: #333;
 }
+
 .wallet-valid span {
     display: block;
     font-size: 12px;
@@ -424,6 +621,7 @@ body{
     transition: all 0.25s ease;
     flex-shrink: 0;
 }
+
 .add-wallet-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
@@ -455,22 +653,27 @@ body{
     border-radius: 20px;
     border: none;
 }
+
 .modal-header {
     border-bottom: 1px solid #e5e7eb;
     padding: 20px 24px;
 }
+
 .modal-title {
     font-weight: 700;
     color: #0B3A30;
     font-size: 1rem;
 }
+
 .modal-body {
     padding: 24px;
 }
+
 .modal-footer {
     border-top: 1px solid #e5e7eb;
     padding: 16px 24px;
 }
+
 .modal-body .form-label {
     font-weight: 600;
     color: #0B3A30;
@@ -485,6 +688,7 @@ body{
     font-size: 0.9rem;
     transition: all 0.2s;
 }
+
 .wallet-input:focus {
     border-color: #98ce00;
     box-shadow: 0 0 0 0.2rem rgba(152, 206, 0, 0.15);
@@ -509,6 +713,7 @@ body{
     font-size: 0.9rem;
     transition: all 0.2s;
 }
+
 .wallet-input-number:focus {
     border-color: #98ce00;
     box-shadow: 0 0 0 0.2rem rgba(152, 206, 0, 0.15);
@@ -525,6 +730,7 @@ body{
     font-size: 0.9rem;
     transition: background 0.2s;
 }
+
 .btn-wallet-submit:hover {
     background-color: #004D40;
     color: white;
@@ -540,6 +746,7 @@ body{
     font-size: 0.9rem;
     transition: background 0.2s;
 }
+
 .btn-wallet-cancel:hover {
     background-color: #d0d0d0;
     color: #333;
@@ -556,7 +763,6 @@ body{
 /* =====================================
    DASHBOARD PAGE
 ===================================== */
-
 .dashboard-header {
     background-color: #0B3A30;
     color: white;
@@ -583,6 +789,7 @@ body{
     cursor: pointer;
     flex-shrink: 0;
 }
+
 .btn-eye-dash:hover {
     background: rgba(255, 255, 255, 0.25);
 }
@@ -601,6 +808,7 @@ body{
     transition: all 0.2s;
     white-space: nowrap;
 }
+
 .btn-date-dash:hover {
     background: rgba(255, 255, 255, 0.1);
     color: white;
@@ -612,6 +820,7 @@ body{
     font-size: 0.78rem;
     padding: 5px 12px;
 }
+
 .btn-date-sm:hover {
     background: #f5f5f5;
     color: #333;
@@ -680,6 +889,7 @@ body{
     cursor: pointer;
     transition: background 0.2s;
 }
+
 .btn-add-card:hover {
     background: #004D40;
 }
@@ -692,14 +902,23 @@ body{
     display: flex;
     margin: 10px 0 8px;
 }
+
 .spending-bar-wrap .seg {
     height: 100%;
     transition: width 0.4s;
 }
 
-.seg-food  { background: #e05c3a; }
-.seg-shop  { background: #e8c9a0; }
-.seg-trans { background: #8aab99; }
+.seg-food {
+    background: #e05c3a;
+}
+
+.seg-shop {
+    background: #e8c9a0;
+}
+
+.seg-trans {
+    background: #8aab99;
+}
 
 .spending-legend {
     display: flex;
@@ -791,6 +1010,7 @@ body{
     gap: 6px;
     transition: all 0.2s;
 }
+
 .btn-sortby:hover {
     background: #f5f5f5;
 }
@@ -813,6 +1033,7 @@ body{
 .activity-table thead tr th:first-child {
     border-radius: 10px 0 0 10px;
 }
+
 .activity-table thead tr th:last-child {
     border-radius: 0 10px 10px 0;
 }
@@ -827,6 +1048,722 @@ body{
 .activity-table tbody tr:last-child td {
     border-bottom: none;
 }
+
+/* dashboard style */
+.summary-card {
+    min-height: 170px;
+    border-radius: 22px;
+}
+
+.summary-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.chart-card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 280px;
+    width: 100%;
+}
+
+.mini-chart-wrapper {
+    position: relative;
+    height: 75px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+.legend-inline {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 12px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.legend-green {
+    background-color: #9acd32;
+}
+
+.legend-gray {
+    background-color: #d1d5db;
+}
+
+.legend-orange {
+    background-color: #d98c5f;
+}
+
+.legend-yellow {
+    background-color: #d9a441;
+}
+
+.legend-olive {
+    background-color: #a8be84;
+}
+
+.spending-mini-list {
+    margin-top: 6px;
+}
+
+.spending-mini-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    margin-bottom: 3px;
+    color: #374151;
+    gap: 8px;
+}
+
+.spending-mini-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+}
+
+.spending-mini-left span:last-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px;
+}
+
+.activity-card {
+    border-radius: 22px;
+}
+
+.activity-card-compact {
+    min-height: 100%;
+}
+
+.activity-table th,
+.activity-table td {
+    font-size: 11px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.activity-table thead th {
+    background-color: #e5e7eb;
+    color: #374151;
+    border: none;
+    font-weight: 700;
+}
+
+.activity-table tbody td {
+    border-color: #f1f5f9;
+}
+
+.btn-date {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: white;
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 8px 16px;
+    background-color: transparent;
+}
+
+.btn-date:hover {
+    color: white;
+    border-color: white;
+}
+
+.btn-date-light {
+    border: 1px solid #0f4a3c;
+    color: #0f4a3c;
+    border-radius: 999px;
+    font-size: 12px;
+    padding: 5px 12px;
+    background-color: transparent;
+}
+
+.btn-date-light:hover {
+    border-color: #0f4a3c;
+    color: #0f4a3c;
+}
+
+.empty-data {
+    text-align: center;
+    color: #777;
+    padding: 18px;
+}
+
+.legend-inline {
+    justify-content: flex-start;
+}
+
+.summary-value,
+.chart-card-title {
+    font-size: 20px;
+}
+/* END DASHBOARD STYLE */
+
+
+/* =====================================
+   TRANSACTION PAGE
+===================================== */
+.trx-header {
+    background-color: #0B3A30;
+    color: white;
+    padding: 2rem 0 7rem 0;
+}
+
+.trx-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.btn-add-trx {
+    background-color: transparent;
+    color: white;
+    font-weight: 600;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    cursor: pointer;
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+.btn-add-trx:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.trx-overlap-container {
+    margin-top: -5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.trx-summary-card {
+    background: white;
+    border-radius: 22px;
+    padding: 22px 24px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    height: 100%;
+    min-height: 130px;
+    position: relative;
+}
+
+.trx-summary-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.income-icon-bg {
+    background: #9EDE04;
+    color: #0B3A30;
+}
+
+.expense-icon-bg {
+    background: #dc2626;
+    color: #fff;
+}
+
+.balance-icon-bg {
+    background: #e5e7eb;
+    color: #333;
+}
+
+.trx-summary-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.trx-summary-value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.trx-summary-sub {
+    font-size: 0.78rem;
+    color: #9ca3af;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+    margin-bottom: 0;
+}
+
+.trx-table-card {
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.trx-filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #f3f4f6;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.trx-filter-bar-title {
+    font-weight: 700;
+    color: #111;
+    font-size: 1rem;
+}
+
+.trx-search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.trx-search-icon {
+    position: absolute;
+    left: 12px;
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.trx-search-input {
+    border: 1.5px solid #e5e7eb;
+    border-radius: 999px;
+    padding: 8px 14px 8px 34px;
+    font-size: 0.83rem;
+    outline: none;
+    width: 200px;
+    transition: border 0.2s;
+    font-family: 'Instrument Sans', sans-serif;
+    background: white;
+    color: #111;
+}
+
+.trx-search-input:focus {
+    border-color: #0B3A30;
+}
+
+.trx-filter-tabs {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.trx-filter-tab {
+    border: 1.5px solid #e0e0e0;
+    background: white;
+    border-radius: 999px;
+    padding: 6px 18px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+.trx-filter-tab:hover:not(.active) {
+    background: #f5f5f0;
+    color: #333;
+}
+
+.trx-filter-tab.active {
+    background: #0B3A30;
+    color: white;
+    border-color: #0B3A30;
+}
+
+.trx-select {
+    border: 1.5px solid #e0e0e0;
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Instrument Sans', sans-serif;
+    transition: border 0.2s;
+    background: white;
+}
+
+.trx-select:focus {
+    border-color: #0B3A30;
+}
+
+.trx-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.83rem;
+}
+
+.trx-table thead tr th {
+    background: #e5e7eb;
+    padding: 11px 16px;
+    font-weight: 700;
+    color: #374151;
+    border: none;
+    white-space: nowrap;
+}
+
+.trx-table thead tr th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.trx-table thead tr th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.trx-table tbody tr td {
+    padding: 13px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #333;
+    vertical-align: middle;
+}
+
+.trx-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.trx-table tbody tr:hover {
+    background: #fafcf8;
+}
+
+.trx-badge-category {
+    background: #f0fdf4;
+    color: #166534;
+    border-radius: 999px;
+    padding: 3px 10px;
+    font-size: 0.76rem;
+    font-weight: 600;
+}
+
+.trx-type-badge {
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.type-income {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.type-expense {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.trx-amount {
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+.income-amount {
+    color: #16a34a;
+}
+
+.expense-amount {
+    color: #dc2626;
+}
+
+.btn-trx-action {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-edit {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.btn-edit:hover {
+    background: #16a34a;
+    color: white;
+}
+
+.btn-delete {
+    background: #fff5f5;
+    color: #dc2626;
+}
+
+.btn-delete:hover {
+    background: #dc2626;
+    color: white;
+}
+
+.trx-empty {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    color: #aaa;
+    font-size: 0.9rem;
+    gap: 8px;
+}
+
+.trx-empty i {
+    font-size: 2.5rem;
+    color: #ddd;
+}
+
+.trx-modal-content {
+    border-radius: 22px;
+    border: none;
+    overflow: hidden;
+}
+
+.trx-modal-header {
+    background: white;
+    color: #0B3A30;
+    padding: 22px 24px 18px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.trx-modal-header .modal-title {
+    color: #0B3A30;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.trx-modal-header .btn-close {
+    filter: none;
+    opacity: 0.5;
+}
+
+.trx-modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+.trx-modal-body {
+    padding: 28px 24px 16px;
+}
+
+.trx-modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.trx-type-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.trx-type-toggle input[type="radio"] {
+    display: none;
+}
+
+.trx-toggle-label {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #888;
+    border: 1.5px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: white;
+}
+
+#typeIncome:checked~label[for="typeIncome"],
+#editTypeIncome:checked~label[for="editTypeIncome"] {
+    background: #dcfce7;
+    color: #16a34a;
+    border-color: #16a34a;
+    font-weight: 700;
+}
+
+#typeExpense:checked~label[for="typeExpense"],
+#editTypeExpense:checked~label[for="editTypeExpense"] {
+    background: #fee2e2;
+    color: #dc2626;
+    border-color: #dc2626;
+    font-weight: 700;
+}
+
+.trx-label {
+    font-weight: 600;
+    color: #0B3A30;
+    font-size: 0.875rem;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.trx-input {
+    width: 100%;
+    border: 1.5px solid #e0e4e3;
+    border-radius: 12px;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+    font-family: 'Instrument Sans', sans-serif;
+    outline: none;
+    transition: border 0.2s;
+    background: #f8faf8;
+    color: #111;
+}
+
+.trx-input:focus {
+    border-color: #0B3A30;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(11, 58, 48, 0.08);
+}
+
+.trx-input-group {
+    display: flex;
+}
+
+.trx-input-prefix {
+    background: #f0f0f0;
+    border: 1.5px solid #e0e4e3;
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 600;
+}
+
+.trx-input-suffix {
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+}
+
+.trx-input-suffix:focus {
+    border-color: #0B3A30;
+}
+
+.btn-trx-submit {
+    background: #0B3A30;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 28px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Instrument Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-trx-submit:hover {
+    background: #004D40;
+    color: white;
+}
+
+.btn-trx-cancel {
+    background: #ececec;
+    color: #333;
+    font-weight: 600;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+.btn-trx-cancel:hover {
+    background: #d0d0d0;
+}
+
+.btn-trx-delete-confirm {
+    background: #dc2626;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+.btn-trx-delete-confirm:hover {
+    color: white;
+    background: #b91c1c;
+}
+
+.active-nav {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3rem;
+}
+
+/* [START] Tabel Kategori */
+/* Menyembunyikan Search Bar default bawaan DataTables */
+.dataTables_wrapper .dataTables_filter {
+    display: none !important;
+}
+/* Menyembunyikan dropdown Show X entries bawaan DataTables */
+.dataTables_wrapper .dataTables_length {
+    display: none !important;
+}
+/* [END] Tabel Kategori */
 
 /* Budget style */
 /* ==========================

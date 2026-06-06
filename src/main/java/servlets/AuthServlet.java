@@ -4,7 +4,6 @@ import dao.*;
 import model.User;
 import java.io.IOException;
 
-// Menggunakan impor javax.servlet sesuai server kamu
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
