@@ -351,7 +351,7 @@ body{
 }
 
 .wallet-card-top {
-    background-color: #EFFADF;
+    background-color: #fbfff6;
     height: 115px;
     padding: 16px 18px;
     position: relative;
@@ -827,3 +827,183 @@ body{
 .activity-table tbody tr:last-child td {
     border-bottom: none;
 }
+
+/* dashboard style */
+ .summary-card {
+                                                        min-height: 170px;
+                                                        border-radius: 22px;
+                                                    }
+
+                                                    .summary-value {
+                                                        font-size: 24px;
+                                                        font-weight: 700;
+                                                        color: #0f172a;
+                                                        line-height: 1.2;
+                                                        word-break: break-word;
+                                                    }
+
+                                                    .chart-card-title {
+                                                        font-size: 24px;
+                                                        font-weight: 700;
+                                                        color: #111827;
+                                                        margin-bottom: 0;
+                                                        line-height: 1.2;
+                                                    }
+
+                                                    .chart-wrapper {
+                                                        position: relative;
+                                                        height: 280px;
+                                                        width: 100%;
+                                                    }
+
+                                                    .mini-chart-wrapper {
+                                                        position: relative;
+                                                        height: 75px;
+                                                        width: 100%;
+                                                        margin-top: 10px;
+                                                        margin-bottom: 8px;
+                                                    }
+
+                                                    .legend-inline {
+                                                        display: flex;
+                                                        align-items: center;
+                                                        gap: 18px;
+                                                        font-size: 12px;
+                                                        color: #6b7280;
+                                                        margin-bottom: 12px;
+                                                        justify-content: flex-end;
+                                                        flex-wrap: wrap;
+                                                    }
+
+                                                    .legend-dot {
+                                                        width: 8px;
+                                                        height: 8px;
+                                                        border-radius: 50%;
+                                                        display: inline-block;
+                                                        margin-right: 5px;
+                                                    }
+
+                                                    .legend-green {
+                                                        background-color: #9acd32;
+                                                    }
+
+                                                    .legend-gray {
+                                                        background-color: #d1d5db;
+                                                    }
+
+                                                    .legend-orange {
+                                                        background-color: #d98c5f;
+                                                    }
+
+                                                    .legend-yellow {
+                                                        background-color: #d9a441;
+                                                    }
+
+                                                    .legend-olive {
+                                                        background-color: #a8be84;
+                                                    }
+
+                                                    .spending-mini-list {
+                                                        margin-top: 6px;
+                                                    }
+
+                                                    .spending-mini-item {
+                                                        display: flex;
+                                                        justify-content: space-between;
+                                                        align-items: center;
+                                                        font-size: 10px;
+                                                        margin-bottom: 3px;
+                                                        color: #374151;
+                                                        gap: 8px;
+                                                    }
+
+                                                    .spending-mini-left {
+                                                        display: flex;
+                                                        align-items: center;
+                                                        gap: 4px;
+                                                        min-width: 0;
+                                                    }
+
+                                                    .spending-mini-left span:last-child {
+                                                        white-space: nowrap;
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                        max-width: 90px;
+                                                    }
+
+                                                    .activity-card {
+                                                        border-radius: 22px;
+                                                    }
+
+                                                    .activity-card-compact {
+                                                        min-height: 100%;
+                                                    }
+
+                                                    .activity-table th,
+                                                    .activity-table td {
+                                                        font-size: 11px;
+                                                        vertical-align: middle;
+                                                        white-space: nowrap;
+                                                    }
+
+                                                    .activity-table thead th {
+                                                        background-color: #e5e7eb;
+                                                        color: #374151;
+                                                        border: none;
+                                                        font-weight: 700;
+                                                    }
+
+                                                    .activity-table tbody td {
+                                                        border-color: #f1f5f9;
+                                                    }
+
+                                                    .btn-date {
+                                                        border: 1px solid rgba(255, 255, 255, 0.7);
+                                                        color: white;
+                                                        border-radius: 999px;
+                                                        font-size: 13px;
+                                                        padding: 8px 16px;
+                                                        background-color: transparent;
+                                                    }
+
+                                                    .btn-date:hover {
+                                                        color: white;
+                                                        border-color: white;
+                                                    }
+
+                                                    .btn-date-light {
+                                                        border: 1px solid #0f4a3c;
+                                                        color: #0f4a3c;
+                                                        border-radius: 999px;
+                                                        font-size: 12px;
+                                                        padding: 5px 12px;
+                                                        background-color: transparent;
+                                                    }
+
+                                                    .btn-date-light:hover {
+                                                        border-color: #0f4a3c;
+                                                        color: #0f4a3c;
+                                                    }
+
+                                                    .empty-data {
+                                                        text-align: center;
+                                                        color: #777;
+                                                        padding: 18px;
+                                                    }
+
+                                                    /* @media (max-width: 768px) {
+                                                        .dashboard-header {
+                                                            padding-bottom: 80px;
+                                                        } */
+
+                                                        .legend-inline {
+                                                            justify-content: flex-start;
+                                                        }
+
+                                                        .summary-value,
+                                                        .chart-card-title {
+                                                            font-size: 20px;
+                                                        }
+                                                    
+
+/* END DASHBOARD STYLE */

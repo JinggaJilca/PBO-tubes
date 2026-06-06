@@ -18,8 +18,8 @@
 </head>
 
 <body>
-
-    <!-- NAVBAR -->
+    <jsp:include page="navbar.jsp" />
+    <!-- NAVBAR
     <nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
         <div class="container">
 
@@ -108,7 +108,7 @@
             </div>
 
         </div>
-    </nav>
+    </nav> -->
 
     <!-- WALLET HEADER -->
     <div class="wallet-header">
