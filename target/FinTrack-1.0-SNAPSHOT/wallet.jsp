@@ -1,6 +1,23 @@
-<%@ page isELIgnored="false" language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+    <%@ page import="java.util.List" %>
+        <%@ page import="java.text.NumberFormat" %>
+            <%@ page import="java.util.Locale" %>
+                <%@ page import="model.Wallet" %>
+
+                    <% List<Wallet> wallets = (List<Wallet>) request.getAttribute("wallets");
+
+                            String username = (String) request.getAttribute("username");
+                            if (username == null || username.trim().isEmpty()) {
+                            username = "User";
+                            }
+
+                            request.setAttribute("username", username);
+
+                            Locale indonesia = new Locale("id", "ID");
+                            NumberFormat rupiah = NumberFormat.getCurrencyInstance(indonesia);
+                            rupiah.setMaximumFractionDigits(2);
+                            rupiah.setMinimumFractionDigits(2);
+                            %>
 
 <!DOCTYPE html>
 <html lang="id">

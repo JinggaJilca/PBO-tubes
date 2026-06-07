@@ -85,6 +85,7 @@ body {
     height: auto;
     z-index: 2;
 }
+
 /* [END] LOGIN PAGE = REGISTER PAGE */
 
 
@@ -605,6 +606,11 @@ body {
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.3px;
+
+
+.wallet-action-buttons .btn i {
+    font-size: 13px;
+    line-height: 1;
 }
 
 .add-wallet-card {
@@ -1999,7 +2005,7 @@ body {
             }
         }
 
-        /* ==========================
+/* ==========================
            RESPONSIVE MOBILE
         ========================== */
 
@@ -2039,9 +2045,9 @@ body {
                 justify-content: center;
             }
 
-            .budget-title {
-                font-size: 26px;
-            }
+    .budget-title {
+        font-size: 26px;
+    }
 
             .budget-total {
                 font-size: 24px;
