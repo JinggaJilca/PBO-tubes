@@ -20,7 +20,6 @@
 
     <!-- NAVBAR -->
      <jsp:include page="navbar.jsp" />
-    
 
     <!-- TRANSACTION HEADER -->
     <div class="trx-header">
@@ -30,9 +29,14 @@
                     <p class="mb-1 text-light-teal">Manage your finances,</p>
                     <h2 class="fw-bold mb-0">Transaction</h2>
                 </div>
-                <button class="btn-add-trx" data-bs-toggle="modal" data-bs-target="#addTransactionModal">
-                    <i class="bi bi-plus-lg"></i> Add Transaction
-                </button>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn-eye-trx" id="toggleBalance" onclick="toggleBalances()" title="Hide/Show amounts">
+                        <i class="bi bi-eye-fill" id="eyeIcon"></i>
+                    </button>
+                    <button class="btn-add-trx" data-bs-toggle="modal" data-bs-target="#addTransactionModal">
+                        <i class="bi bi-plus-lg"></i> Add Transaction
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -179,10 +183,6 @@
                                         <td style="color:#9ca3af; font-size:0.8rem;">${trx.note}</td>
                                         <td>
                                             <div class="d-flex gap-2">
-                                                <button class="btn-trx-action btn-edit"
-                                                    onclick="openEditModal(${trx.transactionId})" title="Edit">
-                                                    <i class="bi bi-pencil-fill"></i>
-                                                </button>
                                                 <button class="btn-trx-action btn-delete"
                                                     onclick="confirmDelete(${trx.transactionId})" title="Delete">
                                                     <i class="bi bi-trash-fill"></i>
@@ -203,7 +203,6 @@
                                     <td style="color:#9ca3af; font-size:0.8rem;">Bank transfer</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn-trx-action btn-edit" title="Edit"><i class="bi bi-pencil-fill"></i></button>
                                             <button class="btn-trx-action btn-delete" title="Delete"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
@@ -218,7 +217,6 @@
                                     <td style="color:#9ca3af; font-size:0.8rem;">Warung near office</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn-trx-action btn-edit" title="Edit"><i class="bi bi-pencil-fill"></i></button>
                                             <button class="btn-trx-action btn-delete" title="Delete"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
@@ -233,7 +231,6 @@
                                     <td style="color:#9ca3af; font-size:0.8rem;">Jakarta - Surabaya</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn-trx-action btn-edit" title="Edit"><i class="bi bi-pencil-fill"></i></button>
                                             <button class="btn-trx-action btn-delete" title="Delete"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
@@ -248,7 +245,6 @@
                                     <td style="color:#9ca3af; font-size:0.8rem;">Indomaret</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn-trx-action btn-edit" title="Edit"><i class="bi bi-pencil-fill"></i></button>
                                             <button class="btn-trx-action btn-delete" title="Delete"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
@@ -263,7 +259,6 @@
                                     <td style="color:#9ca3af; font-size:0.8rem;">Website client</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn-trx-action btn-edit" title="Edit"><i class="bi bi-pencil-fill"></i></button>
                                             <button class="btn-trx-action btn-delete" title="Delete"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
@@ -396,111 +391,6 @@
     </div>
 
 
-    <!-- EDIT TRANSACTION MODAL -->
-    <div class="modal fade" id="editTransactionModal" tabindex="-1" aria-labelledby="editTrxLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content trx-modal-content">
-
-                <div class="modal-header trx-modal-header">
-                    <h5 class="modal-title" id="editTrxLabel">
-                        <i class="bi bi-pencil-square me-2"></i>Edit Transaction
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <form action="${pageContext.request.contextPath}/transaction/edit" method="POST">
-                    <input type="hidden" name="transactionId" id="editTrxId">
-                    <div class="modal-body trx-modal-body">
-
-                        <div class="trx-type-toggle">
-                            <input type="radio" name="transactionType" id="editTypeIncome" value="income">
-                            <label for="editTypeIncome" class="trx-toggle-label">
-                                <i class="bi bi-arrow-up-circle"></i> Income
-                            </label>
-                            <input type="radio" name="transactionType" id="editTypeExpense" value="expense">
-                            <label for="editTypeExpense" class="trx-toggle-label">
-                                <i class="bi bi-arrow-down-circle"></i> Expense
-                            </label>
-                        </div>
-
-                        <div class="row g-3">
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Transaction Name</label>
-                                <input type="text" class="trx-input" name="transactionName" id="editTrxName" required>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Amount</label>
-                                <div class="trx-input-group">
-                                    <span class="trx-input-prefix">Rp</span>
-                                    <input type="number" class="trx-input trx-input-suffix"
-                                        name="amount" id="editTrxAmount" min="0" required>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Date</label>
-                                <input type="date" class="trx-input" name="transactionDate" id="editTrxDate" required>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Wallet / Account</label>
-                                <select class="trx-input" name="walletId" id="editTrxWallet" required>
-                                    <c:choose>
-                                        <c:when test="${not empty wallets}">
-                                            <c:forEach var="wallet" items="${wallets}">
-                                                <option value="${wallet.walletId}">${wallet.walletName}</option>
-                                            </c:forEach>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <option value="1">BCA Savings</option>
-                                            <option value="2">Gopay</option>
-                                            <option value="3">Mastercard</option>
-                                            <option value="4">Mandiri Debit</option>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Category</label>
-                                <select class="trx-input" name="categoryId" id="editTrxCategory" required>
-                                    <c:choose>
-                                        <c:when test="${not empty categories}">
-                                            <c:forEach var="cat" items="${categories}">
-                                                <option value="${cat.categoryId}">${cat.categoryName}</option>
-                                            </c:forEach>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <option value="1">Food & Drinks</option>
-                                            <option value="2">Transportation</option>
-                                            <option value="3">Shopping</option>
-                                            <option value="4">Entertainment</option>
-                                            <option value="5">Health</option>
-                                            <option value="6">Salary</option>
-                                            <option value="7">Freelance</option>
-                                            <option value="8">Investment</option>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Note</label>
-                                <input type="text" class="trx-input" name="note" id="editTrxNote"
-                                    placeholder="Add a note...">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer trx-modal-footer">
-                        <button type="button" class="btn-trx-cancel" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn-trx-submit">
-                            <i class="bi bi-check-lg me-1"></i> Save Changes
-                        </button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-
     <!-- DELETE CONFIRM MODAL -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -600,16 +490,39 @@
             rows.forEach(r => tbody.appendChild(r));
         }
 
-        // Edit modal
-        function openEditModal(id) {
-            document.getElementById('editTrxId').value = id;
-            new bootstrap.Modal(document.getElementById('editTransactionModal')).show();
-        }
-
         // Delete modal
         function confirmDelete(id) {
             document.getElementById('deleteTrxId').value = id;
             new bootstrap.Modal(document.getElementById('deleteModal')).show();
+        }
+
+        // Toggle balance visibility
+        let balanceVisible = true;
+
+        function toggleBalances() {
+            balanceVisible = !balanceVisible;
+            const icon = document.getElementById('eyeIcon');
+            icon.className = balanceVisible ? 'bi bi-eye-fill' : 'bi bi-eye-slash-fill';
+
+            // Summary card values
+            document.querySelectorAll('.trx-summary-value').forEach(el => {
+                if (!balanceVisible) {
+                    el.dataset.original = el.textContent;
+                    el.textContent = '****';
+                } else {
+                    if (el.dataset.original) el.textContent = el.dataset.original;
+                }
+            });
+
+            // Amount in table
+            document.querySelectorAll('.trx-amount').forEach(el => {
+                if (!balanceVisible) {
+                    el.dataset.original = el.textContent;
+                    el.textContent = '****';
+                } else {
+                    if (el.dataset.original) el.textContent = el.dataset.original;
+                }
+            });
         }
     </script>
 

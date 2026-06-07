@@ -2637,3 +2637,25 @@ body {
 }
 /* end add budget style */
 
+/* Transaction Management */ 
+.btn-eye-trx {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.btn-eye-trx:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* End Tambahan Transaction Management */ 
+
