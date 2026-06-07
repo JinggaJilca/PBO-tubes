@@ -28,18 +28,23 @@
                                 <link rel="icon" type="image/png"
                                     href="<%= request.getContextPath() %>/images/favicon.png">
 
-                                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+                                <!-- Bootstrap CSS -->
+                                <link
+                                    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
                                     rel="stylesheet">
 
+                                <!-- Bootstrap Icons -->
                                 <link rel="stylesheet"
                                     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
+                                <!-- Font -->
                                 <link
                                     href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap"
                                     rel="stylesheet">
 
+                                <!-- CSS project kamu -->
                                 <link rel="stylesheet" type="text/css"
-                                    href="<%= request.getContextPath() %>/css/style.css?v=20">
+                                    href="<%= request.getContextPath() %>/css/style.css">
                             </head>
 
                             <body>
