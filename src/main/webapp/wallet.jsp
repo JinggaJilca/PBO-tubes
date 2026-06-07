@@ -230,11 +230,6 @@
                                                             placeholder="e.g. GoPay, OVO, DANA, BCA">
                                                     </div>
 
-                                                    <div class="mb-3" id="validThruGroup" style="display:none;">
-                                                        <label class="form-label">Valid Thru (MM/YY)</label>
-                                                        <input type="text" class="form-control wallet-input"
-                                                            name="validThru" placeholder="e.g. 01/26" maxlength="5">
-                                                    </div>
 
                                                     <div class="mb-3">
                                                         <label class="form-label">Initial Balance</label>
