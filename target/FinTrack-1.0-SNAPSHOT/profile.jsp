@@ -174,19 +174,11 @@
                 document.getElementById("editProfileForm").scrollIntoView({ behavior: "smooth" });
             }
 
-<<<<<<< HEAD
-        function hideEditProfileForm() {
-            document.getElementById("editProfileForm").style.display = "none";
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-=======
             function hideEditProfileForm() {
                 document.getElementById("editProfileForm").style.display = "none";
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
->>>>>>> db833b80cd04869d6a61c6c43f8d726bfcee70e5
 
     </body>
 
