@@ -18,376 +18,416 @@
                             rupiah.setMaximumFractionDigits(2);
                             rupiah.setMinimumFractionDigits(2);
                             %>
+                            <!DOCTYPE html>
+                            <html lang="id">
 
-<!DOCTYPE html>
-<html lang="id">
+                            <head>
+                                <meta charset="UTF-8">
+                                <title>FinTrack - Wallet</title>
 
-<head>
-    <meta charset="UTF-8">
-    <title>FinTrack - Wallet</title>
+                                <link rel="icon" type="image/png"
+                                    href="<%= request.getContextPath() %>/images/favicon.png">
 
-    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/favicon.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/wallet.css">
-</head>
+                                <!-- Bootstrap CSS -->
+                                <link
+                                    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+                                    rel="stylesheet">
 
-<body>
-    <jsp:include page="navbar.jsp" />
-    <!-- NAVBAR
-    <nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
-        <div class="container">
+                                <!-- Bootstrap Icons -->
+                                <link rel="stylesheet"
+                                    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/dashboard">
-                <img src="${pageContext.request.contextPath}/images/FLogo.png" class="navbar-logo" alt="FinTrack Logo">
-            </a>
+                                <!-- Font -->
+                                <link
+                                    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap"
+                                    rel="stylesheet">
 
-            <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="bi bi-list fs-1"></i>
-            </button>
+                                <!-- CSS project kamu -->
+                                <link rel="stylesheet" type="text/css"
+                                    href="<%= request.getContextPath() %>/css/style.css">
+                            </head>
 
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav gap-5 align-items-center">
+                            <body>
 
-                    <li class="nav-item">
-                        <a class="nav-link text-white px-3 d-flex align-items-center gap-2" href="wallet.jsp">
-                            <i class="bi bi-wallet2 fs-4"></i>
-                            Wallet
-                        </a>
-                    </li>
+                                <jsp:include page="navbar.jsp" />
 
-                    <li class="nav-item">
-                        <a class="nav-link text-white px-3 d-flex align-items-center gap-2" href="transaction.jsp">
-                            <i class="bi bi-cash-coin fs-4"></i>
-                            Transaction
-                        </a>
-                    </li>
+                                <!-- WALLET HEADER -->
+                                <div class="wallet-header">
+                                    <div class="container">
+                                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                                            <div>
+                                                <h2 class="fw-bold mb-1">Wallet Overview</h2>
+                                                <p>Thursday, 16 April 2026</p>
+                                            </div>
 
-                    <li class="nav-item">
-                        <a class="nav-link text-white px-3 d-flex align-items-center gap-2" href="budget.jsp">
-                            <i class="bi bi-piggy-bank fs-4"></i>
-                            Budget
-                        </a>
-                    </li>
+                                            <div class="d-flex align-items-center gap-3">
+                                                <button class="btn-eye-wallet" id="btnToggleBalance"
+                                                    title="Toggle Balance Visibility">
+                                                    <i class="bi bi-eye-fill" id="eyeIcon"></i>
+                                                </button>
 
-                </ul>
-            </div>
-
-            <div class="d-flex align-items-center gap-3">
-
-                <a href="#" class="text-decoration-none">
-                    <div class="icon-circle">
-                        <i class="bi bi-bell-fill fs-5"></i>
-                    </div>
-                </a>
-
-                <div class="dropdown">
-                    <a class="text-white text-decoration-none dropdown-toggle d-flex align-items-center gap-2"
-                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-
-                        <div class="profile-circle">
-                            <i class="bi bi-person-fill fs-4"></i>
-                        </div>
-
-                        <span class="fw-semibold text-white">
-                            <c:choose>
-                                <c:when test="${not empty requestScope.username}">
-                                    ${requestScope.username}
-                                </c:when>
-                                <c:otherwise>
-                                    Julio Tanlain
-                                </c:otherwise>
-                            </c:choose>
-                        </span>
-                    </a>
-
-                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
-                        <li>
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/profile">
-                                <i class="bi bi-person me-2"></i>Profile
-                            </a>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <form action="${pageContext.request.contextPath}/logout" method="POST" class="m-0">
-                                <button type="submit" class="dropdown-item text-danger">
-                                    <i class="bi bi-box-arrow-right me-2"></i>Logout
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-        </div>
-    </nav> -->
-
-    <!-- WALLET HEADER -->
-    <div class="wallet-header">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h2 class="fw-bold mb-1">Wallet Overview</h2>
-                    <p>
-                        <c:choose>
-                            <c:when test="${not empty today}">
-                                <fmt:formatDate value="${today}" pattern="EEEE, dd MMMM yyyy" />
-                            </c:when>
-                            <c:otherwise>
-                                Thursday, 16 April 2026
-                            </c:otherwise>
-                        </c:choose>
-                    </p>
-                </div>
-
-                <div class="d-flex align-items-center gap-3">
-                    <button class="btn-eye-wallet" id="btnToggleBalance" title="Toggle Balance Visibility">
-                        <i class="bi bi-eye-fill" id="eyeIcon"></i>
-                    </button>
-                    <button class="btn-refresh-wallet" onclick="location.reload()">
-                        <i class="bi bi-arrow-clockwise"></i>
-                        Refresh Data
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- WALLET CONTENT -->
-    <div class="container wallet-overlap-container mb-5">
-        <div class="wallet-grid" id="walletGrid">
-
-            <c:choose>
-                <c:when test="${not empty wallets}">
-                    <c:forEach var="wallet" items="${wallets}">
-                        <div class="wallet-card">
-                            <div class="wallet-card-top">
-
-                                <c:choose>
-                                    <c:when test="${wallet.walletType == 'credit' or wallet.walletType == 'debit'}">
-                                        <i class="bi bi-credit-card-2-front card-icon-credit"></i>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <i class="bi bi-wallet2 card-icon"></i>
-                                    </c:otherwise>
-                                </c:choose>
-
-                                <c:if test="${not empty wallet.validThru}">
-                                    <div class="wallet-valid">
-                                        VALID THRU<span>${wallet.validThru}</span>
+                                                <button class="btn-refresh-wallet"
+                                                    onclick="location.href='<%= request.getContextPath() %>/wallet'">
+                                                    <i class="bi bi-arrow-clockwise"></i>
+                                                    Refresh Data
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </c:if>
-
-                                <div class="wallet-info">
-                                    <h6>${wallet.walletName}</h6>
-                                    <h5>${wallet.accountNumber}</h5>
                                 </div>
-                            </div>
 
-                            <div class="wallet-card-bottom balance-value">
-                                Rp.<fmt:formatNumber value="${wallet.balance}" type="number"
-                                    groupingUsed="true" maxFractionDigits="2" minFractionDigits="2" />
-                            </div>
-                        </div>
-                    </c:forEach>
-                </c:when>
+                                <!-- WALLET CONTENT -->
+                                <div class="container wallet-overlap-container mb-5">
+                                    <div class="wallet-grid" id="walletGrid">
 
-                <c:otherwise>
-                    <!-- Demo Card 1 -->
-                    <div class="wallet-card">
-                        <div class="wallet-card-top">
-                            <i class="bi bi-wallet2 card-icon"></i>
-                            <div class="wallet-info">
-                                <h6>Paypal Wallet</h6>
-                                <h5>4532 1845 7821 6394</h5>
-                            </div>
-                        </div>
-                        <div class="wallet-card-bottom balance-value">Rp.2.975.290,99</div>
-                    </div>
+                                        <% if (wallets !=null && !wallets.isEmpty()) { for (Wallet wallet : wallets) {
+                                            String walletTitle=wallet.getAccountName(); if
+                                            ("ewallet".equalsIgnoreCase(wallet.getWalletType()) &&
+                                            wallet.getProviderName() !=null &&
+                                            !wallet.getProviderName().trim().isEmpty()) {
+                                            walletTitle=wallet.getProviderName() + " Wallet" ; } String
+                                            accountNumber=wallet.getAccountNumber(); if (accountNumber==null ||
+                                            accountNumber.trim().isEmpty()) { accountNumber="WALLET-" +
+                                            wallet.getAccountId(); } String
+                                            formattedBalance=rupiah.format(wallet.getBalance()); String
+                                            safeAccountName=wallet.getAccountName()==null ? "" :
+                                            wallet.getAccountName().replace("\\", "\\\\" ).replace("'", "\\'" ); String
+                                            safeWalletType=wallet.getWalletType()==null ? "physical" :
+                                            wallet.getWalletType().replace("\\", "\\\\" ).replace("'", "\\'" ); String
+                                            safeProviderName=wallet.getProviderName()==null ? "" :
+                                            wallet.getProviderName().replace("\\", "\\\\" ).replace("'", "\\'" ); String
+                                            safeAccountNumber=wallet.getAccountNumber()==null ? "" :
+                                            wallet.getAccountNumber().replace("\\", "\\\\" ).replace("'", "\\'" ); %>
 
-                    <!-- Demo Card 2 -->
-                    <div class="wallet-card">
-                        <div class="wallet-card-top">
-                            <i class="bi bi-credit-card-2-front card-icon-credit"></i>
-                            <div class="wallet-valid">VALID THRU<span>01/26</span></div>
-                            <div class="wallet-info">
-                                <h6>Mastercard Credit Card</h6>
-                                <h5>4532 1845 7821 6394</h5>
-                            </div>
-                        </div>
-                        <div class="wallet-card-bottom balance-value">Rp.13.890.000,99</div>
-                    </div>
+                                            <!-- WALLET CARD -->
+                                            <div class="wallet-card">
+                                                <div class="wallet-card-top">
 
-                    <!-- Demo Card 3 -->
-                    <div class="wallet-card">
-                        <div class="wallet-card-top">
-                            <i class="bi bi-credit-card-2-front card-icon-credit"></i>
-                            <div class="wallet-valid">VALID THRU<span>10/35</span></div>
-                            <div class="wallet-info">
-                                <h6>Maestro Debit Card</h6>
-                                <h5>5348 7765 1289 4432</h5>
-                            </div>
-                        </div>
-                        <div class="wallet-card-bottom balance-value">Rp.133.997.877,19</div>
-                    </div>
+                                                    <% if ("ewallet".equalsIgnoreCase(wallet.getWalletType())) { %>
+                                                        <i class="bi bi-credit-card-2-front card-icon-credit"></i>
+                                                        <% } else { %>
+                                                            <i class="bi bi-wallet2 card-icon"></i>
+                                                            <% } %>
 
-                    <!-- Demo Card 4 -->
-                    <div class="wallet-card">
-                        <div class="wallet-card-top">
-                            <i class="bi bi-wallet2 card-icon"></i>
-                            <div class="wallet-info">
-                                <h6>Gopay Wallet</h6>
-                                <h5>+62 812 3456 7890</h5>
-                            </div>
-                        </div>
-                        <div class="wallet-card-bottom balance-value">Rp.133.997.877,19</div>
-                    </div>
+                                                               
+                                                                <div class="wallet-info">
+                                                                    <h6>
+                                                                        <%= walletTitle %>
+                                                                    </h6>
+                                                                    <h5>
+                                                                        <%= accountNumber %>
+                                                                    </h5>
+                                                                </div>
+                                                </div>
 
-                    <!-- Demo Card 5 -->
-                    <div class="wallet-card">
-                        <div class="wallet-card-top">
-                            <i class="bi bi-credit-card-2-front card-icon-credit"></i>
-                            <div class="wallet-valid">VALID THRU<span>09/29</span></div>
-                            <div class="wallet-info">
-                                <h6>Mandiri Debit Card</h6>
-                                <h5>+62 812 3456 7890</h5>
-                            </div>
-                        </div>
-                        <div class="wallet-card-bottom balance-value">Rp.2.533.117.867,19</div>
-                    </div>
-                </c:otherwise>
-            </c:choose>
+                                                <div class="wallet-card-bottom">
+                                                    <div
+                                                        class="d-flex justify-content-between align-items-center w-100">
 
-            <!-- ADD NEW WALLET -->
-            <div class="add-wallet-card" data-bs-toggle="modal" data-bs-target="#addWalletModal">
-                <div class="add-wallet-icon">
-                    <i class="bi bi-plus"></i>
-                </div>
-                <h4>Add New Wallet</h4>
-            </div>
+                                                        <span class="balance-value">
+                                                            <%= formattedBalance %>
+                                                        </span>
 
-        </div>
-    </div>
+                                                        <div class="d-flex align-items-center gap-2">
 
-    <!-- ADD WALLET MODAL -->
-    <div class="modal fade" id="addWalletModal" tabindex="-1" aria-labelledby="addWalletModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+                                                            <!-- EDIT BUTTON -->
+                                                            <button type="button" class="btn btn-sm text-white p-0"
+                                                                data-bs-toggle="modal" data-bs-target="#editWalletModal"
+                                                                title="Edit Wallet" onclick="fillEditWalletForm(
+                                    '<%= wallet.getAccountId() %>',
+                                    '<%= safeAccountName %>',
+                                    '<%= safeWalletType %>',
+                                    '<%= wallet.getBalance() %>',
+                                    '<%= safeProviderName %>',
+                                    '<%= safeAccountNumber %>'
+                                )">
+                                                                <i class="bi bi-pencil-square"></i>
+                                                            </button>
 
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addWalletModalLabel">
-                        <i class="bi bi-wallet2 me-2"></i>Add New Wallet
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                                                            <!-- DELETE BUTTON -->
+                                                            <form
+                                                                action="<%= request.getContextPath() %>/DeleteWalletServlet"
+                                                                method="POST" class="m-0"
+                                                                onsubmit="return confirm('Yakin mau hapus wallet ini?');">
 
-                <form action="${pageContext.request.contextPath}/wallet/add" method="POST">
-                    <div class="modal-body">
+                                                                <input type="hidden" name="accountId"
+                                                                    value="<%= wallet.getAccountId() %>">
 
-                        <div class="mb-3">
-                            <label class="form-label">Wallet Name</label>
-                            <input type="text" class="form-control wallet-input" name="walletName"
-                                placeholder="e.g. BCA Savings, Gopay" required>
-                        </div>
+                                                                <button type="submit" class="btn btn-sm text-white p-0"
+                                                                    title="Delete Wallet">
+                                                                    <i class="bi bi-trash3-fill"></i>
+                                                                </button>
+                                                            </form>
 
-                        <div class="mb-3">
-                            <label class="form-label">Account Number / Phone</label>
-                            <input type="text" class="form-control wallet-input" name="accountNumber"
-                                placeholder="e.g. 4532 1845 7821 6394">
-                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Wallet Type</label>
-                            <select class="form-control wallet-input" name="walletType" id="walletTypeSelect">
-                                <option value="ewallet">E-Wallet / Digital</option>
-                                <option value="physical">Physical Card (Debit / Credit / Cash)</option>
-                            </select>
-                        </div>
+                                            <% } } %>
 
-                        <div class="mb-3" id="validThruGroup" style="display:none;">
-                            <label class="form-label">Valid Thru (MM/YY)</label>
-                            <input type="text" class="form-control wallet-input" name="validThru"
-                                placeholder="e.g. 01/26" maxlength="5">
-                        </div>
+                                                <!-- ADD NEW WALLET -->
+                                                <div class="add-wallet-card" data-bs-toggle="modal"
+                                                    data-bs-target="#addWalletModal">
+                                                    <div class="add-wallet-icon">
+                                                        <i class="bi bi-plus"></i>
+                                                    </div>
+                                                    <h4>Add New Wallet</h4>
+                                                </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Initial Balance</label>
-                            <div class="input-group">
-                                <span class="input-group-text wallet-input-prefix">Rp</span>
-                                <input type="number" class="form-control wallet-input-number" name="balance"
-                                    placeholder="0" min="0">
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
 
-                    </div>
+                                <!-- ADD WALLET MODAL -->
+                                <div class="modal fade" id="addWalletModal" tabindex="-1"
+                                    aria-labelledby="addWalletModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn-wallet-cancel" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn-wallet-submit">Add Wallet</button>
-                    </div>
-                </form>
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="addWalletModalLabel">
+                                                    <i class="bi bi-wallet2 me-2"></i>Add New Wallet
+                                                </h5>
 
-            </div>
-        </div>
-    </div>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-    const btnToggle = document.getElementById('btnToggleBalance');
-    const eyeIcon = document.getElementById('eyeIcon');
-    let hidden = false;
+                                            <form action="<%= request.getContextPath() %>/AddWalletServlet"
+                                                method="POST">
+                                                <div class="modal-body">
 
-    // Simpan data asli tiap card
-    const cards = document.querySelectorAll('.wallet-card');
-    const cardData = Array.from(cards).map(card => {
-        const numberEl = card.querySelector('.wallet-info h5');
-        const balanceEl = card.querySelector('.balance-value');
-        return {
-            numberEl,
-            balanceEl,
-            originalNumber: numberEl ? numberEl.textContent.trim() : '',
-            originalBalance: balanceEl ? balanceEl.textContent.trim() : ''
-        };
-    });
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Wallet Name</label>
+                                                        <input type="text" class="form-control wallet-input"
+                                                            name="accountName" placeholder="e.g. BCA Savings, Gopay"
+                                                            required>
+                                                    </div>
 
-    btnToggle.addEventListener('click', function () {
-        hidden = !hidden;
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Account Number / Phone</label>
+                                                        <input type="text" class="form-control wallet-input"
+                                                            name="accountNumber" placeholder="e.g. 4532 1845 7821 6394">
+                                                    </div>
 
-        cardData.forEach(({ numberEl, balanceEl, originalNumber, originalBalance }) => {
-            if (hidden) {
-                // Sembunyikan saldo
-                if (balanceEl) balanceEl.textContent = '****';
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Wallet Type</label>
+                                                        <select class="form-control wallet-input" name="walletType"
+                                                            id="walletTypeSelect">
+                                                            <option value="ewallet">E-Wallet / Digital</option>
+                                                            <option value="physical">Physical Card / Cash</option>
+                                                        </select>
+                                                    </div>
 
-                // Sembunyikan nomor, tapi tampilkan 4 digit terakhir
-                if (numberEl) {
-                    const digits = originalNumber.replace(/\s/g, '');
-                    const last4 = digits.slice(-4);
-                    numberEl.textContent = '**** **** **** ' + last4;
-                }
-            } else {
-                // Tampilkan kembali
-                if (balanceEl) balanceEl.textContent = originalBalance;
-                if (numberEl) numberEl.textContent = originalNumber;
-            }
-        });
+                                                    <div class="mb-3" id="providerGroup">
+                                                        <label class="form-label">Provider Name</label>
+                                                        <input type="text" class="form-control wallet-input"
+                                                            name="providerName"
+                                                            placeholder="e.g. GoPay, OVO, DANA, BCA">
+                                                    </div>
 
-        eyeIcon.className = hidden ? 'bi bi-eye-slash-fill' : 'bi bi-eye-fill';
-    });
 
-    // Show/hide Valid Thru field
-        const walletTypeSelect = document.getElementById('walletTypeSelect');
-        const validThruGroup = document.getElementById('validThruGroup');
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Initial Balance</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text wallet-input-prefix">Rp</span>
+                                                            <input type="number"
+                                                                class="form-control wallet-input-number" name="balance"
+                                                                placeholder="0" min="0" step="0.01" required>
+                                                        </div>
+                                                    </div>
 
-        walletTypeSelect.addEventListener('change', function () {
-        validThruGroup.style.display =
-        (this.value === 'physical') ? 'block' : 'none';
-        });
-</script>
+                                                </div>
 
-</body>
-</html>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn-wallet-cancel"
+                                                        data-bs-dismiss="modal">
+                                                        Cancel
+                                                    </button>
+
+                                                    <button type="submit" class="btn-wallet-submit">
+                                                        Add Wallet
+                                                    </button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- EDIT WALLET MODAL -->
+                                <div class="modal fade" id="editWalletModal" tabindex="-1"
+                                    aria-labelledby="editWalletModalLabel" aria-hidden="true">
+
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editWalletModalLabel">
+                                                    <i class="bi bi-pencil-square me-2"></i>Edit Wallet
+                                                </h5>
+
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+
+                                            <form action="<%= request.getContextPath() %>/EditWalletServlet"
+                                                method="POST">
+
+                                                <input type="hidden" name="accountId" id="editAccountId">
+                                                <input type="hidden" name="providerName" id="editProviderName">
+
+                                                <div class="modal-body">
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Wallet Name</label>
+                                                        <input type="text" class="form-control wallet-input"
+                                                            name="accountName" id="editAccountName"
+                                                            placeholder="e.g. Dompet Cash, GoPay" autocomplete="off"
+                                                            required>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Account Number / Phone</label>
+                                                        <input type="text" class="form-control wallet-input"
+                                                            name="accountNumber" id="editAccountNumber"
+                                                            placeholder="e.g. 081234567890" autocomplete="off">
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Wallet Type</label>
+                                                        <select class="form-control wallet-input" name="walletType"
+                                                            id="editWalletType">
+                                                            <option value="physical">Dompet Cash</option>
+                                                            <option value="ewallet">E-Wallet</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Balance</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text wallet-input-prefix">Rp</span>
+                                                            <input type="number"
+                                                                class="form-control wallet-input-number" name="balance"
+                                                                id="editBalance" placeholder="0" min="0" step="0.01"
+                                                                autocomplete="off" required>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn-wallet-cancel"
+                                                        data-bs-dismiss="modal">
+                                                        Cancel
+                                                    </button>
+
+                                                    <button type="submit" class="btn-wallet-submit">
+                                                        Save Changes
+                                                    </button>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <script
+                                    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+                                <script>
+                                    const btnToggle = document.getElementById('btnToggleBalance');
+                                    const eyeIcon = document.getElementById('eyeIcon');
+                                    let hidden = false;
+
+                                    const cards = document.querySelectorAll('.wallet-card');
+
+                                    const cardData = Array.from(cards).map(card => {
+                                        const numberEl = card.querySelector('.wallet-info h5');
+                                        const balanceEl = card.querySelector('.balance-value');
+
+                                        return {
+                                            numberEl: numberEl,
+                                            balanceEl: balanceEl,
+                                            originalNumber: numberEl ? numberEl.textContent.trim() : '',
+                                            originalBalance: balanceEl ? balanceEl.textContent.trim() : ''
+                                        };
+                                    });
+
+                                    if (btnToggle) {
+                                        btnToggle.addEventListener('click', function () {
+                                            hidden = !hidden;
+
+                                            cardData.forEach(function (item) {
+                                                const numberEl = item.numberEl;
+                                                const balanceEl = item.balanceEl;
+                                                const originalNumber = item.originalNumber;
+                                                const originalBalance = item.originalBalance;
+
+                                                if (hidden) {
+                                                    if (balanceEl) {
+                                                        balanceEl.textContent = '****';
+                                                        balanceEl.classList.add('hidden-value');
+                                                    }
+
+                                                    if (numberEl) {
+                                                        const cleanNumber = originalNumber.replace(/\s/g, '');
+                                                        const last4 = cleanNumber.slice(-4);
+
+                                                        numberEl.textContent = '**** **** **** ' + last4;
+                                                        numberEl.classList.add('hidden-value');
+                                                    }
+                                                } else {
+                                                    if (balanceEl) {
+                                                        balanceEl.textContent = originalBalance;
+                                                        balanceEl.classList.remove('hidden-value');
+                                                    }
+
+                                                    if (numberEl) {
+                                                        numberEl.textContent = originalNumber;
+                                                        numberEl.classList.remove('hidden-value');
+                                                    }
+                                                }
+                                            });
+
+                                            if (hidden) {
+                                                eyeIcon.className = 'bi bi-eye-slash-fill';
+                                            } else {
+                                                eyeIcon.className = 'bi bi-eye-fill';
+                                            }
+                                        });
+                                    }
+
+                                    const walletTypeSelect = document.getElementById('walletTypeSelect');
+                                    const validThruGroup = document.getElementById('validThruGroup');
+                                    const providerGroup = document.getElementById('providerGroup');
+
+                                    if (walletTypeSelect) {
+                                        walletTypeSelect.addEventListener('change', function () {
+                                            if (this.value === 'physical') {
+                                                validThruGroup.style.display = 'block';
+                                                providerGroup.style.display = 'none';
+                                            } else {
+                                                validThruGroup.style.display = 'none';
+                                                providerGroup.style.display = 'block';
+                                            }
+                                        });
+                                    }
+
+                                    function fillEditWalletForm(accountId, accountName, walletType, balance, providerName, accountNumber) {
+                                        document.getElementById("editAccountId").value = accountId;
+                                        document.getElementById("editAccountName").value = accountName;
+                                        document.getElementById("editWalletType").value = walletType;
+                                        document.getElementById("editBalance").value = balance;
+                                        document.getElementById("editAccountNumber").value = accountNumber;
+
+                                        const providerInput = document.getElementById("editProviderName");
+                                        if (providerInput) {
+                                            providerInput.value = providerName;
+                                        }
+                                    }
+                                </script>
+
+                            </body>
+
+                            </html>
