@@ -1,0 +1,2661 @@
+body {
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+/* [START] LOGIN PAGE = REGISTER PAGE */
+.login-side {
+    background: linear-gradient(135deg, #fafff0 0%, #d4eec4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-side {
+    background-color: #0B3A30; /* Hijau gelap */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 380px;
+    padding: 20px;
+}
+
+.login-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #0B3A30;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+    border-right: none;
+    border-radius: 15px 0 0 15px;
+    color: #6c757d;
+}
+
+.form-control {
+    background-color: #f8f9fa;
+    border-left: none;
+    border-radius: 0 15px 15px 0;
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #dee2e6;
+    background-color: #f8f9fa;
+}
+
+.btn-lime {
+    background-color: #9EDE04;
+    color: #0B3A30;
+    font-weight: 700;
+    border: none;
+    border-radius: 15px;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-lime:hover {
+    background-color: #82b000;
+    transform: translateY(-2px);
+}
+
+.register-link {
+    text-decoration: none;
+    color: #0B3A30;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.register-link b {
+    font-weight: 800;
+}
+
+.main-visual {
+    max-width: 50%;
+    height: auto;
+    z-index: 2;
+}
+
+/* [END] LOGIN PAGE = REGISTER PAGE */
+
+
+/* [START] NAVBAR */
+.navbar {
+    background-color: #0B3A30 !important;
+}
+
+/* Lingkaran untuk ikon Notifikasi (Lonceng) */
+.icon-circle {
+    width: 42px;
+    height: 42px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.icon-circle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.profile-circle {
+    width: 42px;
+    height: 42px;
+    background-color: #e0e4e3; /* Warna abu-abu terang sesuai gambar */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0B3A30; /* Warna hijau gelap untuk siluet user */
+}
+
+.navbar-logo {
+    height: 25px; /* Kamu bisa mengatur besar/kecil logo di sini */
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-custom {
+    border-bottom: 1px solid #ffffff; /* ⚠️ MENGUBAH GARIS MENJADI PUTIH SOLID */
+}
+/* [END] NAVBAR */
+
+
+/* [START] Dashboard */
+/* Header Hijau Gelap */
+.dashboard-header {
+    background-color: #0B3A30 !important;
+    color: #ffffff;
+    padding-top: 2rem;
+    padding-bottom: 8rem; /* Memberikan ruang ekstra di bawah agar card bisa menumpuk */
+}
+
+/* Teks abu-abu terang untuk "Good Morning" */
+.text-light-teal {
+    color: #a0b2af;
+}
+
+/* Tombol Tanggal (Bulan & Tahun) */
+.btn-date {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.btn-date:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Container untuk Card agar naik ke atas (Overlapping) */
+.overlap-container {
+    margin-top: -5rem; /* Menarik konten ke atas menabrak warna hijau */
+    position: relative;
+    z-index: 10;
+}
+
+/* Standar Desain Card FinTrack */
+.fintrack-card {
+    border: none;
+    border-radius: 20px; /* Sudut sangat membulat sesuai desain */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    background-color: #ffffff;
+}
+
+/* Ukuran tinggi card */
+.summary-card {
+    min-height: 160px;
+}
+
+.activity-card {
+    min-height: 400px; /* Card bawah dibuat lebih tinggi */
+}
+/* [END] Dashboard */
+
+
+/* [START] PROFILE == CHANGEPROFILE */
+/* Tombol Kapsul Hijau Gelap */
+.btn-light {
+    background-color: #ececec;
+    color: #000000;
+    font-weight: 700;
+    border: none;
+    border-radius: 15px;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-light:hover {
+    background-color: #a2a2a2;
+    color: #000000;
+    transform: translateY(-2px);
+}
+
+.btn-dark-teal {
+    background-color: #002d26;
+    color: #ffffff;
+    font-weight: 700;
+    border: none;
+    border-radius: 15px;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-dark-teal:hover {
+    background-color: #004d41;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.fintrack-input {
+    background-color: #ffffff;
+    border: 1px solid #e0e4e3;
+    border-radius: 12px;
+    padding: 12px 15px;
+    color: #002d26;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.fintrack-input:focus {
+    border-color: #98ce00;
+    box-shadow: 0 0 0 0.25rem rgba(152, 206, 0, 0.1);
+    outline: none;
+}
+
+.form-label-custom {
+    font-weight: 700;
+    color: #002d26;
+    margin-bottom: 8px;
+}
+/* [END] PROFILE */
+
+
+/* [START] DROPDOWN */
+.dropdown-menu {
+    padding: 8px;
+    border-radius: 16px;
+}
+
+.dropdown-item {
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    padding: 10px 16px;
+    font-weight: 500;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item:active {
+    background-color: #002d26 !important; /* Warna Dark Teal */
+    color: #ffffff !important; /* Teks menjadi putih */
+}
+
+.dropdown-item:hover i {
+    color: #ffffff !important;
+}
+
+.dropdown-item.text-danger:hover {
+    color: #ffffff !important;
+}
+/* [END] DROPDOWN */
+
+
+/* [START] WALLET THEMES */
+.theme-white {
+    background-color: #ffffff;
+    color: #002d26;
+}
+
+.theme-dark {
+    background-color: #002d26;
+    color: #ffffff;
+}
+
+/* Ubah teks dan ikon di dalam card gelap menjadi putih */
+.theme-dark .text-dark-teal,
+.theme-dark .text-dark {
+    color: #ffffff !important;
+}
+
+.theme-dark .badge.bg-light {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.theme-lime {
+    background-color: #98ce00;
+    color: #002d26;
+}
+
+.theme-lime .text-dark-teal,
+.theme-lime .text-dark {
+    color: #002d26 !important;
+}
+
+.theme-lime .badge.bg-light {
+    background-color: rgba(0, 45, 38, 0.1) !important;
+    color: #002d26 !important;
+    border: none !important;
+}
+
+.theme-pale {
+    background-color: #e4f0d0; /* Warna krem hijau pucat */
+    color: #002d26;
+}
+/* [END] WALLET THEMES */
+
+
+/* [START] Category */
+.badge-income {
+    background-color: #9EDE04 !important; /* Warna utama sesuai pilihan Anda */
+    color: #142100 !important; /* Teks dibuat sangat gelap untuk kontras maksimal */
+    border-color: #87bf03; /* Border sedikit lebih gelap untuk penegasan */
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.4em 0.9em;
+    border-radius: 50rem !important; /* Membuat bentuk oval/pill */
+    display: inline-block;
+    min-width: 85px; /* Menyamakan lebar badge agar rapi saat berbaris di tabel */
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+.badge-expense {
+    background-color: #dc3545 !important; /* Menjadi merah solid */
+    color: #ffffff !important;
+    border-color: #bd2130;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.4em 0.9em;
+    border-radius: 50rem !important;
+    display: inline-block;
+    min-width: 85px;
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+.btn-delete {
+    background-color: #ffe8e8 !important; /* Merah pastel */
+    color: #c80000 !important; /* Teks merah gelap */
+    border: 1px solid #dc3545;
+    border-radius: 6px;
+    padding: 0.35rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Interaksi saat kursor diarahkan ke tombol Hapus */
+.btn-delete:hover {
+    background-color: #dc3545 !important; /* Menjadi merah solid */
+    color: #ffffff !important;
+    border-color: #bd2130;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* [START] TABEL */
+/* Custom Table Style (Desain Minimalis) */
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+/* Styling Header Tabel */
+.table-head {
+    background-color: #eef2f5; /* Abu-abu muda seperti di gambar */
+    color: #4a4a4a; /* Ubah ke #fff jika memakai background gelap */
+    border-bottom: none !important;
+}
+
+.custom-table thead th {
+    padding: 15px;
+    font-weight: 600;
+    border-bottom: none !important;
+}
+
+/* Lengkungan di ujung header kiri dan kanan */
+.custom-table thead th:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.custom-table thead th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Merapikan baris data */
+.custom-table tbody td {
+    padding: 16px 15px;
+    border-bottom: 1px solid #f0f2f5; /* Garis pemisah horizontal yang sangat halus */
+    border-top: none;
+    vertical-align: middle;
+}
+
+/* Tombol Aksi Minimalis (Hanya Ikon) */
+.btn-icon-edit {
+    background-color: #f4fce3; /* Latar hijau super pucat */
+    color: #28a745; /* Ikon hijau */
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-right: 4px;
+    transition: 0.2s;
+}
+
+.btn-icon-edit:hover {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.btn-icon-delete {
+    background-color: #ffebee; /* Latar merah super pucat */
+    color: #dc3545; /* Ikon merah */
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    transition: 0.2s;
+}
+
+.btn-icon-delete:hover {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+/* [END] Custom Table Style */
+/* [END] Category */
+
+
+/* =====================================
+   WALLET PAGE
+===================================== */
+.wallet-header {
+    background-color: #0B3A30;
+    color: #ffffff;
+    padding: 2rem 0 7rem 0;
+}
+
+.wallet-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.wallet-header p {
+    color: #a0b2af;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.btn-eye-wallet {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.btn-eye-wallet:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
+.btn-refresh-wallet {
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    color: white;
+    background: transparent;
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.btn-refresh-wallet:hover {
+    background: white;
+    color: #0B3A30;
+}
+
+.wallet-overlap-container {
+    margin-top: -5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.wallet-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.wallet-card {
+    width: 280px;
+    height: 170px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.wallet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+}
+
+.wallet-card-top {
+    background-color: #fbfff6;
+    height: 115px;
+    padding: 16px 18px;
+    position: relative;
+}
+
+.wallet-card-top .card-icon {
+    font-size: 1.3rem;
+    color: #1a1a1a;
+}
+
+.wallet-card-top .card-icon-credit {
+    font-size: 1.1rem;
+    color: #1a1a1a;
+}
+
+.wallet-info {
+    margin-top: 10px;
+}
+
+.wallet-info h6 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+}
+
+.wallet-info h5 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.wallet-valid {
+    position: absolute;
+    right: 18px;
+    top: 16px;
+    text-align: right;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #333;
+}
+
+.wallet-valid span {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.wallet-card-bottom {
+    height: 55px;
+    background-color: #3F6B58;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+
+.wallet-action-buttons .btn i {
+    font-size: 13px;
+    line-height: 1;
+}
+
+.add-wallet-card {
+    width: 280px;
+    height: 170px;
+    border-radius: 24px;
+    background-color: #ECECEC;
+    border: 2px dashed #8aab99;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.add-wallet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    border-color: #004D40;
+}
+
+.add-wallet-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #004D40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+}
+
+.add-wallet-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #004D40;
+    margin: 0;
+}
+
+/* MODAL */
+.modal-content {
+    border-radius: 20px;
+    border: none;
+}
+
+.modal-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 20px 24px;
+}
+
+.modal-title {
+    font-weight: 700;
+    color: #0B3A30;
+    font-size: 1rem;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-footer {
+    border-top: 1px solid #e5e7eb;
+    padding: 16px 24px;
+}
+
+.modal-body .form-label {
+    font-weight: 600;
+    color: #0B3A30;
+    font-size: 0.875rem;
+    margin-bottom: 6px;
+}
+
+.wallet-input {
+    border-radius: 12px;
+    border: 1px solid #e0e4e3;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.wallet-input:focus {
+    border-color: #98ce00;
+    box-shadow: 0 0 0 0.2rem rgba(152, 206, 0, 0.15);
+    outline: none;
+}
+
+.wallet-input-prefix {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e4e3;
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    color: #6c757d;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+}
+
+.wallet-input-number {
+    border: 1px solid #e0e4e3;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.wallet-input-number:focus {
+    border-color: #98ce00;
+    box-shadow: 0 0 0 0.2rem rgba(152, 206, 0, 0.15);
+    outline: none;
+}
+
+.btn-wallet-submit {
+    background-color: #0B3A30;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 28px;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.btn-wallet-submit:hover {
+    background-color: #004D40;
+    color: white;
+}
+
+.btn-wallet-cancel {
+    background-color: #ececec;
+    color: #333;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 28px;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.btn-wallet-cancel:hover {
+    background-color: #d0d0d0;
+    color: #333;
+}
+
+@media (max-width: 600px) {
+    .wallet-card,
+    .add-wallet-card {
+        width: 100%;
+    }
+}
+
+
+/* =====================================
+   DASHBOARD PAGE
+===================================== */
+.dashboard-header {
+    background-color: #0B3A30;
+    color: white;
+    padding: 2rem 0 8rem 0;
+}
+
+.text-light-teal {
+    color: #a0b2af;
+    font-size: 0.9rem;
+}
+
+.btn-eye-dash {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.btn-eye-dash:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.btn-date-dash {
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    color: white;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.btn-date-dash:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.btn-date-sm {
+    border-color: #e0e0e0;
+    color: #333;
+    font-size: 0.78rem;
+    padding: 5px 12px;
+}
+
+.btn-date-sm:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.overlap-container {
+    margin-top: -5.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* SUMMARY CARDS */
+.dash-card {
+    background: white;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    height: 100%;
+    position: relative;
+}
+
+.dash-card h6 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.dash-card .amount {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0;
+}
+
+.dash-card .last-month {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+    margin-bottom: 0;
+}
+
+.dash-card .from-label {
+    font-size: 0.78rem;
+    color: #aaa;
+    margin: 2px 0 0;
+}
+
+.btn-add-card {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #0B3A30;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-add-card:hover {
+    background: #004D40;
+}
+
+/* SPENDING OVERVIEW */
+.spending-bar-wrap {
+    height: 14px;
+    border-radius: 999px;
+    overflow: hidden;
+    display: flex;
+    margin: 10px 0 8px;
+}
+
+.spending-bar-wrap .seg {
+    height: 100%;
+    transition: width 0.4s;
+}
+
+.seg-food {
+    background: #e05c3a;
+}
+
+.seg-shop {
+    background: #e8c9a0;
+}
+
+.seg-trans {
+    background: #8aab99;
+}
+
+.spending-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.legend-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #555;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 6px;
+    flex-shrink: 0;
+}
+
+/* CHART CARD */
+.chart-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    height: 100%;
+}
+
+.chart-card h6 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 2px;
+}
+
+.chart-card .chart-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0;
+}
+
+.chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.78rem;
+    color: #555;
+}
+
+.chart-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* RECENT ACTIVITY */
+.activity-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    height: 100%;
+}
+
+.activity-card h6 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111;
+}
+
+.btn-sortby {
+    border: 1.5px solid #e0e0e0;
+    background: white;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.btn-sortby:hover {
+    background: #f5f5f5;
+}
+
+.activity-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.82rem;
+}
+
+.activity-table thead tr th {
+    background: #f5f5f0;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #555;
+    border: none;
+}
+
+.activity-table thead tr th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.activity-table thead tr th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.activity-table tbody tr td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #333;
+    vertical-align: middle;
+}
+
+.activity-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* dashboard style */
+.summary-card {
+    min-height: 170px;
+    border-radius: 22px;
+}
+
+.summary-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.chart-card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 280px;
+    width: 100%;
+}
+
+.mini-chart-wrapper {
+    position: relative;
+    height: 75px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+.legend-inline {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 12px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.legend-green {
+    background-color: #9acd32;
+}
+
+.legend-gray {
+    background-color: #d1d5db;
+}
+
+.legend-orange {
+    background-color: #d98c5f;
+}
+
+.legend-yellow {
+    background-color: #d9a441;
+}
+
+.legend-olive {
+    background-color: #a8be84;
+}
+
+.spending-mini-list {
+    margin-top: 6px;
+}
+
+.spending-mini-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    margin-bottom: 3px;
+    color: #374151;
+    gap: 8px;
+}
+
+.spending-mini-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+}
+
+.spending-mini-left span:last-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px;
+}
+
+.activity-card {
+    border-radius: 22px;
+}
+
+.activity-card-compact {
+    min-height: 100%;
+}
+
+.activity-table th,
+.activity-table td {
+    font-size: 11px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.activity-table thead th {
+    background-color: #e5e7eb;
+    color: #374151;
+    border: none;
+    font-weight: 700;
+}
+
+.activity-table tbody td {
+    border-color: #f1f5f9;
+}
+
+.btn-date {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: white;
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 8px 16px;
+    background-color: transparent;
+}
+
+.btn-date:hover {
+    color: white;
+    border-color: white;
+}
+
+.btn-date-light {
+    border: 1px solid #0f4a3c;
+    color: #0f4a3c;
+    border-radius: 999px;
+    font-size: 12px;
+    padding: 5px 12px;
+    background-color: transparent;
+}
+
+.btn-date-light:hover {
+    border-color: #0f4a3c;
+    color: #0f4a3c;
+}
+
+.empty-data {
+    text-align: center;
+    color: #777;
+    padding: 18px;
+}
+
+.legend-inline {
+    justify-content: flex-start;
+}
+
+.summary-value,
+.chart-card-title {
+    font-size: 20px;
+}
+/* END DASHBOARD STYLE */
+
+
+/* =====================================
+   TRANSACTION PAGE
+===================================== */
+.trx-header {
+    background-color: #0B3A30;
+    color: white;
+    padding: 2rem 0 7rem 0;
+}
+
+.trx-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.btn-add-trx {
+    background-color: transparent;
+    color: white;
+    font-weight: 600;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    cursor: pointer;
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+.btn-add-trx:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.trx-overlap-container {
+    margin-top: -5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.trx-summary-card {
+    background: white;
+    border-radius: 22px;
+    padding: 22px 24px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    height: 100%;
+    min-height: 130px;
+    position: relative;
+}
+
+.trx-summary-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.income-icon-bg {
+    background: #9EDE04;
+    color: #0B3A30;
+}
+
+.expense-icon-bg {
+    background: #dc2626;
+    color: #fff;
+}
+
+.balance-icon-bg {
+    background: #e5e7eb;
+    color: #333;
+}
+
+.trx-summary-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.trx-summary-value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.trx-summary-sub {
+    font-size: 0.78rem;
+    color: #9ca3af;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+    margin-bottom: 0;
+}
+
+.trx-table-card {
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.trx-filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #f3f4f6;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.trx-filter-bar-title {
+    font-weight: 700;
+    color: #111;
+    font-size: 1rem;
+}
+
+.trx-search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.trx-search-icon {
+    position: absolute;
+    left: 12px;
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.trx-search-input {
+    border: 1.5px solid #e5e7eb;
+    border-radius: 999px;
+    padding: 8px 14px 8px 34px;
+    font-size: 0.83rem;
+    outline: none;
+    width: 200px;
+    transition: border 0.2s;
+    font-family: 'Instrument Sans', sans-serif;
+    background: white;
+    color: #111;
+}
+
+.trx-search-input:focus {
+    border-color: #0B3A30;
+}
+
+.trx-filter-tabs {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.trx-filter-tab {
+    border: 1.5px solid #e0e0e0;
+    background: white;
+    border-radius: 999px;
+    padding: 6px 18px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+.trx-filter-tab:hover:not(.active) {
+    background: #f5f5f0;
+    color: #333;
+}
+
+.trx-filter-tab.active {
+    background: #0B3A30;
+    color: white;
+    border-color: #0B3A30;
+}
+
+.trx-select {
+    border: 1.5px solid #e0e0e0;
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Instrument Sans', sans-serif;
+    transition: border 0.2s;
+    background: white;
+}
+
+.trx-select:focus {
+    border-color: #0B3A30;
+}
+
+.trx-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.83rem;
+}
+
+.trx-table thead tr th {
+    background: #e5e7eb;
+    padding: 11px 16px;
+    font-weight: 700;
+    color: #374151;
+    border: none;
+    white-space: nowrap;
+}
+
+.trx-table thead tr th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.trx-table thead tr th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.trx-table tbody tr td {
+    padding: 13px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #333;
+    vertical-align: middle;
+}
+
+.trx-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.trx-table tbody tr:hover {
+    background: #fafcf8;
+}
+
+.trx-badge-category {
+    background: #f0fdf4;
+    color: #166534;
+    border-radius: 999px;
+    padding: 3px 10px;
+    font-size: 0.76rem;
+    font-weight: 600;
+}
+
+.trx-type-badge {
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.type-income {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.type-expense {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.trx-amount {
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+.income-amount {
+    color: #16a34a;
+}
+
+.expense-amount {
+    color: #dc2626;
+}
+
+.btn-trx-action {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-edit {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.btn-edit:hover {
+    background: #16a34a;
+    color: white;
+}
+
+.btn-delete {
+    background: #fff5f5;
+    color: #dc2626;
+}
+
+.btn-delete:hover {
+    background: #dc2626;
+    color: white;
+}
+
+.trx-empty {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    color: #aaa;
+    font-size: 0.9rem;
+    gap: 8px;
+}
+
+.trx-empty i {
+    font-size: 2.5rem;
+    color: #ddd;
+}
+
+.trx-modal-content {
+    border-radius: 22px;
+    border: none;
+    overflow: hidden;
+}
+
+.trx-modal-header {
+    background: white;
+    color: #0B3A30;
+    padding: 22px 24px 18px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.trx-modal-header .modal-title {
+    color: #0B3A30;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.trx-modal-header .btn-close {
+    filter: none;
+    opacity: 0.5;
+}
+
+.trx-modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+.trx-modal-body {
+    padding: 28px 24px 16px;
+}
+
+.trx-modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.trx-type-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.trx-type-toggle input[type="radio"] {
+    display: none;
+}
+
+.trx-toggle-label {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #888;
+    border: 1.5px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: white;
+}
+
+#typeIncome:checked~label[for="typeIncome"],
+#editTypeIncome:checked~label[for="editTypeIncome"] {
+    background: #dcfce7;
+    color: #16a34a;
+    border-color: #16a34a;
+    font-weight: 700;
+}
+
+#typeExpense:checked~label[for="typeExpense"],
+#editTypeExpense:checked~label[for="editTypeExpense"] {
+    background: #fee2e2;
+    color: #dc2626;
+    border-color: #dc2626;
+    font-weight: 700;
+}
+
+.trx-label {
+    font-weight: 600;
+    color: #0B3A30;
+    font-size: 0.875rem;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.trx-input {
+    width: 100%;
+    border: 1.5px solid #e0e4e3;
+    border-radius: 12px;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+    font-family: 'Instrument Sans', sans-serif;
+    outline: none;
+    transition: border 0.2s;
+    background: #f8faf8;
+    color: #111;
+}
+
+.trx-input:focus {
+    border-color: #0B3A30;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(11, 58, 48, 0.08);
+}
+
+.trx-input-group {
+    display: flex;
+}
+
+.trx-input-prefix {
+    background: #f0f0f0;
+    border: 1.5px solid #e0e4e3;
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 600;
+}
+
+.trx-input-suffix {
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+}
+
+.trx-input-suffix:focus {
+    border-color: #0B3A30;
+}
+
+.btn-trx-submit {
+    background: #0B3A30;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 28px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Instrument Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-trx-submit:hover {
+    background: #004D40;
+    color: white;
+}
+
+.btn-trx-cancel {
+    background: #ececec;
+    color: #333;
+    font-weight: 600;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+.btn-trx-cancel:hover {
+    background: #d0d0d0;
+}
+
+.btn-trx-delete-confirm {
+    background: #dc2626;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Instrument Sans', sans-serif;
+}
+
+.btn-trx-delete-confirm:hover {
+    color: white;
+    background: #b91c1c;
+}
+
+.active-nav {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3rem;
+}
+
+/* [START] Tabel Kategori */
+/* Menyembunyikan Search Bar default bawaan DataTables */
+.dataTables_wrapper .dataTables_filter {
+    display: none !important;
+}
+/* Menyembunyikan dropdown Show X entries bawaan DataTables */
+.dataTables_wrapper .dataTables_length {
+    display: none !important;
+}
+/* [END] Tabel Kategori */
+
+/* Budget style */
+/* ==========================
+           HEADER BUDGET
+        ========================== */
+        .budget-page-header {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+}
+
+        .budget-header-content {
+            gap: 30px;
+        }
+
+        .budget-title {
+            margin: 0;
+            color: #FFFFFF;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.15;
+        }
+
+        .budget-total {
+            margin: 4px 0 0;
+            color: #FFFFFF;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.15;
+        }
+
+        .budget-header-buttons {
+            flex-shrink: 0;
+        }
+
+        /*
+         * Tidak membuat CSS .btn-date di halaman ini.
+         * Tombol menggunakan .btn-date dari style.css
+         * agar sama dengan halaman addBudget.jsp.
+         */
+
+        /* ==========================
+           PROGRESS BUDGET UTAMA
+        ========================== */
+
+        .main-progress-wrapper {
+            margin-top: 10px;
+        }
+
+        .main-progress {
+            height: 40px;
+            overflow: hidden;
+            background-color: #285C53;
+            border-radius: 22px;
+        }
+
+        .main-progress-bar {
+            display: flex;
+            width: 67%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            background-color: #92E600;
+            color: #083F36;
+            border-radius: 22px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .main-progress-information {
+            display: flex;
+            margin-top: 8px;
+            justify-content: space-between;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* ==========================
+           CONTAINER CARD
+        ========================== */
+
+        .budget-card-container {
+            position: relative;
+            z-index: 2;
+            margin-top: 25px;
+            margin-bottom: 60px;
+        }
+
+        /* ==========================
+           CARD BUDGET
+        ========================== */
+
+        .budget-card {
+            min-height: 260px;
+            padding: 0;
+            overflow: hidden;
+            background-color: transparent;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .budget-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 16px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Bagian atas */
+        .budget-card-top {
+            display: flex;
+            min-height: 10px;
+            align-items: center;
+            padding: 18px 24px;
+            background-color: #92E600;
+        }
+
+        /* Bagian tengah */
+        .budget-card-middle {
+            display: flex;
+            flex: 1;
+            min-height: 92px;
+            align-items: center;
+            padding: 18px 24px;
+            background-color: #FFFFFF;
+        }
+
+        /* Bagian bawah */
+        .budget-card-bottom {
+            min-height: 96px;
+            padding: 16px 24px 20px;
+            background-color: #EBEBEB;
+            color: #000000;
+        }
+
+        .budget-category {
+            margin: 0;
+            color: #000000;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .budget-amount {
+            margin: 0;
+            color: #000000;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .remaining-text {
+            margin-bottom: 9px;
+            color: #000000;
+            text-align: right;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* ==========================
+           PROGRESS CATEGORY
+        ========================== */
+
+        .category-progress {
+            position: relative;
+            height: 19px;
+            overflow: hidden;
+            background-color: #FFFFFF;
+            border-radius: 20px;
+        }
+
+        .category-progress-fill {
+            height: 100%;
+            border-radius: 20px;
+        }
+
+        .category-status {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 2;
+            font-size: 10px;
+            font-weight: 700;
+            transform: translate(-50%, -50%);
+        }
+
+        /* ==========================
+           TOMBOL ADD NEW BUDGET
+        ========================== */
+
+        .add-budget-button {
+            width: 100%;
+            min-height: 260px;
+            background-color: #FFFFFF;
+            color: #083F36;
+            border: 1.5px dashed #083F36;
+            border-radius: 16px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .add-budget-button:hover {
+            background-color: #F2F7F6;
+            color: #083F36;
+            border-color: #92E600;
+            transform: translateY(-3px);
+        }
+
+        .add-budget-icon {
+            display: flex;
+            width: 42px;
+            height: 42px;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid #083F36;
+            border-radius: 50%;
+            font-size: 27px;
+        }
+
+        /* ==========================
+           RESPONSIVE TABLET
+        ========================== */
+
+        @media (max-width: 991px) {
+            .budget-title {
+                font-size: 36px;
+            }
+
+            .budget-total {
+                font-size: 30px;
+            }
+        }
+
+/* ==========================
+           RESPONSIVE MOBILE
+        ========================== */
+
+        @media (max-width: 768px) {
+            .budget-header-content {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 20px;
+            }
+
+            .budget-header-buttons {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .budget-title {
+                font-size: 30px;
+            }
+
+            .budget-total {
+                font-size: 28px;
+            }
+
+            .main-progress-information {
+                gap: 15px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .budget-header-buttons {
+                flex-direction: column;
+            }
+
+            .budget-header-buttons .btn-date {
+                width: 100%;
+                justify-content: center;
+            }
+
+    .budget-title {
+        font-size: 26px;
+    }
+
+            .budget-total {
+                font-size: 24px;
+            }
+
+            .main-progress-information {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .main-progress-information span:last-child {
+                text-align: right;
+            }
+        }
+
+        /* end budget style */
+
+
+        /* start Add budget style */
+/* =====================================
+   ADD NEW BUDGET PAGE
+===================================== */
+
+.add-budget-page {
+    min-height: 100vh;
+    background-color: #F5F7FA;
+    color: #083F36;
+    font-family: "Instrument Sans", sans-serif;
+}
+
+/* =====================================
+   HEADER ADD NEW BUDGET
+===================================== */
+
+.add-budget-page-header {
+    position: relative;
+
+    /*
+     * Jangan menggunakan z-index angka pada header.
+     * Ini mencegah dropdown terjebak di belakang form.
+     */
+    z-index: auto;
+
+    padding-top: 1.5rem;
+    padding-bottom: 8.8rem;
+
+    overflow: visible;
+
+    background-color: #0B3A30;
+    color: #FFFFFF;
+}
+
+.add-budget-header-content {
+    position: relative;
+    z-index: 20;
+
+    gap: 30px;
+}
+
+.add-budget-title-wrapper {
+    position: relative;
+    z-index: 20;
+
+    min-width: 0;
+}
+
+.add-budget-subtitle {
+    margin: 0 0 6px;
+
+    color: #A0B2AF;
+
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.add-budget-title {
+    margin: 0;
+
+    color: #FFFFFF;
+
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.add-budget-header-buttons {
+    position: relative;
+    z-index: 30;
+
+    flex-shrink: 0;
+}
+
+/* =====================================
+   TOMBOL MONTH DAN EXPORT
+===================================== */
+
+.add-budget-page .btn-date-dash {
+    position: relative;
+    z-index: 31;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 46px;
+    padding: 8px 18px;
+
+    background-color: transparent;
+    color: #FFFFFF;
+
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.add-budget-page .btn-date-dash:hover,
+.add-budget-page .btn-date-dash:focus,
+.add-budget-page .btn-date-dash:active,
+.add-budget-page .btn-date-dash.show {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: #FFFFFF !important;
+
+    border-color: #FFFFFF !important;
+
+    box-shadow: none !important;
+}
+
+.add-budget-page .btn-date-dash::after {
+    margin-left: 3px;
+    vertical-align: middle;
+}
+
+/* =====================================
+   DROPDOWN MONTH
+===================================== */
+
+.add-budget-page .dropdown {
+    position: relative;
+    z-index: 40;
+}
+
+.add-budget-page .dropdown-menu {
+    position: absolute;
+    z-index: 9999 !important;
+
+    min-width: 180px;
+    margin-top: 8px;
+    padding: 8px;
+
+    overflow: visible;
+
+    background-color: #FFFFFF;
+
+    border: none;
+    border-radius: 14px;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.add-budget-page .dropdown-item {
+    width: 100%;
+    padding: 9px 14px;
+
+    background-color: transparent;
+    color: #174F45;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.add-budget-page .dropdown-item:hover,
+.add-budget-page .dropdown-item:focus,
+.add-budget-page .dropdown-item:active {
+    background-color: #0B3A30 !important;
+    color: #FFFFFF !important;
+}
+
+/* =====================================
+   CONTAINER FORM
+===================================== */
+
+.add-budget-page .form-wrapper {
+    position: relative;
+
+    /*
+     * Form berada di depan background hijau,
+     * tetapi tetap di bawah tombol dan dropdown.
+     */
+    z-index: 2;
+
+    /*
+     * Semakin negatif, form semakin naik.
+     * Bisa diubah menjadi -120px jika ingin lebih naik.
+     */
+    margin-top: -100px;
+
+    padding-bottom: 70px;
+}
+
+/* =====================================
+   CARD FORM
+===================================== */
+
+.add-budget-page .budget-form-card {
+    position: relative;
+    z-index: 2;
+
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 34px;
+
+    overflow: visible;
+
+    background-color: #FFFFFF;
+
+    border: none;
+    border-radius: 18px;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.add-budget-page .form-title {
+    margin-bottom: 28px;
+
+    color: #174F45;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.add-budget-page .form-group {
+    margin-bottom: 24px;
+}
+
+/* =====================================
+   LABEL DAN INPUT
+===================================== */
+
+.add-budget-page .form-label {
+    display: inline-block;
+
+    margin-bottom: 9px;
+
+    color: #174F45;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.add-budget-page .form-control {
+    min-height: 50px;
+    padding: 12px 14px;
+
+    background-color: #FFFFFF;
+    color: #083F36;
+
+    border: 1px solid #D9E2E0;
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.add-budget-page .form-control::placeholder {
+    color: #9AA8A5;
+}
+
+.add-budget-page .form-control:hover {
+    border-color: #B8C7C4;
+}
+
+.add-budget-page .form-control:focus {
+    background-color: #FFFFFF;
+    color: #083F36;
+
+    border-color: #92E600;
+
+    box-shadow: 0 0 0 0.2rem rgba(146, 230, 0, 0.18);
+    outline: none;
+}
+
+/* =====================================
+   INPUT RP
+===================================== */
+
+.add-budget-page .input-group-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 55px;
+    padding: 12px 14px;
+
+    background-color: #F2F6F5;
+    color: #174F45;
+
+    border: 1px solid #D9E2E0;
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+
+    font-weight: 700;
+
+    transition: border-color 0.2s ease;
+}
+
+.add-budget-page .input-group .form-control {
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+}
+
+.add-budget-page .input-group:focus-within .input-group-text {
+    border-color: #92E600;
+}
+
+.add-budget-page .input-group:focus-within .form-control {
+    border-color: #92E600;
+}
+
+/* =====================================
+   TEKS BANTUAN
+===================================== */
+
+.add-budget-page .helper-text {
+    margin: 7px 0 0;
+
+    color: #758581;
+
+    font-size: 12px;
+}
+
+/* =====================================
+   WARNING THRESHOLD
+===================================== */
+
+.add-budget-page .threshold-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-bottom: 12px;
+}
+
+.add-budget-page .threshold-value {
+    padding: 7px 12px;
+
+    background-color: #F2F6F5;
+    color: #174F45;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.add-budget-page .threshold-slider {
+    width: 100%;
+
+    cursor: pointer;
+    accent-color: #92E600;
+}
+
+.add-budget-page .threshold-slider:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.add-budget-page .threshold-limits {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    color: #758581;
+
+    font-size: 12px;
+}
+
+/* =====================================
+   TOMBOL FORM
+===================================== */
+
+.add-budget-page .form-action {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    margin-top: 32px;
+}
+
+.add-budget-page .btn-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 125px;
+    min-height: 46px;
+    padding: 11px 22px;
+
+    background-color: #FFFFFF;
+    color: #174F45;
+
+    border: 1px solid #174F45;
+    border-radius: 10px;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.add-budget-page .btn-cancel:hover,
+.add-budget-page .btn-cancel:focus,
+.add-budget-page .btn-cancel:active {
+    background-color: #F2F7F6;
+    color: #174F45;
+
+    border-color: #174F45;
+
+    box-shadow: none;
+}
+
+.add-budget-page .btn-save {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 155px;
+    min-height: 46px;
+    padding: 11px 22px;
+
+    background-color: #92E600;
+    color: #083F36;
+
+    border: none;
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.add-budget-page .btn-save:hover,
+.add-budget-page .btn-save:focus,
+.add-budget-page .btn-save:active {
+    background-color: #7FCC00;
+    color: #083F36;
+
+    box-shadow: none;
+}
+
+.add-budget-page .btn-save:hover {
+    transform: translateY(-1px);
+}
+
+/* =====================================
+   RESPONSIVE TABLET
+===================================== */
+
+@media (max-width: 991px) {
+    .add-budget-page-header {
+        padding-top: 2.4rem;
+        padding-bottom: 8rem;
+    }
+
+    .add-budget-title {
+        font-size: 36px;
+    }
+
+    .add-budget-page .form-wrapper {
+        margin-top: -90px;
+    }
+}
+
+/* =====================================
+   RESPONSIVE MOBILE
+===================================== */
+
+@media (max-width: 768px) {
+    .add-budget-page-header {
+        padding-top: 2rem;
+        padding-bottom: 7rem;
+    }
+
+    .add-budget-header-content {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 20px;
+    }
+
+    .add-budget-header-buttons {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .add-budget-title {
+        font-size: 30px;
+    }
+
+    .add-budget-page .form-wrapper {
+        margin-top: -65px;
+        padding-bottom: 50px;
+    }
+
+    .add-budget-page .budget-form-card {
+        padding: 24px;
+        border-radius: 14px;
+    }
+
+    .add-budget-page .form-action {
+        flex-direction: column-reverse;
+    }
+
+    .add-budget-page .btn-cancel,
+    .add-budget-page .btn-save {
+        width: 100%;
+    }
+}
+
+/* =====================================
+   RESPONSIVE MOBILE KECIL
+===================================== */
+
+@media (max-width: 480px) {
+    .add-budget-page-header {
+        padding-bottom: 6rem;
+    }
+
+    .add-budget-header-buttons {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    .add-budget-header-buttons .dropdown {
+        width: 100%;
+    }
+
+    .add-budget-page .btn-date-dash {
+        width: 100%;
+    }
+
+    .add-budget-title {
+        font-size: 27px;
+    }
+
+    .add-budget-page .form-wrapper {
+        margin-top: -50px;
+
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .add-budget-page .budget-form-card {
+        padding: 20px;
+    }
+
+    .add-budget-page .threshold-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+/* end add budget style */
+
+/* Transaction Management */ 
+.btn-eye-trx {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.btn-eye-trx:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* End Tambahan Transaction Management */ 
+
