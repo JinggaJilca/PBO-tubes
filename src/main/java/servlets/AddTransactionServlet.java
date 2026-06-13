@@ -58,6 +58,7 @@ public class AddTransactionServlet extends HttpServlet {
             String transactionName = request.getParameter("transactionName");
             double amount = Double.parseDouble(request.getParameter("amount"));
             String transactionType = request.getParameter("transactionType");
+            String transactionDateText = request.getParameter("transactionDate");
             String note = request.getParameter("note");
 
             if (transactionName == null || transactionName.trim().isEmpty()) {
