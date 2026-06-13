@@ -20,80 +20,6 @@
 
     <!-- NAVBAR -->
      <jsp:include page="navbar.jsp" />
-    <!-- <nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
-        <div class="container">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/dashboard">
-                <img src="${pageContext.request.contextPath}/images/FLogo.png" class="navbar-logo" alt="FinTrack Logo">
-            </a>
-
-            <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="bi bi-list fs-1"></i>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav gap-5 align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                            href="${pageContext.request.contextPath}/wallet">
-                            <i class="bi bi-wallet2 fs-4"></i> Wallet
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white px-3 d-flex align-items-center gap-2 active-nav"
-                            href="${pageContext.request.contextPath}/transaction">
-                            <i class="bi bi-cash-coin fs-4"></i> Transaction
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                            href="${pageContext.request.contextPath}/budget">
-                            <i class="bi bi-piggy-bank fs-4"></i> Budget
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="d-flex align-items-center gap-3">
-                <a href="#" class="text-decoration-none">
-                    <div class="icon-circle">
-                        <i class="bi bi-bell-fill fs-5"></i>
-                    </div>
-                </a>
-
-                <div class="dropdown">
-                    <a class="text-white text-decoration-none dropdown-toggle d-flex align-items-center gap-2"
-                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="profile-circle">
-                            <i class="bi bi-person-fill fs-4"></i>
-                        </div>
-                        <span class="fw-semibold text-white">
-                            <c:choose>
-                                <c:when test="${not empty requestScope.username}">${requestScope.username}</c:when>
-                                <c:otherwise>Julio Tanlain</c:otherwise>
-                            </c:choose>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
-                        <li>
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/profile">
-                                <i class="bi bi-person me-2"></i>Profile
-                            </a>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <form action="${pageContext.request.contextPath}/logout" method="POST" class="m-0">
-                                <button type="submit" class="dropdown-item text-danger">
-                                    <i class="bi bi-box-arrow-right me-2"></i>Logout
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav> -->
 
     <!-- TRANSACTION HEADER -->
     <div class="trx-header">
@@ -103,9 +29,14 @@
                     <p class="mb-1 text-light-teal">Manage your finances,</p>
                     <h2 class="fw-bold mb-0">Transaction</h2>
                 </div>
-                <button class="btn-add-trx" data-bs-toggle="modal" data-bs-target="#addTransactionModal">
-                    <i class="bi bi-plus-lg"></i> Add Transaction
-                </button>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn-eye-trx" id="toggleBalance" onclick="toggleBalances()" title="Hide/Show amounts">
+                        <i class="bi bi-eye-fill" id="eyeIcon"></i>
+                    </button>
+                    <button class="btn-add-trx" data-bs-toggle="modal" data-bs-target="#addTransactionModal">
+                        <i class="bi bi-plus-lg"></i> Add Transaction
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -252,10 +183,6 @@
                                         <td style="color:#9ca3af; font-size:0.8rem;">${trx.note}</td>
                                         <td>
                                             <div class="d-flex gap-2">
-                                                <button class="btn-trx-action btn-edit"
-                                                    onclick="openEditModal(${trx.transactionId})" title="Edit">
-                                                    <i class="bi bi-pencil-fill"></i>
-                                                </button>
                                                 <button class="btn-trx-action btn-delete"
                                                     onclick="confirmDelete(${trx.transactionId})" title="Delete">
                                                     <i class="bi bi-trash-fill"></i>
@@ -276,7 +203,6 @@
                                     <td style="color:#9ca3af; font-size:0.8rem;">Bank transfer</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn-trx-action btn-edit" title="Edit"><i class="bi bi-pencil-fill"></i></button>
                                             <button class="btn-trx-action btn-delete" title="Delete"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
@@ -291,7 +217,6 @@
                                     <td style="color:#9ca3af; font-size:0.8rem;">Warung near office</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn-trx-action btn-edit" title="Edit"><i class="bi bi-pencil-fill"></i></button>
                                             <button class="btn-trx-action btn-delete" title="Delete"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
@@ -306,7 +231,6 @@
                                     <td style="color:#9ca3af; font-size:0.8rem;">Jakarta - Surabaya</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn-trx-action btn-edit" title="Edit"><i class="bi bi-pencil-fill"></i></button>
                                             <button class="btn-trx-action btn-delete" title="Delete"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
@@ -321,7 +245,6 @@
                                     <td style="color:#9ca3af; font-size:0.8rem;">Indomaret</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn-trx-action btn-edit" title="Edit"><i class="bi bi-pencil-fill"></i></button>
                                             <button class="btn-trx-action btn-delete" title="Delete"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
@@ -336,7 +259,6 @@
                                     <td style="color:#9ca3af; font-size:0.8rem;">Website client</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <button class="btn-trx-action btn-edit" title="Edit"><i class="bi bi-pencil-fill"></i></button>
                                             <button class="btn-trx-action btn-delete" title="Delete"><i class="bi bi-trash-fill"></i></button>
                                         </div>
                                     </td>
@@ -469,111 +391,6 @@
     </div>
 
 
-    <!-- EDIT TRANSACTION MODAL -->
-    <div class="modal fade" id="editTransactionModal" tabindex="-1" aria-labelledby="editTrxLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content trx-modal-content">
-
-                <div class="modal-header trx-modal-header">
-                    <h5 class="modal-title" id="editTrxLabel">
-                        <i class="bi bi-pencil-square me-2"></i>Edit Transaction
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <form action="${pageContext.request.contextPath}/transaction/edit" method="POST">
-                    <input type="hidden" name="transactionId" id="editTrxId">
-                    <div class="modal-body trx-modal-body">
-
-                        <div class="trx-type-toggle">
-                            <input type="radio" name="transactionType" id="editTypeIncome" value="income">
-                            <label for="editTypeIncome" class="trx-toggle-label">
-                                <i class="bi bi-arrow-up-circle"></i> Income
-                            </label>
-                            <input type="radio" name="transactionType" id="editTypeExpense" value="expense">
-                            <label for="editTypeExpense" class="trx-toggle-label">
-                                <i class="bi bi-arrow-down-circle"></i> Expense
-                            </label>
-                        </div>
-
-                        <div class="row g-3">
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Transaction Name</label>
-                                <input type="text" class="trx-input" name="transactionName" id="editTrxName" required>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Amount</label>
-                                <div class="trx-input-group">
-                                    <span class="trx-input-prefix">Rp</span>
-                                    <input type="number" class="trx-input trx-input-suffix"
-                                        name="amount" id="editTrxAmount" min="0" required>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Date</label>
-                                <input type="date" class="trx-input" name="transactionDate" id="editTrxDate" required>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Wallet / Account</label>
-                                <select class="trx-input" name="walletId" id="editTrxWallet" required>
-                                    <c:choose>
-                                        <c:when test="${not empty wallets}">
-                                            <c:forEach var="wallet" items="${wallets}">
-                                                <option value="${wallet.walletId}">${wallet.walletName}</option>
-                                            </c:forEach>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <option value="1">BCA Savings</option>
-                                            <option value="2">Gopay</option>
-                                            <option value="3">Mastercard</option>
-                                            <option value="4">Mandiri Debit</option>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Category</label>
-                                <select class="trx-input" name="categoryId" id="editTrxCategory" required>
-                                    <c:choose>
-                                        <c:when test="${not empty categories}">
-                                            <c:forEach var="cat" items="${categories}">
-                                                <option value="${cat.categoryId}">${cat.categoryName}</option>
-                                            </c:forEach>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <option value="1">Food & Drinks</option>
-                                            <option value="2">Transportation</option>
-                                            <option value="3">Shopping</option>
-                                            <option value="4">Entertainment</option>
-                                            <option value="5">Health</option>
-                                            <option value="6">Salary</option>
-                                            <option value="7">Freelance</option>
-                                            <option value="8">Investment</option>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="trx-label">Note</label>
-                                <input type="text" class="trx-input" name="note" id="editTrxNote"
-                                    placeholder="Add a note...">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer trx-modal-footer">
-                        <button type="button" class="btn-trx-cancel" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn-trx-submit">
-                            <i class="bi bi-check-lg me-1"></i> Save Changes
-                        </button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-
     <!-- DELETE CONFIRM MODAL -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -673,16 +490,39 @@
             rows.forEach(r => tbody.appendChild(r));
         }
 
-        // Edit modal
-        function openEditModal(id) {
-            document.getElementById('editTrxId').value = id;
-            new bootstrap.Modal(document.getElementById('editTransactionModal')).show();
-        }
-
         // Delete modal
         function confirmDelete(id) {
             document.getElementById('deleteTrxId').value = id;
             new bootstrap.Modal(document.getElementById('deleteModal')).show();
+        }
+
+        // Toggle balance visibility
+        let balanceVisible = true;
+
+        function toggleBalances() {
+            balanceVisible = !balanceVisible;
+            const icon = document.getElementById('eyeIcon');
+            icon.className = balanceVisible ? 'bi bi-eye-fill' : 'bi bi-eye-slash-fill';
+
+            // Summary card values
+            document.querySelectorAll('.trx-summary-value').forEach(el => {
+                if (!balanceVisible) {
+                    el.dataset.original = el.textContent;
+                    el.textContent = '****';
+                } else {
+                    if (el.dataset.original) el.textContent = el.dataset.original;
+                }
+            });
+
+            // Amount in table
+            document.querySelectorAll('.trx-amount').forEach(el => {
+                if (!balanceVisible) {
+                    el.dataset.original = el.textContent;
+                    el.textContent = '****';
+                } else {
+                    if (el.dataset.original) el.textContent = el.dataset.original;
+                }
+            });
         }
     </script>
 
