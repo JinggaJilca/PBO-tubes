@@ -14,7 +14,7 @@ public class CategoryDAO {
     // 1. Mengambil Semua Data Kategori (Read)
     public List<Category> getAllCategories() {
         List<Category> list = new ArrayList<>();
-        String sql = "SELECT * FROM categories"; // Sesuaikan jika nama tabelnya berbeda
+        String sql = "SELECT * FROM categories WHERE type = 'expense'";
 
         try (Connection conn = JDBC.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);

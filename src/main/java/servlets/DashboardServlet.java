@@ -43,7 +43,7 @@ public class DashboardServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
+                HttpSession session = request.getSession(false);
 
                 if (session == null || session.getAttribute("user") == null) {
                     response.sendRedirect(request.getContextPath() + "/login.jsp");
@@ -51,11 +51,11 @@ public class DashboardServlet extends HttpServlet {
                 }
 
                 model.User loggedInUser = (model.User) session.getAttribute("user");
-
                 Integer userId = loggedInUser.getUserID();
-        LocalDate now = LocalDate.now();
-        int year = now.getYear();
-        int month = now.getMonthValue();
+
+                LocalDate now = LocalDate.now();
+                int year = now.getYear();
+                int month = now.getMonthValue();
 
         DashboardDAO dashboardDAO = new DashboardDAO();
         String username = dashboardDAO.getUsernameByUserId(userId);

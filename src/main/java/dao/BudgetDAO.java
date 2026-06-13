@@ -133,5 +133,39 @@ public class BudgetDAO {
         return 0.0;
     }
     
+    // 6. Method untuk menghapus budget berdasarkan budget_id
+    public boolean deleteBudget(int budgetId) {
+        String sql = "DELETE FROM budgets WHERE budget_id = ?";
+        try (Connection conn = JDBC.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             
+            stmt.setInt(1, budgetId);
+            return stmt.executeUpdate() > 0;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    // Method untuk mengedit/memperbarui budget
+    public boolean updateBudget(Budget budget) {
+        // Kita memperbarui total_budget, category_budget, dan threshold
+        String sql = "UPDATE budgets SET total_budget = ?, category_budget = ?, threshold = ? WHERE budget_id = ?";
+        
+        try (Connection conn = JDBC.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             
+            stmt.setDouble(1, budget.getTotalBudget());
+            stmt.setDouble(2, budget.getCategoryBudget());
+            stmt.setDouble(3, budget.getThreshold());
+            stmt.setInt(4, budget.getBudgetId());
+            
+            return stmt.executeUpdate() > 0;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     
 }
