@@ -1,56 +1,83 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import dao.BudgetDAO;
+import dao.CategoryDAO;
+import model.Budget;
+import model.Category;
+
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Budget;
 
 @WebServlet("/budget")
 public class BudgetServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            // Contoh perhitungan di BudgetServlet
-            double totalBudget = 20000000.00; // Ambil dari database
-            double spentAmount = 13890000.99; // Hasil SUM(amount) dari transaksi
-            double remainingAmount = totalBudget - spentAmount;
-            double percentage = (spentAmount / totalBudget) * 100;
 
-            request.setAttribute("totalBudget", totalBudget);
-            request.setAttribute("spentAmount", spentAmount);
-            request.setAttribute("remainingAmount", remainingAmount);
-            request.setAttribute("percentage", Math.round(percentage));
-
-            request.getRequestDispatcher("budget.jsp").forward(request, response);
-            request.getRequestDispatcher("budget.jsp").forward(request, response);
+            
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         BudgetDAO dao = new BudgetDAO();
-    
-        double totalBudget = dao.getTotalBudgetByUser();
-        double spentAmount = dao.getSpentAmountByUser();
-        double remainingAmount = totalBudget - spentAmount;
+        CategoryDAO categoryDao = new CategoryDAO(); // Wajib diinisialisasi untuk ambil nama kategori
+        int userId = 1;
 
-        // Mencegah pembagian nol dan menghitung persentase
+        // 1. DATA RINGKASAN (PROGRESS BAR BESAR)
+        double totalBudget = dao.getTotalBudgetByUser(userId); 
+        double spentAmount = dao.getSpentAmountByUser(userId); 
+        double remainingAmount = totalBudget - spentAmount;
         double percentage = (totalBudget > 0) ? (spentAmount / totalBudget) * 100 : 0;
 
         request.setAttribute("totalBudget", totalBudget);
         request.setAttribute("spentAmount", spentAmount);
         request.setAttribute("remainingAmount", remainingAmount);
         request.setAttribute("percentage", Math.round(percentage));
+        
+        // 2. DATA KARTU BUDGET (GRID)
+        List<Map<String, Object>> budgetCards = new ArrayList<>();
+
+        // PERBAIKAN: Gunakan method getAllBudgetsByUser, bukan getTotalBudgetByUser
+        List<Budget> userBudgets = dao.getAllBudgetsByUser(userId); 
+
+        if (userBudgets != null) {
+            for (Budget b : userBudgets) {
+                Map<String, Object> cardData = new HashMap<>();
+
+                // Ambil detail Kategori menggunakan categoryDao
+                Category cat = categoryDao.getCategoryById(b.getCategoryId());
+                String categoryName = (cat != null) ? cat.getName() : "Unknown Category";
+
+                // PERBAIKAN: Gunakan instance 'dao' (BudgetDAO), bukan class statis BudgetDao
+                double spentForCategory = dao.getSpentAmountByCategory(userId, b.getCategoryId());
+
+                double remainingForCategory = b.getCategoryBudget() - spentForCategory;
+                double cardPercentage = (b.getCategoryBudget() > 0) ? (spentForCategory / b.getCategoryBudget()) * 100 : 0;
+
+                // Masukkan semua data ke dalam Map
+                cardData.put("categoryName", categoryName);
+                cardData.put("categoryBudget", b.getCategoryBudget());
+                cardData.put("remainingAmount", remainingForCategory);
+                cardData.put("percentage", Math.round(cardPercentage));
+                cardData.put("threshold", b.getThreshold());
+
+                budgetCards.add(cardData);
+            }
+        }
+
+        // Lempar List Map tersebut ke JSP
+        request.setAttribute("budgetCards", budgetCards);
 
         request.getRequestDispatcher("budget.jsp").forward(request, response);
     }

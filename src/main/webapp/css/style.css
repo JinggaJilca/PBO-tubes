@@ -1811,7 +1811,7 @@ body {
             background-color: transparent;
             border: none;
             border-radius: 16px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.16);
             transition:
                 transform 0.2s ease,
                 box-shadow 0.2s ease;
@@ -1819,7 +1819,7 @@ body {
 
         .budget-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 7px 16px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.18);
         }
 
         /* Bagian atas */

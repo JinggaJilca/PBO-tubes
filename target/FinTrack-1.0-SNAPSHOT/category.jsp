@@ -119,7 +119,7 @@
             </div>
         </div>
     </div>
-    <!<!-- [END] MODAL ADD CATEGORY -->
+    <!-- [END] MODAL ADD CATEGORY -->
     
     <!-- [START] MODAL EDIT CATEGORY -->
    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -159,7 +159,7 @@
         </div>
     </div>
 </div>
-    <!<!-- [END] MODAL EDIT CATEGORY -->
+    <!-- [END] MODAL EDIT CATEGORY -->
     
     
     <div class="trx-header mb-3">
