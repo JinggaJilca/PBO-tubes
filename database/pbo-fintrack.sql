@@ -59,7 +59,6 @@ CREATE TABLE budgets(
 	budget_id INT(16) AUTO_INCREMENT PRIMARY KEY,
 	user_id INT(16) NOT NULL,
 	category_id INT(16) NULL,
-	total_budget DECIMAL(18, 2) NOT NULL,
 	category_budget DECIMAL(18,2) NULL,
 	threshold DECIMAL(5, 2) NOT NULL,
 	start_date DATE NOT NULL,
@@ -315,7 +314,7 @@ BEGIN
         SET total_bud = ROUND(RAND() * 4000000 + 1000000, 2);
         SET cat_bud   = ROUND(total_bud * (0.2 + RAND() * 0.4), 2);
 
-        INSERT INTO budgets (user_id, category_id, total_budget, category_budget, threshold, start_date, end_date)
+        INSERT INTO budgets (user_id, category_id, category_budget, threshold, start_date, end_date)
         VALUES (
             uid,
             cat_id,

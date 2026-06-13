@@ -85,6 +85,7 @@ body {
     height: auto;
     z-index: 2;
 }
+
 /* [END] LOGIN PAGE = REGISTER PAGE */
 
 
@@ -605,6 +606,12 @@ body {
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.3px;
+}
+
+
+.wallet-action-buttons .btn i {
+    font-size: 13px;
+    line-height: 1;
 }
 
 .add-wallet-card {
@@ -1764,6 +1771,7 @@ body {
 }
 /* [END] Tabel Kategori */
 
+<<<<<<< HEAD
 /* [START] BUDGET PROGRESS BAR */
 .budget-container {
     background-color: #0B3A30; /* Hijau Gelap */
@@ -1790,6 +1798,85 @@ body {
 
 /* [START] BUDGET CARD */
 /* ==========================
+=======
+/* Budget style */
+/* ==========================
+           HEADER BUDGET
+        ========================== */
+        .budget-page-header {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+}
+
+        .budget-header-content {
+            gap: 30px;
+        }
+
+        .budget-title {
+            margin: 0;
+            color: #FFFFFF;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.15;
+        }
+
+        .budget-total {
+            margin: 4px 0 0;
+            color: #FFFFFF;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.15;
+        }
+
+        .budget-header-buttons {
+            flex-shrink: 0;
+        }
+
+        /*
+         * Tidak membuat CSS .btn-date di halaman ini.
+         * Tombol menggunakan .btn-date dari style.css
+         * agar sama dengan halaman addBudget.jsp.
+         */
+
+        /* ==========================
+           PROGRESS BUDGET UTAMA
+        ========================== */
+
+        .main-progress-wrapper {
+            margin-top: 10px;
+        }
+
+        .main-progress {
+            height: 40px;
+            overflow: hidden;
+            background-color: #285C53;
+            border-radius: 22px;
+        }
+
+        .main-progress-bar {
+            display: flex;
+            width: 67%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            background-color: #92E600;
+            color: #083F36;
+            border-radius: 22px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .main-progress-information {
+            display: flex;
+            margin-top: 8px;
+            justify-content: space-between;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* ==========================
+>>>>>>> d13151c1b65e094a39d5c3e190c223d96f64d42b
            CONTAINER CARD
         ========================== */
 
@@ -1811,7 +1898,11 @@ body {
             background-color: transparent;
             border: none;
             border-radius: 16px;
+<<<<<<< HEAD
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.16);
+=======
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+>>>>>>> d13151c1b65e094a39d5c3e190c223d96f64d42b
             transition:
                 transform 0.2s ease,
                 box-shadow 0.2s ease;
@@ -1819,7 +1910,11 @@ body {
 
         .budget-card:hover {
             transform: translateY(-3px);
+<<<<<<< HEAD
             box-shadow: 0 3px 3px rgba(0, 0, 0, 0.18);
+=======
+            box-shadow: 0 7px 16px rgba(0, 0, 0, 0.18);
+>>>>>>> d13151c1b65e094a39d5c3e190c223d96f64d42b
         }
 
         /* Bagian atas */
@@ -1947,7 +2042,11 @@ body {
             }
         }
 
+<<<<<<< HEAD
         /* ==========================
+=======
+/* ==========================
+>>>>>>> d13151c1b65e094a39d5c3e190c223d96f64d42b
            RESPONSIVE MOBILE
         ========================== */
 
@@ -1987,9 +2086,15 @@ body {
                 justify-content: center;
             }
 
+<<<<<<< HEAD
             .budget-title {
                 font-size: 26px;
             }
+=======
+    .budget-title {
+        font-size: 26px;
+    }
+>>>>>>> d13151c1b65e094a39d5c3e190c223d96f64d42b
 
             .budget-total {
                 font-size: 24px;
@@ -2577,7 +2682,32 @@ body {
     }
 }
 /* end add budget style */
+<<<<<<< HEAD
 /* [END] BUDGET CARD */
 
 
+=======
+
+/* Transaction Management */ 
+.btn-eye-trx {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.btn-eye-trx:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* End Tambahan Transaction Management */ 
+>>>>>>> d13151c1b65e094a39d5c3e190c223d96f64d42b
 
