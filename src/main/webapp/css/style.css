@@ -11,7 +11,8 @@ body {
 }
 
 .image-side {
-    background-color: #0B3A30; /* Hijau gelap */
+    background-color: #0B3A30;
+    /* Hijau gelap */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,16 +115,19 @@ body {
 .profile-circle {
     width: 42px;
     height: 42px;
-    background-color: #e0e4e3; /* Warna abu-abu terang sesuai gambar */
+    background-color: #e0e4e3;
+    /* Warna abu-abu terang sesuai gambar */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #0B3A30; /* Warna hijau gelap untuk siluet user */
+    color: #0B3A30;
+    /* Warna hijau gelap untuk siluet user */
 }
 
 .navbar-logo {
-    height: 25px; /* Kamu bisa mengatur besar/kecil logo di sini */
+    height: 25px;
+    /* Kamu bisa mengatur besar/kecil logo di sini */
     width: auto;
     object-fit: contain;
 }
@@ -138,8 +142,10 @@ body {
 }
 
 .navbar-custom {
-    border-bottom: 1px solid #ffffff; /* ⚠️ MENGUBAH GARIS MENJADI PUTIH SOLID */
+    border-bottom: 1px solid #ffffff;
+    /* ⚠️ MENGUBAH GARIS MENJADI PUTIH SOLID */
 }
+
 /* [END] NAVBAR */
 
 
@@ -149,7 +155,8 @@ body {
     background-color: #0B3A30 !important;
     color: #ffffff;
     padding-top: 2rem;
-    padding-bottom: 8rem; /* Memberikan ruang ekstra di bawah agar card bisa menumpuk */
+    padding-bottom: 8rem;
+    /* Memberikan ruang ekstra di bawah agar card bisa menumpuk */
 }
 
 /* Teks abu-abu terang untuk "Good Morning" */
@@ -175,7 +182,8 @@ body {
 
 /* Container untuk Card agar naik ke atas (Overlapping) */
 .overlap-container {
-    margin-top: -5rem; /* Menarik konten ke atas menabrak warna hijau */
+    margin-top: -5rem;
+    /* Menarik konten ke atas menabrak warna hijau */
     position: relative;
     z-index: 10;
 }
@@ -183,7 +191,8 @@ body {
 /* Standar Desain Card FinTrack */
 .fintrack-card {
     border: none;
-    border-radius: 20px; /* Sudut sangat membulat sesuai desain */
+    border-radius: 20px;
+    /* Sudut sangat membulat sesuai desain */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     background-color: #ffffff;
 }
@@ -194,8 +203,10 @@ body {
 }
 
 .activity-card {
-    min-height: 400px; /* Card bawah dibuat lebih tinggi */
+    min-height: 400px;
+    /* Card bawah dibuat lebih tinggi */
 }
+
 /* [END] Dashboard */
 
 
@@ -254,6 +265,7 @@ body {
     color: #002d26;
     margin-bottom: 8px;
 }
+
 /* [END] PROFILE */
 
 
@@ -273,8 +285,10 @@ body {
 .dropdown-item:hover,
 .dropdown-item:focus,
 .dropdown-item:active {
-    background-color: #002d26 !important; /* Warna Dark Teal */
-    color: #ffffff !important; /* Teks menjadi putih */
+    background-color: #002d26 !important;
+    /* Warna Dark Teal */
+    color: #ffffff !important;
+    /* Teks menjadi putih */
 }
 
 .dropdown-item:hover i {
@@ -284,6 +298,7 @@ body {
 .dropdown-item.text-danger:hover {
     color: #ffffff !important;
 }
+
 /* [END] DROPDOWN */
 
 
@@ -327,29 +342,37 @@ body {
 }
 
 .theme-pale {
-    background-color: #e4f0d0; /* Warna krem hijau pucat */
+    background-color: #e4f0d0;
+    /* Warna krem hijau pucat */
     color: #002d26;
 }
+
 /* [END] WALLET THEMES */
 
 
 /* [START] Category */
 .badge-income {
-    background-color: #9EDE04 !important; /* Warna utama sesuai pilihan Anda */
-    color: #142100 !important; /* Teks dibuat sangat gelap untuk kontras maksimal */
-    border-color: #87bf03; /* Border sedikit lebih gelap untuk penegasan */
+    background-color: #9EDE04 !important;
+    /* Warna utama sesuai pilihan Anda */
+    color: #142100 !important;
+    /* Teks dibuat sangat gelap untuk kontras maksimal */
+    border-color: #87bf03;
+    /* Border sedikit lebih gelap untuk penegasan */
     font-weight: 600;
     font-size: 0.85rem;
     padding: 0.4em 0.9em;
-    border-radius: 50rem !important; /* Membuat bentuk oval/pill */
+    border-radius: 50rem !important;
+    /* Membuat bentuk oval/pill */
     display: inline-block;
-    min-width: 85px; /* Menyamakan lebar badge agar rapi saat berbaris di tabel */
+    min-width: 85px;
+    /* Menyamakan lebar badge agar rapi saat berbaris di tabel */
     text-align: center;
     letter-spacing: 0.3px;
 }
 
 .badge-expense {
-    background-color: #dc3545 !important; /* Menjadi merah solid */
+    background-color: #dc3545 !important;
+    /* Menjadi merah solid */
     color: #ffffff !important;
     border-color: #bd2130;
     font-weight: 600;
@@ -363,8 +386,10 @@ body {
 }
 
 .btn-delete {
-    background-color: #ffe8e8 !important; /* Merah pastel */
-    color: #c80000 !important; /* Teks merah gelap */
+    background-color: #ffe8e8 !important;
+    /* Merah pastel */
+    color: #c80000 !important;
+    /* Teks merah gelap */
     border: 1px solid #dc3545;
     border-radius: 6px;
     padding: 0.35rem 0.75rem;
@@ -375,7 +400,8 @@ body {
 
 /* Interaksi saat kursor diarahkan ke tombol Hapus */
 .btn-delete:hover {
-    background-color: #dc3545 !important; /* Menjadi merah solid */
+    background-color: #dc3545 !important;
+    /* Menjadi merah solid */
     color: #ffffff !important;
     border-color: #bd2130;
     transform: translateY(-2px);
@@ -392,8 +418,10 @@ body {
 
 /* Styling Header Tabel */
 .table-head {
-    background-color: #eef2f5; /* Abu-abu muda seperti di gambar */
-    color: #4a4a4a; /* Ubah ke #fff jika memakai background gelap */
+    background-color: #eef2f5;
+    /* Abu-abu muda seperti di gambar */
+    color: #4a4a4a;
+    /* Ubah ke #fff jika memakai background gelap */
     border-bottom: none !important;
 }
 
@@ -417,15 +445,18 @@ body {
 /* Merapikan baris data */
 .custom-table tbody td {
     padding: 16px 15px;
-    border-bottom: 1px solid #f0f2f5; /* Garis pemisah horizontal yang sangat halus */
+    border-bottom: 1px solid #f0f2f5;
+    /* Garis pemisah horizontal yang sangat halus */
     border-top: none;
     vertical-align: middle;
 }
 
 /* Tombol Aksi Minimalis (Hanya Ikon) */
 .btn-icon-edit {
-    background-color: #f4fce3; /* Latar hijau super pucat */
-    color: #28a745; /* Ikon hijau */
+    background-color: #f4fce3;
+    /* Latar hijau super pucat */
+    color: #28a745;
+    /* Ikon hijau */
     border: none;
     border-radius: 6px;
     padding: 6px 10px;
@@ -439,8 +470,10 @@ body {
 }
 
 .btn-icon-delete {
-    background-color: #ffebee; /* Latar merah super pucat */
-    color: #dc3545; /* Ikon merah */
+    background-color: #ffebee;
+    /* Latar merah super pucat */
+    color: #dc3545;
+    /* Ikon merah */
     border: none;
     border-radius: 6px;
     padding: 6px 10px;
@@ -451,6 +484,7 @@ body {
     background-color: #f8d7da;
     color: #721c24;
 }
+
 /* [END] Custom Table Style */
 /* [END] Category */
 
@@ -760,6 +794,7 @@ body {
 }
 
 @media (max-width: 600px) {
+
     .wallet-card,
     .add-wallet-card {
         width: 100%;
@@ -1227,6 +1262,7 @@ body {
 .chart-card-title {
     font-size: 20px;
 }
+
 /* END DASHBOARD STYLE */
 
 
@@ -1246,23 +1282,22 @@ body {
 }
 
 .btn-add-trx {
-    background-color: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
     color: white;
-    font-weight: 600;
-    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    background: transparent;
     border-radius: 999px;
-    padding: 10px 22px;
+    padding: 10px 24px;
+    font-weight: 600;
     font-size: 0.9rem;
     display: flex;
     align-items: center;
     gap: 8px;
     transition: all 0.2s;
-    cursor: pointer;
-    font-family: 'Instrument Sans', sans-serif;
 }
 
 .btn-add-trx:hover {
-    background-color: rgba(255, 255, 255, 0.12);
+    background: white;
+    color: #0B3A30;
 }
 
 .trx-overlap-container {
@@ -1766,308 +1801,338 @@ body {
 .dataTables_wrapper .dataTables_filter {
     display: none !important;
 }
+
 /* Menyembunyikan dropdown Show X entries bawaan DataTables */
 .dataTables_wrapper .dataTables_length {
     display: none !important;
 }
-/* [END] Tabel Kategori */
 
+/* [END] Tabel Kategori */
+/* [START] BUDGET PROGRESS BAR */
+.budget-container {
+    background-color: #0B3A30;
+    /* Hijau Gelap */
+}
+
+.budget-progress-bar {
+    background-color: #9EDE04;
+    /* Warna Lime */
+    height: 14px;
+    border-radius: 10px;
+}
+
+.progress {
+    background-color: rgba(255, 255, 255, 0.15);
+    /* Background bar redup */
+    height: 14px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.budget-stats {
+    font-size: 0.85rem;
+    color: #a0b2af;
+}
+
+/* [END] BUDGET PROGRESS BAR */
+
+/* [START] BUDGET CARD */
+/* ==========================
+=======
 /* Budget style */
 /* ==========================
            HEADER BUDGET
         ========================== */
-        .budget-page-header {
+.budget-page-header {
     padding-top: 2rem;
     padding-bottom: 2.5rem;
 }
 
-        .budget-header-content {
-            gap: 30px;
-        }
+.budget-header-content {
+    gap: 30px;
+}
 
-        .budget-title {
-            margin: 0;
-            color: #FFFFFF;
-            font-size: 42px;
-            font-weight: 700;
-            line-height: 1.15;
-        }
+.budget-title {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+}
 
-        .budget-total {
-            margin: 4px 0 0;
-            color: #FFFFFF;
-            font-size: 32px;
-            font-weight: 700;
-            line-height: 1.15;
-        }
+.budget-total {
+    margin: 4px 0 0;
+    color: #FFFFFF;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.15;
+}
 
-        .budget-header-buttons {
-            flex-shrink: 0;
-        }
+.budget-header-buttons {
+    flex-shrink: 0;
+}
 
-        /*
-         * Tidak membuat CSS .btn-date di halaman ini.
-         * Tombol menggunakan .btn-date dari style.css
-         * agar sama dengan halaman addBudget.jsp.
-         */
 
-        /* ==========================
+/* ==========================
            PROGRESS BUDGET UTAMA
         ========================== */
 
-        .main-progress-wrapper {
-            margin-top: 10px;
-        }
+.main-progress-wrapper {
+    margin-top: 10px;
+}
 
-        .main-progress {
-            height: 40px;
-            overflow: hidden;
-            background-color: #285C53;
-            border-radius: 22px;
-        }
+.main-progress {
+    height: 40px;
+    overflow: hidden;
+    background-color: #285C53;
+    border-radius: 22px;
+}
 
-        .main-progress-bar {
-            display: flex;
-            width: 67%;
-            height: 100%;
-            align-items: center;
-            justify-content: center;
-            background-color: #92E600;
-            color: #083F36;
-            border-radius: 22px;
-            font-size: 18px;
-            font-weight: 700;
-        }
+.main-progress-bar {
+    display: flex;
+    width: 67%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #92E600;
+    color: #083F36;
+    border-radius: 22px;
+    font-size: 18px;
+    font-weight: 700;
+}
 
-        .main-progress-information {
-            display: flex;
-            margin-top: 8px;
-            justify-content: space-between;
-            color: #FFFFFF;
-            font-size: 16px;
-            font-weight: 600;
-        }
+.main-progress-information {
+    display: flex;
+    margin-top: 8px;
+    justify-content: space-between;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+}
 
-        /* ==========================
+/* ==========================
+>>>>>>> d13151c1b65e094a39d5c3e190c223d96f64d42b
            CONTAINER CARD
         ========================== */
 
-        .budget-card-container {
-            position: relative;
-            z-index: 2;
-            margin-top: 25px;
-            margin-bottom: 60px;
-        }
+.budget-card-container {
+    position: relative;
+    z-index: 2;
+    margin-top: 25px;
+    margin-bottom: 60px;
+}
 
-        /* ==========================
+/* ==========================
            CARD BUDGET
         ========================== */
 
-        .budget-card {
-            min-height: 260px;
-            padding: 0;
-            overflow: hidden;
-            background-color: transparent;
-            border: none;
-            border-radius: 16px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
-        }
+.budget-card {
+    min-height: 260px;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.16);
 
-        .budget-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 16px rgba(0, 0, 0, 0.18);
-        }
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
 
-        /* Bagian atas */
-        .budget-card-top {
-            display: flex;
-            min-height: 10px;
-            align-items: center;
-            padding: 18px 24px;
-            background-color: #92E600;
-        }
+.budget-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.18);
+}
 
-        /* Bagian tengah */
-        .budget-card-middle {
-            display: flex;
-            flex: 1;
-            min-height: 92px;
-            align-items: center;
-            padding: 18px 24px;
-            background-color: #FFFFFF;
-        }
+/* Bagian atas */
+.budget-card-top {
+    display: flex;
+    min-height: 10px;
+    align-items: center;
+    padding: 18px 24px;
+    background-color: #92E600;
+}
 
-        /* Bagian bawah */
-        .budget-card-bottom {
-            min-height: 96px;
-            padding: 16px 24px 20px;
-            background-color: #EBEBEB;
-            color: #000000;
-        }
+/* Bagian tengah */
+.budget-card-middle {
+    display: flex;
+    flex: 1;
+    min-height: 92px;
+    align-items: center;
+    padding: 18px 24px;
+    background-color: #FFFFFF;
+}
 
-        .budget-category {
-            margin: 0;
-            color: #000000;
-            font-size: 17px;
-            font-weight: 700;
-        }
+/* Bagian bawah */
+.budget-card-bottom {
+    min-height: 96px;
+    padding: 16px 24px 20px;
+    background-color: #EBEBEB;
+    color: #000000;
+}
 
-        .budget-amount {
-            margin: 0;
-            color: #000000;
-            font-size: 26px;
-            font-weight: 700;
-        }
+.budget-category {
+    margin: 0;
+    color: #000000;
+    font-size: 17px;
+    font-weight: 700;
+}
 
-        .remaining-text {
-            margin-bottom: 9px;
-            color: #000000;
-            text-align: right;
-            font-size: 15px;
-            font-weight: 600;
-        }
+.budget-amount {
+    margin: 0;
+    color: #000000;
+    font-size: 26px;
+    font-weight: 700;
+}
 
-        /* ==========================
+.remaining-text {
+    margin-bottom: 9px;
+    color: #000000;
+    text-align: right;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* ==========================
            PROGRESS CATEGORY
         ========================== */
 
-        .category-progress {
-            position: relative;
-            height: 19px;
-            overflow: hidden;
-            background-color: #FFFFFF;
-            border-radius: 20px;
-        }
+.category-progress {
+    position: relative;
+    height: 19px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+}
 
-        .category-progress-fill {
-            height: 100%;
-            border-radius: 20px;
-        }
+.category-progress-fill {
+    height: 100%;
+    border-radius: 20px;
+}
 
-        .category-status {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            z-index: 2;
-            font-size: 10px;
-            font-weight: 700;
-            transform: translate(-50%, -50%);
-        }
+.category-status {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    font-size: 10px;
+    font-weight: 700;
+    transform: translate(-50%, -50%);
+}
 
-        /* ==========================
+/* ==========================
            TOMBOL ADD NEW BUDGET
         ========================== */
 
-        .add-budget-button {
-            width: 100%;
-            min-height: 260px;
-            background-color: #FFFFFF;
-            color: #083F36;
-            border: 1.5px dashed #083F36;
-            border-radius: 16px;
-            font-size: 17px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s ease;
-        }
+.add-budget-button {
+    width: 100%;
+    min-height: 260px;
+    background-color: #FFFFFF;
+    color: #083F36;
+    border: 1.5px dashed #083F36;
+    border-radius: 16px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
 
-        .add-budget-button:hover {
-            background-color: #F2F7F6;
-            color: #083F36;
-            border-color: #92E600;
-            transform: translateY(-3px);
-        }
+.add-budget-button:hover {
+    background-color: #F2F7F6;
+    color: #083F36;
+    border-color: #92E600;
+    transform: translateY(-3px);
+}
 
-        .add-budget-icon {
-            display: flex;
-            width: 42px;
-            height: 42px;
-            align-items: center;
-            justify-content: center;
-            border: 1.5px solid #083F36;
-            border-radius: 50%;
-            font-size: 27px;
-        }
+.add-budget-icon {
+    display: flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #083F36;
+    border-radius: 50%;
+    font-size: 27px;
+}
 
-        /* ==========================
+/* ==========================
            RESPONSIVE TABLET
         ========================== */
 
-        @media (max-width: 991px) {
-            .budget-title {
-                font-size: 36px;
-            }
+@media (max-width: 991px) {
+    .budget-title {
+        font-size: 36px;
+    }
 
-            .budget-total {
-                font-size: 30px;
-            }
-        }
+    .budget-total {
+        font-size: 30px;
+    }
+}
 
-/* ==========================
+/*
            RESPONSIVE MOBILE
         ========================== */
 
-        @media (max-width: 768px) {
-            .budget-header-content {
-                flex-direction: column;
-                align-items: flex-start !important;
-                gap: 20px;
-            }
+@media (max-width: 768px) {
+    .budget-header-content {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 20px;
+    }
 
-            .budget-header-buttons {
-                width: 100%;
-                flex-wrap: wrap;
-            }
+    .budget-header-buttons {
+        width: 100%;
+        flex-wrap: wrap;
+    }
 
-            .budget-title {
-                font-size: 30px;
-            }
+    .budget-title {
+        font-size: 30px;
+    }
 
-            .budget-total {
-                font-size: 28px;
-            }
+    .budget-total {
+        font-size: 28px;
+    }
 
-            .main-progress-information {
-                gap: 15px;
-                font-size: 13px;
-            }
-        }
+    .main-progress-information {
+        gap: 15px;
+        font-size: 13px;
+    }
+}
 
-        @media (max-width: 480px) {
-            .budget-header-buttons {
-                flex-direction: column;
-            }
+@media (max-width: 480px) {
+    .budget-header-buttons {
+        flex-direction: column;
+    }
 
-            .budget-header-buttons .btn-date {
-                width: 100%;
-                justify-content: center;
-            }
+    .budget-header-buttons .btn-date {
+        width: 100%;
+        justify-content: center;
+    }
+
 
     .budget-title {
         font-size: 26px;
     }
 
-            .budget-total {
-                font-size: 24px;
-            }
+    .budget-total {
+        font-size: 24px;
+    }
 
-            .main-progress-information {
-                flex-direction: column;
-                gap: 4px;
-            }
+    .main-progress-information {
+        flex-direction: column;
+        gap: 4px;
+    }
 
-            .main-progress-information span:last-child {
-                text-align: right;
-            }
-        }
+    .main-progress-information span:last-child {
+        text-align: right;
+    }
+}
 
-        /* end budget style */
+/* end budget style */
 
 
-        /* start Add budget style */
+/* start Add budget style */
 /* =====================================
    ADD NEW BUDGET PAGE
 ===================================== */
@@ -2425,9 +2490,8 @@ body {
 
 .add-budget-page .threshold-slider {
     width: 100%;
-
+    accent-color: #083F36;
     cursor: pointer;
-    accent-color: #92E600;
 }
 
 .add-budget-page .threshold-slider:disabled {
@@ -2635,9 +2699,12 @@ body {
         gap: 8px;
     }
 }
-/* end add budget style */
 
-/* Transaction Management */ 
+/* end add budget style */
+/* [END] BUDGET CARD */
+
+
+/* Transaction Management */
 .btn-eye-trx {
     width: 44px;
     height: 44px;
@@ -2653,11 +2720,49 @@ body {
     cursor: pointer;
     flex-shrink: 0;
 }
+
 .btn-eye-trx:hover {
     background: rgba(255, 255, 255, 0.25);
 }
 
-/* End Tambahan Transaction Management */ 
+/* End Tambahan Transaction Management */
+/* [START] Modal Edit Budget */
+/* Mengubah warna bawaan slider (thumb dan track yang terisi) */
+.threshold-slider {
+    accent-color: #083F36; /* Warna hijau gelap FinTrack */
+    cursor: pointer;
+}
+
+/* Jika Anda menggunakan class form-range bawaan Bootstrap, tambahkan juga ini: */
+input[type=range]::-webkit-slider-thumb {
+    background: #083F36;
+}
+input[type=range]::-moz-range-thumb {
+    background: #083F36;
+}
+
+.btn-set-budget {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border: none;
+    background-color: transparent;
+    border-radius: 8px; /* Sudut melengkung modern */
+    font-size: 1.1rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    color: #083F36; /* Warna ikon default abu-abu */
+}
+
+/* Efek khusus tombol Edit saat di-hover */
+.btn-set-budget:hover {
+    background-color: #ffffff; /* Hijau FinTrack sangat tipis */
+    color: #083F36; /* Hijau gelap FinTrack */
+    transform: translateY(-2px); /* Efek melayang sedikit */
+}
+/* [END] Modal Edit Budget */
 
 
 
