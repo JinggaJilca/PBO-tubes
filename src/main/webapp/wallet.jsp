@@ -149,20 +149,12 @@
                                                             </button>
 
                                                             <!-- DELETE BUTTON -->
-                                                            <form
-                                                                action="<%= request.getContextPath() %>/DeleteWalletServlet"
-                                                                method="POST" class="m-0"
-                                                                onsubmit="return confirm('Yakin mau hapus wallet ini?');">
-
-                                                                <input type="hidden" name="accountId"
-                                                                    value="<%= wallet.getAccountId() %>">
-
-                                                                <button type="submit" class="btn btn-sm text-white p-0"
-                                                                    title="Delete Wallet">
-                                                                    <i class="bi bi-trash3-fill"></i>
-                                                                </button>
-                                                            </form>
-
+                                                            <!-- DELETE BUTTON -->
+                                                            <button type="button" class="btn btn-sm text-white p-0"
+                                                                title="Delete Wallet"
+                                                                onclick="confirmDeleteWallet('<%= wallet.getAccountId() %>')">
+                                                                <i class="bi bi-trash3-fill"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -336,6 +328,46 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- DELETE WALLET CONFIRM MODAL -->
+                                <div class="modal fade" id="deleteWalletModal" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                        <div class="modal-content" style="border-radius:20px; border:none;">
+                                            <div class="modal-body text-center p-4">
+
+                                                <div style="width:56px;height:56px;border-radius:50%;background:#fee2e2;
+                            display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+                                                    <i class="bi bi-trash3-fill text-danger fs-4"></i>
+                                                </div>
+
+                                                <h6 class="fw-bold mb-2">Delete Wallet?</h6>
+
+                                                <p style="font-size:0.85rem; color:#888; margin-bottom:20px;">
+                                                    This wallet will be permanently deleted and cannot be recovered.
+                                                </p>
+
+                                                <div class="d-flex gap-2 justify-content-center">
+                                                    <button type="button" class="btn-wallet-cancel"
+                                                        data-bs-dismiss="modal">
+                                                        Cancel
+                                                    </button>
+
+                                                    <form id="deleteWalletForm"
+                                                        action="<%= request.getContextPath() %>/DeleteWalletServlet"
+                                                        method="POST">
+
+                                                        <input type="hidden" name="accountId"
+                                                            id="deleteWalletAccountId">
+
+                                                        <button type="submit" class="btn-trx-delete-confirm">
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <script
                                     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -429,6 +461,10 @@
                                         if (providerInput) {
                                             providerInput.value = providerName;
                                         }
+                                    }
+                                    function confirmDeleteWallet(accountId) {
+                                        document.getElementById("deleteWalletAccountId").value = accountId;
+                                        new bootstrap.Modal(document.getElementById("deleteWalletModal")).show();
                                     }
                                 </script>
 
