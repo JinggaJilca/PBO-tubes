@@ -304,7 +304,7 @@
 
                 <button type="button"
                         class="add-budget-button d-flex flex-column align-items-center justify-content-center gap-2"
-                        onclick="window.location.href='<%= request.getContextPath() %>/add-budget'">
+                        onclick="window.location.href='<%= request.getContextPath() %>/addbudget.jsp'">
 
                     <span class="add-budget-icon">
                         <i class="bi bi-plus"></i>
