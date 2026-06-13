@@ -59,7 +59,6 @@ CREATE TABLE budgets(
 	budget_id INT(16) AUTO_INCREMENT PRIMARY KEY,
 	user_id INT(16) NOT NULL,
 	category_id INT(16) NULL,
-	total_budget DECIMAL(18, 2) NOT NULL,
 	category_budget DECIMAL(18,2) NULL,
 	threshold DECIMAL(5, 2) NOT NULL,
 	start_date DATE NOT NULL,
@@ -294,7 +293,6 @@ BEGIN
     DECLARE done        INT DEFAULT 0;
     DECLARE uid         INT;
     DECLARE cat_id      INT;
-    DECLARE total_bud   DECIMAL(18,2);
     DECLARE cat_bud     DECIMAL(18,2);
 
     DECLARE cur CURSOR FOR SELECT user_id FROM users;
@@ -312,14 +310,12 @@ BEGIN
         ORDER BY RAND()
         LIMIT 1;
 
-        SET total_bud = ROUND(RAND() * 4000000 + 1000000, 2);
-        SET cat_bud   = ROUND(total_bud * (0.2 + RAND() * 0.4), 2);
+        SET cat_bud = ROUND(500000 + (RAND() * 3000000), 2);
 
-        INSERT INTO budgets (user_id, category_id, total_budget, category_budget, threshold, start_date, end_date)
+        INSERT INTO budgets (user_id, category_id, category_budget, threshold, start_date, end_date)
         VALUES (
             uid,
             cat_id,
-            total_bud,
             cat_bud,
             ROUND(50 + RAND() * 40, 2),                         -- threshold 50–90%
             DATE_FORMAT(NOW(), '%Y-%m-01'),                      -- awal bulan ini
@@ -331,7 +327,6 @@ BEGIN
 END$$
 DELIMITER ;
 CALL generate_budgets();
-fintrack_db
 
 -- generate transactions
 
