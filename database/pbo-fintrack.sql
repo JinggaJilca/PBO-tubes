@@ -133,12 +133,6 @@ ALTER TABLE budgets
 ADD CONSTRAINT Unique_budget_user_category
 UNIQUE (user_id, category_id);
 
--- 1 analysis only have 1 category
-ALTER TABLE analysis_category_percentage
-ADD CONSTRAINT Unique_analysis_category
-UNIQUE (analysis_id, category_id);
-
-
 -- === GENERATE DATA DUMMY ===
 -- generate categories
 INSERT INTO categories (name, type) VALUES
@@ -285,7 +279,7 @@ END$$
 DELIMITER ;
 CALL generate_wallets();
 
---generate physical wallet
+-- generate physical wallet
 DROP PROCEDURE IF EXISTS generate_wallets;
 DELIMITER $$
 CREATE PROCEDURE generate_wallets()
