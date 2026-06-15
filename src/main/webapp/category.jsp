@@ -166,6 +166,7 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
+                    <p class="mb-1 text-light-teal">Manage categories for every transaction,</p>
                     <h2>Category Transaction</h2>
                 </div>
                 <div>
