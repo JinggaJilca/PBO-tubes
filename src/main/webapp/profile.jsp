@@ -98,18 +98,17 @@
                 <div class="col-12">
                     <div style="border-top: 1px solid #f3f4f6; margin-top: 8px; padding-top: 24px;"
                         class="d-flex justify-content-end">
-                        <form action="${pageContext.request.contextPath}/logout" method="POST" class="m-0">
-                            <button type="submit" class="btn-trx-cancel d-flex align-items-center gap-2"
-                                style="color: #dc2626;">
-                                <i class="bi bi-box-arrow-right"></i>
-                                Logout
-                            </button>
-                        </form>
+                        <button type="button" class="btn-trx-cancel d-flex align-items-center gap-2"
+                            style="color: #dc2626;"
+                            onclick="confirmLogout()">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Logout
+                        </button>
                     </div>
                 </div>
+
             </div>
         </div>
-
     </div>
 
     <!-- MODAL EDIT PROFILE -->
@@ -235,6 +234,37 @@
         </div>
     </div>
 
+    <!-- MODAL KONFIRMASI LOGOUT -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content" style="border-radius:20px; border:none;">
+                <div class="modal-body text-center p-4">
+
+                    <div style="width:56px;height:56px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+                        <i class="bi bi-box-arrow-right text-danger fs-4"></i>
+                    </div>
+
+                    <h6 class="fw-bold mb-2">Logout?</h6>
+
+                    <p style="font-size:0.85rem; color:#888; margin-bottom:20px;">
+                        Are you sure you want to logout from your account?
+                    </p>
+
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button type="button" class="btn-trx-cancel" data-bs-dismiss="modal">Cancel</button>
+                        <form action="${pageContext.request.contextPath}/logout" method="POST" class="m-0">
+                            <button type="submit" class="btn-trx-delete-confirm">Logout</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOOTSTRAP JS DULU, BARU SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         function togglePassword() {
             const pwdInput = document.getElementById("profilePassword");
@@ -285,6 +315,10 @@
             }
         }
 
+        function confirmLogout() {
+            new bootstrap.Modal(document.getElementById("logoutModal")).show();
+        }
+
         document.getElementById("editProfileModal").addEventListener("hidden.bs.modal", function () {
             ["currentPassword","newPassword","confirmPassword"].forEach(id => {
                 document.getElementById(id).value = "";
@@ -299,7 +333,6 @@
             document.getElementById("btnSaveProfile").disabled = false;
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
