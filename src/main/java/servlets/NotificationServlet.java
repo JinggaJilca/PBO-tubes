@@ -11,71 +11,36 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import dao.TransactionDAO;
-import model.User;
 
 /**
  *
- * @author Julio
+ * @author ASUS
  */
-@WebServlet(name = "DeleteTransactionServlet", urlPatterns = { "/transaction/delete" })
-public class DeleteTransactionServlet extends HttpServlet {
+@WebServlet("/notification")
+public class NotificationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request  servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-
-        if (session == null || session.getAttribute("user") == null) {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
-            return;
-        }
-
-        User loggedInUser = (User) session.getAttribute("user");
-        int userId = loggedInUser.getUserID();
-
-        String transactionIdText = request.getParameter("transactionId");
-
-        int transactionId = 0;
-        boolean success = false;
-
-        try {
-            transactionId = Integer.parseInt(transactionIdText);
-        } catch (Exception e) {
-            transactionId = 0;
-        }
-
-        if (transactionId != 0) {
-            TransactionDAO transactionDAO = new TransactionDAO();
-            success = transactionDAO.deleteTransaction(transactionId, userId);
-        }
-
-        if (success) {
-            response.sendRedirect(request.getContextPath() + "/transaction?success=delete");
-        } else {
-            response.sendRedirect(request.getContextPath() + "/transaction?error=delete");
-        }
+        request.getRequestDispatcher("notification.jsp").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
-    // + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request  servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -86,10 +51,10 @@ public class DeleteTransactionServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request  servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
