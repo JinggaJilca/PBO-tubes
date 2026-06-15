@@ -117,26 +117,4 @@ public class CategoryDAO {
     }
        
 
-public List<Category> getCategoriesByUserId(int userId) {
-    List<Category> categories = new ArrayList<>();
-    // Pastikan nama tabel 'categories' sesuai dengan database Anda
-    String sql = "SELECT category_id, name FROM categories WHERE user_id = ?"; 
-    
-    try (Connection conn = JDBC.getConnection();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
-        
-        stmt.setInt(1, userId);
-        try (ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                Category cat = new Category();
-                cat.setCategoryID(rs.getInt("category_id")); // Sesuaikan nama kolom DB
-                cat.setName(rs.getString("name"));           // Sesuaikan nama kolom DB
-                categories.add(cat);
-            }
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-    return categories;
-}
 }
