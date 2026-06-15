@@ -6,8 +6,6 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,15 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.NotificationDAO;
-import model.BudgetNotification;
 import model.User;
 
 /**
  *
- * @author ASUS
+ * @author Julio
  */
-@WebServlet("/notification")
-public class NotificationServlet extends HttpServlet {
+@WebServlet(name = "DeleteNotificationServlet", urlPatterns = { "/notification/delete" })
+public class DeleteNotificationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,7 +34,31 @@ public class NotificationServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("notification.jsp").forward(request, response);
+        HttpSession session = request.getSession(false);
+
+        if (session == null || session.getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+
+        User loggedInUser = (User) session.getAttribute("user");
+        int userId = loggedInUser.getUserID();
+
+        int notificationId = 0;
+
+        try {
+            notificationId = Integer.parseInt(request.getParameter("notificationId"));
+        } catch (Exception e) {
+            notificationId = 0;
+        }
+
+        NotificationDAO notificationDAO = new NotificationDAO();
+
+        if (notificationId != 0) {
+            notificationDAO.deleteNotification(notificationId, userId);
+        }
+
+        response.sendRedirect(request.getContextPath() + "/notification");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
@@ -53,27 +74,7 @@ public class NotificationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-
-        if (session == null || session.getAttribute("user") == null) {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
-            return;
-        }
-
-        User loggedInUser = (User) session.getAttribute("user");
-        int userId = loggedInUser.getUserID();
-
-        System.out.println("USER LOGIN NOTIFICATION = " + userId);
-
-        NotificationDAO notificationDAO = new NotificationDAO();
-        List<BudgetNotification> notifications = notificationDAO.getNotificationsByUserId(userId);
-
-        System.out.println("JUMLAH NOTIFIKASI = " + notifications.size());
-
-        request.setAttribute("notifications", notifications);
-        request.setAttribute("unreadCount", notifications.size());
-
-        request.getRequestDispatcher("/notification.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

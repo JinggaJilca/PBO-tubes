@@ -1,746 +1,436 @@
-<%--
-    Document   : notification
-    Description: Halaman notifikasi threshold budget FinTrack
---%>
+<%-- Document : notification Description: Halaman notifikasi threshold budget FinTrack --%>
 
-<%@ page isELIgnored="false" %>
-<%@ page language="java"
-         contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+    <%@ page isELIgnored="false" %>
+        <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+            <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+                <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+                    <!DOCTYPE html>
+                    <html lang="id">
 
-<!DOCTYPE html>
-<html lang="id">
+                    <head>
+                        <meta charset="UTF-8">
 
-<head>
-    <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+                        <title>FinTrack - Notifications</title>
 
-    <title>FinTrack - Notifications</title>
+                        <!-- Favicon -->
+                        <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/images/favicon.png">
 
-    <!-- Favicon -->
-    <link rel="icon"
-          type="image/png"
-          href="<%= request.getContextPath() %>/images/favicon.png">
+                        <!-- Bootstrap -->
+                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+                            rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+                        <!-- Bootstrap Icons -->
+                        <link rel="stylesheet"
+                            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+                        <!-- Google Font -->
+                        <link
+                            href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"
+                            rel="stylesheet">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
+                        <!-- FinTrack CSS -->
+                        <link rel="stylesheet" type="text/css"
+                            href="<%= request.getContextPath() %>/css/style.css?v=20260613-5">
+                    </head>
 
-    <!-- FinTrack CSS -->
-    <link rel="stylesheet"
-          type="text/css"
-          href="<%= request.getContextPath() %>/css/style.css?v=20260613-5">
-</head>
+                    <body class="notification-page">
 
-<body class="notification-page">
+                        <!-- Navbar -->
+                        <jsp:include page="navbar.jsp" />
 
-    <!-- Navbar -->
-    <jsp:include page="navbar.jsp" />
-
-    <!-- =====================================
+                        <!-- =====================================
          HEADER
     ====================================== -->
-    <header class="notification-header">
+                        <header class="notification-header">
 
-        <div class="container">
+                            <div class="container">
 
-            <div class="notification-header-content">
+                                <div class="notification-header-content">
 
-                <div class="notification-header-text">
+                                    <div class="notification-header-text">
 
-                    <p class="notification-subtitle">
-                        Budget monitoring
-                    </p>
+                                        <p class="notification-subtitle">
+                                            Budget monitoring
+                                        </p>
 
-                    <h1 class="notification-title">
-                        Notifications
-                    </h1>
+                                        <h1 class="notification-title">
+                                            Notifications
+                                        </h1>
 
-                    <p class="notification-description">
-                        Notifications appear after your spending reaches
-                        or passes the warning threshold of a budget category.
-                    </p>
+                                        <p class="notification-description">
+                                            Notifications appear after your spending reaches
+                                            or passes the warning threshold of a budget category.
+                                        </p>
 
-                </div>
+                                    </div>
 
-                <button type="button"
-                        class="btn-mark-all"
-                        id="markAllReadButton">
+                                    <button type="button" class="btn-mark-all" id="markAllReadButton">
 
-                    <i class="bi bi-check2-all"></i>
+                                        <i class="bi bi-check2-all"></i>
 
-                    Mark All as Read
-                </button>
+                                        Mark All as Read
+                                    </button>
 
-            </div>
+                                </div>
 
-        </div>
+                            </div>
 
-    </header>
+                        </header>
 
-    <!-- =====================================
+                        <!-- =====================================
          MAIN CONTENT
     ====================================== -->
-    <main class="notification-content">
+                        <main class="notification-content">
 
-        <div class="container">
+                            <div class="container">
 
-            <!-- Summary -->
-            <section class="notification-summary">
+                                <!-- Summary -->
+                                <section class="notification-summary">
 
-                <div class="notification-summary-text">
+                                    <div class="notification-summary-text">
 
-                    <h2>Threshold Warnings</h2>
+                                        <h2>Threshold Warnings</h2>
 
-                    <p>
-                        You have
-                        <span id="unreadCount">3</span>
-                        unread notifications.
-                    </p>
+                                        <p>
+                                            You have
+                                            <span id="unreadCount">${unreadCount != null ? unreadCount : 0}</span>
+                                            unread notifications.
+                                        </p>
 
-                </div>
+                                    </div>
 
-                <!-- Filter -->
-                <div class="notification-filter">
+                                    <!-- Filter -->
+                                    <div class="notification-filter">
 
-                    <button type="button"
-                            class="notification-filter-button active"
-                            data-filter="all">
+                                        <button type="button" class="notification-filter-button active"
+                                            data-filter="all">
 
-                        All
-                    </button>
+                                            All
+                                        </button>
 
-                    <button type="button"
-                            class="notification-filter-button"
-                            data-filter="unread">
+                                        <button type="button" class="notification-filter-button" data-filter="unread">
 
-                        Unread
-                    </button>
+                                            Unread
+                                        </button>
 
-                    <button type="button"
-                            class="notification-filter-button"
-                            data-filter="read">
+                                        <button type="button" class="notification-filter-button" data-filter="read">
 
-                        Read
-                    </button>
+                                            Read
+                                        </button>
 
-                </div>
+                                    </div>
 
-            </section>
+                                </section>
 
-            <!-- =====================================
+                                <!-- =====================================
                  NOTIFICATION LIST
             ====================================== -->
-            <section class="notification-list"
-                     id="notificationList">
+                                <section class="notification-list" id="notificationList">
 
-                <!-- =====================================
-                     FOOD AND DRINKS
-                ====================================== -->
-                <article class="notification-card unread"
-                         data-status="unread">
+                                    <c:if test="${not empty notifications}">
+                                        <c:forEach var="notif" items="${notifications}">
 
-                    <div class="notification-icon">
-                        <i class="bi bi-exclamation-triangle"></i>
-                    </div>
+                                            <article class="notification-card unread" data-status="unread">
 
-                    <div class="notification-card-content">
+                                                <div class="notification-icon">
+                                                    <i class="bi bi-exclamation-triangle"></i>
+                                                </div>
 
-                        <div class="notification-card-header">
+                                                <div class="notification-card-content">
 
-                            <div class="notification-card-title-wrapper">
+                                                    <div class="notification-card-header">
 
-                                <h3>
-                                    Food and Drinks Threshold Reached
-                                </h3>
+                                                        <div class="notification-card-title-wrapper">
 
-                                <span class="notification-status">
-                                    New
-                                </span>
+                                                            <h3>
+                                                                ${notif.categoryName} Threshold Reached
+                                                            </h3>
 
-                            </div>
+                                                            <span class="notification-status">
+                                                                New
+                                                            </span>
 
-                            <time datetime="2026-06-13T10:30">
-                                Today, 10:30
-                            </time>
+                                                        </div>
 
-                        </div>
+                                                        <time>
+                                                            <fmt:formatDate value="${notif.notificationDate}"
+                                                                pattern="dd MMM yyyy, HH:mm" />
+                                                        </time>
 
-                        <p class="notification-message">
-                            Your Food and Drinks spending has reached
-                            Rp1.600.000 and has passed the warning threshold
-                            of Rp1.500.000.
-                        </p>
+                                                    </div>
 
-                        <div class="notification-threshold-information">
+                                                    <p class="notification-message">
+                                                        Your ${notif.categoryName} spending has reached
+                                                        Rp
+                                                        <fmt:formatNumber value="${notif.currentSpending}" type="number"
+                                                            groupingUsed="true" maxFractionDigits="0" />
+                                                        and has passed the warning threshold of
+                                                        Rp
+                                                        <fmt:formatNumber value="${notif.warningThreshold}"
+                                                            type="number" groupingUsed="true" maxFractionDigits="0" />.
+                                                    </p>
 
-                            <div class="notification-threshold-row">
+                                                    <div class="notification-threshold-information">
 
-                                <span>Current Spending</span>
+                                                        <div class="notification-threshold-row">
+                                                            <span>Current Spending</span>
 
-                                <strong>Rp1.600.000</strong>
+                                                            <strong>
+                                                                Rp
+                                                                <fmt:formatNumber value="${notif.currentSpending}"
+                                                                    type="number" groupingUsed="true"
+                                                                    maxFractionDigits="0" />
+                                                            </strong>
+                                                        </div>
 
-                            </div>
+                                                        <div class="notification-threshold-row">
+                                                            <span>Warning Threshold</span>
 
-                            <div class="notification-threshold-row">
+                                                            <strong>
+                                                                Rp
+                                                                <fmt:formatNumber value="${notif.warningThreshold}"
+                                                                    type="number" groupingUsed="true"
+                                                                    maxFractionDigits="0" />
+                                                            </strong>
+                                                        </div>
 
-                                <span>Warning Threshold</span>
+                                                        <div class="notification-threshold-row">
+                                                            <span>Threshold Difference</span>
 
-                                <strong>Rp1.500.000</strong>
+                                                            <strong class="threshold-difference">
+                                                                Rp
+                                                                <fmt:formatNumber value="${notif.difference}"
+                                                                    type="number" groupingUsed="true"
+                                                                    maxFractionDigits="0" />
+                                                            </strong>
+                                                        </div>
 
-                            </div>
+                                                    </div>
 
-                            <div class="notification-threshold-row">
+                                                    <div class="notification-card-actions">
 
-                                <span>Threshold Difference</span>
+                                                        <a href="${pageContext.request.contextPath}/budget"
+                                                            class="notification-detail-link">
 
-                                <strong class="threshold-difference">
-                                    Rp100.000
-                                </strong>
+                                                            View Budget
 
-                            </div>
+                                                            <i class="bi bi-arrow-right"></i>
 
-                        </div>
+                                                        </a>
 
-                        <div class="notification-card-actions">
+                                                        <div class="notification-action-buttons">
 
-                            <a href="<%= request.getContextPath() %>/budget"
-                               class="notification-detail-link">
+                                                            <button type="button"
+                                                                class="notification-action-button mark-read-button"
+                                                                title="Mark as read">
 
-                                View Budget
+                                                                <i class="bi bi-check2"></i>
 
-                                <i class="bi bi-arrow-right"></i>
+                                                            </button>
 
-                            </a>
+                                                            <form
+                                                                action="${pageContext.request.contextPath}/notification/delete"
+                                                                method="POST" class="m-0">
 
-                            <div class="notification-action-buttons">
+                                                                <input type="hidden" name="notificationId"
+                                                                    value="${notif.notificationId}">
 
-                                <button type="button"
-                                        class="notification-action-button mark-read-button"
-                                        title="Mark as read">
+                                                                <button type="submit"
+                                                                    class="notification-action-button delete-notification-button"
+                                                                    title="Delete notification">
 
-                                    <i class="bi bi-check2"></i>
+                                                                    <i class="bi bi-trash3"></i>
 
-                                </button>
+                                                                </button>
 
-                                <button type="button"
-                                        class="notification-action-button delete-notification-button"
-                                        title="Delete notification">
+                                                            </form>
 
-                                    <i class="bi bi-trash3"></i>
+                                                        </div>
 
-                                </button>
+                                                    </div>
 
-                            </div>
+                                                </div>
 
-                        </div>
+                                            </article>
 
-                    </div>
+                                        </c:forEach>
+                                    </c:if>
 
-                </article>
-
-                <!-- =====================================
-                     SHOPPING
-                ====================================== -->
-                <article class="notification-card unread"
-                         data-status="unread">
-
-                    <div class="notification-icon">
-                        <i class="bi bi-exclamation-triangle"></i>
-                    </div>
-
-                    <div class="notification-card-content">
-
-                        <div class="notification-card-header">
-
-                            <div class="notification-card-title-wrapper">
-
-                                <h3>
-                                    Shopping Threshold Reached
-                                </h3>
-
-                                <span class="notification-status">
-                                    New
-                                </span>
-
-                            </div>
-
-                            <time datetime="2026-06-13T08:15">
-                                Today, 08:15
-                            </time>
-
-                        </div>
-
-                        <p class="notification-message">
-                            Your Shopping spending has reached Rp900.000
-                            and has passed the warning threshold of Rp800.000.
-                        </p>
-
-                        <div class="notification-threshold-information">
-
-                            <div class="notification-threshold-row">
-
-                                <span>Current Spending</span>
-
-                                <strong>Rp900.000</strong>
-
-                            </div>
-
-                            <div class="notification-threshold-row">
-
-                                <span>Warning Threshold</span>
-
-                                <strong>Rp800.000</strong>
-
-                            </div>
-
-                            <div class="notification-threshold-row">
-
-                                <span>Threshold Difference</span>
-
-                                <strong class="threshold-difference">
-                                    Rp100.000
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                        <div class="notification-card-actions">
-
-                            <a href="<%= request.getContextPath() %>/budget"
-                               class="notification-detail-link">
-
-                                View Budget
-
-                                <i class="bi bi-arrow-right"></i>
-
-                            </a>
-
-                            <div class="notification-action-buttons">
-
-                                <button type="button"
-                                        class="notification-action-button mark-read-button"
-                                        title="Mark as read">
-
-                                    <i class="bi bi-check2"></i>
-
-                                </button>
-
-                                <button type="button"
-                                        class="notification-action-button delete-notification-button"
-                                        title="Delete notification">
-
-                                    <i class="bi bi-trash3"></i>
-
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-                <!-- =====================================
-                     TRANSPORTATION
-                ====================================== -->
-                <article class="notification-card unread"
-                         data-status="unread">
-
-                    <div class="notification-icon">
-                        <i class="bi bi-exclamation-triangle"></i>
-                    </div>
-
-                    <div class="notification-card-content">
-
-                        <div class="notification-card-header">
-
-                            <div class="notification-card-title-wrapper">
-
-                                <h3>
-                                    Transportation Threshold Reached
-                                </h3>
-
-                                <span class="notification-status">
-                                    New
-                                </span>
-
-                            </div>
-
-                            <time datetime="2026-06-12T19:40">
-                                Yesterday, 19:40
-                            </time>
-
-                        </div>
-
-                        <p class="notification-message">
-                            Your Transportation spending has reached
-                            Rp1.300.000 and has passed the warning threshold
-                            of Rp1.200.000.
-                        </p>
-
-                        <div class="notification-threshold-information">
-
-                            <div class="notification-threshold-row">
-
-                                <span>Current Spending</span>
-
-                                <strong>Rp1.300.000</strong>
-
-                            </div>
-
-                            <div class="notification-threshold-row">
-
-                                <span>Warning Threshold</span>
-
-                                <strong>Rp1.200.000</strong>
-
-                            </div>
-
-                            <div class="notification-threshold-row">
-
-                                <span>Threshold Difference</span>
-
-                                <strong class="threshold-difference">
-                                    Rp100.000
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                        <div class="notification-card-actions">
-
-                            <a href="<%= request.getContextPath() %>/budget"
-                               class="notification-detail-link">
-
-                                View Budget
-
-                                <i class="bi bi-arrow-right"></i>
-
-                            </a>
-
-                            <div class="notification-action-buttons">
-
-                                <button type="button"
-                                        class="notification-action-button mark-read-button"
-                                        title="Mark as read">
-
-                                    <i class="bi bi-check2"></i>
-
-                                </button>
-
-                                <button type="button"
-                                        class="notification-action-button delete-notification-button"
-                                        title="Delete notification">
-
-                                    <i class="bi bi-trash3"></i>
-
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-                <!-- =====================================
-                     READ NOTIFICATION
-                ====================================== -->
-                <article class="notification-card"
-                         data-status="read">
-
-                    <div class="notification-icon">
-                        <i class="bi bi-exclamation-triangle"></i>
-                    </div>
-
-                    <div class="notification-card-content">
-
-                        <div class="notification-card-header">
-
-                            <div class="notification-card-title-wrapper">
-
-                                <h3>
-                                    Entertainment Threshold Reached
-                                </h3>
-
-                            </div>
-
-                            <time datetime="2026-06-11T14:20">
-                                11 June 2026
-                            </time>
-
-                        </div>
-
-                        <p class="notification-message">
-                            Your Entertainment spending has reached
-                            Rp650.000 and has passed the warning threshold
-                            of Rp600.000.
-                        </p>
-
-                        <div class="notification-threshold-information">
-
-                            <div class="notification-threshold-row">
-
-                                <span>Current Spending</span>
-
-                                <strong>Rp650.000</strong>
-
-                            </div>
-
-                            <div class="notification-threshold-row">
-
-                                <span>Warning Threshold</span>
-
-                                <strong>Rp600.000</strong>
-
-                            </div>
-
-                            <div class="notification-threshold-row">
-
-                                <span>Threshold Difference</span>
-
-                                <strong class="threshold-difference">
-                                    Rp50.000
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                        <div class="notification-card-actions">
-
-                            <a href="<%= request.getContextPath() %>/budget"
-                               class="notification-detail-link">
-
-                                View Budget
-
-                                <i class="bi bi-arrow-right"></i>
-
-                            </a>
-
-                            <div class="notification-action-buttons">
-
-                                <button type="button"
-                                        class="notification-action-button delete-notification-button"
-                                        title="Delete notification">
-
-                                    <i class="bi bi-trash3"></i>
-
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-            </section>
-
-            <!-- =====================================
+                                </section>
+                                <!-- =====================================
                  EMPTY STATE
             ====================================== -->
-            <section class="notification-empty"
-                     id="notificationEmpty">
+                                <section class="notification-empty" id="notificationEmpty">
 
-                <div class="notification-empty-icon">
+                                    <div class="notification-empty-icon">
 
-                    <i class="bi bi-shield-check"></i>
+                                        <i class="bi bi-shield-check"></i>
 
-                </div>
+                                    </div>
 
-                <h3>No Threshold Warnings</h3>
+                                    <h3>No Threshold Warnings</h3>
 
-                <p>
-                    None of your budget categories have reached
-                    their warning threshold.
-                </p>
+                                    <p>
+                                        None of your budget categories have reached
+                                        their warning threshold.
+                                    </p>
 
-            </section>
+                                </section>
 
-        </div>
+                            </div>
 
-    </main>
+                        </main>
 
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                        <!-- Bootstrap JavaScript -->
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- =====================================
+                        <!-- =====================================
          NOTIFICATION JAVASCRIPT
     ====================================== -->
-    <script>
-        const filterButtons =
-            document.querySelectorAll(".notification-filter-button");
+                        <script>
+                            const filterButtons =
+                                document.querySelectorAll(".notification-filter-button");
 
-        const markAllReadButton =
-            document.getElementById("markAllReadButton");
+                            const markAllReadButton =
+                                document.getElementById("markAllReadButton");
 
-        const unreadCountElement =
-            document.getElementById("unreadCount");
+                            const unreadCountElement =
+                                document.getElementById("unreadCount");
 
-        const notificationEmpty =
-            document.getElementById("notificationEmpty");
+                            const notificationEmpty =
+                                document.getElementById("notificationEmpty");
 
-        let activeFilter = "all";
+                            let activeFilter = "all";
 
-        function updateUnreadCount() {
-            const unreadNotifications =
-                document.querySelectorAll(
-                    ".notification-card[data-status='unread']"
-                );
+                            function updateUnreadCount() {
+                                const unreadNotifications =
+                                    document.querySelectorAll(
+                                        ".notification-card[data-status='unread']"
+                                    );
 
-            unreadCountElement.textContent =
-                unreadNotifications.length;
-        }
+                                unreadCountElement.textContent =
+                                    unreadNotifications.length;
+                            }
 
-        function applyNotificationFilter() {
-            const notificationCards =
-                document.querySelectorAll(".notification-card");
+                            function applyNotificationFilter() {
+                                const notificationCards =
+                                    document.querySelectorAll(".notification-card");
 
-            let visibleNotifications = 0;
+                                let visibleNotifications = 0;
 
-            notificationCards.forEach(function (card) {
-                const notificationStatus =
-                    card.getAttribute("data-status");
+                                notificationCards.forEach(function (card) {
+                                    const notificationStatus =
+                                        card.getAttribute("data-status");
 
-                const shouldDisplay =
-                    activeFilter === "all" ||
-                    activeFilter === notificationStatus;
+                                    const shouldDisplay =
+                                        activeFilter === "all" ||
+                                        activeFilter === notificationStatus;
 
-                card.style.display =
-                    shouldDisplay ? "flex" : "none";
+                                    card.style.display =
+                                        shouldDisplay ? "flex" : "none";
 
-                if (shouldDisplay) {
-                    visibleNotifications++;
-                }
-            });
+                                    if (shouldDisplay) {
+                                        visibleNotifications++;
+                                    }
+                                });
 
-            if (visibleNotifications === 0) {
-                notificationEmpty.classList.add("show");
-            } else {
-                notificationEmpty.classList.remove("show");
-            }
-        }
+                                if (visibleNotifications === 0) {
+                                    notificationEmpty.classList.add("show");
+                                } else {
+                                    notificationEmpty.classList.remove("show");
+                                }
+                            }
 
-        function markNotificationAsRead(card) {
-            card.classList.remove("unread");
-            card.setAttribute("data-status", "read");
+                            function markNotificationAsRead(card) {
+                                card.classList.remove("unread");
+                                card.setAttribute("data-status", "read");
 
-            const notificationStatus =
-                card.querySelector(".notification-status");
+                                const notificationStatus =
+                                    card.querySelector(".notification-status");
 
-            const markReadButton =
-                card.querySelector(".mark-read-button");
+                                const markReadButton =
+                                    card.querySelector(".mark-read-button");
 
-            if (notificationStatus) {
-                notificationStatus.remove();
-            }
+                                if (notificationStatus) {
+                                    notificationStatus.remove();
+                                }
 
-            if (markReadButton) {
-                markReadButton.remove();
-            }
+                                if (markReadButton) {
+                                    markReadButton.remove();
+                                }
 
-            updateUnreadCount();
-            applyNotificationFilter();
-        }
+                                updateUnreadCount();
+                                applyNotificationFilter();
+                            }
 
-        document.addEventListener("click", function (event) {
+                            document.addEventListener("click", function (event) {
 
-            const markReadButton =
-                event.target.closest(".mark-read-button");
 
-            const deleteButton =
-                event.target.closest(
-                    ".delete-notification-button"
-                );
 
-            if (markReadButton) {
-                const notificationCard =
-                    markReadButton.closest(".notification-card");
+                                if (markReadButton) {
+                                    const notificationCard =
+                                        markReadButton.closest(".notification-card");
 
-                markNotificationAsRead(notificationCard);
-            }
+                                    markNotificationAsRead(notificationCard);
+                                }
 
-            if (deleteButton) {
-                const notificationCard =
-                    deleteButton.closest(".notification-card");
+                            });
 
-                notificationCard.remove();
+                            markAllReadButton.addEventListener("click", function () {
 
-                updateUnreadCount();
-                applyNotificationFilter();
-            }
+                                const unreadNotifications =
+                                    document.querySelectorAll(
+                                        ".notification-card[data-status='unread']"
+                                    );
 
-        });
+                                unreadNotifications.forEach(function (card) {
+                                    card.classList.remove("unread");
+                                    card.setAttribute("data-status", "read");
 
-        markAllReadButton.addEventListener("click", function () {
+                                    const notificationStatus =
+                                        card.querySelector(".notification-status");
 
-            const unreadNotifications =
-                document.querySelectorAll(
-                    ".notification-card[data-status='unread']"
-                );
+                                    const markReadButton =
+                                        card.querySelector(".mark-read-button");
 
-            unreadNotifications.forEach(function (card) {
-                card.classList.remove("unread");
-                card.setAttribute("data-status", "read");
+                                    if (notificationStatus) {
+                                        notificationStatus.remove();
+                                    }
 
-                const notificationStatus =
-                    card.querySelector(".notification-status");
+                                    if (markReadButton) {
+                                        markReadButton.remove();
+                                    }
+                                });
 
-                const markReadButton =
-                    card.querySelector(".mark-read-button");
+                                updateUnreadCount();
+                                applyNotificationFilter();
+                            });
 
-                if (notificationStatus) {
-                    notificationStatus.remove();
-                }
+                            filterButtons.forEach(function (button) {
 
-                if (markReadButton) {
-                    markReadButton.remove();
-                }
-            });
+                                button.addEventListener("click", function () {
 
-            updateUnreadCount();
-            applyNotificationFilter();
-        });
+                                    filterButtons.forEach(function (item) {
+                                        item.classList.remove("active");
+                                    });
 
-        filterButtons.forEach(function (button) {
+                                    button.classList.add("active");
 
-            button.addEventListener("click", function () {
+                                    activeFilter =
+                                        button.getAttribute("data-filter");
 
-                filterButtons.forEach(function (item) {
-                    item.classList.remove("active");
-                });
+                                    applyNotificationFilter();
+                                });
 
-                button.classList.add("active");
+                            });
 
-                activeFilter =
-                    button.getAttribute("data-filter");
+                            updateUnreadCount();
+                            applyNotificationFilter();
+                        </script>
 
-                applyNotificationFilter();
-            });
+                    </body>
 
-        });
-
-        updateUnreadCount();
-        applyNotificationFilter();
-    </script>
-
-</body>
-
-</html>
+                    </html>
