@@ -74,7 +74,6 @@
             </ul>
         </div>
 
-<<<<<<< HEAD
                         <!-- Mobile Toggle -->
                         <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -276,32 +275,3 @@
                         }
                     </script>
                 </nav>
-=======
-        <div class="d-flex align-items-center gap-3">
-            <a href="<%= ctx %>/notification" class="text-decoration-none" aria-label="Notification">
-                <div class="icon-circle notification-bell-wrapper">
-                    <i class="bi bi-bell-fill fs-5"></i>
-                    <% if (notificationCount > 0) { %>
-                        <span class="notification-dot"></span>
-                    <% } %>
-                </div>
-            </a>
-            <div class="dropdown">
-                <a class="text-white text-decoration-none dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="profile-circle"><i class="bi bi-person-fill fs-4"></i></div>
-                    <span class="fw-semibold text-white"><%= usernameNavbar %></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
-                    <li><a class="dropdown-item" href="<%= ctx %>/profile"><i class="bi bi-person me-2"></i> Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form action="<%= ctx %>/logout" method="POST" class="m-0">
-                            <button type="submit" class="dropdown-item text-danger"><i class="bi bi-box-arrow-right me-2"></i> Logout</button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</nav>
->>>>>>> 8c0114757ea1bf46fdbad319bcc91f5155c60c66
