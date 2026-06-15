@@ -27,6 +27,8 @@ CREATE TABLE account_wallets(
 
 CREATE TABLE physical_wallet(
 	account_id INT(16) PRIMARY KEY,
+    provider_name VARCHAR(50) NOT NULL DEFAULT 'Cash',
+	account_number VARCHAR(20) DEFAULT NULL,
 	FOREIGN KEY(account_id) REFERENCES account_wallets (account_id) ON DELETE CASCADE);
 
 CREATE TABLE ewallet(
