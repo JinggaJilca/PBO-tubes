@@ -331,4 +331,36 @@ public List<RecentActivity> getExportTransactions(int userID, int year, int mont
 
     return activities;
 }
+public double getAverageExpense(int userID, int year, int month) {
+    LocalDate startMonth = LocalDate.of(year, month, 1);
+    LocalDate endMonthExclusive = startMonth.plusMonths(1);
+
+    String sql =
+            "SELECT COALESCE(AVG(amount), 0) AS average_expense " +
+            "FROM transactions " +
+            "WHERE user_id = ? " +
+            "AND transaction_type = 'expense' " +
+            "AND transaction_date >= ? " +
+            "AND transaction_date < ?";
+
+    try (Connection conn = JDBC.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setInt(1, userID);
+        stmt.setTimestamp(2, Timestamp.valueOf(startMonth.atStartOfDay()));
+        stmt.setTimestamp(3, Timestamp.valueOf(endMonthExclusive.atStartOfDay()));
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getDouble("average_expense");
+            }
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Gagal mengambil rata-rata pengeluaran.");
+        e.printStackTrace();
+    }
+
+    return 0;
+}
 }

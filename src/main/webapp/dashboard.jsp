@@ -14,33 +14,45 @@
                                     List<CategorySpendingSummary> spendingOverview =
                                         (List<CategorySpendingSummary>) request.getAttribute("spendingOverview");
 
-                                        String monthlyLabelsJson = (String)
-                                        request.getAttribute("monthlyLabelsJson");
-                                        String monthlyIncomeJson = (String)
-                                        request.getAttribute("monthlyIncomeJson");
-                                        String monthlyExpenseJson = (String)
-                                        request.getAttribute("monthlyExpenseJson");
+                                            CategorySpendingSummary largestCategory =
+                                            (CategorySpendingSummary) request.getAttribute("largestCategory");
 
-                                        String categoryLabelsJson = (String)
-                                        request.getAttribute("categoryLabelsJson");
-                                        String categoryAmountJson = (String)
-                                        request.getAttribute("categoryAmountJson");
+                                            Double averageExpenseObject =
+                                            (Double) request.getAttribute("averageExpense");
 
-                                        if (username == null || username.trim().isEmpty()) {
-                                        username = "User";
-                                        }
+                                            double averageExpense = 0;
 
-                                        if (monthlyLabelsJson == null || monthlyLabelsJson.trim().isEmpty()) {
-                                        monthlyLabelsJson = "[]";
-                                        }
+                                            if (averageExpenseObject != null) {
+                                            averageExpense = averageExpenseObject;
+                                            }
 
-                                        if (monthlyIncomeJson == null || monthlyIncomeJson.trim().isEmpty()) {
-                                        monthlyIncomeJson = "[]";
-                                        }
+                                            String monthlyLabelsJson = (String)
+                                            request.getAttribute("monthlyLabelsJson");
+                                            String monthlyIncomeJson = (String)
+                                            request.getAttribute("monthlyIncomeJson");
+                                            String monthlyExpenseJson = (String)
+                                            request.getAttribute("monthlyExpenseJson");
 
-                                        if (monthlyExpenseJson == null || monthlyExpenseJson.trim().isEmpty()) {
-                                        monthlyExpenseJson = "[]";
-                                        }
+                                            String categoryLabelsJson = (String)
+                                            request.getAttribute("categoryLabelsJson");
+                                            String categoryAmountJson = (String)
+                                            request.getAttribute("categoryAmountJson");
+
+                                            if (username == null || username.trim().isEmpty()) {
+                                            username = "User";
+                                            }
+
+                                            if (monthlyLabelsJson == null || monthlyLabelsJson.trim().isEmpty()) {
+                                            monthlyLabelsJson = "[]";
+                                            }
+
+                                            if (monthlyIncomeJson == null || monthlyIncomeJson.trim().isEmpty()) {
+                                            monthlyIncomeJson = "[]";
+                                            }
+
+                                            if (monthlyExpenseJson == null || monthlyExpenseJson.trim().isEmpty()) {
+                                            monthlyExpenseJson = "[]";
+                                            }
 
                                         if (categoryLabelsJson == null || categoryLabelsJson.trim().isEmpty()) {
                                         categoryLabelsJson = "[]";
@@ -109,65 +121,14 @@
                                                         transactionType.value = type;
                                                     }
 
-                                                    if (modalLabel) {
-                                                        modalLabel.innerText = type === "income"
-                                                            ? "Tambah Pemasukan"
-                                                            : "Tambah Pengeluaran";
-                                                    }
-                                                };
-                                            </script>
-
-                                            <!-- <style>
-                                                    body {
-                                                        background-color: #f5f7f6;
-                                                        font-family: "Instrument Sans", Arial, sans-serif;
-                                                    }
-
-                                                    .navbar-custom {
-                                                        background-color: #073f31;
-                                                    }
-
-                                                    .navbar-logo {
-                                                        height: 42px;
-                                                        max-width: 150px;
-                                                        object-fit: contain;
-                                                    }
-
-                                                    .icon-circle,
-                                                    .profile-circle {
-                                                        width: 42px;
-                                                        height: 42px;
-                                                        border-radius: 50%;
-                                                        background-color: rgba(255, 255, 255, 0.14);
-                                                        color: white;
-                                                        display: flex;
-                                                        justify-content: center;
-                                                        align-items: center;
-                                                    }
-
-                                                    .dashboard-header {
-                                                        background-color: #073f31;
-                                                        color: white;
-                                                        padding: 28px 0 90px;
-                                                    }
-
-                                                    .text-light-teal {
-                                                        color: #cde7dd;
-                                                    }
-
-                                                    .overlap-container {
-                                                        margin-top: -60px;
-                                                    }
-
-                                                    .fintrack-card {
-                                                        border: none;
-                                                        border-radius: 22px;
-                                                        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
-                                                    }
-
-                                                    
-                                                </style> -->
-                                        </head>
+                                                        if (modalLabel) {
+                                                            modalLabel.innerText = type === "income"
+                                                                ? "Tambah Pemasukan"
+                                                                : "Tambah Pengeluaran";
+                                                        }
+                                                    };
+                                                </script>
+                                            </head>
 
                                     <body>
 
@@ -323,93 +284,100 @@
                                                                             </span>
                                                                         </div>
 
-                                                                        <span>
-                                                                            <%= rupiah.format(category.getTotalAmount())
-                                                                                %>
-                                                                        </span>
+                                                                                <span>
+                                                                                    <%= rupiah.format(category.getTotalAmount())
+                                                                                        %>
+                                                                                </span>
+                                                                            </div>
+                                                                            <% } } else { %>
+                                                                                <div class="spending-mini-item">
+                                                                                    <span class="text-muted">
+                                                                                        Belum ada data spending.
+                                                                                    </span>
+                                                                                </div>
+                                                                                <% } %>
                                                                     </div>
-                                                                    <% } } else { %>
-                                                                        <div class="spending-mini-item">
-                                                                            <span class="text-muted">Belum ada
-                                                                                data spending.</span>
-                                                                        </div>
-                                                                        <% } %>
+
+                                                                </div>
                                                             </div>
-
                                                         </div>
+
                                                     </div>
-                                                </div>
 
-                                            </div>
+                                                    <!-- MAIN CHART + RECENT ACTIVITY -->
+                                                    <div class="row g-4">
 
-                                            <!-- MAIN CHART + RECENT ACTIVITY -->
-                                            <div class="row g-4">
+                                                        <!-- TRANSACTIONS OVERVIEW -->
+                                                        <div class="col-12 col-lg-7">
+                                                            <div
+                                                                class="card fintrack-card activity-card p-4 activity-card-compact">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+                                                                    <div>
+                                                                        <h6 class="fw-bold text-dark mb-1">Transactions
+                                                                            Overview</h6>
 
-                                                <!-- TRANSACTIONS OVERVIEW -->
-                                                <div class="col-12 col-lg-7">
-                                                    <div
-                                                        class="card fintrack-card activity-card p-4 activity-card-compact">
-                                                        <div
-                                                            class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
-                                                            <div>
-                                                                <h6 class="fw-bold text-dark mb-1">Transactions
-                                                                    Overview</h6>
+                                                                        <h3 class="chart-card-title">
+                                                                            <%= rupiah.format(totalExpense) %>
+                                                                        </h3>
+                                                                    </div>
 
-                                                                <h3 class="chart-card-title">
-                                                                    <%= rupiah.format(totalExpense) %>
-                                                                </h3>
+                                                                    <a href="<%= request.getContextPath() %>/DashboardExportServlet"
+                                                                        class="btn btn-date-light d-flex align-items-center gap-2">
+                                                                        <i class="bi bi-download"></i>
+                                                                        Export This Month
+                                                                    </a>
+                                                                </div>
+
+                                                                <div class="legend-inline">
+                                                                    <span>
+                                                                        <span class="legend-dot legend-green"></span>
+                                                                        Spending
+                                                                    </span>
+
+                                                                    <span>
+                                                                        <span class="legend-dot legend-gray"></span>
+                                                                        Earnings
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="chart-wrapper">
+                                                                    <canvas id="monthlyTransactionChart"></canvas>
+                                                                </div>
+
+                                                                <div id="monthlyChartInfo"
+                                                                    class="text-muted small mt-2"></div>
                                                             </div>
-
-                                                            <a href="<%= request.getContextPath() %>/DashboardExportServlet"
-                                                                class="btn btn-date-light d-flex align-items-center gap-2">
-                                                                <i class="bi bi-download"></i>
-                                                                Export This Month
-                                                            </a>
                                                         </div>
 
-                                                        <div class="legend-inline">
-                                                            <span><span
-                                                                    class="legend-dot legend-green"></span>Spending</span>
-                                                            <span><span
-                                                                    class="legend-dot legend-gray"></span>Earnings</span>
-                                                        </div>
+                                                        <!-- RECENT ACTIVITY TABLE -->
+                                                        <div class="col-12 col-lg-5">
+                                                            <div
+                                                                class="card fintrack-card activity-card p-4 activity-card-compact">
+                                                                <div
+                                                                    class="d-flex justify-content-between align-items-center mb-4">
+                                                                    <h6 class="fw-bold text-dark mb-0">Recent Activity
+                                                                    </h6>
 
-                                                        <div class="chart-wrapper">
-                                                            <canvas id="monthlyTransactionChart"></canvas>
-                                                        </div>
+                                                                    <button type="button"
+                                                                        class="btn btn-date-light d-flex align-items-center gap-2">
+                                                                        <i class="bi bi-filter"></i>
+                                                                        Sort by
+                                                                        <i class="bi bi-chevron-down"></i>
+                                                                    </button>
+                                                                </div>
 
-                                                        <div id="monthlyChartInfo" class="text-muted small mt-2"></div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- RECENT ACTIVITY TABLE -->
-                                                <div class="col-12 col-lg-5">
-                                                    <div
-                                                        class="card fintrack-card activity-card p-4 activity-card-compact">
-                                                        <div
-                                                            class="d-flex justify-content-between align-items-center mb-4">
-                                                            <h6 class="fw-bold text-dark mb-0">Recent Activity
-                                                            </h6>
-
-                                                            <button type="button"
-                                                                class="btn btn-date-light d-flex align-items-center gap-2">
-                                                                <i class="bi bi-filter"></i>
-                                                                Sort by
-                                                                <i class="bi bi-chevron-down"></i>
-                                                            </button>
-                                                        </div>
-
-                                                        <div class="table-responsive">
-                                                            <table class="table activity-table align-middle">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Category</th>
-                                                                        <th>Nominal</th>
-                                                                        <th>Date</th>
-                                                                        <th>Time</th>
-                                                                        <th>Details</th>
-                                                                    </tr>
-                                                                </thead>
+                                                                <div class="table-responsive">
+                                                                    <table class="table activity-table align-middle">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Category</th>
+                                                                                <th>Nominal</th>
+                                                                                <th>Date</th>
+                                                                                <th>Time</th>
+                                                                                <th>Details</th>
+                                                                            </tr>
+                                                                        </thead>
 
                                                                 <tbody>
                                                                     <% if (recentActivities !=null &&

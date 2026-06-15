@@ -45,14 +45,14 @@ public class DashboardServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
 
-                if (session == null || session.getAttribute("user") == null) {
-                    response.sendRedirect(request.getContextPath() + "/login.jsp");
-                    return;
-                }
+        if (session == null || session.getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
 
-                model.User loggedInUser = (model.User) session.getAttribute("user");
+        model.User loggedInUser = (model.User) session.getAttribute("user");
 
-                Integer userId = loggedInUser.getUserID();
+        Integer userId = loggedInUser.getUserID();
         LocalDate now = LocalDate.now();
         int year = now.getYear();
         int month = now.getMonthValue();
@@ -67,6 +67,13 @@ public class DashboardServlet extends HttpServlet {
 
         List<CategorySpendingSummary> spendingOverview = dashboardDAO.getSpendingOverviewByCategory(userId, year,
                 month);
+        double averageExpense = dashboardDAO.getAverageExpense(userId, year, month);
+
+        CategorySpendingSummary largestCategory = null;
+
+        if (spendingOverview != null && !spendingOverview.isEmpty()) {
+            largestCategory = spendingOverview.get(0);
+        }
 
         List<MonthlyTransactionSummary> monthlySummary = dashboardDAO.getMonthlyTransactionSummary(userId, year);
         String monthlyLabelsJson = buildMonthlyLabelsJson(monthlySummary);
@@ -83,7 +90,9 @@ public class DashboardServlet extends HttpServlet {
         request.setAttribute("monthlyLabelsJson", monthlyLabelsJson);
         request.setAttribute("monthlyIncomeJson", monthlyIncomeJson);
         request.setAttribute("monthlyExpenseJson", monthlyExpenseJson);
-        
+        request.setAttribute("averageExpense", averageExpense);
+request.setAttribute("largestCategory", largestCategory);
+
         request.setAttribute("categoryLabelsJson", categoryLabelsJson);
         request.setAttribute("categoryAmountJson", categoryAmountJson);
         request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
@@ -130,60 +139,60 @@ public class DashboardServlet extends HttpServlet {
     }// </editor-fold>
 
     private String buildMonthlyLabelsJson(List<MonthlyTransactionSummary> monthlySummary) {
-    String[] monthNames = {
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    };
+        String[] monthNames = {
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        };
 
-    StringJoiner joiner = new StringJoiner(",", "[", "]");
+        StringJoiner joiner = new StringJoiner(",", "[", "]");
 
-    for (MonthlyTransactionSummary monthly : monthlySummary) {
-        int monthIndex = monthly.getMonth() - 1;
-        joiner.add("\"" + monthNames[monthIndex] + "\"");
+        for (MonthlyTransactionSummary monthly : monthlySummary) {
+            int monthIndex = monthly.getMonth() - 1;
+            joiner.add("\"" + monthNames[monthIndex] + "\"");
+        }
+
+        return joiner.toString();
     }
 
-    return joiner.toString();
-}
+    private String buildMonthlyIncomeJson(List<MonthlyTransactionSummary> monthlySummary) {
 
-private String buildMonthlyIncomeJson(List<MonthlyTransactionSummary> monthlySummary) {
+        StringJoiner joiner = new StringJoiner(",", "[", "]");
 
-    StringJoiner joiner = new StringJoiner(",", "[", "]");
+        for (MonthlyTransactionSummary monthly : monthlySummary) {
+            joiner.add(String.valueOf(monthly.getTotalIncome()));
+        }
 
-    for (MonthlyTransactionSummary monthly : monthlySummary) {
-        joiner.add(String.valueOf(monthly.getTotalIncome()));
+        return joiner.toString();
     }
 
-    return joiner.toString();
-}
+    private String buildMonthlyExpenseJson(List<MonthlyTransactionSummary> monthlySummary) {
+        StringJoiner joiner = new StringJoiner(",", "[", "]");
 
-private String buildMonthlyExpenseJson(List<MonthlyTransactionSummary> monthlySummary) {
-    StringJoiner joiner = new StringJoiner(",", "[", "]");
+        for (MonthlyTransactionSummary monthly : monthlySummary) {
+            joiner.add(String.valueOf(monthly.getTotalExpense()));
+        }
 
-    for (MonthlyTransactionSummary monthly : monthlySummary) {
-        joiner.add(String.valueOf(monthly.getTotalExpense()));
+        return joiner.toString();
     }
 
-    return joiner.toString();
-}
+    private String buildCategoryLabelsJson(List<CategorySpendingSummary> spendingOverview) {
+        StringJoiner joiner = new StringJoiner(",", "[", "]");
 
-private String buildCategoryLabelsJson(List<CategorySpendingSummary> spendingOverview) {
-    StringJoiner joiner = new StringJoiner(",", "[", "]");
+        for (CategorySpendingSummary category : spendingOverview) {
+            joiner.add("\"" + category.getCategoryName() + "\"");
+        }
 
-    for (CategorySpendingSummary category : spendingOverview) {
-        joiner.add("\"" + category.getCategoryName() + "\"");
+        return joiner.toString();
     }
 
-    return joiner.toString();
-}
+    private String buildCategoryAmountJson(List<CategorySpendingSummary> spendingOverview) {
+        StringJoiner joiner = new StringJoiner(",", "[", "]");
 
-private String buildCategoryAmountJson(List<CategorySpendingSummary> spendingOverview) {
-    StringJoiner joiner = new StringJoiner(",", "[", "]");
+        for (CategorySpendingSummary category : spendingOverview) {
+            joiner.add(String.valueOf(category.getTotalAmount()));
+        }
 
-    for (CategorySpendingSummary category : spendingOverview) {
-        joiner.add(String.valueOf(category.getTotalAmount()));
+        return joiner.toString();
     }
-
-    return joiner.toString();
-}
 
 }
