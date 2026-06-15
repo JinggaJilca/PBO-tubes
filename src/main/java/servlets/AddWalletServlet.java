@@ -62,10 +62,20 @@ public class AddWalletServlet extends HttpServlet {
 
         WalletDAO walletDAO = new WalletDAO();
 
+        boolean success = false;
+        
         if ("ewallet".equalsIgnoreCase(walletType)) {
-            walletDAO.addEWallet(userId, accountName, balance, providerName, accountNumber);
+            success = walletDAO.addEWallet(userId, accountName, balance, providerName, accountNumber);
         } else {
-            walletDAO.addPhysicalWallet(userId, accountName, balance);
+            // PERBAIKAN: Kembalikan accountNumber ke pemanggilan physical wallet
+            success = walletDAO.addPhysicalWallet(userId, accountName, balance, accountNumber);
+        }
+
+        // Opsional: Anda bisa menambahkan logic Notifikasi Toast di sini jika mau
+        if (success) {
+            session.setAttribute("successMessage", "Wallet added successfully!");
+        } else {
+            session.setAttribute("errorMessage", "Failed to add wallet.");
         }
 
         response.sendRedirect(request.getContextPath() + "/wallet");

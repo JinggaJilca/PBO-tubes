@@ -35,47 +35,47 @@ public class EditWalletServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-
+        // Validasi Login
         if (session == null || session.getAttribute("user") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
 
-        User loggedInUser = (User) session.getAttribute("user");
-        int userId = loggedInUser.getUserID();
+        model.User loggedInUser = (model.User) session.getAttribute("user");
+        Integer userId = loggedInUser.getUserID();
 
-        String accountIdText = request.getParameter("accountId");
+        // Menangkap parameter dari form Edit
+        int accountId = Integer.parseInt(request.getParameter("accountId"));
         String accountName = request.getParameter("accountName");
         String walletType = request.getParameter("walletType");
         String balanceText = request.getParameter("balance");
         String providerName = request.getParameter("providerName");
         String accountNumber = request.getParameter("accountNumber");
 
-        int accountId = 0;
         double balance = 0;
-
-        try {
-            accountId = Integer.parseInt(accountIdText);
-        } catch (Exception e) {
-            accountId = 0;
-        }
-
         try {
             balance = Double.parseDouble(balanceText);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             balance = 0;
         }
 
-        if (accountId == 0) {
-            response.sendRedirect(request.getContextPath() + "/wallet");
-            return;
-        }
-
         WalletDAO walletDAO = new WalletDAO();
-        walletDAO.updateWallet(accountId, userId, accountName, balance, walletType, providerName, accountNumber);
+        
+        // Memanggil method updateWallet dari DAO
+        boolean success = walletDAO.updateWallet(accountId, userId, accountName, balance, walletType, providerName, accountNumber);
+
+        // ==========================================
+        // SET PESAN TOAST DI SINI
+        // ==========================================
+        if (success) {
+            session.setAttribute("successMessage", "Wallet updated successfully!");
+        } else {
+            session.setAttribute("errorMessage", "Failed to update wallet.");
+        }
 
         response.sendRedirect(request.getContextPath() + "/wallet");
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
     // + sign on the left to edit the code.">
