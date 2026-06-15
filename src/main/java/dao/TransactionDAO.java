@@ -15,8 +15,7 @@ public class TransactionDAO {
     public List<Transaction> getTransactionsByUserId(int userId) {
         List<Transaction> transactions = new ArrayList<>();
 
-        String sql =
-                "SELECT " +
+        String sql = "SELECT " +
                 "t.transaction_id, " +
                 "t.user_id, " +
                 "t.account_id, " +
@@ -35,7 +34,7 @@ public class TransactionDAO {
                 "ORDER BY t.transaction_date DESC, t.transaction_id DESC";
 
         try (Connection conn = JDBC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
 
@@ -67,13 +66,12 @@ public class TransactionDAO {
     }
 
     public double getTotalIncomeByUserId(int userId) {
-        String sql =
-                "SELECT COALESCE(SUM(amount), 0) AS total_income " +
+        String sql = "SELECT COALESCE(SUM(amount), 0) AS total_income " +
                 "FROM transactions " +
                 "WHERE user_id = ? AND transaction_type = 'income'";
 
         try (Connection conn = JDBC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
 
@@ -91,13 +89,12 @@ public class TransactionDAO {
     }
 
     public double getTotalExpenseByUserId(int userId) {
-        String sql =
-                "SELECT COALESCE(SUM(amount), 0) AS total_expense " +
+        String sql = "SELECT COALESCE(SUM(amount), 0) AS total_expense " +
                 "FROM transactions " +
                 "WHERE user_id = ? AND transaction_type = 'expense'";
 
         try (Connection conn = JDBC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
 
@@ -115,92 +112,90 @@ public class TransactionDAO {
     }
 
     public boolean addTransaction(int userId, int accountId, int categoryId,
-                              String transactionName, double amount,
-                              String transactionType,
-                              Timestamp transactionDate,
-                              String note) {
+            String transactionName, double amount,
+            String transactionType,
+            Timestamp transactionDate,
+            String note) {
 
-    String insertTransactionSql =
-            "INSERT INTO transactions " +
-            "(user_id, account_id, category_id, transaction_name, amount, transaction_type, transaction_date, note) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertTransactionSql = "INSERT INTO transactions " +
+                "(user_id, account_id, category_id, transaction_name, amount, transaction_type, transaction_date, note) "
+                +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    String updateWalletSql;
+        String updateWalletSql;
 
-    if ("income".equalsIgnoreCase(transactionType)) {
-        updateWalletSql =
-                "UPDATE account_wallets SET balance = balance + ? " +
-                "WHERE account_id = ? AND user_id = ?";
-    } else {
-        updateWalletSql =
-                "UPDATE account_wallets SET balance = balance - ? " +
-                "WHERE account_id = ? AND user_id = ?";
-    }
-
-    try (Connection conn = JDBC.getConnection()) {
-
-        conn.setAutoCommit(false);
-
-        try {
-            try (PreparedStatement stmt = conn.prepareStatement(insertTransactionSql)) {
-                stmt.setInt(1, userId);
-                stmt.setInt(2, accountId);
-                stmt.setInt(3, categoryId);
-                stmt.setString(4, transactionName);
-                stmt.setDouble(5, amount);
-                stmt.setString(6, transactionType);
-                stmt.setTimestamp(7, transactionDate);
-                stmt.setString(8, note);
-                stmt.executeUpdate();
-            }
-
-            try (PreparedStatement stmt = conn.prepareStatement(updateWalletSql)) {
-                stmt.setDouble(1, amount);
-                stmt.setInt(2, accountId);
-                stmt.setInt(3, userId);
-
-                int updatedRows = stmt.executeUpdate();
-
-                if (updatedRows == 0) {
-                    conn.rollback();
-                    return false;
-                }
-            }
-
-            conn.commit();
-            return true;
-
-        } catch (Exception e) {
-            conn.rollback();
-            e.printStackTrace();
-            return false;
-        } finally {
-            conn.setAutoCommit(true);
+        if ("income".equalsIgnoreCase(transactionType)) {
+            updateWalletSql = "UPDATE account_wallets SET balance = balance + ? " +
+                    "WHERE account_id = ? AND user_id = ?";
+        } else {
+            updateWalletSql = "UPDATE account_wallets SET balance = balance - ? " +
+                    "WHERE account_id = ? AND user_id = ?";
         }
 
-    } catch (Exception e) {
-        e.printStackTrace();
-        return false;
+        try (Connection conn = JDBC.getConnection()) {
+
+            conn.setAutoCommit(false);
+
+            try {
+                try (PreparedStatement stmt = conn.prepareStatement(insertTransactionSql)) {
+                    stmt.setInt(1, userId);
+                    stmt.setInt(2, accountId);
+                    stmt.setInt(3, categoryId);
+                    stmt.setString(4, transactionName);
+                    stmt.setDouble(5, amount);
+                    stmt.setString(6, transactionType);
+                    stmt.setTimestamp(7, transactionDate);
+                    stmt.setString(8, note);
+                    stmt.executeUpdate();
+                }
+
+                try (PreparedStatement stmt = conn.prepareStatement(updateWalletSql)) {
+                    stmt.setDouble(1, amount);
+                    stmt.setInt(2, accountId);
+                    stmt.setInt(3, userId);
+
+                    int updatedRows = stmt.executeUpdate();
+
+                    if (updatedRows == 0) {
+                        conn.rollback();
+                        return false;
+                    }
+                }
+                if ("expense".equalsIgnoreCase(transactionType)) {
+                    NotificationDAO notificationDAO = new NotificationDAO();
+                    notificationDAO.checkBudgetAfterExpense(conn, userId, categoryId);
+                }
+
+                conn.commit();
+                return true;
+
+            } catch (Exception e) {
+                conn.rollback();
+                e.printStackTrace();
+                return false;
+            } finally {
+                conn.setAutoCommit(true);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
-}
 
     public boolean deleteTransaction(int transactionId, int userId) {
-        String selectTransaction =
-                "SELECT account_id, transaction_type, amount " +
+        String selectTransaction = "SELECT account_id, transaction_type, amount " +
                 "FROM transactions " +
                 "WHERE transaction_id = ? AND user_id = ?";
 
-        String deleteTransaction =
-                "DELETE FROM transactions " +
+        String deleteTransaction = "DELETE FROM transactions " +
                 "WHERE transaction_id = ? AND user_id = ?";
 
-        String rollbackIncome =
-                "UPDATE account_wallets " +
+        String rollbackIncome = "UPDATE account_wallets " +
                 "SET balance = balance - ? " +
                 "WHERE account_id = ? AND user_id = ?";
 
-        String rollbackExpense =
-                "UPDATE account_wallets " +
+        String rollbackExpense = "UPDATE account_wallets " +
                 "SET balance = balance + ? " +
                 "WHERE account_id = ? AND user_id = ?";
 
