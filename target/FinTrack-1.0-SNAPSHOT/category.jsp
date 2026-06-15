@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Category" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <% 
     // Menangkap pesan sukses atau error dari Session Servlet
     String successMessage = (String) session.getAttribute("successMessage");
@@ -118,7 +119,7 @@
             </div>
         </div>
     </div>
-    <!<!-- [END] MODAL ADD CATEGORY -->
+    <!-- [END] MODAL ADD CATEGORY -->
     
     <!-- [START] MODAL EDIT CATEGORY -->
    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -158,7 +159,7 @@
         </div>
     </div>
 </div>
-    <!<!-- [END] MODAL EDIT CATEGORY -->
+    <!-- [END] MODAL EDIT CATEGORY -->
     
     
     <div class="trx-header mb-3">
@@ -277,6 +278,7 @@
             </div>
         </div>
     </div>
+    <!-- [START] TOAST -->
     <div class="toast-container position-fixed bottom-0 end-0 p-4" style="z-index: 1055;">
         <% if (successMessage != null) { %>
             <div id="liveToastSuccess" class="toast align-items-center text-bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
@@ -301,6 +303,8 @@
                 </div>
             </div>
         <% } %>
+        
+    <!-- [END] TOAST -->
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>

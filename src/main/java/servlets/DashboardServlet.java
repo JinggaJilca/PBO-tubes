@@ -91,7 +91,7 @@ public class DashboardServlet extends HttpServlet {
         request.setAttribute("monthlyIncomeJson", monthlyIncomeJson);
         request.setAttribute("monthlyExpenseJson", monthlyExpenseJson);
         request.setAttribute("averageExpense", averageExpense);
-request.setAttribute("largestCategory", largestCategory);
+        request.setAttribute("largestCategory", largestCategory);
 
         request.setAttribute("categoryLabelsJson", categoryLabelsJson);
         request.setAttribute("categoryAmountJson", categoryAmountJson);

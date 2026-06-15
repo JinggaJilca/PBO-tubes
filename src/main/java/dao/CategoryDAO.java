@@ -14,7 +14,7 @@ public class CategoryDAO {
     // 1. Mengambil Semua Data Kategori (Read)
     public List<Category> getAllCategories() {
         List<Category> list = new ArrayList<>();
-        String sql = "SELECT * FROM categories"; // Sesuaikan jika nama tabelnya berbeda
+        String sql = "SELECT * FROM categories WHERE type = 'expense'";
 
         try (Connection conn = JDBC.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -93,5 +93,33 @@ public class CategoryDAO {
             System.out.println("Error deleteCategory: " + e.getMessage());
         }
         return success;
+    }
+
+// Method untuk mengambil satu kategori berdasarkan ID
+    public Category getCategoryById(int categoryId) {
+        Category category = null;
+        
+        // Pastikan nama kolom 'category_id' sesuai dengan tabel categories di database Anda.
+        // Jika di database namanya 'id', silakan ganti menjadi 'id = ?'
+        String sql = "SELECT * FROM categories WHERE category_id = ?";
+
+        try (Connection conn = JDBC.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, categoryId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    category = new Category();
+                    // Sesuaikan setter ini dengan nama method di class Category.java Anda
+                    category.setCategoryID(rs.getInt("category_id")); 
+                    category.setName(rs.getString("name"));
+                    category.setType(rs.getString("type"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return category;
     }
 }
