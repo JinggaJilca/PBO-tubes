@@ -278,11 +278,11 @@
         </div>
 
         <!-- ROW 3: ANALYSIS CARDS -->
-        <div class="row g-4">
+        <div class="row g-4 align-items-stretch">
 
             <!-- HIGHEST SPENDING CATEGORY -->
             <div class="col-12 col-md-4">
-                <div class="card fintrack-card activity-card p-4 h-100">
+                <div class="card fintrack-card p-4 h-100">
                     <div class="d-flex align-items-center gap-2 mb-3">
                         <div style="width:32px;height:32px;border-radius:10px;background:#fee2e2;display:flex;align-items:center;justify-content:center;">
                             <i class="bi bi-trophy-fill" style="color:#dc2626;font-size:0.9rem;"></i>
@@ -311,7 +311,7 @@
 
             <!-- AVERAGE EXPENSE -->
             <div class="col-12 col-md-4">
-                <div class="card fintrack-card activity-card p-4 h-100">
+                <div class="card fintrack-card p-4 h-100">
                     <div class="d-flex align-items-center gap-2 mb-3">
                         <div style="width:32px;height:32px;border-radius:10px;background:#dbeafe;display:flex;align-items:center;justify-content:center;">
                             <i class="bi bi-graph-up" style="color:#2563eb;font-size:0.9rem;"></i>
@@ -339,7 +339,7 @@
 
             <!-- CATEGORY PERCENTAGE -->
             <div class="col-12 col-md-4">
-                <div class="card fintrack-card activity-card p-4 h-100">
+                <div class="card fintrack-card p-4 h-100">
                     <div class="d-flex align-items-center gap-2 mb-3">
                         <div style="width:32px;height:32px;border-radius:10px;background:#dcfce7;display:flex;align-items:center;justify-content:center;">
                             <i class="bi bi-pie-chart-fill" style="color:#16a34a;font-size:0.9rem;"></i>
