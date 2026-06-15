@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
     <% String ctx=request.getContextPath(); String usernameNavbar=(String) session.getAttribute("username"); if
-        (usernameNavbar==null || usernameNavbar.trim().isEmpty()) { usernameNavbar="Julio Tanlain" ; } %>
+        (usernameNavbar==null || usernameNavbar.trim().isEmpty()) { usernameNavbar="Guest" ; } %>
 
         <nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
             <div class="container">
