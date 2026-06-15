@@ -59,12 +59,10 @@
 
     <script>
         window.setTransactionType = function (type) {
-            const transactionType = document.getElementById("transactionType");
-            const modalLabel = document.getElementById("addTransactionModalLabel");
-            if (transactionType) transactionType.value = type;
-            if (modalLabel) {
-                modalLabel.innerText = type === "income" ? "Add Income" : "Add Expense";
-            }
+            const incomeRadio  = document.getElementById('typeIncome');
+            const expenseRadio = document.getElementById('typeExpense');
+            if (type === 'income' && incomeRadio)  incomeRadio.checked = true;
+            if (type === 'expense' && expenseRadio) expenseRadio.checked = true;
         };
     </script>
 </head>
@@ -377,44 +375,89 @@
 
     </div>
 
-    <!-- MODAL ADD TRANSACTION (tidak diubah sama sekali) -->
-    <div class="modal fade" id="addTransactionModal" tabindex="-1"
-        aria-labelledby="addTransactionModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <form action="<%= request.getContextPath() %>/AddTransactionServlet"
-                method="POST" class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addTransactionModalLabel">Add Transaction</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- ADD TRANSACTION MODAL (dari transaction.jsp) -->
+    <div class="modal fade" id="addTransactionModal" tabindex="-1" aria-labelledby="addTrxLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content trx-modal-content">
+
+                <div class="modal-header trx-modal-header">
+                    <h5 class="modal-title" id="addTransactionModalLabel">
+                        <i class="bi bi-plus-circle me-2"></i>Add Transaction
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
-                    <input type="hidden" name="transactionType" id="transactionType">
-                    <div class="mb-3">
-                        <label class="form-label">Transaction Name</label>
-                        <input type="text" name="transactionName" class="form-control" required>
+
+                <form action="<%= request.getContextPath() %>/AddTransactionServlet" method="POST">
+                    <input type="hidden" name="redirectTo" value="dashboard">
+
+                    <div class="modal-body trx-modal-body">
+
+                        <!-- TYPE TOGGLE -->
+                        <div class="trx-type-toggle">
+                            <input type="radio" name="transactionType" id="typeIncome" value="income" checked>
+                            <label for="typeIncome" class="trx-toggle-label">
+                                <i class="bi bi-arrow-up-circle"></i> Income
+                            </label>
+                            <input type="radio" name="transactionType" id="typeExpense" value="expense">
+                            <label for="typeExpense" class="trx-toggle-label">
+                                <i class="bi bi-arrow-down-circle"></i> Expense
+                            </label>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="trx-label">Transaction Name</label>
+                                <input type="text" class="trx-input" name="transactionName"
+                                    placeholder="e.g. Salary, Lunch" required>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="trx-label">Amount</label>
+                                <div class="trx-input-group">
+                                    <span class="trx-input-prefix">Rp</span>
+                                    <input type="number" class="trx-input trx-input-suffix" name="amount"
+                                        placeholder="0" min="0" required>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="trx-label">Date</label>
+                                <input type="date" class="trx-input" name="transactionDate" required>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="trx-label">Wallet / Account</label>
+                                <select class="trx-input" name="accountId" required>
+                                    <option value="" disabled selected>Select wallet...</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="trx-label">Category</label>
+                                <select class="trx-input" name="categoryId" required>
+                                    <option value="" disabled selected>Select category...</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="trx-label">
+                                    Note <span style="color:#aaa; font-weight:400;">(optional)</span>
+                                </label>
+                                <input type="text" class="trx-input" name="note" placeholder="Add a note...">
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Amount</label>
-                        <input type="number" step="0.01" name="amount" class="form-control" min="1" required>
+
+                    <div class="modal-footer trx-modal-footer">
+                        <button type="button" class="btn-trx-cancel" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn-trx-submit">
+                            <i class="bi bi-check-lg me-1"></i> Save Transaction
+                        </button>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Wallet ID</label>
-                        <input type="number" name="accountId" class="form-control" placeholder="e.g. 1" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Category ID</label>
-                        <input type="number" name="categoryId" class="form-control" placeholder="e.g. 1" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Note</label>
-                        <textarea name="note" class="form-control" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-success">Save Transaction</button>
-                </div>
-            </form>
+                </form>
+
+            </div>
         </div>
     </div>
 
@@ -470,6 +513,12 @@
         // CHARTS
         // ========================
         document.addEventListener("DOMContentLoaded", function () {
+
+            // Tambahan 
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.querySelector('#addTransactionModal input[type="date"]');
+            if (dateInput) dateInput.value = today;
+
             const monthlyLabels  = parseJsonData("monthlyLabelsData");
             const monthlyIncome  = parseJsonData("monthlyIncomeData");
             const monthlyExpense = parseJsonData("monthlyExpenseData");
