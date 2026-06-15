@@ -72,6 +72,7 @@ CREATE TABLE notifications(
 	user_id INT(16) NOT NULL,
 	budget_id INT(16) NOT NULL,
 	message VARCHAR(50) NOT NULL,
+    is_read BOOLEAN NOT NULL DEFAULT FALSE,
 	notification_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
 	FOREIGN KEY (budget_id) REFERENCES budgets (budget_id) ON DELETE CASCADE);
