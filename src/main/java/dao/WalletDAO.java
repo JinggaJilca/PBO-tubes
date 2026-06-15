@@ -14,21 +14,22 @@ public class WalletDAO {
         List<Wallet> wallets = new ArrayList<>();
 
         String sql = "SELECT " +
-                "aw.account_id, " +
-                "aw.user_id, " +
-                "aw.account_name, " +
-                "aw.balance, " +
-                "ew.provider_name, " +
-                "ew.account_number, " +
-                "CASE " +
-                "   WHEN ew.account_id IS NOT NULL THEN 'ewallet' " +
-                "   ELSE 'physical' " +
-                "END AS wallet_type " +
-                "FROM account_wallets aw " +
-                "LEFT JOIN ewallet ew ON aw.account_id = ew.account_id " +
-                "LEFT JOIN physical_wallet pw ON aw.account_id = pw.account_id " +
-                "WHERE aw.user_id = ? " +
-                "ORDER BY aw.account_id ASC";
+                        "aw.account_id, " +
+                        "aw.user_id, " +
+                        "aw.account_name, " +
+                        "aw.balance, " +
+                        "ew.provider_name, " +
+                        // PERBAIKAN: Ambil dari ewallet, jika null ambil dari physical_wallet
+                        "COALESCE(ew.account_number, pw.account_number) AS account_number, " +
+                        "CASE " +
+                        "   WHEN ew.account_id IS NOT NULL THEN 'ewallet' " +
+                        "   ELSE 'physical' " +
+                        "END AS wallet_type " +
+                        "FROM account_wallets aw " +
+                        "LEFT JOIN ewallet ew ON aw.account_id = ew.account_id " +
+                        "LEFT JOIN physical_wallet pw ON aw.account_id = pw.account_id " +
+                        "WHERE aw.user_id = ? " +
+                        "ORDER BY aw.account_id ASC";
 
         try (Connection conn = JDBC.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -57,25 +58,23 @@ public class WalletDAO {
 
         return wallets;
     }
+// Tambahkan parameter String accountNumber di dalam kurung
+    public boolean addPhysicalWallet(int userId, String accountName, double balance, String accountNumber) {
+        String insertAccount = "INSERT INTO account_wallets (user_id, account_name, balance) VALUES (?, ?, ?)";
 
-    public boolean addPhysicalWallet(int userId, String accountName, double balance) {
-        String insertAccount = "INSERT INTO account_wallets (user_id, account_name, balance) " +
-                "VALUES (?, ?, ?)";
-
-        String insertPhysical = "INSERT INTO physical_wallet (account_id) VALUES (?)";
+        // Masukkan account_number ke tabel physical_wallet
+        String insertPhysical = "INSERT INTO physical_wallet (account_id, account_number) VALUES (?, ?)";
 
         try (Connection conn = JDBC.getConnection()) {
             conn.setAutoCommit(false);
 
-            try (PreparedStatement stmtAccount = conn.prepareStatement(insertAccount,
-                    PreparedStatement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement stmtAccount = conn.prepareStatement(insertAccount, PreparedStatement.RETURN_GENERATED_KEYS)) {
                 stmtAccount.setInt(1, userId);
                 stmtAccount.setString(2, accountName);
                 stmtAccount.setDouble(3, balance);
                 stmtAccount.executeUpdate();
 
                 int newAccountId = 0;
-
                 try (ResultSet keys = stmtAccount.getGeneratedKeys()) {
                     if (keys.next()) {
                         newAccountId = keys.getInt(1);
@@ -84,6 +83,8 @@ public class WalletDAO {
 
                 try (PreparedStatement stmtPhysical = conn.prepareStatement(insertPhysical)) {
                     stmtPhysical.setInt(1, newAccountId);
+                    // Simpan account number-nya
+                    stmtPhysical.setString(2, accountNumber);
                     stmtPhysical.executeUpdate();
                 }
 
@@ -94,13 +95,11 @@ public class WalletDAO {
                 e.printStackTrace();
                 return false;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-
     public boolean addEWallet(int userId, String accountName, double balance,
             String providerName, String accountNumber) {
         String insertAccount = "INSERT INTO account_wallets (user_id, account_name, balance) " +
@@ -156,10 +155,10 @@ public class WalletDAO {
                 "WHERE account_id = ? AND user_id = ?";
 
         String deletePhysical = "DELETE FROM physical_wallet WHERE account_id = ?";
-
         String deleteEwallet = "DELETE FROM ewallet WHERE account_id = ?";
 
-        String insertPhysical = "INSERT INTO physical_wallet (account_id) VALUES (?)";
+        // PERBAIKAN 1: Tambahkan account_number ke query physical_wallet
+        String insertPhysical = "INSERT INTO physical_wallet (account_id, account_number) VALUES (?, ?)";
 
         String insertEwallet = "INSERT INTO ewallet (account_id, provider_name, account_number) " +
                 "VALUES (?, ?, ?)";
@@ -203,6 +202,8 @@ public class WalletDAO {
                 } else {
                     try (PreparedStatement stmt = conn.prepareStatement(insertPhysical)) {
                         stmt.setInt(1, accountId);
+                        // PERBAIKAN 2: Simpan account number ke database
+                        stmt.setString(2, accountNumber);
                         stmt.executeUpdate();
                     }
                 }

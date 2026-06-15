@@ -56,9 +56,22 @@ public class DeleteWalletServlet extends HttpServlet {
 
         if (accountId != 0) {
             WalletDAO walletDAO = new WalletDAO();
-            walletDAO.deleteWallet(accountId, userId);
+            
+            // Tangkap nilai true/false dari proses delete
+            boolean success = walletDAO.deleteWallet(accountId, userId);
+            
+            // Set pesan ke dalam session berdasarkan hasilnya
+            if (success) {
+                session.setAttribute("successMessage", "Wallet deleted successfully!");
+            } else {
+                session.setAttribute("errorMessage", "Failed to delete wallet.");
+            }
+        } else {
+            // Jika ID gagal di-parse atau bernilai 0
+            session.setAttribute("errorMessage", "Invalid wallet ID.");
         }
 
+        // Kembali ke halaman wallet untuk memicu Toast
         response.sendRedirect(request.getContextPath() + "/wallet");
     }
 
