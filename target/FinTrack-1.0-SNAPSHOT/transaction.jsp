@@ -397,6 +397,78 @@
                         </div>
                     </div>
                 </div>
+                <!-- TOAST NOTIFICATION -->
+                <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+                    <c:if test="${param.success == 'add'}">
+                        <div id="transactionToast" class="toast align-items-center text-bg-success border-0"
+                            role="alert">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    <i class="bi bi-check-circle-fill me-2"></i>
+                                    Transaction added successfully.
+                                </div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                    data-bs-dismiss="toast"></button>
+                            </div>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${param.success == 'delete'}">
+                        <div id="transactionToast" class="toast align-items-center text-bg-success border-0"
+                            role="alert">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    <i class="bi bi-check-circle-fill me-2"></i>
+                                    Transaction deleted successfully.
+                                </div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                    data-bs-dismiss="toast"></button>
+                            </div>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${param.error == 'add'}">
+                        <div id="transactionToast" class="toast align-items-center text-bg-danger border-0"
+                            role="alert">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                    Failed to add transaction.
+                                </div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                    data-bs-dismiss="toast"></button>
+                            </div>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${param.error == 'invalid'}">
+                        <div id="transactionToast" class="toast align-items-center text-bg-warning border-0"
+                            role="alert">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    <i class="bi bi-exclamation-circle-fill me-2"></i>
+                                    Invalid transaction data.
+                                </div>
+                                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+                            </div>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${param.error == 'delete'}">
+                        <div id="transactionToast" class="toast align-items-center text-bg-danger border-0"
+                            role="alert">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                    Failed to delete transaction.
+                                </div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                    data-bs-dismiss="toast"></button>
+                            </div>
+                        </div>
+                    </c:if>
+
+                </div>
 
 
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -407,6 +479,15 @@
                         const today = new Date().toISOString().split('T')[0];
                         const dateInput = document.querySelector('#addTransactionModal input[type="date"]');
                         if (dateInput) dateInput.value = today;
+                        const toastElement = document.getElementById('transactionToast');
+
+                        if (toastElement) {
+                            const toast = new bootstrap.Toast(toastElement, {
+                                delay: 3000
+                            });
+                            toast.show();
+                            window.history.replaceState({}, document.title, window.location.pathname);
+                        }
                     });
 
                     // Filter tabs

@@ -109,11 +109,6 @@
                                                             <i class="bi bi-wallet2 card-icon"></i>
                                                             <% } %>
 
-                                                                <div class="wallet-valid">
-                                                                    VALID THRU
-                                                                    <span>01/26</span>
-                                                                </div>
-
                                                                 <div class="wallet-info">
                                                                     <h6>
                                                                         <%= walletTitle %>
