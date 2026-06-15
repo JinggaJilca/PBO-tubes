@@ -2,11 +2,13 @@
     <%@ page import="dao.NotificationDAO" %>
         <%@ page import="model.User" %>
 
-            <% String ctx=request.getContextPath(); String usernameNavbar=(String) session.getAttribute("username"); if
-                (usernameNavbar==null || usernameNavbar.trim().isEmpty()) { usernameNavbar="Julio Tanlain" ; } int
-                notificationCount=0; Object userObj=session.getAttribute("user"); if (userObj !=null) { User
-                navbarUser=(User) userObj; int navbarUserId=navbarUser.getUserID(); NotificationDAO notificationDAO=new
-                NotificationDAO(); notificationCount=notificationDAO.getNotificationCountByUserId(navbarUserId); } %>
+            <% String ctx=request.getContextPath(); String usernameNavbar="User" ; int notificationCount=0; Object
+                userObj=session.getAttribute("user"); if (userObj !=null) { User navbarUser=(User) userObj; if
+                (navbarUser.getUsername() !=null && !navbarUser.getUsername().trim().isEmpty()) {
+                usernameNavbar=navbarUser.getUsername(); } int navbarUserId=navbarUser.getUserID(); NotificationDAO
+                notificationDAO=new NotificationDAO();
+                notificationCount=notificationDAO.getNotificationCountByUserId(navbarUserId); } %>
+
 
                 <nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
                     <div class="container">
