@@ -157,7 +157,7 @@
 
             <!-- SPENDING OVERVIEW MINI -->
             <div class="col-12 col-md-6 col-lg-3">
-                <div class="card fintrack-card summary-card p-3">
+                <div class="card fintrack-card summary-card p-3" style="overflow:hidden;">
                     <div class="card-body">
                         <h6 class="fw-bold text-dark mb-1">Spending Overview</h6>
                         <div class="summary-value maskable"><%= rupiah.format(totalExpense) %></div>

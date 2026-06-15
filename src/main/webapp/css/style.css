@@ -1121,10 +1121,10 @@ body {
 
 .mini-chart-wrapper {
     position: relative;
-    height: 75px;
+    height: 40px;
     width: 100%;
-    margin-top: 10px;
-    margin-bottom: 8px;
+    margin-top: 6px;
+    margin-bottom: 4px;
 }
 
 .legend-inline {
