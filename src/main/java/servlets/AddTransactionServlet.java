@@ -99,7 +99,8 @@ public class AddTransactionServlet extends HttpServlet {
                     note);
 
             if (success) {
-                response.sendRedirect(successRedirect);
+                response.sendRedirect(
+                        request.getContextPath() + "/dashboard?success=add");
             } else {
                 response.sendRedirect(errorRedirect);
             }
