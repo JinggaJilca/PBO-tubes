@@ -35,15 +35,7 @@
                                 <button class="btn-eye-trx" id="toggleBalance" onclick="toggleBalances()"
                                     title="Hide/Show amounts">
                                     <i class="bi bi-eye-fill" id="eyeIcon"></i>
-
                                 </button>
-                                <a href="${pageContext.request.contextPath}/category"
-                                    class="btn-add-trx text-decoration-none">
-                                    <i class="bi bi-tags"></i>
-                                    Category
-                                </a>
-                                </button>
-                                
                                 <button class="btn-add-trx" data-bs-toggle="modal"
                                     data-bs-target="#addTransactionModal">
                                     <i class="bi bi-plus-lg"></i> Add Transaction

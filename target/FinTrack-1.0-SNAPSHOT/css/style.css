@@ -95,7 +95,30 @@ body {
     background-color: #0B3A30 !important;
 }
 
+
+
 /* Lingkaran untuk ikon Notifikasi (Lonceng) */
+.notification-bell-wrapper {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 6.5px;
+    right: 6px;
+
+    width: 13.5px;
+    height: 13.5px;
+
+    background-color: #ff3b30;
+    border-radius: 50%;
+    border: 1px solid #0B3A30;
+
+    z-index: 9999;
+    display: block;
+}
+
 .icon-circle {
     width: 42px;
     height: 42px;
@@ -106,6 +129,8 @@ body {
     justify-content: center;
     color: white;
     transition: background-color 0.3s;
+    overflow: visible !important;
+    position: relative;
 }
 
 .icon-circle:hover {
@@ -1121,7 +1146,7 @@ body {
 
 .mini-chart-wrapper {
     position: relative;
-    height: 40px;
+    height: 75px;
     width: 100%;
     margin-top: 6px;
     margin-bottom: 4px;
@@ -2729,7 +2754,8 @@ body {
 /* [START] Modal Edit Budget */
 /* Mengubah warna bawaan slider (thumb dan track yang terisi) */
 .threshold-slider {
-    accent-color: #083F36; /* Warna hijau gelap FinTrack */
+    accent-color: #083F36;
+    /* Warna hijau gelap FinTrack */
     cursor: pointer;
 }
 
@@ -2737,6 +2763,7 @@ body {
 input[type=range]::-webkit-slider-thumb {
     background: #083F36;
 }
+
 input[type=range]::-moz-range-thumb {
     background: #083F36;
 }
@@ -2749,19 +2776,25 @@ input[type=range]::-moz-range-thumb {
     height: 34px;
     border: none;
     background-color: transparent;
-    border-radius: 8px; /* Sudut melengkung modern */
+    border-radius: 8px;
+    /* Sudut melengkung modern */
     font-size: 1.1rem;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    color: #083F36; /* Warna ikon default abu-abu */
+    color: #083F36;
+    /* Warna ikon default abu-abu */
 }
 
 /* Efek khusus tombol Edit saat di-hover */
 .btn-set-budget:hover {
-    background-color: #ffffff; /* Hijau FinTrack sangat tipis */
-    color: #083F36; /* Hijau gelap FinTrack */
-    transform: translateY(-2px); /* Efek melayang sedikit */
+    background-color: #ffffff;
+    /* Hijau FinTrack sangat tipis */
+    color: #083F36;
+    /* Hijau gelap FinTrack */
+    transform: translateY(-2px);
+    /* Efek melayang sedikit */
 }
+
 /* [END] Modal Edit Budget */
 
 

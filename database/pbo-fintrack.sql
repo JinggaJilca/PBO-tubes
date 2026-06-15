@@ -26,8 +26,6 @@ CREATE TABLE account_wallets(
 
 CREATE TABLE physical_wallet(
 	account_id INT(16) PRIMARY KEY,
-	provider_name VARCHAR(50) NOT NULL DEFAULT 'Cash',
-	account_number VARCHAR(20) DEFAULT NULL,
 	FOREIGN KEY(account_id) REFERENCES account_wallets (account_id) ON DELETE CASCADE);
 
 CREATE TABLE ewallet(
@@ -132,12 +130,6 @@ UNIQUE (name, type);
 ALTER TABLE budgets
 ADD CONSTRAINT Unique_budget_user_category
 UNIQUE (user_id, category_id);
-
--- 1 analysis only have 1 category
-ALTER TABLE analysis_category_percentage
-ADD CONSTRAINT Unique_analysis_category
-UNIQUE (analysis_id, category_id);
-
 
 -- === GENERATE DATA DUMMY ===
 -- generate categories
@@ -272,70 +264,6 @@ BEGIN
                 INSERT INTO physical_wallet (account_id) VALUES (new_acc_id);
             ELSE
                 SET provider = TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(providers, ',', FLOOR(1 + RAND() * 5)), ',', -1));
-                INSERT INTO ewallet (account_id, provider_name, account_number)
-                VALUES (new_acc_id, provider, CONCAT('08', LPAD(FLOOR(RAND() * 10000000000), 10, '0')));
-            END IF;
-
-            SET i = i + 1;
-        END WHILE;
-
-    END LOOP;
-    CLOSE cur;
-END$$
-DELIMITER ;
-CALL generate_wallets();
-
---generate physical wallet
-DROP PROCEDURE IF EXISTS generate_wallets;
-DELIMITER $$
-CREATE PROCEDURE generate_wallets()
-BEGIN
-    DECLARE done         INT DEFAULT 0;
-    DECLARE uid          INT;
-    DECLARE wallet_count INT;
-    DECLARE i            INT;
-    DECLARE wtype        INT;
-    DECLARE new_acc_id   INT;
-
-    DECLARE e_providers  VARCHAR(200) DEFAULT 'GoPay,OVO,Dana,ShopeePay,LinkAja';
-    DECLARE p_providers  VARCHAR(200) DEFAULT 'BCA,BRI,BNI,Mandiri,BSI';
-    DECLARE provider     VARCHAR(50);
-    DECLARE acc_names    VARCHAR(300) DEFAULT 'Dompet Utama,Tabungan Harian,Kas Pribadi,Dana Darurat,Dompet Digital';
-    DECLARE acc_name     VARCHAR(100);
-
-    DECLARE cur CURSOR FOR SELECT user_id FROM users;
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
-
-    OPEN cur;
-    read_loop: LOOP
-        FETCH cur INTO uid;
-        IF done THEN LEAVE read_loop; END IF;
-
-        SET wallet_count = 1 + FLOOR(RAND() * 2); -- 1 atau 2
-        SET i = 1;
-
-        WHILE i <= wallet_count DO
-            SET acc_name = TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(acc_names, ',', FLOOR(1 + RAND() * 5)), ',', -1));
-
-            INSERT INTO account_wallets (user_id, account_name, balance)
-            VALUES (uid, acc_name, ROUND(RAND() * 9000000 + 100000, 2));
-
-            SET new_acc_id = LAST_INSERT_ID();
-
-            -- 0 = physical_wallet, 1 = ewallet
-            SET wtype = FLOOR(RAND() * 2);
-
-            IF wtype = 0 THEN
-                SET provider = TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(p_providers, ',', FLOOR(1 + RAND() * 5)), ',', -1));
-                INSERT INTO physical_wallet (account_id, provider_name, account_number)
-                VALUES (
-                    new_acc_id,
-                    provider,
-                    CONCAT(FLOOR(1000 + RAND() * 9000), ' ', FLOOR(1000 + RAND() * 9000),
-                           ' ', FLOOR(1000 + RAND() * 9000), ' ', FLOOR(1000 + RAND() * 9000))
-                );
-            ELSE
-                SET provider = TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(e_providers, ',', FLOOR(1 + RAND() * 5)), ',', -1));
                 INSERT INTO ewallet (account_id, provider_name, account_number)
                 VALUES (new_acc_id, provider, CONCAT('08', LPAD(FLOOR(RAND() * 10000000000), 10, '0')));
             END IF;
