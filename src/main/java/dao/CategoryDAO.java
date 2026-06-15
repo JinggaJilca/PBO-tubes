@@ -14,24 +14,17 @@ public class CategoryDAO {
     // 1. Mengambil Semua Data Kategori (Read)
     public List<Category> getAllCategories() {
         List<Category> list = new ArrayList<>();
-        String sql = "SELECT * FROM categories WHERE type = 'expense'";
-
+        String sql = "SELECT * FROM categories"; 
         try (Connection conn = JDBC.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
-
             while (rs.next()) {
-                // Mengambil dari kolom category_id, name, type
-                Category category = new Category(
-                        rs.getInt("category_id"),
-                        rs.getString("name"),
-                        rs.getString("type")
-                );
-                list.add(category);
+                Category c = new Category();
+                c.setCategoryID(rs.getInt("category_id"));
+                c.setName(rs.getString("name"));
+                list.add(c);
             }
-        } catch (SQLException e) {
-            System.out.println("Error getAllCategories: " + e.getMessage());
-        }
+        } catch (Exception e) { e.printStackTrace(); }
         return list;
     }
 
@@ -122,4 +115,28 @@ public class CategoryDAO {
         }
         return category;
     }
+       
+
+public List<Category> getCategoriesByUserId(int userId) {
+    List<Category> categories = new ArrayList<>();
+    // Pastikan nama tabel 'categories' sesuai dengan database Anda
+    String sql = "SELECT category_id, name FROM categories WHERE user_id = ?"; 
+    
+    try (Connection conn = JDBC.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+        stmt.setInt(1, userId);
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Category cat = new Category();
+                cat.setCategoryID(rs.getInt("category_id")); // Sesuaikan nama kolom DB
+                cat.setName(rs.getString("name"));           // Sesuaikan nama kolom DB
+                categories.add(cat);
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return categories;
+}
 }

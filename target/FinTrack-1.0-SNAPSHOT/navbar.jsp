@@ -1,7 +1,23 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="model.User" %>
+<% 
+    String ctx = request.getContextPath(); 
+    
+    // 1. Set default nama jika belum login / data kosong
+    String usernameNavbar = "User"; 
 
-    <% String ctx=request.getContextPath(); String usernameNavbar=(String) session.getAttribute("username"); if
-        (usernameNavbar==null || usernameNavbar.trim().isEmpty()) { usernameNavbar="Julio Tanlain" ; } %>
+    // 2. Ambil object User dari Session (sama seperti di Servlet)
+    User loggedInUser = (User) session.getAttribute("user");
+    
+    // 3. Jika user berhasil ditemukan di session, ambil namanya
+    if (loggedInUser != null) { 
+        String actualName = loggedInUser.getUsername(); // Ganti dengan .getName() jika method di model Anda bernama getName
+        
+        if (actualName != null && !actualName.trim().isEmpty()) {
+            usernameNavbar = actualName;
+        }
+    } 
+%>
 
         <nav class="navbar navbar-expand-lg navbar-custom py-3 text-white">
             <div class="container">
