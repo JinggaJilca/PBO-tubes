@@ -20,21 +20,21 @@ import model.User;
  *
  * @author Julio
  */
-@WebServlet(name = "DeleteTransactionServlet", urlPatterns = {"/transaction/delete"})
+@WebServlet(name = "DeleteTransactionServlet", urlPatterns = { "/transaction/delete" })
 public class DeleteTransactionServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("user") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
@@ -47,6 +47,7 @@ public class DeleteTransactionServlet extends HttpServlet {
         String transactionIdText = request.getParameter("transactionId");
 
         int transactionId = 0;
+        boolean success = false;
 
         try {
             transactionId = Integer.parseInt(transactionIdText);
@@ -56,20 +57,25 @@ public class DeleteTransactionServlet extends HttpServlet {
 
         if (transactionId != 0) {
             TransactionDAO transactionDAO = new TransactionDAO();
-            transactionDAO.deleteTransaction(transactionId, userId);
+            success = transactionDAO.deleteTransaction(transactionId, userId);
         }
 
-        response.sendRedirect(request.getContextPath() + "/transaction");
+        if (success) {
+            response.sendRedirect(request.getContextPath() + "/transaction?success=delete");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/transaction?error=delete");
+        }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -80,10 +86,10 @@ public class DeleteTransactionServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
