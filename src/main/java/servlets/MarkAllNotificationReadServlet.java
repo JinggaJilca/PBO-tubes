@@ -6,8 +6,6 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,15 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.NotificationDAO;
-import model.BudgetNotification;
 import model.User;
 
 /**
  *
- * @author ASUS
+ * @author Julio
  */
-@WebServlet("/notification")
-public class NotificationServlet extends HttpServlet {
+@WebServlet(name = "MarkAllNotificationReadServlet", urlPatterns = { "/notification/read-all" })
+public class MarkAllNotificationReadServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,21 +45,10 @@ public class NotificationServlet extends HttpServlet {
         int userId = loggedInUser.getUserID();
 
         NotificationDAO notificationDAO = new NotificationDAO();
+        notificationDAO.markAllAsReadByUserId(userId);
 
-        List<BudgetNotification> notifications = notificationDAO.getNotificationsByUserId(userId);
-
-        int unreadCount = notificationDAO.getNotificationCountByUserId(userId);
-
-        System.out.println("USER LOGIN NOTIFICATION = " + userId);
-        System.out.println("JUMLAH NOTIFIKASI = " + notifications.size());
-        System.out.println("JUMLAH UNREAD = " + unreadCount);
-
-        request.setAttribute("notifications", notifications);
-        request.setAttribute("unreadCount", unreadCount);
-
-        request.getRequestDispatcher("/notification.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/notification");
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
     // + sign on the left to edit the code.">
@@ -77,27 +63,7 @@ public class NotificationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-
-        if (session == null || session.getAttribute("user") == null) {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
-            return;
-        }
-
-        User loggedInUser = (User) session.getAttribute("user");
-        int userId = loggedInUser.getUserID();
-
-        System.out.println("USER LOGIN NOTIFICATION = " + userId);
-
-        NotificationDAO notificationDAO = new NotificationDAO();
-        List<BudgetNotification> notifications = notificationDAO.getNotificationsByUserId(userId);
-
-        System.out.println("JUMLAH NOTIFIKASI = " + notifications.size());
-
-        request.setAttribute("notifications", notifications);
-        request.setAttribute("unreadCount", notifications.size());
-
-        request.getRequestDispatcher("/notification.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

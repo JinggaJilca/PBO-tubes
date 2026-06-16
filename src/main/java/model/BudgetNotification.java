@@ -13,6 +13,7 @@ public class BudgetNotification {
     private double currentSpending;
     private double warningThreshold;
     private double difference;
+    private boolean read;
 
     public BudgetNotification() {
     }
@@ -79,5 +80,13 @@ public class BudgetNotification {
 
     public void setDifference(double difference) {
         this.difference = difference;
+    }
+
+    public boolean isRead() {
+        return read;
+    }
+
+    public void setRead(boolean read) {
+        this.read = read;
     }
 }

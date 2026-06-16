@@ -9,7 +9,9 @@ model\RecentActivity.class
 servlets\AuthServlet.class
 model\Profile.class
 servlets\DashboardExportServlet.class
+servlets\MarkNotificationReadServlet.class
 model\User.class
+servlets\MarkAllNotificationReadServlet.class
 servlets\DashboardServlet.class
 model\MonthlyTransactionSummary.class
 dao\RegisterDAO.class
