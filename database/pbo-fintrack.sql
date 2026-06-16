@@ -18,7 +18,7 @@ CREATE TABLE profiles (
 	FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE);
 	
 -- Wallet
-CREATE TABLE accphysical_walletount_wallets(
+CREATE TABLE account_wallets(
 	account_id INT(16) AUTO_INCREMENT PRIMARY KEY,
 	user_id INT(16) NOT NULL, 
 	account_name VARCHAR(100) NOT NULL,
