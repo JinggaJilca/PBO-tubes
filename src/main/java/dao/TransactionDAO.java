@@ -163,7 +163,7 @@ public class TransactionDAO {
                 }
                 if ("expense".equalsIgnoreCase(transactionType)) {
                     NotificationDAO notificationDAO = new NotificationDAO();
-                    notificationDAO.checkBudgetAfterExpense(conn, userId, categoryId);
+                    notificationDAO.checkBudgetAfterExpense(conn, userId, categoryId,);
                 }
 
                 conn.commit();

@@ -66,12 +66,16 @@
 
                                     </div>
 
-                                    <button type="button" class="btn-mark-all" id="markAllReadButton">
+                                    <form action="${pageContext.request.contextPath}/notification/read-all"
+                                        method="POST" class="m-0">
 
-                                        <i class="bi bi-check2-all"></i>
+                                        <button type="submit" class="btn-mark-all" id="markAllReadButton">
 
-                                        Mark All as Read
-                                    </button>
+                                            <i class="bi bi-check2-all"></i>
+                                            Mark All as Read
+
+                                        </button>
+                                    </form>
 
                                 </div>
 
@@ -132,7 +136,8 @@
                                     <c:if test="${not empty notifications}">
                                         <c:forEach var="notif" items="${notifications}">
 
-                                            <article class="notification-card unread" data-status="unread">
+                                            <article class="notification-card ${notif.read ? '' : 'unread'}"
+                                                data-status="${notif.read ? 'read' : 'unread'}">
 
                                                 <div class="notification-icon">
                                                     <i class="bi bi-exclamation-triangle"></i>
@@ -222,13 +227,23 @@
 
                                                         <div class="notification-action-buttons">
 
-                                                            <button type="button"
-                                                                class="notification-action-button mark-read-button"
-                                                                title="Mark as read">
+                                                            <c:if test="${!notif.read}">
+                                                                <form
+                                                                    action="${pageContext.request.contextPath}/notification/read"
+                                                                    method="POST" class="m-0">
 
-                                                                <i class="bi bi-check2"></i>
+                                                                    <input type="hidden" name="notificationId"
+                                                                        value="${notif.notificationId}">
 
-                                                            </button>
+                                                                    <button type="submit"
+                                                                        class="notification-action-button"
+                                                                        title="Mark as read">
+
+                                                                        <i class="bi bi-check2"></i>
+
+                                                                    </button>
+                                                                </form>
+                                                            </c:if>
 
                                                             <form
                                                                 action="${pageContext.request.contextPath}/notification/delete"
@@ -294,9 +309,6 @@
                             const filterButtons =
                                 document.querySelectorAll(".notification-filter-button");
 
-                            const markAllReadButton =
-                                document.getElementById("markAllReadButton");
-
                             const unreadCountElement =
                                 document.getElementById("unreadCount");
 
@@ -311,8 +323,9 @@
                                         ".notification-card[data-status='unread']"
                                     );
 
-                                unreadCountElement.textContent =
-                                    unreadNotifications.length;
+                                if (unreadCountElement) {
+                                    unreadCountElement.textContent = unreadNotifications.length;
+                                }
                             }
 
                             function applyNotificationFilter() {
@@ -337,82 +350,17 @@
                                     }
                                 });
 
-                                if (visibleNotifications === 0) {
-                                    notificationEmpty.classList.add("show");
-                                } else {
-                                    notificationEmpty.classList.remove("show");
+                                if (notificationEmpty) {
+                                    if (visibleNotifications === 0) {
+                                        notificationEmpty.classList.add("show");
+                                    } else {
+                                        notificationEmpty.classList.remove("show");
+                                    }
                                 }
                             }
-
-                            function markNotificationAsRead(card) {
-                                card.classList.remove("unread");
-                                card.setAttribute("data-status", "read");
-
-                                const notificationStatus =
-                                    card.querySelector(".notification-status");
-
-                                const markReadButton =
-                                    card.querySelector(".mark-read-button");
-
-                                if (notificationStatus) {
-                                    notificationStatus.remove();
-                                }
-
-                                if (markReadButton) {
-                                    markReadButton.remove();
-                                }
-
-                                updateUnreadCount();
-                                applyNotificationFilter();
-                            }
-
-                            document.addEventListener("click", function (event) {
-
-
-
-                                if (markReadButton) {
-                                    const notificationCard =
-                                        markReadButton.closest(".notification-card");
-
-                                    markNotificationAsRead(notificationCard);
-                                }
-
-                            });
-
-                            markAllReadButton.addEventListener("click", function () {
-
-                                const unreadNotifications =
-                                    document.querySelectorAll(
-                                        ".notification-card[data-status='unread']"
-                                    );
-
-                                unreadNotifications.forEach(function (card) {
-                                    card.classList.remove("unread");
-                                    card.setAttribute("data-status", "read");
-
-                                    const notificationStatus =
-                                        card.querySelector(".notification-status");
-
-                                    const markReadButton =
-                                        card.querySelector(".mark-read-button");
-
-                                    if (notificationStatus) {
-                                        notificationStatus.remove();
-                                    }
-
-                                    if (markReadButton) {
-                                        markReadButton.remove();
-                                    }
-                                });
-
-                                updateUnreadCount();
-                                applyNotificationFilter();
-                            });
 
                             filterButtons.forEach(function (button) {
-
                                 button.addEventListener("click", function () {
-
                                     filterButtons.forEach(function (item) {
                                         item.classList.remove("active");
                                     });
@@ -424,13 +372,11 @@
 
                                     applyNotificationFilter();
                                 });
-
                             });
 
                             updateUnreadCount();
                             applyNotificationFilter();
                         </script>
-
                     </body>
 
                     </html>
