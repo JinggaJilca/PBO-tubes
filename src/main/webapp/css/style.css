@@ -1833,7 +1833,14 @@ body {
 }
 
 /* [END] Tabel Kategori */
+
 /* [START] BUDGET PROGRESS BAR */
+.budget-header {
+    background-color: #0B3A30;
+    color: #FFFFFF;
+    padding: 2rem 0 0.8rem 0;
+}
+
 .budget-container {
     background-color: #0B3A30;
     /* Hijau Gelap */
@@ -1976,7 +1983,7 @@ body {
     min-height: 10px;
     align-items: center;
     padding: 18px 24px;
-    background-color: #92E600;
+    background-color: #0B3A30;
 }
 
 /* Bagian tengah */
@@ -1999,7 +2006,7 @@ body {
 
 .budget-category {
     margin: 0;
-    color: #000000;
+    color: #92E600;
     font-size: 17px;
     font-weight: 700;
 }
@@ -2751,6 +2758,7 @@ body {
 }
 
 /* End Tambahan Transaction Management */
+
 /* [START] Modal Edit Budget */
 /* Mengubah warna bawaan slider (thumb dan track yang terisi) */
 .threshold-slider {
@@ -2781,7 +2789,7 @@ input[type=range]::-moz-range-thumb {
     font-size: 1.1rem;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    color: #083F36;
+    color: #92E600;
     /* Warna ikon default abu-abu */
 }
 
