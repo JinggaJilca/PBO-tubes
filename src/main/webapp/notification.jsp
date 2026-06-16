@@ -361,6 +361,7 @@
 
                             filterButtons.forEach(function (button) {
                                 button.addEventListener("click", function () {
+
                                     filterButtons.forEach(function (item) {
                                         item.classList.remove("active");
                                     });

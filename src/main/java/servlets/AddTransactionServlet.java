@@ -81,7 +81,11 @@ public class AddTransactionServlet extends HttpServlet {
             Timestamp transactionDate;
 
             if (transactionDateText != null && !transactionDateText.trim().isEmpty()) {
-                transactionDate = Timestamp.valueOf(transactionDateText + " 00:00:00");
+                java.time.LocalDate date = java.time.LocalDate.parse(transactionDateText);
+                java.time.LocalTime timeNow = java.time.LocalTime.now();
+
+                transactionDate = Timestamp.valueOf(
+                        java.time.LocalDateTime.of(date, timeNow));
             } else {
                 transactionDate = new Timestamp(System.currentTimeMillis());
             }

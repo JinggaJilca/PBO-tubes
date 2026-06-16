@@ -142,7 +142,7 @@ public class NotificationDAO {
                 "AND t.transaction_type = 'expense' " +
                 "AND DATE(t.transaction_date) BETWEEN b.start_date AND b.end_date " +
                 "WHERE n.user_id = ? " +
-                "GROUP BY n.notification_id, n.budget_id, n.message, n.notification_date, " +
+                "GROUP BY n.notification_id, n.budget_id, n.message, n.notification_date, n.is_read, " +
                 "b.category_id, b.category_budget, b.threshold, b.start_date, b.end_date, c.name " +
                 "ORDER BY n.notification_date DESC";
 

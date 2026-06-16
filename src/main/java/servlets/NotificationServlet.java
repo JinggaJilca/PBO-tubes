@@ -37,8 +37,32 @@ public class NotificationServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("notification.jsp").forward(request, response);
+        HttpSession session = request.getSession(false);
+
+        if (session == null || session.getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+
+        User loggedInUser = (User) session.getAttribute("user");
+        int userId = loggedInUser.getUserID();
+
+        NotificationDAO notificationDAO = new NotificationDAO();
+
+        List<BudgetNotification> notifications = notificationDAO.getNotificationsByUserId(userId);
+
+        int unreadCount = notificationDAO.getNotificationCountByUserId(userId);
+
+        System.out.println("USER LOGIN NOTIFICATION = " + userId);
+        System.out.println("JUMLAH NOTIFIKASI = " + notifications.size());
+        System.out.println("JUMLAH UNREAD = " + unreadCount);
+
+        request.setAttribute("notifications", notifications);
+        request.setAttribute("unreadCount", unreadCount);
+
+        request.getRequestDispatcher("/notification.jsp").forward(request, response);
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
     // + sign on the left to edit the code.">
