@@ -126,6 +126,7 @@ public class NotificationDAO {
                 "n.budget_id, " +
                 "n.message, " +
                 "n.notification_date, " +
+                "n.is_read, " +
                 "b.category_id, " +
                 "b.category_budget, " +
                 "b.threshold, " +
@@ -141,7 +142,7 @@ public class NotificationDAO {
                 "AND t.transaction_type = 'expense' " +
                 "AND DATE(t.transaction_date) BETWEEN b.start_date AND b.end_date " +
                 "WHERE n.user_id = ? " +
-                "GROUP BY n.notification_id, n.budget_id, n.message, n.notification_date, " +
+                "GROUP BY n.notification_id, n.budget_id, n.message, n.notification_date, n.is_read, " +
                 "b.category_id, b.category_budget, b.threshold, b.start_date, b.end_date, c.name " +
                 "ORDER BY n.notification_date DESC";
 
@@ -168,6 +169,7 @@ public class NotificationDAO {
                     notification.setCurrentSpending(currentSpending);
                     notification.setWarningThreshold(warningThreshold);
                     notification.setDifference(difference);
+                    notification.setRead(rs.getBoolean("is_read"));
 
                     notifications.add(notification);
                 }
@@ -202,7 +204,7 @@ public class NotificationDAO {
     public int getNotificationCountByUserId(int userId) {
         String sql = "SELECT COUNT(*) AS total_notification " +
                 "FROM notifications " +
-                "WHERE user_id = ?";
+                "WHERE user_id = ? AND is_read = FALSE";
 
         try (Connection conn = JDBC.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -220,5 +222,44 @@ public class NotificationDAO {
         }
 
         return 0;
+    }
+
+    public boolean markNotificationAsRead(int notificationId, int userId) {
+        String sql = "UPDATE notifications " +
+                "SET is_read = TRUE " +
+                "WHERE notification_id = ? AND user_id = ?";
+
+        try (Connection conn = JDBC.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, notificationId);
+            stmt.setInt(2, userId);
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean markAllAsReadByUserId(int userId) {
+        String sql = "UPDATE notifications " +
+                "SET is_read = TRUE " +
+                "WHERE user_id = ? AND is_read = FALSE";
+
+        try (Connection conn = JDBC.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }
