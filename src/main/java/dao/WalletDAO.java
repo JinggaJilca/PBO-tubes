@@ -11,53 +11,54 @@ import model.Wallet;
 
 public class WalletDAO {
     public List<Wallet> getWalletsByUserId(int userId) {
-        List<Wallet> wallets = new ArrayList<>();
+    List<Wallet> wallets = new ArrayList<>();
 
-        String sql = "SELECT " +
-                        "aw.account_id, " +
-                        "aw.user_id, " +
-                        "aw.account_name, " +
-                        "aw.balance, " +
-                        "ew.provider_name, " +
-                        // PERBAIKAN: Ambil dari ewallet, jika null ambil dari physical_wallet
-                        "COALESCE(ew.account_number, pw.account_number) AS account_number, " +
-                        "CASE " +
-                        "   WHEN ew.account_id IS NOT NULL THEN 'ewallet' " +
-                        "   ELSE 'physical' " +
-                        "END AS wallet_type " +
-                        "FROM account_wallets aw " +
-                        "LEFT JOIN ewallet ew ON aw.account_id = ew.account_id " +
-                        "LEFT JOIN physical_wallet pw ON aw.account_id = pw.account_id " +
-                        "WHERE aw.user_id = ? " +
-                        "ORDER BY aw.account_id ASC";
+    String sql = "SELECT \n" +
+                "    aw.account_id, \n" +
+                "    aw.user_id, \n" + 
+                "    aw.account_name, \n" +
+                "    aw.balance, \n" +
+                "    CASE \n" +
+                "        WHEN pw.account_id IS NOT NULL THEN 'Physical'\n" +
+                "        WHEN ew.account_id IS NOT NULL THEN 'E-Wallet'\n" +
+                "        ELSE 'General'\n" +
+                "    END AS wallet_type,\n" +
+                "    COALESCE(pw.provider_name, ew.provider_name) AS provider_name, \n" +
+                "    COALESCE(pw.account_number, ew.account_number) AS account_number \n" +
+                "FROM account_wallets aw \n" +
+                "LEFT JOIN physical_wallet pw ON aw.account_id = pw.account_id \n" +
+                "LEFT JOIN ewallet ew ON aw.account_id = ew.account_id \n" +
+                "WHERE aw.user_id = ?";
 
-        try (Connection conn = JDBC.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql)) {
+    try (Connection conn = JDBC.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, userId);
+        stmt.setInt(1, userId);
 
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    Wallet wallet = new Wallet();
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Wallet wallet = new Wallet();
 
-                    wallet.setAccountId(rs.getInt("account_id"));
-                    wallet.setUserId(rs.getInt("user_id"));
-                    wallet.setAccountName(rs.getString("account_name"));
-                    wallet.setBalance(rs.getDouble("balance"));
-                    wallet.setWalletType(rs.getString("wallet_type"));
-                    wallet.setProviderName(rs.getString("provider_name"));
-                    wallet.setAccountNumber(rs.getString("account_number"));
+                wallet.setAccountId(rs.getInt("account_id"));
+                wallet.setUserId(rs.getInt("user_id"));
+                wallet.setAccountName(rs.getString("account_name"));
+                wallet.setBalance(rs.getDouble("balance"));
+                wallet.setWalletType(rs.getString("wallet_type"));
+                wallet.setProviderName(rs.getString("provider_name"));
+                wallet.setAccountNumber(rs.getString("account_number"));
 
-                    wallets.add(wallet);
-                }
+                wallets.add(wallet);
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
-        return wallets;
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("ERROR DISINI: " + e.getMessage());
     }
+
+    return wallets;
+}
+    
 // Tambahkan parameter String accountNumber di dalam kurung
     public boolean addPhysicalWallet(int userId, String accountName, double balance, String accountNumber) {
         String insertAccount = "INSERT INTO account_wallets (user_id, account_name, balance) VALUES (?, ?, ?)";
