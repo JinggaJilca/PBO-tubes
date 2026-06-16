@@ -7,6 +7,7 @@
                         <%@page import="model.CategorySpendingSummary" %>
                             <%@page import="model.Wallet" %>
                                 <%@page import="model.Category" %>
+                                    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
                                     <% String username=(String) request.getAttribute("username"); List<Wallet> wallets =
                                         (List<Wallet>) request.getAttribute("wallets");
@@ -842,6 +843,25 @@
                                                                             </div>
                                                                         </div>
 
+                                                                        <!-- TOAST NOTIFICATION -->
+                                                                        <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+
+                                                                            <c:if test="${param.success == 'add'}">
+                                                                                <div id="transactionToast" class="toast align-items-center text-bg-success border-0"
+                                                                                    role="alert">
+                                                                                    <div class="d-flex">
+                                                                                        <div class="toast-body">
+                                                                                            <i class="bi bi-check-circle-fill me-2"></i>
+                                                                                            Transaction added successfully.
+                                                                                        </div>
+                                                                                        <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                                                                            data-bs-dismiss="toast"></button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </c:if>
+
+                                                                        </div>
+
                                                                         <script
                                                                             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
                                                                         <script
@@ -1042,6 +1062,19 @@
                                                                                     });
                                                                                 }
                                                                             });
+
+                                                                            // Toast Notification
+                                                                            const toastElement = document.getElementById('transactionToast');
+
+                                                                            if (toastElement) {
+                                                                                const toast = new bootstrap.Toast(toastElement, {
+                                                                                    delay: 3000
+                                                                                });
+
+                                                                                toast.show();
+
+                                                                                window.history.replaceState({}, document.title, window.location.pathname);
+                                                                            }
                                                                         </script>
 
                                                                     </body>
