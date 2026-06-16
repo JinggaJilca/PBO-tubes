@@ -115,7 +115,7 @@
             </div>
         </div>
     </div>
-    <div class="trx-header mb-3">
+    <div class="budget-header mb-3">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
