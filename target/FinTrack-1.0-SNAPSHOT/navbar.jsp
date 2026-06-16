@@ -74,204 +74,30 @@
             </ul>
         </div>
 
-                        <!-- Mobile Toggle -->
-                        <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                            aria-label="Toggle navigation">
-
-                            <i class="bi bi-list fs-1"></i>
-                        </button>
-
-                        <!-- Navigation Menu -->
-                        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-
-                            <ul class="navbar-nav gap-5 align-items-center">
-
-                                <!-- Dashboard -->
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                                        href="<%= ctx %>/dashboard">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24">
-
-                                            <path fill="currentColor"
-                                                d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z" />
-                                        </svg>
-
-                                        Dashboard
-                                    </a>
-                                </li>
-
-
-                                <!-- Wallet -->
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                                        href="<%= ctx %>/wallet">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24">
-
-                                            <path fill="currentColor"
-                                                d="M5.75 7a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5z" />
-
-                                            <path fill="currentColor" fill-rule="evenodd"
-                                                d="M21.188 8.004q-.094-.005-.2-.004h-2.773C15.944 8 14 9.736 14 12s1.944 4 4.215 4h2.773q.106.001.2-.004c.923-.056 1.739-.757 1.808-1.737c.004-.064.004-.133.004-.197V9.938c0-.064 0-.133-.004-.197c-.069-.98-.885-1.68-1.808-1.737m-3.217 5.063c.584 0 1.058-.478 1.058-1.067c0-.59-.474-1.067-1.058-1.067s-1.06.478-1.06 1.067c0 .59.475 1.067 1.06 1.067"
-                                                clip-rule="evenodd" />
-
-                                            <path fill="currentColor"
-                                                d="M21.14 8.002c0-1.181-.044-2.448-.798-3.355a4 4 0 0 0-.233-.256c-.749-.748-1.698-1.08-2.87-1.238C16.099 3 14.644 3 12.806 3h-2.112C8.856 3 7.4 3 6.26 3.153c-1.172.158-2.121.49-2.87 1.238c-.748.749-1.08 1.698-1.238 2.87C2 8.401 2 9.856 2 11.694v.112c0 1.838 0 3.294.153 4.433c.158 1.172.49 2.121 1.238 2.87c.749.748 1.698 1.08 2.87 1.238c1.14.153 2.595.153 4.433.153h2.112c1.838 0 3.294 0 4.433-.153c1.172-.158 2.121-.49 2.87-1.238q.305-.308.526-.66c.45-.72.504-1.602.504-2.45l-.15.001h-2.774C15.944 16 14 14.264 14 12s1.944-4 4.215-4h2.773q.079 0 .151.002"
-                                                opacity=".5" />
-                                        </svg>
-
-                                        Wallet
-                                    </a>
-                                </li>
-
-                                <!-- Transaction -->
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                                        href="<%= ctx %>/transaction">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24">
-
-                                            <path fill="currentColor"
-                                                d="M11.025 21v-2.15q-1.325-.3-2.287-1.15t-1.413-2.4l1.85-.75q.375 1.2 1.113 1.825t1.937.625q1.025 0 1.738-.462t.712-1.438q0-.875-.55-1.387t-2.55-1.163q-2.15-.675-2.95-1.612t-.8-2.288q0-1.625 1.05-2.525t2.15-1.025V3h2v2.1q1.25.2 2.063.913t1.187 1.737l-1.85.8q-.3-.8-.85-1.2t-1.5-.4q-1.1 0-1.675.488T9.825 8.65q0 .825.75 1.3t2.6 1q1.725.5 2.613 1.588t.887 2.512q0 1.775-1.05 2.7t-2.6 1.15V21z" />
-                                        </svg>
-
-                                        Transaction
-                                    </a>
-                                </li>
-
-                                <!-- Budget -->
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3 d-flex align-items-center gap-2"
-                                        href="<%= ctx %>/budget">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24">
-
-                                            <g fill="none" stroke="currentColor" stroke-linejoin="round"
-                                                stroke-width="1.5">
-
-                                                <path stroke-linecap="round"
-                                                    d="M20.943 16.835a15.76 15.76 0 0 0-4.476-8.616c-.517-.503-.775-.754-1.346-.986C14.55 7 14.059 7 13.078 7h-2.156c-.981 0-1.472 0-2.043.233c-.57.232-.83.483-1.346.986a15.76 15.76 0 0 0-4.476 8.616C2.57 19.773 5.28 22 8.308 22h7.384c3.029 0 5.74-2.227 5.25-5.165" />
-
-                                                <path
-                                                    d="M7.257 4.443c-.207-.3-.506-.708.112-.8c.635-.096 1.294.338 1.94.33c.583-.009.88-.268 1.2-.638C10.845 2.946 11.365 2 12 2s1.155.946 1.491 1.335c.32.37.617.63 1.2.637c.646.01 1.305-.425 1.94-.33c.618.093.319.5.112.8l-.932 1.359c-.4.58-.599.87-1.017 1.035S13.837 7 12.758 7h-1.516c-1.08 0-1.619 0-2.036-.164S8.589 6.38 8.189 5.8z" />
-
-                                                <path stroke-linecap="round"
-                                                    d="M13.627 12.919c-.216-.799-1.317-1.519-2.638-.98s-1.53 2.272.467 2.457c.904.083 1.492-.097 2.031.412c.54.508.64 1.923-.739 2.304c-1.377.381-2.742-.214-2.89-1.06m1.984-5.06v.761m0 5.476v.764" />
-                                            </g>
-                                        </svg>
-
-                                        Budget
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                        <!-- Right Navigation -->
-                        <div class="d-flex align-items-center gap-3">
-
-                            <!-- Notification -->
-                            <!-- Notification -->
-                            <a href="<%= ctx %>/notification" class="text-decoration-none" aria-label="Notification">
-
-                                <div class="icon-circle notification-bell-wrapper">
-
-                                    <i class="bi bi-bell-fill fs-5"></i>
-
-                                    <% if (notificationCount> 0) { %>
-                                        <span class="notification-dot"></span>
-                                        <% } %>
-
-                                </div>
-                            </a>
-
-                            <!-- Profile Dropdown -->
-                            <div class="dropdown">
-
-                                <a class="text-white text-decoration-none dropdown-toggle d-flex align-items-center gap-2"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-
-                                    <div class="profile-circle">
-                                        <i class="bi bi-person-fill fs-4"></i>
-                                    </div>
-
-                                    <span class="fw-semibold text-white">
-                                        <%= usernameNavbar %>
-                                    </span>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
-
-                                    <li>
-                                        <a class="dropdown-item" href="<%= ctx %>/profile">
-                                            <i class="bi bi-person me-2"></i>
-                                            Profile
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-
-                                    <li>
-                                        <form action="<%= ctx %>/logout" method="POST" class="m-0">
-
-                                    <li>
-                                        <button type="button" class="dropdown-item text-danger"
-                                            onclick="confirmLogoutNavbar()">
-                                            <i class="bi bi-box-arrow-right me-2"></i>
-                                            Logout
-                                        </button>
-                                    </li>
-                                    </form>
-                                    </li>
-
-                                </ul>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- MODAL KONFIRMASI LOGOUT -->
-                    <div class="modal fade" id="logoutModalNavbar" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-sm">
-                            <div class="modal-content" style="border-radius:20px; border:none;">
-                                <div class="modal-body text-center p-4">
-
-                                    <div
-                                        style="width:56px;height:56px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
-                                        <i class="bi bi-box-arrow-right text-danger fs-4"></i>
-                                    </div>
-
-                                    <h6 class="fw-bold mb-2">Logout?</h6>
-
-                                    <p style="font-size:0.85rem; color:#888; margin-bottom:20px;">
-                                        Are you sure you want to logout from your account?
-                                    </p>
-
-                                    <div class="d-flex gap-2 justify-content-center">
-                                        <button type="button" class="btn-trx-cancel"
-                                            data-bs-dismiss="modal">Cancel</button>
-                                        <form action="<%= ctx %>/logout" method="POST" class="m-0">
-                                            <button type="submit" class="btn-trx-delete-confirm">Logout</button>
-                                        </form>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <script>
-                        function confirmLogoutNavbar() {
-                            new bootstrap.Modal(document.getElementById("logoutModalNavbar")).show();
-                        }
-                    </script>
-                </nav>
+        <div class="d-flex align-items-center gap-3">
+            <a href="<%= ctx %>/notification" class="text-decoration-none" aria-label="Notification">
+                <div class="icon-circle notification-bell-wrapper">
+                    <i class="bi bi-bell-fill fs-5"></i>
+                    <% if (notificationCount > 0) { %>
+                        <span class="notification-dot"></span>
+                    <% } %>
+                </div>
+            </a>
+            <div class="dropdown">
+                <a class="text-white text-decoration-none dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="profile-circle"><i class="bi bi-person-fill fs-4"></i></div>
+                    <span class="fw-semibold text-white"><%= usernameNavbar %></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
+                    <li><a class="dropdown-item" href="<%= ctx %>/profile"><i class="bi bi-person me-2"></i> Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form action="<%= ctx %>/logout" method="POST" class="m-0">
+                            <button type="submit" class="dropdown-item text-danger"><i class="bi bi-box-arrow-right me-2"></i> Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
