@@ -125,14 +125,14 @@
 
             <div class="mt-4">
                 <div class="budget-container">
-                    <div class="mb-3">
-                        <h5 class="mb-1">Total Budget for this month</h5>
-                        <h1 class="fw-bold">
+                    <div class="d-flex align-items-center justify-content-between mb-0">
+                        <h5 class="mb-0">Total Budget for this month</h5>
+                        <h1 class="fw-bold mb-0">
                             Rp. <fmt:formatNumber value="${totalBudget}" type="number" minFractionDigits="2" />
                         </h1>
                     </div>
 
-                    <div class="d-flex align-items-center mb-2">
+                    <div class="d-flex align-items-center mb-0">
                         <div class="progress flex-grow-1 me-3">
                             <div class="progress-bar ${percentage > 100 ? 'bg-danger' : 'budget-progress-bar'}"
                                 role="progressbar"
@@ -143,7 +143,7 @@
                         <h2 class="fw-bold" style="min-width: 45px; text-align: right;">${percentage}%</h2>
                     </div>
 
-                    <div class="d-flex justify-content-between budget-stats mt-2">
+                    <div class="d-flex justify-content-between budget-stats mt-0">
                         <span>
                             Rp. <fmt:formatNumber value="${spentAmount}" type="number" minFractionDigits="2" /> Spend
                         </span>
