@@ -109,8 +109,5 @@ public class CategoryServlet extends HttpServlet {
         response.sendRedirect("category");
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Category Servlet untuk mengelola data kategori transaksi";
-    }
+
 }
