@@ -3708,4 +3708,21 @@ input[type=range]::-moz-range-thumb {
             color: #111827;
             margin-bottom: 16px;
         }
-*/
+
+/* dashboard */
+.summary-green {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+}
+
+.summary-green::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: #9EDE04;
+}
+

@@ -159,7 +159,7 @@
                                                                                 <!-- BALANCE -->
                                                                                 <div class="col-12 col-md-6 col-lg-3">
                                                                                     <div
-                                                                                        class="card fintrack-card summary-card p-3">
+                                                                                        class="card fintrack-card summary-card summary-green p-3">
                                                                                         <div class="card-body">
                                                                                             <h6
                                                                                                 class="fw-bold text-dark mb-3">
@@ -184,7 +184,7 @@
                                                                                 <!-- EARNINGS -->
                                                                                 <div class="col-12 col-md-6 col-lg-3">
                                                                                     <div
-                                                                                        class="card fintrack-card summary-card p-3">
+                                                                                        class="card fintrack-card summary-card summary-green p-3">
                                                                                         <div class="card-body">
                                                                                             <div
                                                                                                 class="d-flex justify-content-between align-items-start mb-3">
@@ -220,7 +220,7 @@
                                                                                 <!-- SPENDING -->
                                                                                 <div class="col-12 col-md-6 col-lg-3">
                                                                                     <div
-                                                                                        class="card fintrack-card summary-card p-3">
+                                                                                        class="card fintrack-card summary-card summary-green p-3">
                                                                                         <div class="card-body">
                                                                                             <div
                                                                                                 class="d-flex justify-content-between align-items-start mb-3">
