@@ -154,7 +154,7 @@
                                                                         <div class="container overlap-container mb-5">
 
                                                                             <!-- ROW 1: SUMMARY CARDS -->
-                                                                            <div class="row g-4 mb-4">
+                                                                            <div class="row g-4 mb-4 align-items-stretch">
 
                                                                                 <!-- BALANCE -->
                                                                                 <div class="col-12 col-md-6 col-lg-3">
@@ -255,8 +255,8 @@
 
                                                                                 <!-- SPENDING OVERVIEW MINI -->
                                                                                 <div class="col-12 col-md-6 col-lg-3">
-                                                                                    <div class="card fintrack-card summary-card p-3"
-                                                                                        style="overflow:hidden;">
+                                                                                    <div class="card fintrack-card summary-card p-3 h-100"
+                                                                                        style="overflow:visible;">
                                                                                         <div class="card-body">
                                                                                             <h6
                                                                                                 class="fw-bold text-dark mb-1">
@@ -333,7 +333,7 @@
                                                                             </div>
 
                                                                             <!-- ROW 2: CHART + RECENT ACTIVITY -->
-                                                                            <div class="row g-4 mb-4">
+                                                                            <div class="row g-4 mb-4 align-items-stretch">
 
                                                                                 <!-- TRANSACTIONS OVERVIEW CHART -->
                                                                                 <div class="col-12 col-lg-7">
@@ -1030,9 +1030,10 @@
                                                                                             label: categoryLabels[index] || "Category",
                                                                                             data: [amount],
                                                                                             backgroundColor: categoryColors[index % categoryColors.length],
-                                                                                            borderWidth: 0,
-                                                                                            borderRadius: 3,
-                                                                                            barThickness: 18
+                                                                                            borderWidth: 2,
+                                                                                            borderColor: "#ffffff",
+                                                                                            borderRadius: 0,
+                                                                                            barThickness: 14
                                                                                         };
                                                                                     });
 

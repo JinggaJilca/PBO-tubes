@@ -3513,3 +3513,29 @@ input[type=range]::-moz-range-thumb {
 ===================================== */
 
 /* end style notification */
+
+/* Summary cards sama tinggi */
+.summary-card {
+    height: 100%;
+}
+
+.summary-card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Batasi tinggi mini chart */
+.mini-chart-wrapper {
+    height: 36px;
+    max-height: 36px;
+    overflow: hidden;
+    margin: 6px 0;
+}
+
+/* Spending mini list tidak membesar */
+.spending-mini-list {
+    flex-shrink: 0;
+}
