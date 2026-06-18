@@ -1983,7 +1983,7 @@ body {
     min-height: 10px;
     align-items: center;
     padding: 18px 24px;
-    background-color: #0B3A30;
+    background-color: #92E600;
 }
 
 /* Bagian tengah */
@@ -2006,7 +2006,7 @@ body {
 
 .budget-category {
     margin: 0;
-    color: #92E600;
+    color: #0B3A30;
     font-size: 17px;
     font-weight: 700;
 }
@@ -2813,7 +2813,7 @@ input[type=range]::-moz-range-thumb {
     font-size: 1.1rem;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    color: #92E600;
+    color: #083F36;
     /* Warna ikon default abu-abu */
 }
 
