@@ -11,15 +11,15 @@ import model.Budget;
 import model.JDBC;
 
 public class BudgetDAO {
-    
-   // 1. Mengambil total budget bulanan user
+
+    // 1. Mengambil total budget bulanan user
     public double getTotalBudgetByUser(int userId) {
         // Fungsi SUM() otomatis akan menjumlahkan semua kategori yang user_id nya sama
         String sql = "SELECT SUM(category_budget) FROM budgets " +
-                     "WHERE user_id = ? ";
+                "WHERE user_id = ? ";
 
         try (Connection conn = JDBC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
@@ -27,45 +27,54 @@ public class BudgetDAO {
                     return rs.getDouble(1);
                 }
             }
-        } catch (SQLException e) { 
-            e.printStackTrace(); 
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return 0.0;
     }
 
     // 2. Mengambil total pengeluaran bulan ini
+    // 2. Mengambil total pengeluaran user berdasarkan kategori yang punya budget
     public double getSpentAmountByUser(int userId) {
-        
-        String sql = "SELECT SUM(amount) FROM transactions " +
-                     "WHERE user_id = ? AND transaction_type = 'expense'";
-                     
+
+        String sql = "SELECT COALESCE(SUM(t.amount), 0) AS total_spent " +
+                "FROM transactions t " +
+                "INNER JOIN budgets b ON t.category_id = b.category_id " +
+                "WHERE t.user_id = ? " +
+                "AND b.user_id = ? " +
+                "AND t.transaction_type = 'expense' " +
+                "AND DATE(t.transaction_date) BETWEEN b.start_date AND b.end_date";
+
         double totalSpent = 0.0;
-        
-        // PERBAIKAN 2: Pisahkan executeQuery dari inisialisasi try-with-resources
+
         try (Connection conn = JDBC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-             
-            stmt.setInt(1, userId); // Wajib set parameter DULU
-            
-            try (ResultSet rs = stmt.executeQuery()) { // BARU dieksekusi di sini
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            stmt.setInt(2, userId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    totalSpent = rs.getDouble(1);
+                    totalSpent = rs.getDouble("total_spent");
                 }
             }
-        } catch (SQLException e) { 
-            e.printStackTrace(); 
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return totalSpent;
     }
 
     // 3. Menambahkan budget
     public boolean addBudget(Budget budget) {
-        String sql = "INSERT INTO budgets (user_id, category_id, total_budget, category_budget, threshold, start_date, end_date) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
-                     
+        String sql = "INSERT INTO budgets (user_id, category_id, total_budget, category_budget, threshold, start_date, end_date) "
+                +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
         try (Connection conn = JDBC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-             
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, budget.getUserId());
             stmt.setInt(2, budget.getCategoryId());
             stmt.setDouble(3, budget.getTotalBudget());
@@ -73,23 +82,25 @@ public class BudgetDAO {
             stmt.setDouble(5, budget.getThreshold());
             stmt.setDate(6, budget.getStartDate());
             stmt.setDate(7, budget.getEndDate());
-            
+
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-    // 4. Mengambil semua list budget milik user (Dibutuhkan oleh Servlet untuk Looping Kartu)
+
+    // 4. Mengambil semua list budget milik user (Dibutuhkan oleh Servlet untuk
+    // Looping Kartu)
     public List<Budget> getAllBudgetsByUser(int userId) {
         List<Budget> list = new ArrayList<>();
         String sql = "SELECT * FROM budgets WHERE user_id = ?";
-        
+
         try (Connection conn = JDBC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-             
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -102,67 +113,82 @@ public class BudgetDAO {
                     list.add(b);
                 }
             }
-        } catch (SQLException e) { 
-            e.printStackTrace(); 
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return list;
     }
 
-    // 5. Mengambil total pengeluaran per kategori secara spesifik (Dibutuhkan oleh Servlet)
+    // 5. Mengambil total pengeluaran per kategori secara spesifik (Dibutuhkan oleh
+    // Servlet)
+    // 5. Mengambil pengeluaran per kategori sesuai periode budget
     public double getSpentAmountByCategory(int userId, int categoryId) {
-        String sql = "SELECT SUM(amount) FROM transactions " +
-                     "WHERE user_id = ? AND category_id = ? AND transaction_type = 'expense'";
-                     
+
+        String sql = "SELECT COALESCE(SUM(t.amount), 0) AS total_spent " +
+                "FROM transactions t " +
+                "INNER JOIN budgets b ON t.category_id = b.category_id " +
+                "WHERE t.user_id = ? " +
+                "AND b.user_id = ? " +
+                "AND t.category_id = ? " +
+                "AND b.category_id = ? " +
+                "AND t.transaction_type = 'expense' " +
+                "AND DATE(t.transaction_date) BETWEEN b.start_date AND b.end_date";
+
         try (Connection conn = JDBC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-             
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, userId);
-            stmt.setInt(2, categoryId);
-            
+            stmt.setInt(2, userId);
+            stmt.setInt(3, categoryId);
+            stmt.setInt(4, categoryId);
+
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getDouble(1);
+                    return rs.getDouble("total_spent");
                 }
             }
-        } catch (SQLException e) { 
-            e.printStackTrace(); 
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return 0.0;
     }
-    
+
     // 6. Method untuk menghapus budget berdasarkan budget_id
     public boolean deleteBudget(int budgetId) {
         String sql = "DELETE FROM budgets WHERE budget_id = ?";
         try (Connection conn = JDBC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-             
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, budgetId);
             return stmt.executeUpdate() > 0;
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
+
     // Method untuk mengedit/memperbarui budget
     public boolean updateBudget(Budget budget) {
         // Kita memperbarui total_budget, category_budget, dan threshold
         String sql = "UPDATE budgets SET total_budget = ?, category_budget = ?, threshold = ? WHERE budget_id = ?";
-        
+
         try (Connection conn = JDBC.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-             
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setDouble(1, budget.getTotalBudget());
             stmt.setDouble(2, budget.getCategoryBudget());
             stmt.setDouble(3, budget.getThreshold());
             stmt.setInt(4, budget.getBudgetId());
-            
+
             return stmt.executeUpdate() > 0;
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-    
+
 }
