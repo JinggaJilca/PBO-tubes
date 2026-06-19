@@ -80,34 +80,6 @@ CREATE TABLE notifications(
 	FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
 	FOREIGN KEY (budget_id) REFERENCES budgets (budget_id) ON DELETE CASCADE);
 
--- Report
-CREATE TABLE reports(
-	report_id INT(16) AUTO_INCREMENT PRIMARY KEY,
-	user_id INT(16) NOT NULL,
-	account_id INT(16) NOT NULL,
-	report_type ENUM('daily', 'weekly', 'monthly') NOT NULL,
-	start_date DATE NOT NULL,
-	end_date DATE NOT NULL,
-	total_income DECIMAL(18, 2) NOT NULL DEFAULT 0.00,
-	total_expense DECIMAL(18, 2) NOT NULL DEFAULT 0.00,
-	ending_balance DECIMAL(18, 2) NOT NULL DEFAULT 0.00,
-	generated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE,
-	FOREIGN KEY (account_id) REFERENCES account_wallets (account_id) ON DELETE CASCADE);
-	
--- Analysis
-CREATE TABLE analysis (
-   analysis_id INT(16) AUTO_INCREMENT PRIMARY KEY,
-   user_id INT(16) NOT NULL,
-   start_date DATE NOT NULL,
-   end_date DATE NOT NULL,
-   total_expense DECIMAL(18,2) NOT NULL DEFAULT 0.00,
-   largest_category_id INT(16) NULL,
-   average_expense DECIMAL(18,2) NOT NULL DEFAULT 0.00,
-   generated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-   FOREIGN KEY (largest_category_id) REFERENCES categories(category_id) ON DELETE SET NULL
-);
 
 -- === PERATURAN AGAR DATA TIDAK TERDUPLIKAT ===
 -- 1 users only have 1 email
