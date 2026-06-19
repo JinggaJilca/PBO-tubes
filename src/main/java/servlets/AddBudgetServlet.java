@@ -9,6 +9,7 @@ import model.User;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +24,7 @@ public class AddBudgetServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("user") == null) {
@@ -32,8 +34,10 @@ public class AddBudgetServlet extends HttpServlet {
 
         User loggedInUser = (User) session.getAttribute("user");
         int userId = loggedInUser.getUserID();
-        // Ambil daftar kategori milik user untuk dropdown
+
         CategoryDAO catDao = new CategoryDAO();
+
+        // Kalau kategori kamu global, ini boleh
         List<Category> categoryList = catDao.getAllCategories();
 
         request.setAttribute("categoryList", categoryList);
@@ -45,22 +49,33 @@ public class AddBudgetServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-        Integer sessionUserId = (Integer) session.getAttribute("userId");
-        int userId = (sessionUserId != null) ? sessionUserId : 1;
+        HttpSession session = request.getSession(false);
+
+        if (session == null || session.getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+
+        User loggedInUser = (User) session.getAttribute("user");
+        int userId = loggedInUser.getUserID();
 
         try {
             int categoryId = Integer.parseInt(request.getParameter("categoryId"));
             double amount = Double.parseDouble(request.getParameter("amount"));
 
+            /*
+             * Threshold disimpan sebagai persen.
+             * Contoh:
+             * budget = 12000
+             * thresholdValue = 9600
+             * thresholdPercentage = 80
+             */
             double thresholdValue = Double.parseDouble(request.getParameter("threshold"));
             double thresholdPercentage = (thresholdValue / amount) * 100;
 
-            // 2. Awal bulan sampai akhir bulan ini)
             LocalDate startOfMonth = LocalDate.now().withDayOfMonth(1);
             LocalDate endOfMonth = LocalDate.now().withDayOfMonth(startOfMonth.lengthOfMonth());
 
-            // 3. Masukkan ke dalam objek Budget
             Budget newBudget = new Budget();
             newBudget.setUserId(userId);
             newBudget.setCategoryId(categoryId);
@@ -70,19 +85,16 @@ public class AddBudgetServlet extends HttpServlet {
             newBudget.setStartDate(java.sql.Date.valueOf(startOfMonth));
             newBudget.setEndDate(java.sql.Date.valueOf(endOfMonth));
 
-            // 4. Simpan ke database via DAO
             BudgetDAO dao = new BudgetDAO();
             boolean isSuccess = dao.addBudget(newBudget);
 
-            // 5. Berikan feedback dan Redirect
             if (isSuccess) {
                 session.setAttribute("successMessage", "New budget added successfully!");
             } else {
                 session.setAttribute("errorMessage", "Failed to add budget. Please try again.");
             }
 
-            // Redirect kembali ke halaman utama budget
-            response.sendRedirect("budget");
+            response.sendRedirect(request.getContextPath() + "/budget");
 
         } catch (Exception e) {
             e.printStackTrace();
