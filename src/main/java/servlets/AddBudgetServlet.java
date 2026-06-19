@@ -4,6 +4,7 @@ import dao.BudgetDAO;
 import dao.CategoryDAO;
 import model.Budget;
 import model.Category;
+import model.User;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -22,13 +23,19 @@ public class AddBudgetServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int userId = 1;
+        HttpSession session = request.getSession(false);
 
+        if (session == null || session.getAttribute("user") == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+
+        User loggedInUser = (User) session.getAttribute("user");
+        int userId = loggedInUser.getUserID();
         // Ambil daftar kategori milik user untuk dropdown
         CategoryDAO catDao = new CategoryDAO();
         List<Category> categoryList = catDao.getAllCategories();
- 
-        
+
         request.setAttribute("categoryList", categoryList);
         request.getRequestDispatcher("addbudget.jsp").forward(request, response);
     }
@@ -37,10 +44,10 @@ public class AddBudgetServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
+
         HttpSession session = request.getSession();
         Integer sessionUserId = (Integer) session.getAttribute("userId");
-        int userId = (sessionUserId != null) ? sessionUserId : 1; 
+        int userId = (sessionUserId != null) ? sessionUserId : 1;
 
         try {
             int categoryId = Integer.parseInt(request.getParameter("categoryId"));
@@ -57,8 +64,8 @@ public class AddBudgetServlet extends HttpServlet {
             Budget newBudget = new Budget();
             newBudget.setUserId(userId);
             newBudget.setCategoryId(categoryId);
-            newBudget.setTotalBudget(amount); 
-            newBudget.setCategoryBudget(amount); 
+            newBudget.setTotalBudget(amount);
+            newBudget.setCategoryBudget(amount);
             newBudget.setThreshold(thresholdPercentage);
             newBudget.setStartDate(java.sql.Date.valueOf(startOfMonth));
             newBudget.setEndDate(java.sql.Date.valueOf(endOfMonth));
@@ -73,7 +80,7 @@ public class AddBudgetServlet extends HttpServlet {
             } else {
                 session.setAttribute("errorMessage", "Failed to add budget. Please try again.");
             }
-            
+
             // Redirect kembali ke halaman utama budget
             response.sendRedirect("budget");
 
