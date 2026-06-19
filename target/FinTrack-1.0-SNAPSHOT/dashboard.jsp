@@ -390,13 +390,6 @@
                                                                                             <h6
                                                                                                 class="fw-bold text-dark mb-0">
                                                                                                 Recent Activity</h6>
-                                                                                            <button type="button"
-                                                                                                class="btn-sortby">
-                                                                                                <i
-                                                                                                    class="bi bi-filter"></i>
-                                                                                                Sort by <i
-                                                                                                    class="bi bi-chevron-down"></i>
-                                                                                            </button>
                                                                                         </div>
                                                                                         <div class="table-responsive">
                                                                                             <table
