@@ -18,6 +18,24 @@ DELETE FROM profiles;
 
 DELETE FROM users;
 
+-- === DELETE COLL ===
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS analysis_category_percentage;
+DROP TABLE IF EXISTS analysis;
+DROP TABLE IF EXISTS reports;
+DROP TABLE IF EXISTS notifications;
+DROP TABLE IF EXISTS budgets;
+DROP TABLE IF EXISTS transactions;
+DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS physical_wallet;
+DROP TABLE IF EXISTS ewallet;
+DROP TABLE IF EXISTS account_wallets;
+DROP TABLE IF EXISTS profiles;
+DROP TABLE IF EXISTS users;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
 -- Reset IDENTITY (Run After Delete Data)
 DBCC CHECKIDENT ('users', RESEED, 0);
 DBCC CHECKIDENT ('profiles', RESEED, 0);
