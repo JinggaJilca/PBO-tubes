@@ -52,6 +52,7 @@ public class ProfileServlet extends HttpServlet {
         String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
+        String password = request.getParameter("newPassword");
 
         Profile profile = new Profile();
 
@@ -61,6 +62,7 @@ public class ProfileServlet extends HttpServlet {
         profile.setPhoneNumber(phoneNumber);
         profile.setEmail(email);
         profile.setAddress(address);
+        profile.setPassword(password);
 
         ProfileDAO profileDAO = new ProfileDAO();
         boolean success = profileDAO.updateProfile(profile);

@@ -1836,14 +1836,16 @@ body {
 
 /* [START] BUDGET PROGRESS BAR */
 .budget-header {
-    background-color: #0B3A30;
-    color: #FFFFFF;
-    padding: 2rem 0 3.8rem 0;
+    background: #083F36;
+    padding-top: 35px;
+    padding-bottom: 150px;
 }
 
 .budget-container {
-    background-color: #0B3A30;
-    /* Hijau Gelap */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .budget-progress-bar {
@@ -1946,13 +1948,6 @@ body {
 >>>>>>> d13151c1b65e094a39d5c3e190c223d96f64d42b
            CONTAINER CARD
         ========================== */
-
-.budget-card-container {
-    position: relative;
-    z-index: 2;
-    margin-top: 25px;
-    margin-bottom: 60px;
-}
 
 /* ==========================
            CARD BUDGET
@@ -2161,20 +2156,26 @@ body {
     }
 }
 
-.budget-header > .container {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    align-items: start;
-    gap: 10px;
+.budget-header {
+    background-color: #0B3A30;
+    color: white;
+    padding: 2rem 0 7rem 0;
 }
 
-.budget-header > .container > div:first-child h2 {
-    margin: 0;
+.budget-header .container {
+    display: block;
 }
 
-.budget-header > .container > .mt-4 {
-    margin-top: 0 !important;
-    min-width: 0;
+.budget-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.budget-card-container {
+    margin-top: -5rem;
+    position: relative;
+    z-index: 10;
 }
 
 .budget-container {
@@ -3513,3 +3514,215 @@ input[type=range]::-moz-range-thumb {
 ===================================== */
 
 /* end style notification */
+
+/* Summary cards sama tinggi */
+.summary-card {
+    height: 100%;
+}
+
+.summary-card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Batasi tinggi mini chart */
+.mini-chart-wrapper {
+    height: 36px;
+    max-height: 36px;
+    overflow: hidden;
+    margin: 6px 0;
+}
+
+/* Spending mini list tidak membesar */
+.spending-mini-list {
+    flex-shrink: 0;
+}
+
+/* 
+/* ── SUMMARY CARD PANJANG ── */
+        .budget-summary-box {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+            padding: 24px 28px;
+            margin-bottom: 28px;
+        }
+        .budget-summary-box .bs-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .budget-summary-box .bs-label {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: black;
+        }
+        .budget-summary-box .bs-amount {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #111827;
+        }
+        .budget-summary-box .bs-prog-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+        .budget-summary-box .bs-prog {
+            flex: 1;
+            height: 14px;
+            border-radius: 999px;
+            background: #f3f4f6;
+            overflow: hidden;
+        }
+        .budget-summary-box .bs-prog-fill {
+            height: 100%;
+            border-radius: 999px;
+            transition: width .4s;
+        }
+        .budget-summary-box .bs-pct {
+            font-size: 1.4rem;
+            font-weight: 700;
+            min-width: 68px;
+            text-align: right;
+        }
+        .budget-summary-box .bs-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        /* ── BUDGET ITEM CARD ── */
+        .bic {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            border: none;
+            overflow: hidden;
+            display: flex;
+            height: 100%;
+        }
+        .bic-accent { width: 5px; flex-shrink: 0; }
+        .bic-main { flex: 1; display: flex; flex-direction: column; }
+
+        .bic-head {
+            padding: 14px 18px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .bic-head .cat-name {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #111827;
+        }
+        .act-btn {
+            background: transparent;
+            border: none;
+            color: #9ca3af;
+            font-size: 0.85rem;
+            padding: 5px 7px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background .15s, color .15s;
+            line-height: 1;
+        }
+        .act-btn:hover { background: #f3f4f6; color: #374151; }
+
+        .bic-body {
+            padding: 16px 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .bic-body .micro-lbl { font-size: 0.71rem; color: #9ca3af; margin: 0; }
+        .bic-body .b-amt { font-size: 1.35rem; font-weight: 700; color: #111827; }
+        .bic-body .rem-lbl { font-size: 0.77rem; color: #6b7280; margin: 0; }
+
+        .b-prog { height: 10px; border-radius: 999px; background: #f3f4f6; overflow: hidden; }
+        .b-prog-fill { height: 100%; border-radius: 999px; }
+        .fill-safe { background: #9EDE04; }
+        .fill-warn { background: #ef4444; }
+
+        .st-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
+        .st-safe { background: #dcfce7; color: #16a34a; }
+        .st-warn { background: #fee2e2; color: #dc2626; }
+        .pct-txt { font-size: 0.74rem; color: #9ca3af; }
+
+        /* ── ADD BUDGET BUTTON ── */
+        .add-bud-btn {
+            width: 100%;
+            min-height: 200px;
+            height: 100%;
+            background: #fff;
+            border: 2px dashed #d1d5db;
+            border-radius: 18px;
+            color: #9ca3af;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: border-color .2s, color .2s, background .2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .add-bud-btn:hover {
+            border-color: #083F36;
+            color: #083F36;
+            background: #f0fdf4;
+        }
+        .add-bud-ico {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid currentColor;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .section-hd {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+/* dashboard */
+.summary-green {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+}
+
+.summary-green::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: #9EDE04;
+}
+

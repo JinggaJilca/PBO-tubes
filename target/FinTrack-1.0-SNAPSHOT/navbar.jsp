@@ -92,12 +92,62 @@
                     <li><a class="dropdown-item" href="<%= ctx %>/profile"><i class="bi bi-person me-2"></i> Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
-                        <form action="<%= ctx %>/logout" method="POST" class="m-0">
-                            <button type="submit" class="dropdown-item text-danger"><i class="bi bi-box-arrow-right me-2"></i> Logout</button>
-                        </form>
+                        <button type="button"
+                                class="dropdown-item text-danger"
+                                onclick="confirmNavbarLogout()">
+                            <i class="bi bi-box-arrow-right me-2"></i> Logout
+                        </button>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+
+    <script>
+    function confirmNavbarLogout() {
+        new bootstrap.Modal(
+            document.getElementById('navbarLogoutModal')
+        ).show();
+    }
+    </script>
+
 </nav>
+
+<div class="modal fade" id="navbarLogoutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content" style="border-radius:20px; border:none;">
+            <div class="modal-body text-center p-4">
+
+                <div style="width:56px;height:56px;border-radius:50%;background:#fee2e2;
+                            display:flex;align-items:center;justify-content:center;
+                            margin:0 auto 16px;">
+                    <i class="bi bi-box-arrow-right text-danger fs-4"></i>
+                </div>
+
+                <h6 class="fw-bold mb-2">Logout?</h6>
+
+                <p style="font-size:0.85rem;color:#888;margin-bottom:20px;">
+                    Are you sure you want to logout from your account?
+                </p>
+
+                <div class="d-flex gap-2 justify-content-center">
+                    <button type="button"
+                            class="btn-trx-cancel"
+                            data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+
+                    <form action="<%= ctx %>/logout"
+                          method="POST"
+                          class="m-0">
+                        <button type="submit"
+                                class="btn-trx-delete-confirm">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
