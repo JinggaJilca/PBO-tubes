@@ -43,7 +43,7 @@
                                     Category
                                 </a>
                                 </button>
-                                
+
                                 <button class="btn-add-trx" data-bs-toggle="modal"
                                     data-bs-target="#addTransactionModal">
                                     <i class="bi bi-plus-lg"></i> Add Transaction
