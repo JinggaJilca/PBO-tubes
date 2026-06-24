@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import dao.WalletDAO;
 
-/**
- *
- * @author Julio
- */
 @WebServlet(name = "AddWalletServlet", urlPatterns = {"/AddWalletServlet"})
 public class AddWalletServlet extends HttpServlet {
 
@@ -76,8 +67,6 @@ public class AddWalletServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        // int userId = 1;
-
         if (session == null || session.getAttribute("user") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
@@ -112,7 +101,6 @@ public class AddWalletServlet extends HttpServlet {
             success = walletDAO.addPhysicalWallet(userId, accountName, balance, accountNumber);
         }
 
-        // Opsional: Anda bisa menambahkan logic Notifikasi Toast di sini jika mau
         if (success) {
             session.setAttribute("successMessage", "Wallet added successfully!");
         } else {

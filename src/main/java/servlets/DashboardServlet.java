@@ -36,7 +36,7 @@ public class DashboardServlet extends HttpServlet {
 
         model.User loggedInUser = (model.User) session.getAttribute("user");
         Integer userId = loggedInUser.getUserID();
-        
+
         LocalDate now = LocalDate.now();
         int year = now.getYear();
         int month = now.getMonthValue();
@@ -60,21 +60,17 @@ public class DashboardServlet extends HttpServlet {
 
         String categoryLabelsJson = buildCategoryLabelsJson(spendingOverview);
         String categoryAmountJson = buildCategoryAmountJson(spendingOverview);
+
         
-        // ==============================================================
         // DATA WALLET & CATEGORY
-        // ==============================================================
         WalletDAO walletDAO = new WalletDAO();
         List<Wallet> wallets = walletDAO.getWalletsByUserId(userId);
 
         CategoryDAO categoryDAO = new CategoryDAO();
-        // Menggunakan getAllCategories() sesuai permintaan Anda
-        List<Category> categories = categoryDAO.getAllCategories(); 
+        List<Category> categories = categoryDAO.getAllCategories();
 
         request.setAttribute("wallets", wallets);
         request.setAttribute("categories", categories);
-        // ==============================================================
-
         request.setAttribute("username", username);
         request.setAttribute("summary", summary);
         request.setAttribute("recentActivities", recentActivities);
@@ -87,22 +83,23 @@ public class DashboardServlet extends HttpServlet {
         request.setAttribute("largestCategory", largestCategory);
         request.setAttribute("categoryLabelsJson", categoryLabelsJson);
         request.setAttribute("categoryAmountJson", categoryAmountJson);
-        
         request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
     private String buildMonthlyLabelsJson(List<MonthlyTransactionSummary> monthlySummary) {
-        String[] monthNames = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        String[] monthNames = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
         StringJoiner joiner = new StringJoiner(",", "[", "]");
         for (MonthlyTransactionSummary monthly : monthlySummary) {
             int monthIndex = monthly.getMonth() - 1;

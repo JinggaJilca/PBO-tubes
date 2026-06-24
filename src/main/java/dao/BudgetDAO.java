@@ -1,4 +1,3 @@
-
 package dao;
 
 import java.sql.Connection;
@@ -33,7 +32,6 @@ public class BudgetDAO {
         return 0.0;
     }
 
-    // 2. Mengambil total pengeluaran bulan ini
     // 2. Mengambil total pengeluaran user berdasarkan kategori yang punya budget
     public double getSpentAmountByUser(int userId) {
 
@@ -68,20 +66,21 @@ public class BudgetDAO {
 
     // 3. Menambahkan budget
     public boolean addBudget(Budget budget) {
-        String sql = "INSERT INTO budgets (user_id, category_id, total_budget, category_budget, threshold, start_date, end_date) "
-                +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        // PERBAIKAN: Menyesuaikan jumlah parameter VALUES(?) menjadi 6 sesuai jumlah
+        // kolom
+        String sql = "INSERT INTO budgets (user_id, category_id, category_budget, threshold, start_date, end_date) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = JDBC.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, budget.getUserId());
             stmt.setInt(2, budget.getCategoryId());
-            stmt.setDouble(3, budget.getTotalBudget());
-            stmt.setDouble(4, budget.getCategoryBudget());
-            stmt.setDouble(5, budget.getThreshold());
-            stmt.setDate(6, budget.getStartDate());
-            stmt.setDate(7, budget.getEndDate());
+            // PERBAIKAN: total_budget dihapus, langsung menggunakan category_budget
+            stmt.setDouble(3, budget.getCategoryBudget());
+            stmt.setDouble(4, budget.getThreshold());
+            stmt.setDate(5, budget.getStartDate());
+            stmt.setDate(6, budget.getEndDate());
 
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;
@@ -119,9 +118,6 @@ public class BudgetDAO {
         return list;
     }
 
-    // 5. Mengambil total pengeluaran per kategori secara spesifik (Dibutuhkan oleh
-    // Servlet)
-    // 5. Mengambil pengeluaran per kategori sesuai periode budget
     public double getSpentAmountByCategory(int userId, int categoryId) {
 
         String sql = "SELECT COALESCE(SUM(t.amount), 0) AS total_spent " +
@@ -170,18 +166,18 @@ public class BudgetDAO {
         }
     }
 
-    // Method untuk mengedit/memperbarui budget
+    // 7. Method untuk mengedit/memperbarui budget
     public boolean updateBudget(Budget budget) {
-        // Kita memperbarui total_budget, category_budget, dan threshold
-        String sql = "UPDATE budgets SET total_budget = ?, category_budget = ?, threshold = ? WHERE budget_id = ?";
+        // PERBAIKAN: total_budget dihapus dari query SQL
+        String sql = "UPDATE budgets SET category_budget = ?, threshold = ? WHERE budget_id = ?";
 
         try (Connection conn = JDBC.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setDouble(1, budget.getTotalBudget());
-            stmt.setDouble(2, budget.getCategoryBudget());
-            stmt.setDouble(3, budget.getThreshold());
-            stmt.setInt(4, budget.getBudgetId());
+            // PERBAIKAN: Index disesuaikan setelah total_budget dihapus
+            stmt.setDouble(1, budget.getCategoryBudget());
+            stmt.setDouble(2, budget.getThreshold());
+            stmt.setInt(3, budget.getBudgetId());
 
             return stmt.executeUpdate() > 0;
 
