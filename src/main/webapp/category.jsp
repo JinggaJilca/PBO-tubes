@@ -29,7 +29,7 @@
 
 <body>
     <jsp:include page="navbar.jsp" />
-    <!-- [START] MODAL DELETE -->
+
     <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content trx-modal-content">
@@ -75,9 +75,7 @@
             </div>
         </div>
     </div>
-    <!-- [END] MODAL DELETE -->
     
-    <!-- [START] MODAL ADD CATEGORY -->
     <div class="modal fade" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content trx-modal-content">
@@ -119,9 +117,7 @@
             </div>
         </div>
     </div>
-    <!-- [END] MODAL ADD CATEGORY -->
     
-    <!-- [START] MODAL EDIT CATEGORY -->
    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content trx-modal-content">
@@ -159,7 +155,6 @@
         </div>
     </div>
 </div>
-    <!-- [END] MODAL EDIT CATEGORY -->
     
     
     <div class="trx-header mb-3">
@@ -183,13 +178,12 @@
                 <span class="trx-filter-bar-title">Category Transaction Table</span>
 
                 <div class="d-flex align-items-center gap-2 flex-wrap">
-                    <!-- [START] Kotak Pencarian Kustom -->
+
                     <div class="trx-search-wrap">
                         <i class="bi bi-search trx-search-icon"></i>
                         <input type="text" class="trx-search-input" id="customSearch" placeholder="Search category...">
                     </div>
 
-                    <!-- [START] Tombol Filter Tipe -->
                     <div class="trx-filter-tabs">
                         <button class="trx-filter-tab active" data-filter="all">All</button>
                         <button class="trx-filter-tab" data-filter="Income">Income</button>
@@ -279,7 +273,7 @@
             </div>
         </div>
     </div>
-    <!-- [START] TOAST -->
+
     <div class="toast-container position-fixed bottom-0 end-0 p-4" style="z-index: 1055;">
         <% if (successMessage != null) { %>
             <div id="liveToastSuccess" class="toast align-items-center text-bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
@@ -305,7 +299,6 @@
             </div>
         <% } %>
         
-    <!-- [END] TOAST -->
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
