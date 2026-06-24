@@ -167,7 +167,7 @@ public class BudgetDAO {
 
     // 7. Method untuk mengedit/memperbarui budget
     public boolean updateBudget(Budget budget) {
-        // PERBAIKAN: total_budget dihapus dari query SQL
+
         String sql = "UPDATE budgets SET category_budget = ?, threshold = ? WHERE budget_id = ?";
 
         try (Connection conn = JDBC.getConnection();

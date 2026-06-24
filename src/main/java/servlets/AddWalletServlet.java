@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import java.io.IOException;
@@ -12,13 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import dao.WalletDAO;
+import model.EWallet;
+import model.PhysicalWallet;
+import model.Wallet;
 
-/**
- *
- * @author Julio
- */
 @WebServlet(name = "AddWalletServlet", urlPatterns = {"/AddWalletServlet"})
 public class AddWalletServlet extends HttpServlet {
 
@@ -51,16 +45,17 @@ public class AddWalletServlet extends HttpServlet {
         }
 
         WalletDAO walletDAO = new WalletDAO();
-
+        Wallet wallet;
         boolean success = false;
         
         if ("ewallet".equalsIgnoreCase(walletType)) {
-            success = walletDAO.addEWallet(userId, accountName, balance, providerName, accountNumber);
-        } else {
+            wallet = new EWallet(0, userId, accountName, balance, providerName, accountNumber);
             
-            success = walletDAO.addPhysicalWallet(userId, accountName, balance, accountNumber);
+        } else {
+            wallet = new PhysicalWallet(0, userId, accountName, balance, accountNumber);
         }
-
+        
+        success = walletDAO.addWallet(wallet);
         
         if (success) {
             session.setAttribute("successMessage", "Wallet added successfully!");
@@ -76,7 +71,6 @@ public class AddWalletServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        // int userId = 1;
 
         if (session == null || session.getAttribute("user") == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
@@ -102,17 +96,18 @@ public class AddWalletServlet extends HttpServlet {
         }
 
         WalletDAO walletDAO = new WalletDAO();
-
+        Wallet wallet;
         boolean success = false;
         
         if ("ewallet".equalsIgnoreCase(walletType)) {
-            success = walletDAO.addEWallet(userId, accountName, balance, providerName, accountNumber);
+            wallet = new EWallet(0, userId, accountName, balance, providerName, accountNumber);
+            
         } else {
-            // PERBAIKAN: Kembalikan accountNumber ke pemanggilan physical wallet
-            success = walletDAO.addPhysicalWallet(userId, accountName, balance, accountNumber);
+            wallet = new PhysicalWallet(0, userId, accountName, balance, accountNumber);
         }
-
-        // Opsional: Anda bisa menambahkan logic Notifikasi Toast di sini jika mau
+        
+        success = walletDAO.addWallet(wallet);
+        
         if (success) {
             session.setAttribute("successMessage", "Wallet added successfully!");
         } else {

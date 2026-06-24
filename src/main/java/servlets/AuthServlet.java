@@ -24,19 +24,19 @@ public class AuthServlet extends HttpServlet {
         
         String action = request.getParameter("action");
 
-        // Jika URL adalah /auth?action=register, arahkan ke form register
+        
         if ("register".equals(action)) {
             request.getRequestDispatcher("register.jsp").forward(request, response);
         } 
-        // Jika URL adalah /auth?action=logout, proses logout
+        
         else if ("logout".equals(action)) {
             HttpSession session = request.getSession(false);
             if (session != null) {
-                session.invalidate(); // Hapus sesi
+                session.invalidate(); 
             }
             response.sendRedirect(request.getContextPath() + "/auth?action=login");
         } 
-        // Default: Jika tidak ada action spesifik, selalu tampilkan halaman Login
+        
         else {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
@@ -56,7 +56,7 @@ public class AuthServlet extends HttpServlet {
             response.sendRedirect("login.jsp");
         }
     }
-// --- METHOD UNTUK LOGIN ---
+// METHOD UNTUK LOGIN 
     private void processLogin(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
@@ -66,17 +66,17 @@ public class AuthServlet extends HttpServlet {
         User loggedInUser = userDAO.authenticateUser(emailOrUsername, password);
 
         if (loggedInUser != null) {
+            // Membuat Session dengan nama "user"
             HttpSession session = request.getSession();
             session.setAttribute("user", loggedInUser); 
             
-            // INI YANG BENAR (Arahkan ke DashboardServlet):
             response.sendRedirect(request.getContextPath() + "/dashboard");
         } else {
             request.setAttribute("errorMessage", "Email/Username atau Password salah!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
-// --- METHOD UNTUK REGISTER    
+// METHOD UNTUK REGISTER    
     private void processRegister(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
@@ -85,7 +85,7 @@ public class AuthServlet extends HttpServlet {
         String password = request.getParameter("regisPassword");
         String confirmPassword = request.getParameter("regisConfirmPassword");
         
-        // 1. Cek kecocokan password di sisi server
+        // 1. Cek kecocokan password
         if (confirmPassword != null && !password.equals(confirmPassword)) {
             request.setAttribute("errorMessage", "Password tidak cocok!");
             request.getRequestDispatcher("register.jsp").forward(request, response);

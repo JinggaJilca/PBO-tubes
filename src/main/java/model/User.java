@@ -62,14 +62,4 @@ public class User {
     public void setprofile(Profile profile) {
         this.profile = profile;
     }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "user_id=" + userID +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", profile=" + profile +
-                '}';
-    }
 }

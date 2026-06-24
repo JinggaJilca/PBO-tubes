@@ -3,10 +3,11 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="model.Wallet" %>
+<%@ page import="model.EWallet" %>
+<%@ page import="model.PhysicalWallet" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <% 
-    // Pesan success dan error tidak perlu lagi ditangkap di sini karena sudah diurus oleh JSTL di bawah.
 
     List<Wallet> wallets = (List<Wallet>) request.getAttribute("wallets");
 
@@ -66,33 +67,48 @@
     <div class="container wallet-overlap-container mb-5">
         <div class="wallet-grid" id="walletGrid">
 
-            <% if (wallets !=null && !wallets.isEmpty()) { 
+            <% if (wallets != null && !wallets.isEmpty()) { 
                 for (Wallet wallet : wallets) {
-                    String walletTitle=wallet.getAccountName(); 
-                    if ("ewallet".equalsIgnoreCase(wallet.getWalletType()) && wallet.getProviderName() !=null && !wallet.getProviderName().trim().isEmpty()) {
-                        walletTitle=wallet.getProviderName(); 
-                    } 
+                    String walletTitle = wallet.getAccountName(); 
+                    String walletType = "physical";
+                    String providerName = "";
+                    String accountNumber = "";
+
+                    // Pengecekan tipe dompet menggunakan instanceof
+                    if (wallet instanceof EWallet) {
+                        walletType = "ewallet";
+                        EWallet ew = (EWallet) wallet;
+                        providerName = ew.getProviderName();
+                        accountNumber = ew.getAccountNumber();
+                        
+                        if (providerName != null && !providerName.trim().isEmpty()) {
+                            walletTitle = providerName; 
+                        }
+                    } else if (wallet instanceof PhysicalWallet) {
+                        walletType = "physical";
+                        PhysicalWallet pw = (PhysicalWallet) wallet;
+                        accountNumber = pw.getAccountNumber();
+                    }
                     
-                    String accountNumber = wallet.getAccountNumber(); 
                     if (accountNumber == null || accountNumber.trim().isEmpty()) { 
-                        // Jika kosong dan merupakan dompet fisik, tampilkan "CASH WALLET"
-                        if ("physical".equalsIgnoreCase(wallet.getWalletType())) {
+                        if ("physical".equals(walletType)) {
                             accountNumber = "CASH WALLET";
                         } else {
                             accountNumber = "E-WALLET-" + wallet.getAccountId(); 
                         }
                     }
-                    String formattedBalance=rupiah.format(wallet.getBalance()); 
-                    String safeAccountName=wallet.getAccountName()==null ? "" : wallet.getAccountName().replace("\\", "\\\\" ).replace("'", "\\'" ); 
-                    String safeWalletType=wallet.getWalletType()==null ? "physical" : wallet.getWalletType().replace("\\", "\\\\" ).replace("'", "\\'" ); 
-                    String safeProviderName=wallet.getProviderName()==null ? "" : wallet.getProviderName().replace("\\", "\\\\" ).replace("'", "\\'" ); 
-                    String safeAccountNumber=wallet.getAccountNumber()==null ? "" : wallet.getAccountNumber().replace("\\", "\\\\" ).replace("'", "\\'" ); 
+
+                    String formattedBalance = rupiah.format(wallet.getBalance()); 
+                    String safeAccountName = wallet.getAccountName() == null ? "" : wallet.getAccountName().replace("\\", "\\\\" ).replace("'", "\\'" ); 
+                    String safeWalletType = walletType.replace("\\", "\\\\" ).replace("'", "\\'" ); 
+                    String safeProviderName = providerName == null ? "" : providerName.replace("\\", "\\\\" ).replace("'", "\\'" ); 
+                    String safeAccountNumber = accountNumber == null ? "" : accountNumber.replace("\\", "\\\\" ).replace("'", "\\'" ); 
             %>
 
             <div class="wallet-card">
                 <div class="wallet-card-top">
 
-                    <% if ("ewallet".equalsIgnoreCase(wallet.getWalletType())) { %>
+                    <% if ("ewallet".equals(walletType)) { %>
                         <i class="bi bi-credit-card-2-front card-icon-credit"></i>
                     <% } else { %>
                         <i class="bi bi-wallet2 card-icon"></i>
@@ -419,7 +435,13 @@
             document.getElementById("editAccountName").value = accountName;
             document.getElementById("editWalletType").value = walletType;
             document.getElementById("editBalance").value = balance;
-            document.getElementById("editAccountNumber").value = accountNumber;
+            
+            // Check if accountNumber parameter is empty string or "CASH WALLET"
+            if (accountNumber === '' || accountNumber === 'CASH WALLET' || accountNumber.startsWith('E-WALLET-')) {
+                 document.getElementById("editAccountNumber").value = "";
+            } else {
+                 document.getElementById("editAccountNumber").value = accountNumber;
+            }
 
             const providerInput = document.getElementById("editProviderName");
             if (providerInput) {
