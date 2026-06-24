@@ -66,8 +66,7 @@ public class BudgetDAO {
 
     // 3. Menambahkan budget
     public boolean addBudget(Budget budget) {
-        // PERBAIKAN: Menyesuaikan jumlah parameter VALUES(?) menjadi 6 sesuai jumlah
-        // kolom
+        // PERBAIKAN: Menyesuaikan jumlah parameter VALUES(?) menjadi 6 sesuai jumlah kolom
         String sql = "INSERT INTO budgets (user_id, category_id, category_budget, threshold, start_date, end_date) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -91,8 +90,7 @@ public class BudgetDAO {
         }
     }
 
-    // 4. Mengambil semua list budget milik user (Dibutuhkan oleh Servlet untuk
-    // Looping Kartu)
+    // 4. Mengambil semua list budget milik user (Dibutuhkan oleh Servlet untuk Looping Kartu)
     public List<Budget> getAllBudgetsByUser(int userId) {
         List<Budget> list = new ArrayList<>();
         String sql = "SELECT * FROM budgets WHERE user_id = ?";
@@ -118,6 +116,7 @@ public class BudgetDAO {
         return list;
     }
 
+    // 5. Mengambil pengeluaran per kategori sesuai periode budget
     public double getSpentAmountByCategory(int userId, int categoryId) {
 
         String sql = "SELECT COALESCE(SUM(t.amount), 0) AS total_spent " +
