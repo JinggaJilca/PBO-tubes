@@ -307,26 +307,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // 1. INISIALISASI DATATABLES & FITUR PENCARIAN KUSTOM
         $(document).ready(function () {
-            // HANYA ADA SATU inisialisasi DataTable di sini
             var t = $('#tabelKategori').DataTable({
                 "paging": false,
                 "info": false,
                 "dom": '<"table-responsive"t>',
                 
                 "columnDefs": [
-                    { "searchable": false, "targets": 0 }, // Kolom No tetap tidak ikut ter-search
-                    { "orderable": false, "targets": "_all" } // ⚠️ Mematikan panah sorting di SEMUA kolom
+                    { "searchable": false, "targets": 0 },
+                    { "orderable": false, "targets": "_all" } 
                 ],
-                "order": [], // ⚠️ Kosongkan urutan default agar tidak ada panah yang aktif saat halaman dimuat
+                "order": [], 
                 
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json"
                 }
             });
 
-            // Script otomatisasi kolom "No" agar selalu urut 1, 2, 3...
             t.on('order.dt search.dt', function () {
                 let i = 1;
                 t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
@@ -334,20 +331,16 @@
                 });
             }).draw();
 
-            // Fungsi Search Kustom (Menyambungkan input oval ke DataTables)
             $('#customSearch').on('keyup', function () {
                 t.search(this.value).draw();
             });
 
-            // Fungsi Filter Tombol (All, Income, Expense)
             $('.trx-filter-tab').on('click', function () {
-                // Pindahkan efek warna gelap (active) ke tombol yang sedang diklik
                 $('.trx-filter-tab').removeClass('active');
                 $(this).addClass('active');
 
                 var filterValue = $(this).attr('data-filter');
 
-                // Terapkan filter teks ke kolom "Tipe" (indeks ke-2)
                 if (filterValue === 'all') {
                     t.column(2).search('').draw(); 
                 } else {
@@ -356,7 +349,6 @@
             });
         });
 
-        // 2. HANDLER MODAL KONFIRMASI HAPUS
         var deleteModal = document.getElementById('deleteModal');
         deleteModal.addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget;
@@ -375,7 +367,6 @@
             }
         });
 
-        // 3. TRIGGER NOTIFIKASI TOAST (BERHASIL/GAGAL)
         document.addEventListener('DOMContentLoaded', function () {
             <% if (successMessage != null) { %>
                 var toastElSuccess = document.getElementById('liveToastSuccess');
@@ -389,21 +380,17 @@
                 toastError.show();
             <% } %>
         });
-        // 4. MODAL CATEGORY
         var editModal = document.getElementById('editModal');
         editModal.addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget;
 
-            // Ambil data
             var id = button.getAttribute('data-id');
             var name = button.getAttribute('data-name');
             var type = button.getAttribute('data-type');
 
-            // Isi field input
             editModal.querySelector('#editCategoryIdInput').value = id;
             editModal.querySelector('#editNameInput').value = name;
 
-            // Pilih radio button yang benar
             if (type.toLowerCase() === 'income') {
                 document.getElementById('editTypeIncome').checked = true;
             } else {
