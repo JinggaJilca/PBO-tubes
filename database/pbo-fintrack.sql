@@ -1,4 +1,4 @@
--- CREATE DATABASE IF NOT EXISTS fintrack_db;
+CREATE DATABASE IF NOT EXISTS fintrack_db;
 USE fintrack_db;
 
 -- === CREATE TABLE ===
