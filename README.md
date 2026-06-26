@@ -22,6 +22,8 @@ Proyek ini mengadopsi pola arsitektur MVC (Model-View-Controller) secara terstru
 | 5 | **Julio Chrysanto Tanlain** | 103072400110 | Backend |
 | 6 | **Misael Arafian Fonataba** | 103072400017 | Frontend |
 
+## 💻 KONFIGURASI APLIKASI
+
 ### 📦 LANGKAH 1: SETUP PROJECT GIT via VS Code
 1. Buat atau pilih folder kosong di laptop untuk menyimpan project.
 2. Buka folder dengan klik **File** ➡️ **Open Folder** `(Ctrl + K + Ctrl + O)` ➡️ Pilih folder yang sudah di buat.
