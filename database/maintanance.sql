@@ -1,3 +1,7 @@
+-- === CREATE & USE DB ===
+CREATE DATABASE IF NOT EXISTS fintrack_db;
+USE fintrack_db;
+
 -- === DELETE DATA ===
 DELETE FROM analysis;
 
