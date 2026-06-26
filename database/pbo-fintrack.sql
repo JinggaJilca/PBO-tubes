@@ -1,6 +1,3 @@
-CREATE DATABASE IF NOT EXISTS fintrack_db;
-USE fintrack_db;
-
 -- === CREATE TABLE ===
 -- Manajemen User
 CREATE TABLE users (
