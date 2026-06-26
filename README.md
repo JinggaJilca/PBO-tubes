@@ -27,7 +27,7 @@ Proyek ini mengadopsi pola arsitektur MVC (Model-View-Controller) secara terstru
 ### 📦 LANGKAH 1: SETUP PROJECT GIT via VS Code
 1. Buat atau pilih folder kosong di laptop untuk menyimpan project.
 2. Buka folder dengan klik **File** ➡️ **Open Folder** `(Ctrl + K + Ctrl + O)` ➡️ Pilih folder yang sudah di buat.
-3. Buka Terminal Baru `(Ctrl + `)`.
+3. Buka Terminal Baru.
 4. Ketik "git clone https://github.com/JinggaJilca/PBO-tubes" (tanpa tanda petik) pada terminal, lalu tekan **Enter**.
 
 ### 🗃️ LANGKAH 2: IMPORT DATABASE di XAMPP
