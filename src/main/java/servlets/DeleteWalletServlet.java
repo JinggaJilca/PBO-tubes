@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -67,12 +66,9 @@ public class DeleteWalletServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
-
         User loggedInUser = (User) session.getAttribute("user");
         int userId = loggedInUser.getUserID();
-
         String accountIdText = request.getParameter("accountId");
-
         int accountId = 0;
 
         try {

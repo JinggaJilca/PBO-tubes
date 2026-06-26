@@ -14,35 +14,26 @@
 
                         <title>FinTrack - Notifications</title>
 
-                        <!-- Favicon -->
                         <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/images/favicon.png">
 
-                        <!-- Bootstrap -->
                         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
                             rel="stylesheet">
 
-                        <!-- Bootstrap Icons -->
                         <link rel="stylesheet"
                             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-                        <!-- Google Font -->
                         <link
                             href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"
                             rel="stylesheet">
 
-                        <!-- FinTrack CSS -->
                         <link rel="stylesheet" type="text/css"
                             href="<%= request.getContextPath() %>/css/style.css?v=20260613-5">
                     </head>
 
                     <body class="notification-page">
 
-                        <!-- Navbar -->
                         <jsp:include page="navbar.jsp" />
 
-                        <!-- =====================================
-         HEADER
-    ====================================== -->
                         <header class="notification-header">
 
                             <div class="container">
@@ -83,14 +74,10 @@
 
                         </header>
 
-                        <!-- =====================================
-         MAIN CONTENT
-    ====================================== -->
                         <main class="notification-content">
 
                             <div class="container">
 
-                                <!-- Summary -->
                                 <section class="notification-summary">
 
                                     <div class="notification-summary-text">
@@ -105,7 +92,6 @@
 
                                     </div>
 
-                                    <!-- Filter -->
                                     <div class="notification-filter">
 
                                         <button type="button" class="notification-filter-button active"
@@ -128,9 +114,6 @@
 
                                 </section>
 
-                                <!-- =====================================
-                 NOTIFICATION LIST
-            ====================================== -->
                                 <section class="notification-list" id="notificationList">
 
                                     <c:if test="${not empty notifications}">
@@ -274,9 +257,7 @@
                                     </c:if>
 
                                 </section>
-                                <!-- =====================================
-                 EMPTY STATE
-            ====================================== -->
+
                                 <section class="notification-empty" id="notificationEmpty">
 
                                     <div class="notification-empty-icon">
@@ -298,13 +279,9 @@
 
                         </main>
 
-                        <!-- Bootstrap JavaScript -->
                         <script
                             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                        <!-- =====================================
-         NOTIFICATION JAVASCRIPT
-    ====================================== -->
                         <script>
                             const filterButtons =
                                 document.querySelectorAll(".notification-filter-button");

@@ -28,7 +28,6 @@
 <body>
     <jsp:include page="navbar.jsp" />
 
-    <!-- DELETE MODAL -->
     <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content trx-modal-content">
@@ -57,7 +56,6 @@
         </div>
     </div>
 
-    <!-- EDIT MODAL -->
     <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content trx-modal-content">
@@ -108,7 +106,6 @@
         </div>
     </div>
 
-    <!-- HEADER -->
     <div class="budget-header mb-3">
         <div class="container">
             <p class="mb-1 text-light-teal">Manage your budget,</p>
@@ -118,7 +115,6 @@
 
     <main class="container budget-card-container mb-5">
 
-        <!-- SUMMARY KOTAK PANJANG -->
         <div class="budget-summary-box">
             <div class="bs-top">
                 <span class="bs-label">Total Budget for this month</span>
@@ -147,7 +143,6 @@
             </div>
         </div>
 
-        <!-- BUDGET PER CATEGORY -->
         <p class="section-hd">Budget per Category</p>
         <div class="row g-4">
 
@@ -210,7 +205,6 @@
                 </div>
             </c:forEach>
 
-            <!-- ADD NEW BUDGET -->
             <div class="col-12 col-md-6 col-lg-4">
                 <button type="button" class="add-bud-btn"
                     onclick="window.location.href='<%= request.getContextPath() %>/addbudget'">
@@ -222,7 +216,6 @@
         </div>
     </main>
 
-    <!-- TOAST -->
     <div class="toast-container position-fixed bottom-0 end-0 p-4" style="z-index:1055;">
         <% if (successMessage != null) { %>
         <div id="liveToastSuccess" class="toast align-items-center text-bg-success border-0 shadow-lg" role="alert">

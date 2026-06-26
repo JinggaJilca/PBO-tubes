@@ -29,7 +29,7 @@
 
 <body>
     <jsp:include page="navbar.jsp" />
-    <!-- [START] MODAL DELETE -->
+
     <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content trx-modal-content">
@@ -75,9 +75,7 @@
             </div>
         </div>
     </div>
-    <!-- [END] MODAL DELETE -->
     
-    <!-- [START] MODAL ADD CATEGORY -->
     <div class="modal fade" id="addModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content trx-modal-content">
@@ -119,9 +117,7 @@
             </div>
         </div>
     </div>
-    <!-- [END] MODAL ADD CATEGORY -->
     
-    <!-- [START] MODAL EDIT CATEGORY -->
    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content trx-modal-content">
@@ -159,13 +155,13 @@
         </div>
     </div>
 </div>
-    <!-- [END] MODAL EDIT CATEGORY -->
     
     
     <div class="trx-header mb-3">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
+                    <p class="mb-1 text-light-teal">Manage categories for every transaction,</p>
                     <h2>Category Transaction</h2>
                 </div>
                 <div>
@@ -182,13 +178,12 @@
                 <span class="trx-filter-bar-title">Category Transaction Table</span>
 
                 <div class="d-flex align-items-center gap-2 flex-wrap">
-                    <!-- [START] Kotak Pencarian Kustom -->
+
                     <div class="trx-search-wrap">
                         <i class="bi bi-search trx-search-icon"></i>
                         <input type="text" class="trx-search-input" id="customSearch" placeholder="Search category...">
                     </div>
 
-                    <!-- [START] Tombol Filter Tipe -->
                     <div class="trx-filter-tabs">
                         <button class="trx-filter-tab active" data-filter="all">All</button>
                         <button class="trx-filter-tab" data-filter="Income">Income</button>
@@ -278,7 +273,7 @@
             </div>
         </div>
     </div>
-    <!-- [START] TOAST -->
+
     <div class="toast-container position-fixed bottom-0 end-0 p-4" style="z-index: 1055;">
         <% if (successMessage != null) { %>
             <div id="liveToastSuccess" class="toast align-items-center text-bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
@@ -304,7 +299,6 @@
             </div>
         <% } %>
         
-    <!-- [END] TOAST -->
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -313,26 +307,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // 1. INISIALISASI DATATABLES & FITUR PENCARIAN KUSTOM
         $(document).ready(function () {
-            // HANYA ADA SATU inisialisasi DataTable di sini
             var t = $('#tabelKategori').DataTable({
                 "paging": false,
                 "info": false,
                 "dom": '<"table-responsive"t>',
                 
                 "columnDefs": [
-                    { "searchable": false, "targets": 0 }, // Kolom No tetap tidak ikut ter-search
-                    { "orderable": false, "targets": "_all" } // ⚠️ Mematikan panah sorting di SEMUA kolom
+                    { "searchable": false, "targets": 0 },
+                    { "orderable": false, "targets": "_all" } 
                 ],
-                "order": [], // ⚠️ Kosongkan urutan default agar tidak ada panah yang aktif saat halaman dimuat
+                "order": [], 
                 
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json"
                 }
             });
 
-            // Script otomatisasi kolom "No" agar selalu urut 1, 2, 3...
             t.on('order.dt search.dt', function () {
                 let i = 1;
                 t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
@@ -340,20 +331,16 @@
                 });
             }).draw();
 
-            // Fungsi Search Kustom (Menyambungkan input oval ke DataTables)
             $('#customSearch').on('keyup', function () {
                 t.search(this.value).draw();
             });
 
-            // Fungsi Filter Tombol (All, Income, Expense)
             $('.trx-filter-tab').on('click', function () {
-                // Pindahkan efek warna gelap (active) ke tombol yang sedang diklik
                 $('.trx-filter-tab').removeClass('active');
                 $(this).addClass('active');
 
                 var filterValue = $(this).attr('data-filter');
 
-                // Terapkan filter teks ke kolom "Tipe" (indeks ke-2)
                 if (filterValue === 'all') {
                     t.column(2).search('').draw(); 
                 } else {
@@ -362,7 +349,6 @@
             });
         });
 
-        // 2. HANDLER MODAL KONFIRMASI HAPUS
         var deleteModal = document.getElementById('deleteModal');
         deleteModal.addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget;
@@ -381,7 +367,6 @@
             }
         });
 
-        // 3. TRIGGER NOTIFIKASI TOAST (BERHASIL/GAGAL)
         document.addEventListener('DOMContentLoaded', function () {
             <% if (successMessage != null) { %>
                 var toastElSuccess = document.getElementById('liveToastSuccess');
@@ -395,21 +380,17 @@
                 toastError.show();
             <% } %>
         });
-        // 4. MODAL CATEGORY
         var editModal = document.getElementById('editModal');
         editModal.addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget;
 
-            // Ambil data
             var id = button.getAttribute('data-id');
             var name = button.getAttribute('data-name');
             var type = button.getAttribute('data-type');
 
-            // Isi field input
             editModal.querySelector('#editCategoryIdInput').value = id;
             editModal.querySelector('#editNameInput').value = name;
 
-            // Pilih radio button yang benar
             if (type.toLowerCase() === 'income') {
                 document.getElementById('editTypeIncome').checked = true;
             } else {
