@@ -1,0 +1,39 @@
+{
+  "version": "2.6.2",
+  "release_version": "1.0",
+  "released_at": "2026-11-23",
+  "summary": {
+    "title": "Threat Modeling Sistem Presensi QR Code",
+    "owner": "Jufafa",
+    "description": "Analisis keamanan sistem presensi perkuliahan berbasis QR Code menggunakan STRIDE",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "Julio Tanlain"
+      },
+      {
+        "name": "Fathir"
+      },
+      {
+        "name": "Fahmi"
+      }
+    ],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "DFD Sistem Presensi QR Code",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "iagram aliran data sistem presensi perkuliahan berbasis QR Code"
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "Dosen Pengampu",
+    "threatTop": 0
+  }
+}
