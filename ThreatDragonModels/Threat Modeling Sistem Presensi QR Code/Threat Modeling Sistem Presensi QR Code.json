@@ -31,7 +31,7 @@
         "cells": [
           {
             "position": {
-              "x": 30,
+              "x": -10,
               "y": 260
             },
             "size": {
@@ -382,8 +382,8 @@
           },
           {
             "position": {
-              "x": 400,
-              "y": 270
+              "x": 450,
+              "y": 190
             },
             "size": {
               "width": 60,
@@ -502,8 +502,8 @@
           },
           {
             "position": {
-              "x": 1170,
-              "y": 120
+              "x": 1250,
+              "y": 80
             },
             "size": {
               "width": 60,
@@ -622,8 +622,8 @@
           },
           {
             "position": {
-              "x": 810,
-              "y": 240
+              "x": 840,
+              "y": 210
             },
             "size": {
               "width": 60,
@@ -742,8 +742,8 @@
           },
           {
             "position": {
-              "x": 1150,
-              "y": 340
+              "x": 1170,
+              "y": 400
             },
             "size": {
               "width": 120,
@@ -1035,58 +1035,6 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Data Flow",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Data Flow"
-            ],
-            "id": "7963a011-22b7-42ca-b316-defd82c0b57b",
-            "source": {
-              "cell": "0da97c10-5ffb-4fb3-950a-720702ce9459",
-              "port": "245ba762-2b15-4ccd-af95-0767efabdff6"
-            },
-            "target": {
-              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
-              "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
-            },
-            "vertices": [
-              {
-                "x": 1030,
-                "y": 240
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
               "name": "Permintaan verifikasi identitas",
               "description": "",
               "outOfScope": false,
@@ -1166,8 +1114,8 @@
             },
             "vertices": [
               {
-                "x": 1000,
-                "y": 320
+                "x": 1080,
+                "y": 350
               }
             ]
           },
@@ -1270,8 +1218,8 @@
             },
             "vertices": [
               {
-                "x": 640,
-                "y": 240
+                "x": 700,
+                "y": 190
               }
             ]
           },
@@ -1532,6 +1480,365 @@
               {
                 "x": 250,
                 "y": 290
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Tampilan QR Code dan Informasi Sesi",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Tampilan QR Code dan Informasi Sesi"
+            ],
+            "id": "a4035321-de2a-4e96-b91f-d6fdf05594a6",
+            "source": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
+            },
+            "target": {
+              "cell": "aea6fb9c-7a6a-47ad-9e27-e509d16913e0",
+              "port": "3611d177-e81d-478b-b047-1132263f93a0"
+            },
+            "vertices": [
+              {
+                "x": 210,
+                "y": 360
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Informasi Status Kehadiran",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Informasi Status Kehadiran"
+            ],
+            "id": "80844414-8e11-453c-9639-c6d12d483aaf",
+            "source": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
+            },
+            "target": {
+              "cell": "aea6fb9c-7a6a-47ad-9e27-e509d16913e0",
+              "port": "6658f4bd-c635-4152-933f-b7f97e45ee70"
+            },
+            "vertices": [
+              {
+                "x": 260,
+                "y": 220
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Permintaan Pencatatan Presensi",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Permintaan Pencatatan Presensi"
+            ],
+            "id": "63d8f564-ae21-4de6-bd15-e3a87d5f180b",
+            "source": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "target": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Permintaan Data Rekap",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Permintaan Data Rekap"
+            ],
+            "id": "555a689c-3737-491a-a711-ff95d87093e4",
+            "source": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "target": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
+            },
+            "vertices": [
+              {
+                "x": 680,
+                "y": 150
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Hasil Validasi Presensi",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Hasil Validasi Presensi"
+            ],
+            "id": "28e0ee8c-882b-4759-8c9a-338fafe45b70",
+            "source": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
+            },
+            "target": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "vertices": [
+              {
+                "x": 710,
+                "y": 400
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Hasil Rekap Kehadiran",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Hasil Rekap Kehadiran"
+            ],
+            "id": "0a6eee42-ee0e-44c4-8347-260c0fb44865",
+            "source": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
+            },
+            "target": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "vertices": [
+              {
+                "x": 680,
+                "y": 120
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Penyimpanan Data Sesi Presensi",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Penyimpanan Data Sesi Presensi"
+            ],
+            "id": "09519ee0-ee29-4ace-b5b8-cf3cc0e18942",
+            "source": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "target": {
+              "cell": "0bf9906b-1685-45d4-afaf-3034df0c11a7",
+              "port": "31d076a7-1b36-4db6-ac23-3bf91f8ec9f6"
+            },
+            "vertices": [
+              {
+                "x": 1020,
+                "y": 390
               }
             ]
           },
