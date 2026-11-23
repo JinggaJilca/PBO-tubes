@@ -383,7 +383,7 @@
           {
             "position": {
               "x": 450,
-              "y": 190
+              "y": 200
             },
             "size": {
               "width": 60,
@@ -1114,6 +1114,10 @@
             },
             "vertices": [
               {
+                "x": 1050,
+                "y": 350
+              },
+              {
                 "x": 1080,
                 "y": 350
               }
@@ -1839,6 +1843,369 @@
               {
                 "x": 1020,
                 "y": 390
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Penyimpanan Catatan Kehadiran",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Penyimpanan Catatan Kehadiran"
+            ],
+            "id": "edc5cb25-cd5c-4b26-9af6-d2fb3d068cc3",
+            "source": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "target": {
+              "cell": "0bf9906b-1685-45d4-afaf-3034df0c11a7",
+              "port": "31d076a7-1b36-4db6-ac23-3bf91f8ec9f6"
+            },
+            "vertices": [
+              {
+                "x": 900,
+                "y": 410
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Konfirmasi Penyimpanan Sesi",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Konfirmasi Penyimpanan Sesi"
+            ],
+            "id": "d06bd43a-5745-42df-ad24-0eb51a7e72ea",
+            "source": {
+              "cell": "0bf9906b-1685-45d4-afaf-3034df0c11a7",
+              "port": "29d03754-3753-4634-a92d-24a1667b2bbb"
+            },
+            "target": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Konfirmasi Pencatatan Kehadiran",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Konfirmasi Pencatatan Kehadiran"
+            ],
+            "id": "0c46a444-97f9-44a6-a139-32209b738b13",
+            "source": {
+              "cell": "0bf9906b-1685-45d4-afaf-3034df0c11a7",
+              "port": "29d03754-3753-4634-a92d-24a1667b2bbb"
+            },
+            "target": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "vertices": [
+              {
+                "x": 1260,
+                "y": 240
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Permintaan Data Kehadiran",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Permintaan Data Kehadiran"
+            ],
+            "id": "367c487c-3f69-4a49-910a-ba337f8b47e2",
+            "source": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "245ba762-2b15-4ccd-af95-0767efabdff6"
+            },
+            "target": {
+              "cell": "0bf9906b-1685-45d4-afaf-3034df0c11a7",
+              "port": "31d076a7-1b36-4db6-ac23-3bf91f8ec9f6"
+            },
+            "vertices": [
+              {
+                "x": 840,
+                "y": 430
+              },
+              {
+                "x": 890,
+                "y": 480
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Rekap Kehadiran",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Data Rekap Kehadiran"
+            ],
+            "id": "b89c633b-93c4-4b65-8232-4f0343445789",
+            "source": {
+              "cell": "0bf9906b-1685-45d4-afaf-3034df0c11a7",
+              "port": "29d03754-3753-4634-a92d-24a1667b2bbb"
+            },
+            "target": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "vertices": [
+              {
+                "x": 1310,
+                "y": 210
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Permintaan Daftar Hadir Kelas",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Permintaan Daftar Hadir Kelas"
+            ],
+            "id": "f578b62a-f743-4e6a-9e80-50b6f54569e5",
+            "source": {
+              "cell": "168d5307-09b7-4274-9236-72a890943e4a",
+              "port": "1c7dbc30-8194-40c1-920a-1b6bdef4bf51"
+            },
+            "target": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
+            },
+            "vertices": [
+              {
+                "x": 370,
+                "y": 90
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Tampilan Daftar Hadir Kelas",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Tampilan Daftar Hadir Kelas"
+            ],
+            "id": "dab7842b-c203-4b0c-8c0d-16750f5b0646",
+            "source": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
+            },
+            "target": {
+              "cell": "168d5307-09b7-4274-9236-72a890943e4a",
+              "port": "1c7dbc30-8194-40c1-920a-1b6bdef4bf51"
+            },
+            "vertices": [
+              {
+                "x": 420,
+                "y": 50
               }
             ]
           },
