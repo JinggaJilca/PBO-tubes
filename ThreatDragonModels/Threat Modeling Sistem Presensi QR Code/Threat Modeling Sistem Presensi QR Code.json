@@ -31,7 +31,136 @@
         "cells": [
           {
             "position": {
-              "x": -170,
+              "x": -178.00000000000472,
+              "y": -99.99999999999403
+            },
+            "size": {
+              "width": 740,
+              "height": 680
+            },
+            "attrs": {
+              "label": {
+                "text": "Area Client"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "c69382df-085f-477a-b0f6-8bfd98c05d58",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Area Client",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "869c629c-70d3-46de-92bf-dab1fe332cb4",
+                "1774b26e-93f8-4241-96d4-0bbe13146cf8",
+                "986f4054-cde9-4f1a-9ebe-3060f1bc3223",
+                "bf649782-c9f6-42cb-8ff6-c659bc41d296",
+                "63d8f564-ae21-4de6-bd15-e3a87d5f180b",
+                "555a689c-3737-491a-a711-ff95d87093e4",
+                "28e0ee8c-882b-4759-8c9a-338fafe45b70",
+                "0a6eee42-ee0e-44c4-8347-260c0fb44865"
+              ],
+              "containedElements": [
+                "aea6fb9c-7a6a-47ad-9e27-e509d16913e0",
+                "168d5307-09b7-4274-9236-72a890943e4a",
+                "075060b0-8a03-4f20-b2a4-c056a31127d9",
+                "1896f728-4c53-4457-9067-5e2edff7c772"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 800,
+              "y": -30
+            },
+            "size": {
+              "width": 790,
+              "height": 330
+            },
+            "attrs": {
+              "label": {
+                "text": "Area Server"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "dffa6b19-e62b-4f80-9629-50d7958fc0ab",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Area Server",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "869c629c-70d3-46de-92bf-dab1fe332cb4",
+                "9ff79fe5-b357-42c5-ac83-72bdcb639a08",
+                "6cb85337-4935-48a5-b34e-5e60de23e0c8",
+                "1774b26e-93f8-4241-96d4-0bbe13146cf8",
+                "986f4054-cde9-4f1a-9ebe-3060f1bc3223",
+                "bf649782-c9f6-42cb-8ff6-c659bc41d296",
+                "63d8f564-ae21-4de6-bd15-e3a87d5f180b",
+                "555a689c-3737-491a-a711-ff95d87093e4",
+                "28e0ee8c-882b-4759-8c9a-338fafe45b70",
+                "0a6eee42-ee0e-44c4-8347-260c0fb44865",
+                "09519ee0-ee29-4ace-b5b8-cf3cc0e18942",
+                "edc5cb25-cd5c-4b26-9af6-d2fb3d068cc3",
+                "d06bd43a-5745-42df-ad24-0eb51a7e72ea",
+                "0c46a444-97f9-44a6-a139-32209b738b13",
+                "b89c633b-93c4-4b65-8232-4f0343445789",
+                "afc1a6a2-1be5-494e-a1df-4df3296d678f"
+              ],
+              "containedElements": [
+                "0da97c10-5ffb-4fb3-950a-720702ce9459",
+                "c63e0336-6feb-444c-8e1a-53a374b1928b"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 1250,
+              "y": 450
+            },
+            "size": {
+              "width": 260,
+              "height": 220
+            },
+            "attrs": {
+              "label": {
+                "text": "Area Database"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "9e4e6363-a251-44c0-bca9-3d3415036f2e",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Area Database",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "9ff79fe5-b357-42c5-ac83-72bdcb639a08",
+                "6cb85337-4935-48a5-b34e-5e60de23e0c8",
+                "09519ee0-ee29-4ace-b5b8-cf3cc0e18942",
+                "edc5cb25-cd5c-4b26-9af6-d2fb3d068cc3",
+                "d06bd43a-5745-42df-ad24-0eb51a7e72ea",
+                "0c46a444-97f9-44a6-a139-32209b738b13",
+                "b89c633b-93c4-4b65-8232-4f0343445789",
+                "afc1a6a2-1be5-494e-a1df-4df3296d678f"
+              ],
+              "containedElements": [
+                "0bf9906b-1685-45d4-afaf-3034df0c11a7"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": -140,
               "y": 260
             },
             "size": {
@@ -148,8 +277,8 @@
           },
           {
             "position": {
-              "x": -102.5,
-              "y": -60
+              "x": -160,
+              "y": -50
             },
             "size": {
               "width": 112.5,
@@ -942,7 +1071,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c69382df-085f-477a-b0f6-8bfd98c05d58",
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab"
+              ]
             },
             "labels": [
               "Permintaan pengelolaan sesi"
@@ -1102,7 +1234,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab",
+                "9e4e6363-a251-44c0-bca9-3d3415036f2e"
+              ]
             },
             "labels": [
               "Permintaan data kelas dan sesi"
@@ -1154,7 +1289,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab",
+                "9e4e6363-a251-44c0-bca9-3d3415036f2e"
+              ]
             },
             "labels": [
               "Data kelas, jadwal, dan keanggotaan mahasiswa"
@@ -1210,7 +1348,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c69382df-085f-477a-b0f6-8bfd98c05d58",
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab"
+              ]
             },
             "labels": [
               "Hasil penyimpanan dan data kehadiran"
@@ -1366,7 +1507,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c69382df-085f-477a-b0f6-8bfd98c05d58",
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab"
+              ]
             },
             "labels": [
               "Status presensi dan data rekap"
@@ -1418,7 +1562,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c69382df-085f-477a-b0f6-8bfd98c05d58",
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab"
+              ]
             },
             "labels": [
               "Tampilan QR Code"
@@ -1626,7 +1773,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c69382df-085f-477a-b0f6-8bfd98c05d58",
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab"
+              ]
             },
             "labels": [
               "Permintaan Pencatatan Presensi"
@@ -1673,7 +1823,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c69382df-085f-477a-b0f6-8bfd98c05d58",
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab"
+              ]
             },
             "labels": [
               "Permintaan Data Rekap"
@@ -1725,7 +1878,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c69382df-085f-477a-b0f6-8bfd98c05d58",
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab"
+              ]
             },
             "labels": [
               "Hasil Validasi Presensi"
@@ -1777,7 +1933,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "c69382df-085f-477a-b0f6-8bfd98c05d58",
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab"
+              ]
             },
             "labels": [
               "Hasil Rekap Kehadiran"
@@ -1829,7 +1988,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab",
+                "9e4e6363-a251-44c0-bca9-3d3415036f2e"
+              ]
             },
             "labels": [
               "Penyimpanan Data Sesi Presensi"
@@ -1881,7 +2043,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab",
+                "9e4e6363-a251-44c0-bca9-3d3415036f2e"
+              ]
             },
             "labels": [
               "Penyimpanan Catatan Kehadiran"
@@ -1933,7 +2098,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab",
+                "9e4e6363-a251-44c0-bca9-3d3415036f2e"
+              ]
             },
             "labels": [
               "Konfirmasi Penyimpanan Sesi"
@@ -1989,7 +2157,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab",
+                "9e4e6363-a251-44c0-bca9-3d3415036f2e"
+              ]
             },
             "labels": [
               "Konfirmasi Pencatatan Kehadiran"
@@ -2041,7 +2212,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab",
+                "9e4e6363-a251-44c0-bca9-3d3415036f2e"
+              ]
             },
             "labels": [
               "Data Rekap Kehadiran"
@@ -2205,7 +2379,10 @@
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [],
-              "trustBoundaryIds": []
+              "trustBoundaryIds": [
+                "dffa6b19-e62b-4f80-9629-50d7958fc0ab",
+                "9e4e6363-a251-44c0-bca9-3d3415036f2e"
+              ]
             },
             "labels": [
               "Permintaan Data Kehadiran"
@@ -2269,7 +2446,7 @@
             },
             "target": {
               "cell": "168d5307-09b7-4274-9236-72a890943e4a",
-              "port": "2440a366-8cdc-4f67-a86a-edb31b0e7cac"
+              "port": "3611d177-e81d-478b-b047-1132263f93a0"
             },
             "vertices": [
               {
