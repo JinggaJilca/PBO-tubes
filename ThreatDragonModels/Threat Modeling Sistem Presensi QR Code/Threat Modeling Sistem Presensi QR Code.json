@@ -31,7 +31,7 @@
         "cells": [
           {
             "position": {
-              "x": -10,
+              "x": -170,
               "y": 260
             },
             "size": {
@@ -148,8 +148,8 @@
           },
           {
             "position": {
-              "x": 47.5,
-              "y": 40
+              "x": -102.5,
+              "y": -60
             },
             "size": {
               "width": 112.5,
@@ -265,8 +265,8 @@
           },
           {
             "position": {
-              "x": 80,
-              "y": 460
+              "x": 10,
+              "y": 530
             },
             "size": {
               "width": 110,
@@ -502,8 +502,8 @@
           },
           {
             "position": {
-              "x": 1250,
-              "y": 80
+              "x": 1400,
+              "y": 0
             },
             "size": {
               "width": 60,
@@ -622,7 +622,7 @@
           },
           {
             "position": {
-              "x": 840,
+              "x": 880,
               "y": 210
             },
             "size": {
@@ -742,8 +742,8 @@
           },
           {
             "position": {
-              "x": 1170,
-              "y": 400
+              "x": 1380,
+              "y": 530
             },
             "size": {
               "width": 120,
@@ -1119,7 +1119,7 @@
               },
               {
                 "x": 1080,
-                "y": 350
+                "y": 370
               }
             ]
           },
@@ -1169,6 +1169,10 @@
               "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
             },
             "vertices": [
+              {
+                "x": 1240,
+                "y": 330
+              },
               {
                 "x": 1100,
                 "y": 270
@@ -1943,7 +1947,16 @@
               "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
               "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
             },
-            "vertices": []
+            "vertices": [
+              {
+                "x": 1310,
+                "y": 500
+              },
+              {
+                "x": 1190,
+                "y": 370
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -1994,62 +2007,6 @@
               {
                 "x": 1260,
                 "y": 240
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Permintaan Data Kehadiran",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Permintaan Data Kehadiran"
-            ],
-            "id": "367c487c-3f69-4a49-910a-ba337f8b47e2",
-            "source": {
-              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
-              "port": "245ba762-2b15-4ccd-af95-0767efabdff6"
-            },
-            "target": {
-              "cell": "0bf9906b-1685-45d4-afaf-3034df0c11a7",
-              "port": "31d076a7-1b36-4db6-ac23-3bf91f8ec9f6"
-            },
-            "vertices": [
-              {
-                "x": 840,
-                "y": 430
-              },
-              {
-                "x": 890,
-                "y": 480
               }
             ]
           },
@@ -2151,6 +2108,14 @@
               "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
             },
             "vertices": [
+              {
+                "x": 290,
+                "y": 50
+              },
+              {
+                "x": 310,
+                "y": 50
+              },
               {
                 "x": 370,
                 "y": 90
@@ -2256,8 +2221,8 @@
             },
             "vertices": [
               {
-                "x": 30,
-                "y": 170
+                "x": 80,
+                "y": 150
               }
             ]
           }
