@@ -1035,7 +1035,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Permintaan verifikasi identitas",
+              "name": "Hasil Verifikasi Identitas dan Hak Akses",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -1049,7 +1049,7 @@
               "trustBoundaryIds": []
             },
             "labels": [
-              "Permintaan verifikasi identitas"
+              "Hasil Verifikasi Identitas dan Hak Akses"
             ],
             "id": "a6468fec-e66e-46a2-ba61-f95a07f16cd9",
             "source": {
@@ -1061,6 +1061,10 @@
               "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
             },
             "vertices": [
+              {
+                "x": 1160,
+                "y": 100
+              },
               {
                 "x": 1000,
                 "y": 150
@@ -1114,12 +1118,8 @@
             },
             "vertices": [
               {
-                "x": 1050,
-                "y": 350
-              },
-              {
                 "x": 1080,
-                "y": 370
+                "y": 350
               }
             ]
           },
@@ -2190,11 +2190,11 @@
             },
             "width": 200,
             "height": 100,
-            "zIndex": 11,
+            "zIndex": 10,
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Tampilan rekap kehadiran",
+              "name": "Data Rekap Kehadiran",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -2208,7 +2208,63 @@
               "trustBoundaryIds": []
             },
             "labels": [
-              "Tampilan rekap kehadiran"
+              "Data Rekap Kehadiran"
+            ],
+            "id": "2dddea93-13fb-4afd-8756-ba5293556f2d",
+            "source": {
+              "cell": "0bf9906b-1685-45d4-afaf-3034df0c11a7",
+              "port": "29d03754-3753-4634-a92d-24a1667b2bbb"
+            },
+            "target": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "vertices": [
+              {
+                "x": 1560,
+                "y": 190
+              },
+              {
+                "x": 1500,
+                "y": 190
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 11,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Konfirmasi Pembukaan dan Penutupan Sesi",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Konfirmasi Pembukaan dan Penutupan Sesi"
             ],
             "id": "61e12512-d4cf-4c41-9a70-b3775e27b1cb",
             "source": {
@@ -2222,7 +2278,7 @@
             "vertices": [
               {
                 "x": 80,
-                "y": 150
+                "y": 130
               }
             ]
           }
