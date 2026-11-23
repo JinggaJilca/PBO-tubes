@@ -31,8 +31,8 @@
         "cells": [
           {
             "position": {
-              "x": 492.5,
-              "y": 50
+              "x": 30,
+              "y": 260
             },
             "size": {
               "width": 112.5,
@@ -148,8 +148,8 @@
           },
           {
             "position": {
-              "x": 210,
-              "y": 60
+              "x": 47.5,
+              "y": 40
             },
             "size": {
               "width": 112.5,
@@ -265,8 +265,8 @@
           },
           {
             "position": {
-              "x": 820,
-              "y": 50
+              "x": 80,
+              "y": 460
             },
             "size": {
               "width": 110,
@@ -382,8 +382,8 @@
           },
           {
             "position": {
-              "x": 100,
-              "y": 260
+              "x": 400,
+              "y": 270
             },
             "size": {
               "width": 60,
@@ -502,8 +502,8 @@
           },
           {
             "position": {
-              "x": 780,
-              "y": 180
+              "x": 1170,
+              "y": 120
             },
             "size": {
               "width": 60,
@@ -622,8 +622,8 @@
           },
           {
             "position": {
-              "x": 420,
-              "y": 630
+              "x": 810,
+              "y": 240
             },
             "size": {
               "width": 60,
@@ -742,8 +742,8 @@
           },
           {
             "position": {
-              "x": 930,
-              "y": 390
+              "x": 1160,
+              "y": 350
             },
             "size": {
               "width": 120,
@@ -908,53 +908,6 @@
             "target": {
               "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
               "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
-            },
-            "vertices": []
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Permintaan rekap seluruh kelas",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Permintaan rekap seluruh kelas"
-            ],
-            "id": "a096ad41-45af-4ec4-9bd8-63dd82a7aa9b",
-            "source": {
-              "cell": "075060b0-8a03-4f20-b2a4-c056a31127d9",
-              "port": "3611d177-e81d-478b-b047-1132263f93a0"
-            },
-            "target": {
-              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
-              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
             },
             "vertices": []
           },
@@ -1307,53 +1260,6 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Data presensi dan identitas sesi",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Data presensi dan identitas sesi"
-            ],
-            "id": "d91c9391-14ec-4461-9c3c-9b82663e8415",
-            "source": {
-              "cell": "aea6fb9c-7a6a-47ad-9e27-e509d16913e0",
-              "port": "3611d177-e81d-478b-b047-1132263f93a0"
-            },
-            "target": {
-              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
-              "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
-            },
-            "vertices": []
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
               "name": "Hasil penyimpanan dan data kehadiran",
               "description": "",
               "outOfScope": false,
@@ -1426,9 +1332,302 @@
               "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
               "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
             },
-            "vertices": [],
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Permintaan rekap seluruh kelas",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Permintaan rekap seluruh kelas"
+            ],
+            "id": "a096ad41-45af-4ec4-9bd8-63dd82a7aa9b",
+            "source": {
+              "cell": "075060b0-8a03-4f20-b2a4-c056a31127d9",
+              "port": "1c7dbc30-8194-40c1-920a-1b6bdef4bf51"
+            },
+            "target": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "245ba762-2b15-4ccd-af95-0767efabdff6"
+            },
+            "vertices": [
+              {
+                "x": 410,
+                "y": 410
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Tampilan rekap kehadiran",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Tampilan rekap kehadiran"
+            ],
+            "id": "ffdb9aad-cebc-4e58-9f9e-335a392d1bd9",
+            "source": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
+            },
+            "target": {
+              "cell": "075060b0-8a03-4f20-b2a4-c056a31127d9",
+              "port": "1c7dbc30-8194-40c1-920a-1b6bdef4bf51"
+            },
+            "vertices": [
+              {
+                "x": 390,
+                "y": 290
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data presensi dan identitas sesi",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Data presensi dan identitas sesi"
+            ],
+            "id": "d91c9391-14ec-4461-9c3c-9b82663e8415",
+            "source": {
+              "cell": "aea6fb9c-7a6a-47ad-9e27-e509d16913e0",
+              "port": "3611d177-e81d-478b-b047-1132263f93a0"
+            },
+            "target": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 11,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Tampilan rekap kehadiran",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Tampilan rekap kehadiran"
+            ],
+            "id": "61e12512-d4cf-4c41-9a70-b3775e27b1cb",
+            "source": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
+            },
+            "target": {
+              "cell": "168d5307-09b7-4274-9236-72a890943e4a",
+              "port": "2440a366-8cdc-4f67-a86a-edb31b0e7cac"
+            },
+            "vertices": [
+              {
+                "x": 90,
+                "y": 170
+              }
+            ],
             "tools": {
               "items": [
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead",
                 "boundary",
                 "button-remove",
                 "vertices",
@@ -1472,105 +1671,6 @@
               ],
               "name": null
             }
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Tampilan rekap kehadiran",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Tampilan rekap kehadiran"
-            ],
-            "id": "61e12512-d4cf-4c41-9a70-b3775e27b1cb",
-            "source": {
-              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
-              "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
-            },
-            "target": {
-              "cell": "168d5307-09b7-4274-9236-72a890943e4a",
-              "port": "2440a366-8cdc-4f67-a86a-edb31b0e7cac"
-            },
-            "vertices": [
-              {
-                "x": 90,
-                "y": 170
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Tampilan rekap kehadiran",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Tampilan rekap kehadiran"
-            ],
-            "id": "ffdb9aad-cebc-4e58-9f9e-335a392d1bd9",
-            "source": {
-              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
-              "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
-            },
-            "target": {
-              "cell": "075060b0-8a03-4f20-b2a4-c056a31127d9",
-              "port": "2440a366-8cdc-4f67-a86a-edb31b0e7cac"
-            },
-            "vertices": []
           }
         ],
         "description": "iagram aliran data sistem presensi perkuliahan berbasis QR Code"
