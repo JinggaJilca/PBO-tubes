@@ -742,8 +742,8 @@
           },
           {
             "position": {
-              "x": 1160,
-              "y": 350
+              "x": 1150,
+              "y": 340
             },
             "size": {
               "width": 120,
@@ -956,7 +956,12 @@
               "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
               "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
             },
-            "vertices": []
+            "vertices": [
+              {
+                "x": 640,
+                "y": 300
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -1003,7 +1008,12 @@
               "cell": "0da97c10-5ffb-4fb3-950a-720702ce9459",
               "port": "245ba762-2b15-4ccd-af95-0767efabdff6"
             },
-            "vertices": []
+            "vertices": [
+              {
+                "x": 1010,
+                "y": 200
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -1050,7 +1060,12 @@
               "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
               "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
             },
-            "vertices": []
+            "vertices": [
+              {
+                "x": 1030,
+                "y": 240
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -1097,7 +1112,12 @@
               "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
               "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
             },
-            "vertices": []
+            "vertices": [
+              {
+                "x": 1000,
+                "y": 150
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -1144,7 +1164,12 @@
               "cell": "0bf9906b-1685-45d4-afaf-3034df0c11a7",
               "port": "31d076a7-1b36-4db6-ac23-3bf91f8ec9f6"
             },
-            "vertices": []
+            "vertices": [
+              {
+                "x": 1000,
+                "y": 320
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -1191,54 +1216,12 @@
               "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
               "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
             },
-            "vertices": []
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
+            "vertices": [
+              {
+                "x": 1100,
+                "y": 270
               }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Tampilan QR Code",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Tampilan QR Code"
-            ],
-            "id": "bf649782-c9f6-42cb-8ff6-c659bc41d296",
-            "source": {
-              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
-              "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
-            },
-            "target": {
-              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
-              "port": "245ba762-2b15-4ccd-af95-0767efabdff6"
-            },
-            "vertices": []
+            ]
           },
           {
             "shape": "flow",
@@ -1285,54 +1268,12 @@
               "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
               "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
             },
-            "vertices": []
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
+            "vertices": [
+              {
+                "x": 640,
+                "y": 240
               }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Status presensi dan data rekap",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": []
-            },
-            "labels": [
-              "Status presensi dan data rekap"
-            ],
-            "id": "986f4054-cde9-4f1a-9ebe-3060f1bc3223",
-            "source": {
-              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
-              "port": "245ba762-2b15-4ccd-af95-0767efabdff6"
-            },
-            "target": {
-              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
-              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
-            },
-            "vertices": []
+            ]
           },
           {
             "shape": "flow",
@@ -1458,6 +1399,110 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
+              "name": "Status presensi dan data rekap",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Status presensi dan data rekap"
+            ],
+            "id": "986f4054-cde9-4f1a-9ebe-3060f1bc3223",
+            "source": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
+            },
+            "target": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "vertices": [
+              {
+                "x": 700,
+                "y": 340
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Tampilan QR Code",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Tampilan QR Code"
+            ],
+            "id": "bf649782-c9f6-42cb-8ff6-c659bc41d296",
+            "source": {
+              "cell": "c63e0336-6feb-444c-8e1a-53a374b1928b",
+              "port": "38bd6df3-ef0f-4144-a5ae-c6ebd81faf51"
+            },
+            "target": {
+              "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
+              "port": "14175a3d-e301-4cd5-a181-c856d4b1ade4"
+            },
+            "vertices": [
+              {
+                "x": 630,
+                "y": 270
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
               "name": "Data presensi dan identitas sesi",
               "description": "",
               "outOfScope": false,
@@ -1477,13 +1522,18 @@
             "id": "d91c9391-14ec-4461-9c3c-9b82663e8415",
             "source": {
               "cell": "aea6fb9c-7a6a-47ad-9e27-e509d16913e0",
-              "port": "3611d177-e81d-478b-b047-1132263f93a0"
+              "port": "1c7dbc30-8194-40c1-920a-1b6bdef4bf51"
             },
             "target": {
               "cell": "1896f728-4c53-4457-9067-5e2edff7c772",
               "port": "213cc347-7d27-440f-a6e3-1c176fe8dd6e"
             },
-            "vertices": []
+            "vertices": [
+              {
+                "x": 250,
+                "y": 290
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -1532,145 +1582,10 @@
             },
             "vertices": [
               {
-                "x": 90,
+                "x": 30,
                 "y": 170
               }
-            ],
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead"
-              ],
-              "name": null
-            }
+            ]
           }
         ],
         "description": "iagram aliran data sistem presensi perkuliahan berbasis QR Code"
